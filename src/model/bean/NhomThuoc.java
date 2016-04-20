@@ -2,6 +2,7 @@ package model.bean;
 
 public class NhomThuoc {
 	private String tenNhomThuoc;
+	private String tenLoaiThuoc;
 	private int maNhomThuoc;
 	private int maLoaiThuoc;
 	public String getTenNhomThuoc() {
@@ -21,6 +22,12 @@ public class NhomThuoc {
 	}
 	public void setMaLoaiThuoc(int maLoaiThuoc) {
 		this.maLoaiThuoc = maLoaiThuoc;
+	}
+	public String getTenLoaiThuoc() {
+		return tenLoaiThuoc;
+	}
+	public void setTenLoaiThuoc(String tenLoaiThuoc) {
+		this.tenLoaiThuoc = tenLoaiThuoc;
 	}
 	
 }

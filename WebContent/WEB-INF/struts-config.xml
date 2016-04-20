@@ -21,6 +21,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 		<form-bean name="benhTrieuChungForm" type="form.BenhTrieuChungForm" />
 		<form-bean name="loaiThuocForm" type="form.LoaiThuocForm" />
 		<form-bean name="loaiBenhForm" type="form.LoaiBenhForm" />
+		<form-bean name="nhomThuocForm" type="form.NhomThuocForm" />
 	</form-beans>
 	<action-mappings>
         	
@@ -193,6 +194,14 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 					<action input="/quanLy_LoaiThuoc.jsp" name="loaiThuocForm"
 						path="/quan-ly-loai-thuoc-xoa" scope="request" type="action.QuanLy_LoaiThuoc_XoaAction">
 						<forward name="xoaLoaiThuoc" path="/quan-ly-loai-thuoc.do" redirect="true" />
+					</action>
+			<action input="/quanLy_NhomThuoc.jsp" name="nhomThuocForm"
+				path="/quan-ly-nhom-thuoc" scope="request" type="action.QuanLy_NhomThuocAction">
+				<forward name="nhomThuoc" path="/quanLy_NhomThuoc.jsp" />
+			</action>
+					<action input="/quanLy_NhomThuoc.jsp" name="nhomThuocForm"
+						path="/quan-ly-nhom-thuoc-xoa" scope="request" type="action.QuanLy_NhomThuoc_XoaAction">
+						<forward name="xoaNhomThuoc" path="/quan-ly-nhom-thuoc.do" redirect="true" />
 					</action>
 			
 			<action input="/quanLy_LoaiBenh.jsp" name="loaiBenhForm"

@@ -42,7 +42,7 @@
 						data-toggle="dropdown">Khác<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/MSS/quan-ly-loai-thuoc.do">Loại thuốc</a></li>
-								<li><a href="#">Nhóm thuốc</a></li>
+								<li><a href="/MSS/quan-ly-nhom-thuoc.do">Nhóm thuốc</a></li>
 								<li class="divider"></li>
 								<li><a href="/MSS/quan-ly-loai-benh.do">Loại bệnh</a></li>
 								<li><a href="#">Triệu chứng</a></li>

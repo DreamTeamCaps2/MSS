@@ -620,4 +620,91 @@ public class ThuocDAO extends DBHelper {
 		}
 		return 0;
 	}
+	
+	public ArrayList<NhomThuoc> getListNhomThuoc() {
+		// TODO Auto-generated method stub
+		connect();
+		String sql2 = "Select MaNhomThuoc,TenNhomThuoc,TenLoaiThuoc,NhomThuoc.MaLoaiThuoc from NHOMTHUOC inner join LOAITHUOC on NhomThuoc.MaLoaiThuoc=LOAITHUOC.MaLoaiThuoc";
+		
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<NhomThuoc> list = new ArrayList<NhomThuoc>();
+		NhomThuoc lt;
+		try {
+			while(rs.next()){
+				lt = new NhomThuoc();
+				lt.setMaLoaiThuoc(rs.getInt("MaLoaiThuoc"));
+				lt.setTenLoaiThuoc(rs.getString("TenLoaiThuoc"));
+				lt.setMaNhomThuoc(rs.getInt("maNhomThuoc"));
+				lt.setTenNhomThuoc(rs.getString("tenNhomThuoc"));
+				list.add(lt);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public void themNhomThuoc(String tenNhomThuoc, int maLoaiThuoc) {
+		// TODO Auto-generated method stub
+		connect();
+				if(tenNhomThuoc.indexOf("'")!=-1){
+					String t= ""+tenNhomThuoc.charAt(tenNhomThuoc.indexOf("'"));
+					tenNhomThuoc=tenNhomThuoc.replaceAll(t, "''" );
+					
+				}
+		String sql="insert into NHOMTHUOC(TenNhomThuoc,MaLoaiThuoc) values (N'"+tenNhomThuoc+"',"+maLoaiThuoc+")";
+		 try {
+		        Statement stmt = connection.createStatement();
+		        stmt.executeUpdate(sql);
+		    } catch (SQLException e) {
+		        e.printStackTrace();    
+		    }
+		    System.out.println("Da them nhomThuoc");
+	}
+
+	public boolean kiemTraNhomThuoc(int maNhomThuoc) {
+		// TODO Auto-generated method stub
+		connect();
+		String sql2;
+		sql2="Select * from Thuoc where MaNhomThuoc ="+maNhomThuoc;
+
+
+
+		System.out.println(sql2);
+
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			while(rs.next()){
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+
+	}
+
+	public void xoaNhomThuoc(int maNhomThuoc) {
+		// TODO Auto-generated method stub
+		connect();
+        String sql= String.format("DELETE FROM NhomTHUOC WHERE maNhomThuoc = %s", maNhomThuoc);
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
 }

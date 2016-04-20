@@ -96,4 +96,24 @@ public class ThuocBO {
 	public int ktTenThuoc(String tenThuoc, int maThuoc) {
 		return thuocDAO.ktTenThuoc(tenThuoc, maThuoc);
 	}
+	public ArrayList<NhomThuoc> getListNhomThuoc() {
+		// TODO Auto-generated method stub
+		return thuocDAO.getListNhomThuoc();
+	}
+
+	public void themNhomThuoc(String tenNhomThuoc, int maLoaiThuoc) {
+		// TODO Auto-generated method stub
+		thuocDAO.themNhomThuoc(tenNhomThuoc,maLoaiThuoc);
+		
+	}
+
+	public boolean kiemTraNhomThuoc(int maNhomThuoc) {
+		// TODO Auto-generated method stub
+		return thuocDAO.kiemTraNhomThuoc(maNhomThuoc);
+	}
+
+	public void xoaNhomThuoc(int maNhomThuoc) {
+		// TODO Auto-generated method stub
+		thuocDAO.xoaNhomThuoc(maNhomThuoc);
+	}
 }
