@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts 
+Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="dangNhapForm" type="form.DangNhapForm" />
+		<form-bean name="taiKhoanForm" type="form.TaiKhoanForm" />
+        <form-bean name="benhForm" type="form.BenhForm" />
+		<form-bean name="timKiemForm" type="form.TimKiemForm" />
+		<form-bean name="trieuChungForm" type="form.TrieuChungForm" />
+		<form-bean name="phanQuyenForm" type="form.PhanQuyenForm" />
+		<form-bean name="thuocForm" type="form.ThuocForm" />		
+		<form-bean name="thongBaoForm" type="form.ThongBaoForm" />
+		<form-bean name="danhSachBenhForm" type="form.DanhSachBenhForm" />
+		<form-bean name="danhSachThuocForm" type="form.DanhSachThuocForm" />
+		<form-bean name="benhTrieuChungForm" type="form.BenhTrieuChungForm" />
+		<form-bean name="thuocBenhForm" type="form.ThuocBenhForm" />
+		<form-bean name="diaDiemForm" type="form.DiaDiemForm" />
+		<form-bean name="baiVietForm" type="form.BaiVietForm" />
+		<form-bean name="benhThuocForm" type="form.BenhThuocForm" />
+		<form-bean name="benhTrieuChungForm" type="form.BenhTrieuChungForm" />
+		<form-bean name="loaiThuocForm" type="form.LoaiThuocForm" />
+		<form-bean name="loaiBenhForm" type="form.LoaiBenhForm" />
+	</form-beans>
+	<action-mappings>
+        	
+		<action name="thongBaoForm" input="/home.jsp"
+			path="/home" scope="request" type="action.HomeAction">
+			<forward name="thanhCong" path="/home.jsp"/>
+		</action>
+        	
+		<action input="/login.jsp" name="dangNhapForm"
+			path="/login" scope="request" type="action.DangNhapAction">
+			<forward name="dangNhapThanhCong" path="/home.do" redirect="true" />
+			<forward name="dangNhapThatBai" path="/login_admin.jsp" />
+		</action>
+		
+		<action input="/dangKyTaiKhoan.jsp" name="taiKhoanForm"
+			path="/dangKyTK" scope="request" type="action.DangKyTaiKhoanAction">
+			<forward name="dangKyTKXong" path="/login.do" redirect="true" />
+			<forward name="dangKyTK" path="/register.jsp" />
+		</action>
+		
+		<action input="/profile.jsp" name="taiKhoanForm"
+			path="/thongTinTK" scope="request" type="action.ThongTinTaiKhoanAction">
+			<forward name="thongTinTKXong" path="/thongTinTK.do" redirect="true" />
+			<forward name="thongTinTK" path="/profile.jsp" />
+			<forward name="thongTinError" path="/login.jsp" />
+		</action>
+		
+		<action input="/changePassWord.jsp" name="taiKhoanForm"
+			path="/doi-mat-khau" scope="request" type="action.DoiMatKhauAction">
+			<forward name="doiMKXong" path="/doi-mat-khau.do" redirect="true" />
+			<forward name="doiMK" path="/changePassWord.jsp" />
+		</action>		
+		
+		<action path="/dang-xuat" name="dangNhapForm" type="action.DangXuatAction">
+			<forward name="dangXuatThanhCong" path="/home.do" redirect="true"/>
+		</action>	
+		
+		<action input="/quanLy_GiaThuoc.jsp" name="thuocForm" path="/quan-ly-thuoc-cua-hang"
+			scope="request" type="action.QuanLy_GiaThuoc">
+			<forward name="listThuocCuaHang" path="/quanLy_GiaThuoc.jsp" />
+		</action>
+
+		<action input="/quanLy_DanhSachBaiViet.jsp" name="baiVietForm"
+			path="/quan-ly-bai-viet" scope="request" type="action.QuanLy_DanhSachBaiVietAction">
+			<forward name="danhSachBaiViet" path="/quanLy_DanhSachBaiViet.jsp" />
+		</action>		
+		
+		<action input="/quanLy_DanhSachBaiViet.jsp" name="baiVietForm" path="/sua-bai-viet"
+			scope="request" type="action.QuanLy_BaiViet_SuaAction">
+			<forward name="suaBaiViet" path="/quanLy_DanhSachBaiViet_Sua.jsp" />
+			<forward name="suaBaiVietXong" path="/quan-ly-bai-viet.do" redirect="true"/>
+		</action>
+		
+		<action input="/editor.jsp" name="baiVietForm" path="/them-bai-viet"
+			scope="request" type="action.QuanLy_BaiViet_ThemAction">
+			<forward name="themBaiViet" path="/editor.jsp" />
+			<forward name="themBaiVietXong" path="/quan-ly-bai-viet.do" redirect="true" />
+		</action>
+		
+		<action input="/login.jsp" name="baiVietForm" path="/chi-tiet-bai-viet"
+			scope="request" type="action.ChiTietBaiVietAction">
+			<forward name="chiTietBaiViet" path="/chiTietBaiViet.jsp" />
+		</action>
+		
+		<!-- VIET -->
+		<action input="/login.jsp" name="benhForm" path="/chi-tiet-benh"
+			scope="request" type="action.ChiTietBenhAction">
+			<forward name="chiTietBenh" path="/chiTietBenh.jsp" />
+		</action>
+		
+		<action input="/login.jsp" name="thuocForm" path="/chi-tiet-thuoc"
+			scope="request" type="action.ChiTietThuocAction">
+			<forward name="chiTietThuoc" path="/chiTietThuoc.jsp" />
+		</action>	
+		
+		<action input="/login.jsp" name="timKiemForm" path="/tim-kiem"
+			scope="request" type="action.TimKiemAction">
+			<forward name="timKiem" path="/timKiem.jsp" />
+		</action>
+		
+		<action input="/login.jsp" name="danhSachBenhForm" path="/danh-sach-benh"
+			scope="request" type="action.DanhSachBenhAction">
+			<forward name="danhSachBenh" path="/danhSachBenh.jsp" />
+		</action>
+		<action input="/login.jsp" name="danhSachThuocForm" path="/danh-sach-thuoc"
+			scope="request" type="action.DanhSachThuocAction">
+			<forward name="danhSachThuoc" path="/danhSachThuoc.jsp" />
+		</action>
+		
+		<!-- TUAN -->
+		
+			<action input="/quanLy_DanhSachBenh.jsp" name="benhForm"
+				path="/quan-ly-danh-sach-benh" scope="request" type="action.QuanLy_DanhSachBenhAction">
+				<forward name="danhSachBenh" path="/quanLy_DanhSachBenh.jsp" />
+			</action>
+					<action input="/quanLy_DanhSachBenh.jsp" name="benhForm"
+						path="/xoa-benh" scope="request" type="action.QuanLy_DanhSachBenh_XoaAction">
+						<forward name="xoaBenhXong" path="/quan-ly-danh-sach-benh.do"  redirect="true"/>
+					</action>
+					<action input="/quanLy_DanhSachBenh_Sua.jsp" name="benhForm"
+						path="/sua-benh" scope="request" type="action.QuanLy_DanhSachBenh_SuaAction">
+						<forward name="suaBenh" path="/quanLy_DanhSachBenh_Sua.jsp" />
+						<forward name="suaBenhXong" path="/quan-ly-danh-sach-benh.do"  redirect="true"/>
+						<forward name="suaBenhChangeThuoc" path="/quan-ly-danh-sach-benh-sua-thuoc.do"  redirect="true" />
+						<forward name="suaBenhChangeTrieuChung" path="/quan-ly-danh-sach-benh-sua-trieu-chung.do"  redirect="true" />
+					</action>
+							<action input="/quanLy_DanhSachBenh_SuaThuoc.jsp" name="benhThuocForm"
+								path="/quan-ly-danh-sach-benh-sua-thuoc" scope="request" type="action.QuanLy_DanhSachBenh_SuaThuocAction">
+								<forward name="suaThuocXong" path="/sua-Benh.do"  redirect="true" />
+								<forward name="suaThuoc" path="/quanLy_DanhSachBenh_SuaThuoc.jsp" />
+							</action>
+							<action input="/quanLy_DanhSachBenh_SuaTrieuChung.jsp" name="benhTrieuChungForm"
+								path="/quan-ly-danh-sach-benh-sua-trieu-chung" scope="request" type="action.QuanLy_DanhSachBenh_SuaTrieuChungAction">
+								<forward name="suaTrieuChungXong" path="/sua-Benh.do"  redirect="true" />
+								<forward name="suaTrieuChung" path="/quanLy_DanhSachBenh_SuaTrieuChung.jsp" />
+							</action>
+					<action input="/quanLy_DanhSachBenh_Them.jsp" name="benhForm"
+						path="/them-benh" scope="request" type="action.QuanLy_DanhSachBenh_ThemAction">
+						<forward name="themBenh" path="/quanLy_DanhSachBenh_Them.jsp" />
+						<forward name="themBenhXong" path="/quan-ly-danh-sach-benh.do"  redirect="true"/>
+						<forward name="themBenhChangeThuoc" path="/quan-ly-danh-sach-benh-them-thuoc.do"  redirect="true" />
+						<forward name="themBenhChangeTrieuChung" path="/quan-ly-danh-sach-benh-them-trieu-chung.do"  redirect="true" />
+					</action>
+							<action input="/quanLy_DanhSachBenh_ThemThuoc.jsp" name="benhThuocForm"
+								path="/quan-ly-danh-sach-benh-them-thuoc" scope="request" type="action.QuanLy_DanhSachBenh_ThemThuocAction">
+								<forward name="themThuocXong" path="/them-Benh.do"  redirect="true" />
+								<forward name="themThuoc" path="/quanLy_DanhSachBenh_ThemThuoc.jsp" />
+							</action>
+							<action input="/quanLy_DanhSachBenh_ThemTrieuChung.jsp" name="benhTrieuChungForm"
+								path="/quan-ly-danh-sach-benh-them-trieu-chung" scope="request" type="action.QuanLy_DanhSachBenh_ThemTrieuChungAction">
+								<forward name="themTrieuChungXong" path="/them-Benh.do"  redirect="true" />
+								<forward name="themTrieuChung" path="/quanLy_DanhSachBenh_ThemTrieuChung.jsp" />
+							</action>
+				
+			<action input="/quanLy_DanhSachThuoc.jsp" name="thuocForm"
+				path="/quan-ly-danh-sach-thuoc" scope="request" type="action.QuanLy_DanhSachThuocAction">
+				<forward name="danhSachThuoc" path="/quanLy_DanhSachThuoc.jsp" />
+			</action>
+					<action input="/quanLy_DanhSachThuoc.jsp" name="thuocForm"
+						path="/xoa-thuoc" scope="request" type="action.QuanLy_DanhSachThuoc_XoaAction">
+						<forward name="xoaThuocXong" path="/quan-ly-danh-sach-thuoc.do"  redirect="true" />
+					</action>
+					<action input="/quanLy_DanhSachThuoc_Sua.jsp" name="thuocForm"
+						path="/sua-thuoc" scope="request" type="action.QuanLy_DanhSachThuoc_SuaAction">
+						<forward name="suaThuoc" path="/quanLy_DanhSachThuoc_Sua.jsp" />
+						<forward name="suaThuocXong" path="/quan-ly-danh-sach-thuoc.do"  redirect="true"/>
+						<forward name="suaThuocChange" path="/quan-ly-danh-sach-thuoc-sua-benh.do"  redirect="true" />
+					</action>
+							<action input="/quanLy_DanhSachThuoc_SuaBenh.jsp" name="thuocBenhForm"
+								path="/quan-ly-danh-sach-thuoc-sua-benh" scope="request" type="action.QuanLy_DanhSachThuoc_SuaBenhAction">
+								<forward name="suaBenhXong" path="/sua-thuoc.do"  redirect="true" />
+								<forward name="suaBenh" path="/quanLy_DanhSachThuoc_SuaBenh.jsp" />
+							</action>	
+					<action input="/quanLy_DanhSachThuoc_Them.jsp" name="thuocForm"
+						path="/them-thuoc" scope="request" type="action.QuanLy_DanhSachThuoc_ThemAction">
+						<forward name="themThuoc" path="/quanLy_DanhSachThuoc_Them.jsp" />
+						<forward name="themThuocXong" path="/quan-ly-danh-sach-thuoc.do"  redirect="true" />
+						<forward name="themThuocChange" path="/quan-ly-danh-sach-thuoc-them-benh.do"  redirect="true" />
+					</action>
+						<action input="/quanLy_DanhSachThuoc_ThemBenh.jsp" name="thuocBenhForm"
+							path="/quan-ly-danh-sach-thuoc-them-benh" scope="request" type="action.QuanLy_DanhSachThuoc_ThemBenhAction">
+							<forward name="themBenhXong" path="/them-thuoc.do"  redirect="true" />
+							<forward name="themBenh" path="/quanLy_DanhSachThuoc_ThemBenh.jsp" />
+						</action>
+			
+			<action input="/quanLy_LoaiThuoc.jsp" name="loaiThuocForm"
+				path="/quan-ly-loai-thuoc" scope="request" type="action.QuanLy_LoaiThuocAction">
+				<forward name="loaiThuoc" path="/quanLy_LoaiThuoc.jsp" />
+			</action>
+					<action input="/quanLy_LoaiThuoc.jsp" name="loaiThuocForm"
+						path="/quan-ly-loai-thuoc-xoa" scope="request" type="action.QuanLy_LoaiThuoc_XoaAction">
+						<forward name="xoaLoaiThuoc" path="/quan-ly-loai-thuoc.do" redirect="true" />
+					</action>
+			
+			<action input="/quanLy_LoaiBenh.jsp" name="loaiBenhForm"
+				path="/quan-ly-loai-benh" scope="request" type="action.QuanLy_LoaiBenhAction">
+				<forward name="loaiBenh" path="/quanLy_LoaiBenh.jsp" />
+			</action>
+					<action input="/quanLy_LoaiBenh.jsp" name="loaiBenhForm"
+						path="/quan-ly-loai-benh-xoa" scope="request" type="action.QuanLy_LoaiBenh_XoaAction">
+						<forward name="xoaLoaiBenh" path="/quan-ly-loai-benh.do" redirect="true" />
+					</action>
+			
+			<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
+				path="/quan-ly-danh-sach-trieu-chung" scope="request" type="action.QuanLy_DanhSachTrieuChungAction">
+				<forward name="danhSachTrieuChung" path="/quanLy_DanhSachTrieuChung.jsp" />
+			</action>
+					<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
+						path="/xoa-trieu-chung" scope="request" type="action.QuanLy_DanhSachTrieuChung_XoaAction">
+						<forward name="xoaTrieuChungXong" path="/quan-ly-danh-sach-trieu-chung.do"  redirect="true" />
+					</action>
+					<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
+						path="/them-trieu-chung" scope="request" type="action.QuanLy_DanhSachTrieuChung_ThemAction">
+						<forward name="themTrieuChungXong" path="/quan-ly-danh-sach-trieu-chung.do"  redirect="true" />
+					</action>
+			
+			<action input="/quanLy_DanhSachTaiKhoan.jsp" name="taiKhoanForm"
+				path="/quan-ly-danh-sach-tai-khoan" scope="request" type="action.QuanLy_DanhSachTaiKhoanAction">
+				<forward name="danhSachTaiKhoan" path="/quanLy_DanhSachTaiKhoan.jsp" />
+			</action>
+					<action input="/quanLy_DanhSachTaiKhoan.jsp" name="taiKhoanForm"
+						path="/xoa-tai-khoan" scope="request" type="action.QuanLy_DanhSachTaiKhoan_XoaAction">
+						<forward name="xoaTaiKhoanXong" path="/quan-ly-danh-sach-tai-khoan.do"  redirect="true" />
+					</action>
+					<action input="/quanLy_DanhSachTaiKhoan.jsp" name="phanQuyenForm"
+						path="/phan-quyen" scope="request" type="action.QuanLy_DanhSachTaiKhoan_PhanQuyenAction">
+						<forward name="phanQuyenXong" path="/quan-ly-danh-sach-tai-khoan.do"  redirect="true" />
+						<forward name="phanQuyen" path="/quanLy_DanhSachTaiKhoan_PhanQuyen.jsp"  />
+					</action>
+					
+					
+			<action input="/nguoiDung_TimBenhTheoTrieuChung.jsp" name="benhTrieuChungForm"
+				path="/tim-benh-theo-trieu-chung" scope="request" type="action.NguoiDung_TimBenhTheoTrieuChungAction">
+				<forward name="timBenhXong" path="/quan-ly-danh-sach-trieu-chung.do"  redirect="true" />
+				<forward name="timBenh" path="/nguoiDung_TimBenhTheoTrieuChung.jsp"   />
+			</action>	
+			
+			
+			<!-- HUNG -->
+			<action input="/login.jsp" name="diaDiemForm"
+				path="/dia-diem" scope="request" type="action.DiaDiemAction">
+				<forward name="diaDiem" path="/map2.jsp" />
+			</action>	
+			<action input="/login.jsp" name="chiDuongForm"
+				path="/chi-duong" scope="request" type="action.ChiDuongAction">
+				<forward name="chiDuong" path="/chiDuong.jsp" />
+			</action>
+		
+	</action-mappings>
+	<message-resources parameter="action.ApplicationResources" />
+	
+</struts-config>
+
