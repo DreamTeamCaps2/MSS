@@ -21,7 +21,8 @@ public class QuanLy_DanhSachBenhAction extends Action {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		BenhForm benhForm = (BenhForm) form;
-		BenhBO benhBO = new Benh
+		BenhBO benhBO = new BenhBO();
+		
 		request.getSession().invalidate();
 		request.getSession().setAttribute("kt", 0);
 		
