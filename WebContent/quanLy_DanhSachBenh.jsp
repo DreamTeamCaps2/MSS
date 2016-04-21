@@ -18,6 +18,8 @@
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/simplePagination.css">
+<script src="js/jquery.simplePagination.js" type="text/javascript"></script>
 </head>
 <%@ include file="quanLy_TrangChu.jsp"%>
 <body>
@@ -59,6 +61,7 @@
 				</div>
 			</html:form>
 		</div>
+		<div class="page-navigation" id="abc"></div>	
 		<div class="panel-body">
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover"
@@ -73,7 +76,7 @@
 					</thead>
 					<tbody>
 						<logic:iterate name="benhForm" property="listBenh" id="b">
-							<tr>
+							<tr class="item">
 								<th scope="row"><bean:write name="b" property="maBenh" />
 								</th>
 								<td><bean:write name="b" property="tenBenh" /></td>
@@ -90,8 +93,33 @@
 						</logic:iterate>
 					</tbody>
 				</table>
+				
 			</div>
 		</div>
+		<div class="page-navigation" id="pagination"></div>	
+		
+						<script>
+						jQuery(function($) {
+			                var items = $(".item");
+			                var numItems = items.length;
+			                var perPage = 2;
+			                // only show the first 2 (or "first per_page") items initially
+			                items.slice(perPage).hide();
+			                // now setup pagination
+			                $("#pagination").pagination({
+			                    items: numItems,
+			                    itemsOnPage: perPage,
+			                    cssStyle: "light-theme",
+			                    onPageClick: function(pageNumber) { // this is where the magic happens
+			                        // someone changed page, lets hide/show trs appropriately
+			                        var showFrom = perPage * (pageNumber - 1);
+			                        var showTo = showFrom + perPage;
+			                        items.hide() // first hide everything, then show for the new page
+			                             .slice(showFrom, showTo).show();
+			                    }
+			                });
+			            });
+						</script>
 	</div>
 </body>
 </html>
