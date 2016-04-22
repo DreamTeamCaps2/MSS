@@ -11,6 +11,7 @@ public class TrieuChungForm extends ActionForm {
 	private int maTrieuChung;
 	private String tenTrieuChung;
 	private ArrayList<TrieuChung> listTrieuChung;
+	private String submit;
 
 	private String timTrieuChung;
 
@@ -44,6 +45,14 @@ public class TrieuChungForm extends ActionForm {
 
 	public void setTenTrieuChung(String tenTrieuChung) {
 		this.tenTrieuChung = tenTrieuChung;
+	}
+
+	public String getSubmit() {
+		return submit;
+	}
+
+	public void setSubmit(String submit) {
+		this.submit = submit;
 	}
 
 }

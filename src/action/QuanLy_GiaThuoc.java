@@ -26,7 +26,6 @@ public class QuanLy_GiaThuoc extends Action{
 		HttpSession session1 = request.getSession();
 		
 		TaiKhoan taiKhoan = (TaiKhoan)session1.getAttribute("taiKhoan");
-		//String tenDangNhap = (String)session1.getAttribute("tenDangNhap");
 		String maTKDN = (String)session1.getAttribute("maTKDN");
 		
 		ThuocBO thuocBO = new ThuocBO();
@@ -34,13 +33,19 @@ public class QuanLy_GiaThuoc extends Action{
 		
 		ArrayList<Thuoc> listThuocCuaHang;
 		listThuocCuaHang = thuocBO.getThuocCuaHang(maTKDN);
+		thuocForm.setListThuocCuaHang(listThuocCuaHang);
 		
-		for(int i=0;i<listThuocCuaHang.size();i++)
-			System.out.println(listThuocCuaHang.get(i).getMaThuoc());
+		ArrayList<Thuoc> listThuocHeThong;
+		listThuocHeThong = thuocBO.getListThuocHeThong(maTKDN);
+		thuocForm.setListThuoc(listThuocHeThong);
 		
-		thuocForm.setListThuoc(listThuocCuaHang);
-		
-		
+		if(request.getParameter("idthuoc")!=null){
+			String idThuoc = request.getParameter("idthuoc");
+			String giaThuoc = request.getParameter("giathuoc");
+			System.out.println(idThuoc+" "+ giaThuoc);
+			thuocBO.themGiaThuocCuaHang(maTKDN, idThuoc, giaThuoc);
+			//thuocForm.setListThuoc(thuocBO.getListThuocHeThong(maTKDN));
+		}
 		
 		
 		return mapping.findForward("listThuocCuaHang");

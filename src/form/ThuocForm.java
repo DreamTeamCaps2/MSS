@@ -15,6 +15,7 @@ public class ThuocForm extends ActionForm {
 	private ArrayList<NhomThuoc> listNhomThuoc;
 	private ArrayList<LoaiThuoc> listLoaiThuoc;
 	private ArrayList<Thuoc> listThuoc;
+	private ArrayList<Thuoc> listThuocCuaHang;
 
 	private int maNhomThuoc;
 	private int maLoaiThuoc;
@@ -271,6 +272,14 @@ public class ThuocForm extends ActionForm {
 
 	public void setKt(int kt) {
 		this.kt = kt;
+	}
+
+	public ArrayList<Thuoc> getListThuocCuaHang() {
+		return listThuocCuaHang;
+	}
+
+	public void setListThuocCuaHang(ArrayList<Thuoc> listThuocCuaHang) {
+		this.listThuocCuaHang = listThuocCuaHang;
 	}
 
 }

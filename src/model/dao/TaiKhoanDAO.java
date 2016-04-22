@@ -249,8 +249,7 @@ public class TaiKhoanDAO extends DBHelper{
 				tk.setTenDangNhap(rs.getString("TenDangNhap"));
 				tk.setTenLoaiTaiKhoan(rs.getString("TenLoaiTaiKhoan"));
 				int loai = rs.getInt("MaLoaiTaiKhoan");
-				System.out.println("LOAI TK: " + loai);
-				if(loai == 1 || loai == 2)
+				if(loai <4)
 					tk.setLoaiTK("1");
 				list.add(tk);
 			}
@@ -263,7 +262,7 @@ public class TaiKhoanDAO extends DBHelper{
 	public ArrayList<TaiKhoan> getListTaiKhoan(String timTaiKhoan,int maLoaiTaiKhoan, int maQuyen)
 	{
 		connect();
-		String sql2 = "SELECT tk.MaTK, tk.TenDangNhap, ltk.TenLoaiTaiKhoan "
+		String sql2 = "SELECT tk.MaTK, tk.TenDangNhap, ltk.TenLoaiTaiKhoan, tk.MaLoaiTaiKhoan "
 				+ "FROM TAIKHOAN tk INNER JOIN LOAITAIKHOAN ltk ON tk.MaLoaiTaiKhoan = ltk.MaLoaiTaiKhoan "
 				+ "WHERE TenDangNhap LIKE N'%"+timTaiKhoan+ "%'";
 		if(maLoaiTaiKhoan != 0)
@@ -288,6 +287,9 @@ public class TaiKhoanDAO extends DBHelper{
 				tk.setMaTaiKhoan(rs.getInt("MaTK"));
 				tk.setTenDangNhap(rs.getString("TenDangNhap"));
 				tk.setTenLoaiTaiKhoan(rs.getString("TenLoaiTaiKhoan"));
+				int loai = rs.getInt("MaLoaiTaiKhoan");
+				if(loai <4)
+					tk.setLoaiTK("1");
 				list.add(tk);
 			}
 		} catch (SQLException e) {

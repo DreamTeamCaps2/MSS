@@ -6,20 +6,19 @@
 <html>
 <%@ include file="login.jsp"%>
 <head>
+	<link rel="stylesheet" href="css/reviewdao.vn.css" />
     <meta charset="utf8">
     <title>jQuery Dropdown Login Freebie | The Finished Box</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<style>
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-  </style>
+	    .active {
+	    font-size: 14px;
+	    border-bottom: 0px;
+		}
+  	</style>
 </head>
 <body>
-    <div class="container text-center" style="padding-top: 0px">    
+	<div class="container text-center" style="width: 1200px;">
 	  <div class="row">
 	    <div class="col-sm-3 well">
 	      <div class="well">
@@ -55,7 +54,7 @@
 	        </p>
 	      </div>
 	    </div>
-    <div class="col-sm-7">
+    <div class="col-sm-9">
     	<h3>THÔNG TIN TÀI KHOẢN	</h3>
       <div class="row">
         <div class="col-sm-12">
@@ -154,12 +153,8 @@
 
 		</div>
 	</div>
-		    <div class="col-sm-2 well">
-	    </div>
 	</div>
 	</div>
-	<footer class="container-fluid text-center" >
-	  <p>Footer Text</p>
-	</footer>
+<%@ include file="_footer.jsp"%>
 </body>
 </html>

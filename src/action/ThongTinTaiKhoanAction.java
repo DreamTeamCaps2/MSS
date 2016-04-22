@@ -18,7 +18,7 @@ public class ThongTinTaiKhoanAction extends Action{
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 		
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		TaiKhoanForm taiKhoanForm = (TaiKhoanForm) form;
@@ -53,11 +53,11 @@ public class ThongTinTaiKhoanAction extends Action{
 			else {
 				String tenDangNhap1 = taiKhoanForm.getTenDangNhap();
 				if(tenDangNhap == null || !tenDangNhap.equals(tenDangNhap1)){
-					taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap1, maLoai);
+					taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap1, "");
 					taiKhoanForm.setSubmit("MEMBER");
 				}
 				else {
-					taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap1, maLoai);
+					taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap1, "");
 				}
 				session1.setAttribute("taiKhoan1", taiKhoan);
 				taiKhoanForm.setMaTK(taiKhoan.getMaTK());
@@ -76,10 +76,4 @@ public class ThongTinTaiKhoanAction extends Action{
 				return mapping.findForward("thongTinTK");
 			}
 		}
-//		else{
-//			System.out.println("errror");
-//			return mapping.findForward("thongTinError");
-//		}
-	//}
-
 }

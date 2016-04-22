@@ -91,6 +91,11 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			<forward name="chiTietBaiViet" path="/chiTietBaiViet.jsp" />
 		</action>
 		
+		<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
+			path="/quan-ly-trieu-chung" scope="request" type="action.QuanLy_DanhSachTrieuChungAction">
+			<forward name="danhSachTrieuChung" path="/quanLy_DanhSachTrieuChung.jsp" />
+		</action>
+		
 		<!-- VIET -->
 		<action input="/login.jsp" name="benhForm" path="/chi-tiet-benh"
 			scope="request" type="action.ChiTietBenhAction">
@@ -111,6 +116,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			scope="request" type="action.DanhSachBenhAction">
 			<forward name="danhSachBenh" path="/danhSachBenh.jsp" />
 		</action>
+		
 		<action input="/login.jsp" name="danhSachThuocForm" path="/danh-sach-thuoc"
 			scope="request" type="action.DanhSachThuocAction">
 			<forward name="danhSachThuoc" path="/danhSachThuoc.jsp" />
@@ -218,7 +224,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 						<forward name="xoaLoaiBenh" path="/quan-ly-loai-benh.do" redirect="true" />
 					</action>
 			
-			<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
+<!-- 			<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
 				path="/quan-ly-danh-sach-trieu-chung" scope="request" type="action.QuanLy_DanhSachTrieuChungAction">
 				<forward name="danhSachTrieuChung" path="/quanLy_DanhSachTrieuChung.jsp" />
 			</action>
@@ -229,7 +235,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 					<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
 						path="/them-trieu-chung" scope="request" type="action.QuanLy_DanhSachTrieuChung_ThemAction">
 						<forward name="themTrieuChungXong" path="/quan-ly-danh-sach-trieu-chung.do"  redirect="true" />
-					</action>
+					</action> -->
 			
 			<action input="/quanLy_DanhSachTaiKhoan.jsp" name="taiKhoanForm"
 				path="/quan-ly-danh-sach-tai-khoan" scope="request" type="action.QuanLy_DanhSachTaiKhoanAction">

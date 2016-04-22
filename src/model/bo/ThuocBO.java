@@ -18,7 +18,7 @@ public class ThuocBO {
 	public ArrayList<LoaiThuoc> getListLoaiThuoc() {
 		return thuocDAO.getListLoaiThuoc();
 	}
-	
+
 	public ArrayList<NhomThuoc> getListNhomThuoc(int maLoaiThuoc) {
 		return thuocDAO.getListNhomThuoc(maLoaiThuoc);
 	}
@@ -26,7 +26,7 @@ public class ThuocBO {
 	public ArrayList<Thuoc> getListThuoc() {
 		return thuocDAO.getListThuoc();
 	}
-	
+
 	public ArrayList<Thuoc> getListThuoc(int maBenh) {
 		return thuocDAO.getListThuoc(maBenh);
 	}
@@ -60,7 +60,7 @@ public class ThuocBO {
 	public void xoaThuoc(int maThuoc) {
 		thuocDAO.xoaThuoc(maThuoc);
 	}
-	
+
 	public void xoaThuocBenh(int maBenh) {
 		thuocDAO.xoaThuocBenh(maBenh);
 	}
@@ -72,7 +72,7 @@ public class ThuocBO {
 	public ArrayList<Thuoc> getListThuocLienQuanBenh(int ma) {
 		return thuocDAO.getListThuocLienQuanBenh(ma);
 	}
-	
+
 	public ArrayList<Thuoc> getListThuocNhomThuoc(int maNhomThuoc) {
 		return thuocDAO.getListThuocNhomThuoc(maNhomThuoc);
 	}
@@ -82,13 +82,13 @@ public class ThuocBO {
 	}
 
 	public void capNhatLuotXem(int ma, int luotXem) {
-		thuocDAO.capNhatLuotXem(ma,luotXem);
+		thuocDAO.capNhatLuotXem(ma, luotXem);
 	}
 
 	public ArrayList<Thuoc> getListThuocXemNhieu() {
 		return thuocDAO.getListThuocXemNhieu();
 	}
-	
+
 	public int ktTenThuoc(String tenThuoc) {
 		return thuocDAO.ktTenThuoc(tenThuoc);
 	}
@@ -96,6 +96,7 @@ public class ThuocBO {
 	public int ktTenThuoc(String tenThuoc, int maThuoc) {
 		return thuocDAO.ktTenThuoc(tenThuoc, maThuoc);
 	}
+
 	public ArrayList<NhomThuoc> getListNhomThuoc() {
 		// TODO Auto-generated method stub
 		return thuocDAO.getListNhomThuoc();
@@ -103,8 +104,8 @@ public class ThuocBO {
 
 	public void themNhomThuoc(String tenNhomThuoc, int maLoaiThuoc) {
 		// TODO Auto-generated method stub
-		thuocDAO.themNhomThuoc(tenNhomThuoc,maLoaiThuoc);
-		
+		thuocDAO.themNhomThuoc(tenNhomThuoc, maLoaiThuoc);
+
 	}
 
 	public boolean kiemTraNhomThuoc(int maNhomThuoc) {
@@ -115,5 +116,14 @@ public class ThuocBO {
 	public void xoaNhomThuoc(int maNhomThuoc) {
 		// TODO Auto-generated method stub
 		thuocDAO.xoaNhomThuoc(maNhomThuoc);
+	}
+
+	// DUC
+	public ArrayList<Thuoc> getListThuocHeThong(String maTKDN) {
+		return thuocDAO.getListThuocHeThong(maTKDN);
+	}
+
+	public void themGiaThuocCuaHang(String maTKDN, String idThuoc, String giaThuoc) {
+		thuocDAO.themGiaThuocCuaHang(maTKDN, idThuoc, giaThuoc);
 	}
 }

@@ -10,16 +10,20 @@
 <meta charset="utf8">
 <title>jQuery Dropdown Login Freebie | The Finished Box</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/reviewdao.vn.css" />
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />	
 <style>
-footer {
-	background-color: #555;
-	color: white;
-	padding: 15px;
+.active {
+    font-size: 13px;
+    border-bottom: 0px;
 }
 </style>
 </head>
 <body>
-	<div class="container text-center" style="padding-top: 0px">
+	<div class="container text-center" style="width: 1200px;">
 		<div class="row">
 			<div class="col-sm-3 well">
 				<div class="well">
@@ -31,7 +35,7 @@ footer {
 				</div>
 				<div class="well">
 					<ul class="nav nav-pills nav-stacked" role="tablist">
-						<li><html:link action="thongTinTK">Thông tin tài khoản</html:link></li>
+						<li><html:link action="thongTinTK?tenDangNhap=${taiKhoan.tenDangNhap}">Thông tin tài khoản</html:link></li>
 						<li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
 						<li><a href="#">Thông báo</a></li>
 						<li><a href="#">Tin nhắn</a></li>
@@ -59,18 +63,16 @@ footer {
 				</div>
 			</div>
 			<div class="col-sm-9">
-				<h3>THÔNG TIN TÀI KHOẢN</h3>
+				<h3>QUẢN LÝ GIÁ THUỐC</h3>
 				<div class="row"></div>
 				<div class="panel panel-default text-left">
 					<div class="panel-body">
-						<div class="col-lg-3">
+						<div class="col-lg-12" style="    padding-bottom: 20px;">
 							<a data-toggle="modal" data-target="#myModal"
-							class="btn btn-primary" href="#">Tra Cứu Thuốc cửa hàng</a>
+							class="btn btn-primary" href="#">Thêm thuốc cửa hàng</a>
 						</div>
-						<html:link style="margin-bottom: 20px;"
-							styleClass="btn btn-primary " action="/them-thuoc-cho-cua-hang">Thêm thuốc cho cửa hàng</html:link>
 						<br>
-						<div class="table-responsive">
+						<div>
 							<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								<thead>
@@ -82,7 +84,7 @@ footer {
 									</tr>
 								</thead>
 								<tbody>
-									<logic:iterate name="thuocForm" property="listThuoc" id="ch">
+									<logic:iterate name="thuocForm" property="listThuocCuaHang" id="ch">
 										<tr>
 											<th scope="row"><bean:write name="ch" property="maThuoc" /></th>
 											<td><bean:write name="ch" property="tenThuoc" /></td>
@@ -91,18 +93,7 @@ footer {
 												<html:text name="ch" property="giaThuoc" styleClass="form-control"></html:text>
 												<html:button property="" styleClass="form-control">CẬP NHẬT</html:button>
 											</td>
-
 											<td>
-												<%-- 												<bean:define id="maMatHang" name="ch" property="maMatHang"></bean:define>
-												<html:link action="/suaMH?maMatHang=${maMatHang}"
-													style="margin-left: 20px;">
-													<span class="glyphicon glyphicon-edit"></span>
-												</html:link>
-												<html:link  action="/xoaMH?maMatHang=${maMatHang}"
-														onclick="return confirm('Bạn có muốn xóa mặt hàng ${tenMatHang} ?')"
-														style="margin-left: 20px;">
-													<span class="glyphicon glyphicon-trash"></span>
-												</html:link> --%>
 											</td>
 										</tr>
 
@@ -117,16 +108,15 @@ footer {
 
 		</div>
 	</div>
-	<div>
-		<div class="modal fade" id="myModal" role="dialog">
+
+		<div class="modal fade" id="myModal" role="dialog" data-keyboard="false" data-backdrop="static">
 			<div class="modal-dialog" style="width: 800px;">
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header" style="padding: 20px 30px;">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4>
-							<span class="glyphicon glyphicon-search"></span> Tra Cứu Khách
-							Hàng
+							<span class="glyphicon glyphicon-search"></span> Tra Cứu Thuốc
 						</h4>
 					</div>
 					<div class="modal-body" style="padding: 20px 20px;">
@@ -142,10 +132,10 @@ footer {
 							</thead>
 							<tbody id="tableSearch">
 								<logic:iterate name="thuocForm" property="listThuoc" id="ch">
-												<bean:define id="btnviet" name="ch" property="maThuoc"></bean:define>
-												<bean:define id="txtviet" name="ch" property="giaThuoc"></bean:define>
+										<bean:define id="btnviet" name="ch" property="maThuoc"></bean:define>
+										<bean:define id="txtviet" name="ch" property="giaThuoc"></bean:define>
 										<tr id="rowThuoc${btnviet}">
-											<th scope="row"><bean:write name="ch" property="maThuoc" />ashvd</th>
+											<th scope="row"><bean:write name="ch" property="maThuoc" /></th>
 											<td><bean:write name="ch" property="tenThuoc" /></td>
 											<td>
 												<html:text styleId="txt_Input_Gia${btnviet}" name="ch" property="giaThuoc" styleClass="form-control"></html:text>
@@ -153,10 +143,10 @@ footer {
 											<td>
 												<html:button onclick="Vietclick(${btnviet},${txtviet})" property="maThuoc" styleClass="form-control">CẬP NHẬT</html:button>
 											</td>
-											<script>
+										</tr>
+									</logic:iterate>
+									<script>
 											function Vietclick(idthuoc,giathuoc) {
-											   alert(idthuoc);
-											   
 											   var requestData = {
 													   idthuoc: idthuoc,
 													   giathuoc: $('#txt_Input_Gia'+idthuoc).val()
@@ -169,23 +159,13 @@ footer {
 										                data: requestData,
 										                dataType: 'json',
 										                success:function(data,status){
-															//
-										                	console.log('fuck');
-										                	// xl database
 										                	$('#rowThuoc'+idthuoc).hide();
-															
-															
 														},
 														error:function(data,status){
-															
 														}
 										            });
-											   
-											   alert($('#txt_Input_Gia'+idthuoc).val());
 											}
 											</script>
-										</tr>
-									</logic:iterate>
 							</tbody>
 						</table>
 					</div>
@@ -200,11 +180,8 @@ footer {
 
 			</div>
 		</div>
-	</div>
 
-	<footer class="container-fluid text-center">
-		<p>Footer Text</p>
-	</footer>
+
 	<script src="js/dataTables/jquery.dataTables.js"></script>
 	<script src="js/dataTables/dataTables.bootstrap.js"></script>
 	<script>
@@ -216,33 +193,18 @@ footer {
 	                               { "targets": [2,3], "searchable": false }
 	                           ]
                 });
+                $('#example').dataTable({
+                	"order": [[ 3, "desc" ]],
+                	"autoWidth": false,
+	                "columnDefs": [
+	                               { "targets": [2,3], "searchable": false }
+	                           ]
+                });
             });
-            
-            $('#btn_CapNhat').click(function(){
-            	console.log('idthuoc : '+this.data('idthuoc'));
-            	
-            });
-            
-/*             $(document).ready(function() {
-                $('#example').DataTable( {
-                    select: true,
-                    language: {
-                        select: {
-                            rows: {
-                                _: "You have selected %d rows",
-                                0: "Click a row to select it",
-                                1: "Only 1 row selected"
-                            }
-                        }
-                    }
-                } );
-            } ); */
-            var table = $('#example').dataTable();
-            
-            $('#example tbody').on( 'click', 'td', function () {
-            	
-                alert( table.cell( this ).$('input, select').serialize() );
-            } );
+            $('#myModal').on('hidden.bs.modal', function () {
+            	window.location.assign("/MSS/quan-ly-thuoc-cua-hang.do");
+            })
     </script>
 </body>
+<%@ include file="_footer.jsp"%>
 </html>

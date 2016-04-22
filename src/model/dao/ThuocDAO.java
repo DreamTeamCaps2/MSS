@@ -707,4 +707,49 @@ public class ThuocDAO extends DBHelper {
             e.printStackTrace();
         }
 	}
+	
+	//DUC
+	public ArrayList<Thuoc> getListThuocHeThong(String maTKDN) {
+		connect();
+//		String sql = "SELECT * FROM NHATHUOC "
+//				+ "INNER JOIN BANGGIATHUOC ON NHATHUOC.MaNhaThuoc = BANGGIATHUOC.MaNhaThuoc "
+//				+ "INNER JOIN THUOC ON THUOC.MaThuoc = BANGGIATHUOC.MaThuoc "
+//				+ "WHERE NHATHUOC.MaNhaThuoc="+maTKDN;
+		String sql = "SELECT MaThuoc,TenThuoc FROM THUOC "
+				+ "WHERE MaThuoc NOT IN (SELECT MaThuoc From BANGGIATHUOC WHERE MaNhaThuoc="+maTKDN+")";
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<Thuoc> listThuoc = new ArrayList<Thuoc>();
+		Thuoc thuoc;
+		try {
+			while (rs.next()) {
+				thuoc = new Thuoc();
+				thuoc.setTenThuoc(rs.getString("TenThuoc"));
+				thuoc.setMaThuoc(rs.getInt("MaThuoc"));
+				thuoc.setGiaThuoc("0");
+				listThuoc.add(thuoc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listThuoc;
+	}
+
+	public void themGiaThuocCuaHang(String maTKDN, String idThuoc, String giaThuoc) {
+		connect();
+	    String sql =String.format("Insert into BANGGIATHUOC (MaNhaThuoc,MaThuoc,Gia) "
+	    		+ "VALUES (%s,%s,'%s')",maTKDN, idThuoc, giaThuoc);
+	    System.out.println(sql);
+	    try {
+	        Statement stmt = connection.createStatement();
+	        stmt.executeUpdate(sql);
+	    } catch (SQLException e) {
+	        e.printStackTrace();    
+	    }
+	}	
 }

@@ -24,4 +24,21 @@ public class TrieuChungBO {
 	public void xoaTrieuChungBenh(int maBenh) {
 		trieuChungDAO.xoaTrieuChungBenh(maBenh);
 	}
+	
+	//DUC
+	public ArrayList<TrieuChung> getListTrieuChung() {
+		return trieuChungDAO.getListTrieuChung();
+	}
+
+	public void themTrieuChung(String tenTrieuChung) {
+		trieuChungDAO.themTrieuChung(tenTrieuChung);
+	}
+
+	public void xoaTrieuChung(String maTrieuChung) {
+		trieuChungDAO.xoaTrieuChung(maTrieuChung);
+	}
+
+	public boolean checkExist(String tenTrieuChung) {
+		return trieuChungDAO.checkExist(tenTrieuChung);
+	}	
 }

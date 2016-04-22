@@ -9,16 +9,14 @@
     <meta charset="utf8">
     <title>jQuery Dropdown Login Freebie | The Finished Box</title>
   	<style>
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
+	    .active {
+	    font-size: 14px;
+	    border-bottom: 0px;
+		}
   </style>
 </head>
 <body>
-    <div class="container text-center" style="padding-top: 0px">    
+    <div class="container text-center" style="width: 1200px;">    
 	  <div class="row">
 	    <div class="col-sm-3 well">
 	      <div class="well">
@@ -46,7 +44,7 @@
 	        </p>
 	      </div>
 	    </div>
-    <div class="col-sm-7">
+    <div class="col-sm-9">
     	<h3>ĐỔI MẬT KHẨU</h3>
       <div class="row">
         <div class="col-sm-12">
@@ -84,16 +82,12 @@
 
 		</div>
 	</div>
-		    <div class="col-sm-2 well">
-	    </div>
 	</div>
 	</div>
-	<footer class="container-fluid text-center" >
-	  <p>Footer Text</p>
-	</footer>
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
   	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 	<script src="js/validation.js"></script>
+	<%@ include file="_footer.jsp"%>
 </body>
 </html>

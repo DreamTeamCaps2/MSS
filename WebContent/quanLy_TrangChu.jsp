@@ -38,20 +38,21 @@
 
 						<li><a href="/MSS/quan-ly-danh-sach-benh.do">Bệnh</a></li>
 						<li><a href="/MSS/quan-ly-danh-sach-thuoc.do">Thuốc</a></li>
-						<li class="dropdown"><a href="quanLy_DanhSachTrieuChung.jsp" class="dropdown-toggle"
-						data-toggle="dropdown">Khác<span class="caret"></span></a>
+						<li class="dropdown"><a href="quanLy_DanhSachTrieuChung.jsp"
+							class="dropdown-toggle" data-toggle="dropdown">Khác<span
+								class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="/MSS/quan-ly-loai-thuoc.do">Loại thuốc</a></li>
 								<li><a href="/MSS/quan-ly-nhom-thuoc.do">Nhóm thuốc</a></li>
 								<li class="divider"></li>
 								<li><a href="/MSS/quan-ly-loai-benh.do">Loại bệnh</a></li>
-								<li><a href="#">Triệu chứng</a></li>
-							</ul>
-						</li>
-						<li><a href="/MSS/quan-ly-danh-sach-tai-khoan.do">Tài Khoản</a></li>
+								<li><a href="/MSS/quan-ly-trieu-chung.do">Triệu chứng</a></li>
+							</ul></li>
+						<li><a href="/MSS/quan-ly-danh-sach-tai-khoan.do">Tài
+								Khoản</a></li>
 						<li><a href="/MSS/quan-ly-bai-viet.do">Bài Viết</a></li>
-						<li class="dropdown"><a data-toggle="dropdown" href="">
-								<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+						<li class="dropdown"><a data-toggle="dropdown" href=""> <span
+								class="glyphicon glyphicon-bell" aria-hidden="true"></span>
 						</a></li>
 						<li><a href="/MSS/home.do">WEB</a></li>
 					</ul>
@@ -59,5 +60,16 @@
 			</nav>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$('ul.nav li.dropdown').hover(
+				function() {
+					$(this).find('.dropdown-menu').stop(true, true).delay(100)
+							.fadeIn(100);
+				},
+				function() {
+					$(this).find('.dropdown-menu').stop(true, true).delay(100)
+							.fadeOut(200);
+				});
+	</script>
 </body>
 </html>
