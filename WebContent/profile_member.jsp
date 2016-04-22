@@ -28,17 +28,7 @@
 	      </div>
 	      <div class="well">
 			<ul class="nav nav-pills nav-stacked" role="tablist">
-			    <li class="active"><html:link action="/thongTinTK.do">Thông tin tài khoản</html:link></li>
-				<li><a href="changePassWord.jsp">Đổi mật khẩu</a></li>
-			    <li><a href="#">Thông báo</a></li>
-			    <li><a href="#">Tin nhắn</a></li>
-			    <li><a href="#">Đã lưu</a></li>
-			    <logic:notEmpty name="taiKhoan1" property="tenNhaThuoc">
-			    <li><a href="#">Quản lý thuốc</a></li>
-			    </logic:notEmpty>
-			    <logic:notEmpty name="taiKhoan1" property="tenPhongKham">
-			    <li><a href="#">Quản lý phòng khám</a></li>
-			    </logic:notEmpty>
+			    <li class="active"><html:link action="thongTinTK?tenDangNhap=${taiKhoan1.tenDangNhap}">Thông tin tài khoản</html:link></li>
 		  	</ul>
 	      </div>
 	      <div class="well">
@@ -63,25 +53,19 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Tên Đăng Nhập</label>
 			            <div class="col-lg-6">
-			            	<html:text property="tenDangNhap" styleClass="form-control" disabled="true"></html:text>
+			            	<html:text name="taiKhoan1" property="tenDangNhap" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>
-<%-- 			        <div class="row form-group">
-			            <label class="col-lg-4">Mật Khẩu</label>
-			            <div class="col-lg-6">
-			            	<html:password property="matKhau" styleClass="form-control"></html:password>
-			            </div>
-			        </div> --%>
 					<div class="row form-group">
 			            <label class="col-lg-4">SDT</label>
 			            <div class="col-lg-6">
-			            	<html:text property="SDT" styleClass="form-control"></html:text>
+			            	<html:text property="SDT" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>
 			        <div class="row form-group">
 			            <label class="col-lg-4">Địa chỉ</label>
 			            <div class="col-lg-6">
-			            	<html:text property="diaChi" styleClass="form-control"></html:text>
+			            	<html:text property="diaChi" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>       
 			        <div class="row form-group">
@@ -99,7 +83,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">CMND</label>
 			            <div class="col-lg-6">
-			            	<html:text property="cmnd" styleClass="form-control"></html:text>
+			            	<html:text property="cmnd" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>       
 			        </logic:notEmpty>     
@@ -107,7 +91,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Email</label>
 			            <div class="col-lg-6">
-			            	<html:text property="email" styleClass="form-control"></html:text>
+			            	<html:text property="email" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>            
 			        </logic:notEmpty>       
@@ -115,7 +99,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Tên Phòng Khám</label>
 			            <div class="col-lg-6">
-			            	<html:text property="tenPhongKham" styleClass="form-control"></html:text>
+			            	<html:text property="tenPhongKham" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>      
 			        </logic:notEmpty>
@@ -123,7 +107,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Tên Nhà Thuốc</label>
 			            <div class="col-lg-6">
-			            	<html:text property="tenNhaThuoc" styleClass="form-control"></html:text>
+			            	<html:text property="tenNhaThuoc" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>              
 			        </logic:notEmpty>
@@ -131,7 +115,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Mô tả</label>
 			            <div class="col-lg-6">
-			            	<html:text property="moTa" styleClass="form-control"></html:text>
+			            	<html:text property="moTa" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>            
 			        </logic:notEmpty>
@@ -139,16 +123,10 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Thời gian</label>
 			            <div class="col-lg-6">
-			            	<html:text property="thoiGian" styleClass="form-control"></html:text>
+			            	<html:text property="thoiGian" styleClass="form-control" disabled="true"></html:text>
 			            </div>
 			        </div>              
 			        </logic:notEmpty>
-			        <div class="row form-group">
-			            <div class="col-lg-4 col-lg-offset-6">
-			            	<html:submit styleClass="btn btn-primary" property="submit" value="OK">Thêm mới</html:submit>
-			            	<html:link action="/login.jsp" styleClass="btn btn-primary">Trang chủ</html:link>
-			            </div>
-			        </div>
 			    </html:form>
 			   </div>
 		    </div>

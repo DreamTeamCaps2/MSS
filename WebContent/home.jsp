@@ -50,7 +50,7 @@
 	<c:forEach items="${thongBaoForm.listND}" var="list">
 		<c:if test="${list.id < 8}">
 		<li>
-			<a href="http://www.nyc.gov" target="_blank">
+			<a href="/MSS/thongTinTKChiTiet.do?tenDangNhap=${list.tenDangNhap}" target="_blank">
             	<img src="images/kitchen_adventurer_lemon.jpg">
 	    		<span><h4><c:out value="${list.tenDangNhap}"></c:out></h4></span>
         	</a>

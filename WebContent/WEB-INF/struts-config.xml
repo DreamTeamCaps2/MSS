@@ -49,6 +49,11 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			<forward name="thongTinError" path="/login.jsp" />
 		</action>
 		
+		<action input="/profile_member.jsp" name="taiKhoanForm"
+			path="/thongTinTKChiTiet" scope="request" type="action.ThongTinTaiKhoanChiTietAction">
+			<forward name="thongTinTKChiTiet" path="/profile_member.jsp"/>
+		</action>		
+		
 		<action input="/changePassWord.jsp" name="taiKhoanForm"
 			path="/doi-mat-khau" scope="request" type="action.DoiMatKhauAction">
 			<forward name="doiMKXong" path="/doi-mat-khau.do" redirect="true" />
