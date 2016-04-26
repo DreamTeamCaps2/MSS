@@ -11,6 +11,11 @@ public class DangNhapForm extends ActionForm {
 	private String tenDangNhap, matKhau, submit, thongBao;
 	private ArrayList<TaiKhoan> listND;
 	
+	private int benh;
+	private int thuoc;
+	private int trieuChung;
+	private int phanQuyen;
+	private int dangBai;
 
 
 	public String getTenDangNhap() {
@@ -52,4 +57,45 @@ public class DangNhapForm extends ActionForm {
 	public void setListND(ArrayList<TaiKhoan> listND) {
 		this.listND = listND;
 	}
+
+	public int getBenh() {
+		return benh;
+	}
+
+	public void setBenh(int benh) {
+		this.benh = benh;
+	}
+
+	public int getThuoc() {
+		return thuoc;
+	}
+
+	public void setThuoc(int thuoc) {
+		this.thuoc = thuoc;
+	}
+
+	public int getTrieuChung() {
+		return trieuChung;
+	}
+
+	public void setTrieuChung(int trieuChung) {
+		this.trieuChung = trieuChung;
+	}
+
+	public int getPhanQuyen() {
+		return phanQuyen;
+	}
+
+	public void setPhanQuyen(int phanQuyen) {
+		this.phanQuyen = phanQuyen;
+	}
+
+	public int getDangBai() {
+		return dangBai;
+	}
+
+	public void setDangBai(int dangBai) {
+		this.dangBai = dangBai;
+	}
+	
 }

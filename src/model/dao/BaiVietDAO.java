@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.bean.BaiViet;
+import model.bean.BinhLuan;
 
 public class BaiVietDAO extends DBHelper{
 
@@ -94,6 +95,192 @@ public class BaiVietDAO extends DBHelper{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void addMark(String maTKDN, String maDangNhapKhach) {
+		connect();
+		String sql=	String.format("INSERT INTO DANHDAU(MaTK_Chinh, MaTK_Phu) "+
+				" VALUES ( %s,%s)",maTKDN,maDangNhapKhach);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void addRate(String maTKDN, String maDangNhapKhach, String rating, String datetime) {
+		connect();
+		String sql=	String.format("INSERT INTO DANHGIA(MaTK_Chinh, MaTK_Phu, DanhGia, ThoiGian) "+
+				" VALUES ( %s, %s, %s, N'%s')",maTKDN,maDangNhapKhach, rating, datetime);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void addReport(String maTKDN, String maDangNhapKhach, String datetime) {
+		connect();
+		String sql=	String.format("INSERT INTO TOCAO(MaTK_Chinh, MaTK_Phu, ThoiGian) "+
+				" VALUES ( %s, %s, N'%s')",maTKDN,maDangNhapKhach, datetime);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void addComment(String maTKDN, String maDangNhapKhach, String comment, String datetime) {
+		connect();
+		String sql=	String.format("INSERT INTO BINHLUAN(MaTK_Chinh, MaTK_Phu, NoiDung, ThoiGian) "+
+				" VALUES ( %s, %s, N'%s', N'%s')",maTKDN,maDangNhapKhach, comment, datetime);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String getRate(String maTKDN, String maTKPhu) {
+		connect();
+		String sql="SELECT * FROM DANHGIA WHERE MaTK_Chinh="+maTKDN + " and  MaTK_Phu="+maTKPhu;
+		
+		System.out.println(sql);
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String rate="";
+		try {
+			while(rs.next()){
+				rate = rs.getFloat("DanhGia")+"";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rate;
+	}
+
+	public boolean getMark(String maTKDN, String maTKPhu) {
+		connect();
+		String sql="SELECT * FROM DANHDAU WHERE MaTK_Chinh="+maTKDN + " and  MaTK_Phu="+maTKPhu;
+		
+		System.out.println(sql);
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public boolean getReport(String maTKDN, String maTKPhu) {
+		connect();
+		String sql="SELECT * FROM TOCAO WHERE MaTK_Chinh="+maTKDN + " and  MaTK_Phu="+maTKPhu;
+		
+		System.out.println(sql);
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public ArrayList<BinhLuan> getListComment(String maTKPhu) {
+		connect();
+		String sql = "SELECT TAIKHOAN.TenDangNhap, TAIKHOAN.AnhDaiDien, BINHLUAN.NoiDung, CONVERT(VARCHAR(20), ThoiGian, 100) FROM BINHLUAN "
+				+ "INNER JOIN TAIKHOAN ON BINHLUAN.MaTK_Chinh = TAIKHOAN.MaTK "
+				+ "WHERE MaTK_Phu = " + maTKPhu;
+
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<BinhLuan> listBinhLuan = new ArrayList<BinhLuan>();
+		BinhLuan ch;
+		try {
+			while (rs.next()) {
+				ch = new BinhLuan();
+				ch.setTenTK(rs.getString(1));
+				ch.setHinhAnh(rs.getString(2));
+				ch.setNoiDung(rs.getString(3));
+				ch.setThoiGian(rs.getString(4));
+				listBinhLuan.add(ch);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listBinhLuan;
+	}
+
+	public void removeMark(String maTKDN, String maTKPhu) {
+		connect();
+        String sql= String.format("DELETE FROM DANHDAU WHERE MaTK_Chinh = %s and MaTK_Phu = %s", maTKDN, maTKPhu);
+        System.out.println(sql);
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
+
+	public void updateRate(String maTKDN, String maTKPhu, String rating, String datetime) {
+		connect();
+		String sql=	String.format("UPDATE DANHGIA SET DanhGia = %s, ThoiGian= N'%s' "+
+				" WHERE MaTK_Chinh = %s and MaTK_Phu = %s", rating, datetime, maTKDN, maTKPhu);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void xoaBaiViet(String maBaiVietXoa) {
+		connect();
+        String sql= String.format("DELETE FROM BAIVIET WHERE MaBaiViet = %s", maBaiVietXoa);
+        System.out.println(sql);
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 	}
 	
 }

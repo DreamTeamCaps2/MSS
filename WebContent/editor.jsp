@@ -10,9 +10,6 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Đăng Ký Tài Khoản</title>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
 <link rel="stylesheet"

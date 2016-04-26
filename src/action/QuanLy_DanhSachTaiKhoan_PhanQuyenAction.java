@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -11,7 +12,9 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import form.PhanQuyenForm;
+import model.bean.TaiKhoan;
 import model.bo.PhanQuyenBO;
+import model.bo.TaiKhoanBO;
 
 public class QuanLy_DanhSachTaiKhoan_PhanQuyenAction extends Action {
 
@@ -23,6 +26,8 @@ public class QuanLy_DanhSachTaiKhoan_PhanQuyenAction extends Action {
 		
 		PhanQuyenBO phanQuyenBO = new PhanQuyenBO();
 		PhanQuyenForm phanQuyenForm = (PhanQuyenForm) form;
+		
+		HttpSession session1 = request.getSession();
 		
 		int maTaiKhoan = phanQuyenForm.getMaTaiKhoan();
 		System.out.println("ma nhan vien 1 "+maTaiKhoan);
@@ -60,8 +65,12 @@ public class QuanLy_DanhSachTaiKhoan_PhanQuyenAction extends Action {
 					break;
 				}
 			}
-		
-        
+			
+			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
+			String tenDangNhap = taiKhoanBO.getTenDangNhap(maTaiKhoan);
+			TaiKhoan taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap, "");
+			session1.setAttribute("taiKhoanPhanQuyen", taiKhoan);
+			
 			return mapping.findForward("phanQuyen");
 		}
 

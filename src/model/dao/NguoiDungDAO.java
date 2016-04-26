@@ -81,7 +81,7 @@ public class NguoiDungDAO extends DBHelper {
 
 	public boolean emailExist(String email) {
 		connect();
-		String sql = String.format("SELECT email FROM THANHVIEN WHERE email = '%s' ", email);
+		String sql = String.format("SELECT email FROM TAIKHOAN WHERE email = '%s' ", email);
 		
 		ResultSet rs = null;
         try {
@@ -131,6 +131,20 @@ public class NguoiDungDAO extends DBHelper {
 			e.printStackTrace();
 		}
 		return listTen;
+	}
+
+	public void updateMatKhau(String tenDangNhap, String matKhauMoi) {
+		connect();
+		String sql=	String.format("UPDATE TAIKHOAN "+
+					" SET MatKhau = '%s'" +
+					" WHERE tenDangNhap = '%s'", matKhauMoi, tenDangNhap);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	

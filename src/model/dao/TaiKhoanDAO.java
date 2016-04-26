@@ -10,20 +10,6 @@ import model.bean.Quyen;
 import model.bean.TaiKhoan;
 public class TaiKhoanDAO extends DBHelper{
 
-	public void themTaiKhoan(String tenDangNhap, String matKhau, String diaChi, String sDT, String maLoai) {
-		connect();
-		//String maTK = "TK0007_TK";
-		String sql=	String.format("INSERT INTO TAIKHOAN(tenDangNhap,matKhau,diaChi,sDT) "+
-				" VALUES ( '%s','%s',N'%s','%s')",tenDangNhap, matKhau, diaChi, sDT);
-		System.out.println(sql);
-		try {
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public TaiKhoan getThongTinTaiKhoan(String tenDangNhap1, String maLoai) {
 		connect();
 		String sql="";
@@ -56,27 +42,13 @@ public class TaiKhoanDAO extends DBHelper{
 				taiKhoan.setTenNhaThuoc(rs.getString("TenNhaThuoc"));
 				taiKhoan.setCmnd(rs.getString("CMND"));
 				taiKhoan.setEmail(rs.getString("Email"));
+				taiKhoan.setAnhDaiDien(rs.getString("AnhDaiDien"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return taiKhoan;
 	}
-
-	public void suaTaiKhoan(String tenDangNhap, String matKhau, String diaChi, String sDT, String maLoai) {
-		connect();
-		String sql=	String.format("UPDATE TAIKHOAN "+
-					" SET matKhau = %s, diaChi = N'%s', SDT = '%s'" +
-					" WHERE tenDangNhap = '%s'", matKhau, diaChi, sDT, tenDangNhap);
-		System.out.println(sql);
-		try {
-			Statement stmt = connection.createStatement();
-			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
 
 	public void suaTaiKhoan(String maTK, String tenDangNhap, String matKhau, String diaChi, String sDT, String maLoai,
 			String cmnd, String email, String tenNhaThuoc, String tenPhongKham, String moTa, String thoiGian) {
@@ -94,7 +66,7 @@ public class TaiKhoanDAO extends DBHelper{
 		
 		if(cmnd!=null )
 		{
-			sql = "UPDATE THANHVIEN SET CMND = '"+cmnd+"', Email = '"+email+"' WHERE MaThanhVien = '"+maTK+"'";
+			sql = "UPDATE THANHVIEN SET CMND = '"+cmnd+"' WHERE MaThanhVien = '"+maTK+"'";
 		}
 		else if(tenNhaThuoc!=null ){
 			sql = "UPDATE NHATHUOC SET TenNhaThuoc = N'"+tenNhaThuoc+"' WHERE MaNhaThuoc = '"+maTK+"'";
@@ -119,8 +91,8 @@ public class TaiKhoanDAO extends DBHelper{
 		if(loaiTK.equals("1")){
 			xacNhan = 1;
 		}
-		String sql=	String.format("INSERT INTO TAIKHOAN(tenDangNhap,matKhau,diaChi,sDT,MaLoaiTaiKhoan) "+
-				" VALUES ( '%s','%s',N'%s','%s',%s)",tenDangNhap, matKhau, diaChi, sDT, loaiTK);
+		String sql=	String.format("INSERT INTO TAIKHOAN(tenDangNhap,matKhau,diaChi,sDT,MaLoaiTaiKhoan, AnhDaiDien, TrangThai, Email) "+
+				" VALUES ( '%s','%s',N'%s','%s',%s,'%s',%s,'%s')",tenDangNhap, matKhau, diaChi, sDT, loaiTK, "bird.jpg", 1, email);
 		System.out.println(sql);
 		try {
 			Statement stmt = connection.createStatement();
@@ -150,8 +122,8 @@ public class TaiKhoanDAO extends DBHelper{
 		//Thêm vào từng bảng riêng
 		if(loaiTK.equals("3"))
 		{
-			sql = String.format("INSERT INTO THANHVIEN(MaThanhVien, CMND, Email) "+
-					" VALUES ( %s,'%s','%s')",maTK, cmnd, email);
+			sql = String.format("INSERT INTO THANHVIEN(MaThanhVien, CMND) "+
+					" VALUES ( %s,%s)",maTK, cmnd);
 		}
 		else if(loaiTK.equals("4")){
 			sql = String.format("INSERT INTO NHATHUOC(MaNhaThuoc, TenNhaThuoc) "+
@@ -159,7 +131,7 @@ public class TaiKhoanDAO extends DBHelper{
 		}
 		else if(loaiTK.equals("5")){
 			sql = String.format("INSERT INTO PHONGKHAM(MaPhongKham, TenPhongKham, MoTa, ThoiGian) "+
-					" VALUES ( %s,N'%s','%s','%s')",maTK, tenPhongKham, moTa, thoiGian);
+					" VALUES ( %s,N'%s',N'%s',N'%s')",maTK, tenPhongKham, moTa, thoiGian);
 		}
 		System.out.println(sql);
 		try {
@@ -230,7 +202,7 @@ public class TaiKhoanDAO extends DBHelper{
 	public ArrayList<TaiKhoan> getListTaiKhoan()
 	{
 		connect();
-		String sql2 = "SELECT tk.MaTK, tk.TenDangNhap, ltk.TenLoaiTaiKhoan, tk.MaLoaiTaiKhoan "
+		String sql2 = "SELECT tk.MaTK, tk.TenDangNhap, ltk.TenLoaiTaiKhoan, tk.MaLoaiTaiKhoan, tk.TrangThai "
 				+ "FROM TAIKHOAN tk INNER JOIN LOAITAIKHOAN ltk ON tk.MaLoaiTaiKhoan = ltk.MaLoaiTaiKhoan";
 		System.out.println(sql2);
 		ResultSet rs = null;
@@ -248,6 +220,7 @@ public class TaiKhoanDAO extends DBHelper{
 				tk.setMaTaiKhoan(rs.getInt("MaTK"));
 				tk.setTenDangNhap(rs.getString("TenDangNhap"));
 				tk.setTenLoaiTaiKhoan(rs.getString("TenLoaiTaiKhoan"));
+				tk.setTrangThai(rs.getInt("TrangThai")+"");
 				int loai = rs.getInt("MaLoaiTaiKhoan");
 				if(loai <4)
 					tk.setLoaiTK("1");
@@ -262,7 +235,7 @@ public class TaiKhoanDAO extends DBHelper{
 	public ArrayList<TaiKhoan> getListTaiKhoan(String timTaiKhoan,int maLoaiTaiKhoan, int maQuyen)
 	{
 		connect();
-		String sql2 = "SELECT tk.MaTK, tk.TenDangNhap, ltk.TenLoaiTaiKhoan, tk.MaLoaiTaiKhoan "
+		String sql2 = "SELECT tk.MaTK, tk.TenDangNhap, ltk.TenLoaiTaiKhoan, tk.MaLoaiTaiKhoan, tk.TrangThai  "
 				+ "FROM TAIKHOAN tk INNER JOIN LOAITAIKHOAN ltk ON tk.MaLoaiTaiKhoan = ltk.MaLoaiTaiKhoan "
 				+ "WHERE TenDangNhap LIKE N'%"+timTaiKhoan+ "%'";
 		if(maLoaiTaiKhoan != 0)
@@ -287,6 +260,7 @@ public class TaiKhoanDAO extends DBHelper{
 				tk.setMaTaiKhoan(rs.getInt("MaTK"));
 				tk.setTenDangNhap(rs.getString("TenDangNhap"));
 				tk.setTenLoaiTaiKhoan(rs.getString("TenLoaiTaiKhoan"));
+				tk.setTrangThai(rs.getInt("TrangThai")+"");
 				int loai = rs.getInt("MaLoaiTaiKhoan");
 				if(loai <4)
 					tk.setLoaiTK("1");
@@ -323,6 +297,43 @@ public class TaiKhoanDAO extends DBHelper{
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	public String getTenDangNhap(int maTaiKhoan) {
+		connect();
+		String sql="SELECT * FROM TAIKHOAN WHERE MaTK="+maTaiKhoan;
+		
+		System.out.println(sql);
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String rate="";
+		try {
+			while(rs.next()){
+				rate = rs.getString("TenDangNhap");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rate;
+	}
+
+	public void khoaTaiKhoan(String maTaiKhoanKhoa, String trangThai) {
+		connect();
+		String sql=	String.format("UPDATE TAIKHOAN "+
+					" SET trangTHai = %s" +
+					" WHERE MaTK = '%s'", trangThai, maTaiKhoanKhoa);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

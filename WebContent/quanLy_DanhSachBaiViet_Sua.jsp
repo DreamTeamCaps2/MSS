@@ -28,8 +28,8 @@
 						</div>
 
 						<!-- /.box-header -->
-						<bean:define id="maBaiViet" name="baiVietForm" property="maBaiViet"></bean:define>
-						<html:text property="maBaiViet" styleClass="form-control input-lg pad"></html:text>
+						<bean:define id="maBaiViet" name="baiVietForm" property="maBaiViet" ></bean:define>
+						<html:text property="maBaiViet" styleClass="form-control input-lg pad" readonly="true"></html:text>
 						<html:text property="tieuDe" styleClass="form-control input-lg pad"></html:text>
 						<html:textarea property="tomTat" styleClass="form-control" style="margin-top: 20px;" rows="3"></html:textarea>
 						<div class="form-group">

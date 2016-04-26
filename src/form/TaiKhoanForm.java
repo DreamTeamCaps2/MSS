@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import org.apache.struts.action.ActionForm;
 
+import model.bean.BinhLuan;
 import model.bean.LoaiTaiKhoan;
 import model.bean.Quyen;
 import model.bean.TaiKhoan;
+import model.bean.Thuoc;
 
 public class TaiKhoanForm extends ActionForm{
 	
@@ -14,7 +16,10 @@ public class TaiKhoanForm extends ActionForm{
 	private String tenPhongKham, moTa, thoiGian;
 	private String cmnd, email;
 	private String tenNhaThuoc;
+	private String anhDaiDien;
 	private ArrayList<TaiKhoan> listND;
+	private ArrayList<Thuoc> listThuocCuaHang;
+	private ArrayList<BinhLuan> listBinhLuan;
 	
 	//TUAN
 	private int maQuyen, maLoaiTaiKhoan;
@@ -197,6 +202,30 @@ public class TaiKhoanForm extends ActionForm{
 
 	public void setMaLoaiTaiKhoan(int maLoaiTaiKhoan) {
 		this.maLoaiTaiKhoan = maLoaiTaiKhoan;
+	}
+
+	public ArrayList<Thuoc> getListThuocCuaHang() {
+		return listThuocCuaHang;
+	}
+
+	public void setListThuocCuaHang(ArrayList<Thuoc> listThuocCuaHang) {
+		this.listThuocCuaHang = listThuocCuaHang;
+	}
+
+	public ArrayList<BinhLuan> getListBinhLuan() {
+		return listBinhLuan;
+	}
+
+	public void setListBinhLuan(ArrayList<BinhLuan> listBinhLuan) {
+		this.listBinhLuan = listBinhLuan;
+	}
+
+	public String getAnhDaiDien() {
+		return anhDaiDien;
+	}
+
+	public void setAnhDaiDien(String anhDaiDien) {
+		this.anhDaiDien = anhDaiDien;
 	}
 	
 }

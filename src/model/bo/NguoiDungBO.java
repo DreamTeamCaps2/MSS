@@ -36,4 +36,8 @@ public class NguoiDungBO {
 		return nguoiDungDAO.getListNguoiDung();
 	}
 
+	public void updateMatKhau(String tenDangNhap, String matKhauMoi) {
+		nguoiDungDAO.updateMatKhau(tenDangNhap, matKhauMoi);
+	}
+
 }

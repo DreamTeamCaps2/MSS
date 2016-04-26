@@ -42,9 +42,10 @@
 									<td><bean:write name="tk" property="tomTat" /></td>
 									<td>
 									<bean:define id="maBaiViet" name="tk" property="maBaiViet"></bean:define> 
-									<html:link action="/sua-bai-viet?maBaiViet=${maBaiViet}">
+									<html:link action="/sua-bai-viet?maBaiViet=${maBaiViet}" style="margin-left: 20px;">
 										<span class="glyphicon glyphicon-edit"></span>
 									</html:link>
+									<a onclick="xoaClick(${maBaiViet })" id="${maBaiViet}" href="#"><span class="glyphicon glyphicon-trash" style="margin-left: 20px;"></span></a>
 									</td>
 								</tr>
 							</logic:iterate>
@@ -58,12 +59,33 @@
 					$('#dataTables-example').dataTable({
 						"order" : [ [ 3, "desc" ] ],
 						"autoWidth" : false,
-						"columnDefs" : [ {
-							"targets" : [ 1 ],
-							"searchable" : false
-						} ]
+						"columnDefs" : [ 
+						  	{"width": "10%", "targets": 0},
+							{"width": "30%", "targets": 1},
+							{"width": "50%", "targets": 2},
+							{"width": "10%", "targets": 3} 
+						  ]
 					});
 				});
+				function xoaClick(maBaiViet) {
+					var result = confirm('Bạn có chắc chắn muốn xóa  ?');
+					if(result){
+					   var requestData = {
+							   maBaiVietXoa: maBaiViet
+				            };
+				            $.ajax({
+				                url: '/MSS/quan-ly-bai-viet.do',
+				                type: 'POST',
+				                data: requestData,
+				                dataType: 'json',
+				                success:function(data,status){
+								},
+								error:function(data,status){
+								}
+				            });
+				      window.location.assign("/MSS/quan-ly-bai-viet.do");
+					}
+				}
 			</script>
 		</div>
 	</div>

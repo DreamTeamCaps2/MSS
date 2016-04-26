@@ -91,6 +91,11 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			<forward name="chiTietBaiViet" path="/chiTietBaiViet.jsp" />
 		</action>
 		
+		<action input="/quanLy_TrangChu.jsp" name="dangNhapForm" path="/quan-ly-trang-chu"
+			scope="request" >
+			<forward name="" path="/quanLy_TrangChu.jsp" />
+		</action>
+		
 		<action input="/quanLy_DanhSachTrieuChung.jsp" name="trieuChungForm"
 			path="/quan-ly-trieu-chung" scope="request" type="action.QuanLy_DanhSachTrieuChungAction">
 			<forward name="danhSachTrieuChung" path="/quanLy_DanhSachTrieuChung.jsp" />

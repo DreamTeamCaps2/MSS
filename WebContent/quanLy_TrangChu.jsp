@@ -35,22 +35,31 @@
 				<div class="navbar-collapse collapse" id="menu">
 					<ul class="nav navbar-nav">
 						<li><a href="quanLy_TrangChu.jsp">Trang chủ</a></li>
-
-						<li><a href="/MSS/quan-ly-danh-sach-benh.do">Bệnh</a></li>
-						<li><a href="/MSS/quan-ly-danh-sach-thuoc.do">Thuốc</a></li>
-						<li class="dropdown"><a href="quanLy_DanhSachTrieuChung.jsp"
-							class="dropdown-toggle" data-toggle="dropdown">Khác<span
-								class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="/MSS/quan-ly-loai-thuoc.do">Loại thuốc</a></li>
-								<li><a href="/MSS/quan-ly-nhom-thuoc.do">Nhóm thuốc</a></li>
-								<li class="divider"></li>
-								<li><a href="/MSS/quan-ly-loai-benh.do">Loại bệnh</a></li>
-								<li><a href="/MSS/quan-ly-trieu-chung.do">Triệu chứng</a></li>
-							</ul></li>
-						<li><a href="/MSS/quan-ly-danh-sach-tai-khoan.do">Tài
-								Khoản</a></li>
-						<li><a href="/MSS/quan-ly-bai-viet.do">Bài Viết</a></li>
+						<logic:equal name="dangNhapForm" value="1" property="benh">
+							<li><a href="/MSS/quan-ly-danh-sach-benh.do">Bệnh</a></li>
+						</logic:equal>
+						<logic:equal name="dangNhapForm" value="1" property="thuoc">
+							<li><a href="/MSS/quan-ly-danh-sach-thuoc.do">Thuốc</a></li>
+						</logic:equal>
+						<logic:equal name="dangNhapForm" value="1" property="trieuChung">
+							<li class="dropdown"><a href="quanLy_DanhSachTrieuChung.jsp"
+								class="dropdown-toggle" data-toggle="dropdown">Khác<span
+									class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="/MSS/quan-ly-loai-thuoc.do">Loại thuốc</a></li>
+									<li><a href="/MSS/quan-ly-nhom-thuoc.do">Nhóm thuốc</a></li>
+									<li class="divider"></li>
+									<li><a href="/MSS/quan-ly-loai-benh.do">Loại bệnh</a></li>
+									<li><a href="/MSS/quan-ly-trieu-chung.do">Triệu chứng</a></li>
+								</ul>
+							</li>
+						</logic:equal>
+						<logic:equal name="dangNhapForm" value="1" property="phanQuyen">
+							<li><a href="/MSS/quan-ly-danh-sach-tai-khoan.do">Tài Khoản</a></li>
+						</logic:equal>		
+						<logic:equal name="dangNhapForm" value="1" property="dangBai">
+							<li><a href="/MSS/quan-ly-bai-viet.do">Bài Viết</a></li>
+						</logic:equal>
 						<li class="dropdown"><a data-toggle="dropdown" href=""> <span
 								class="glyphicon glyphicon-bell" aria-hidden="true"></span>
 						</a></li>

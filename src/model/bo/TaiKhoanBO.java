@@ -11,16 +11,8 @@ public class TaiKhoanBO {
 
 	TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
 
-	public void themTaiKhoan(String tenDangNhap, String matKhau, String diaChi, String sDT, String maLoai) {
-		taiKhoanDAO.themTaiKhoan(tenDangNhap, matKhau, diaChi, sDT, maLoai);
-	}
-
 	public TaiKhoan getThongTinTaiKhoan(String tenDangNhap1, String maLoai) {
 		return taiKhoanDAO.getThongTinTaiKhoan(tenDangNhap1, maLoai);
-	}
-
-	public void suaTaiKhoan(String tenDangNhap, String matKhau, String diaChi, String sDT, String maLoai) {
-		taiKhoanDAO.suaTaiKhoan(tenDangNhap, matKhau, diaChi, sDT, maLoai);
 	}
 
 	public void suaTaiKhoan(String maTK, String tenDangNhap, String matKhau, String diaChi, String sDT, String maLoai,
@@ -53,6 +45,14 @@ public class TaiKhoanBO {
 
 	public ArrayList<Quyen> getListQuyen() {
 		return taiKhoanDAO.getListQuyen();
+	}
+
+	public String getTenDangNhap(int maTaiKhoan) {
+		return taiKhoanDAO.getTenDangNhap(maTaiKhoan);
+	}
+
+	public void khoaTaiKhoan(String maTaiKhoanKhoa, String trangThai) {
+		taiKhoanDAO.khoaTaiKhoan(maTaiKhoanKhoa, trangThai);
 	}
 
 }

@@ -7,13 +7,10 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="login.jsp"%>
 <head>
 <meta charset="UTF-8">
 <title>Đăng Ký Tài Khoản</title>
-<%@ include file="login.jsp"%>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
@@ -33,10 +30,10 @@
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>				
 					<input type="text" name="tenDangNhap" class="form-control" placeholder="Username">
 				</div>
-<!-- 				<div class="form-group has-feedback">
+ 				<div class="form-group has-feedback">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 					<input name="email" id="email" type="email" class="form-control" placeholder="Email">
-				</div> -->
+				</div>
 				<div class="form-group has-feedback">
 					<span class="glyphicon glyphicon-lock form-control-feedback"></span>				
 					<input name="matKhau" id="password" type="password" class="form-control" placeholder="Password">
@@ -46,7 +43,7 @@
 					<input name="matKhau2" type="password" class="form-control"
 						placeholder="Retype password"> 
 				</div>
-				<div class="form-group has-feedback">
+<!-- 				<div class="form-group has-feedback">
 					<div class="radio">Giới tính:    
 						<label>
 							<input type="radio" name="gioiTinh" id="optionsRadios1" value="Nam" checked>Nam
@@ -55,7 +52,7 @@
 							<input type="radio" name="gioiTinh" id="optionsRadios2" value="Nu">Nữ
 						</label>
 					</div>      
-				</div>
+				</div> -->
 				<div class="form-group has-feedback">
 					<span class="glyphicon glyphicon-home form-control-feedback"></span>				
 					<input name="diaChi" type="text" class="form-control" placeholder="Address">
@@ -73,10 +70,6 @@
 					</select>
 				</div>
 				<div id="thanhVienPermission">
-			        <div class="form-group has-feedback">
-						<span class="glyphicon glyphicon-envelope form-control-feedback"></span>				
-						<input name="email" type="text" class="form-control" placeholder="Email"> 
-					</div>
 			        <div class="form-group has-feedback">
 						<span class="glyphicon glyphicon-certificate form-control-feedback"></span>				
 						<input name="cmnd" type="text" class="form-control" placeholder="ID Code"> 

@@ -49,7 +49,7 @@
 						</thead>
 						<tbody>
 							<logic:iterate name="trieuChungForm" property="listTrieuChung" id="tk">
-								<tr   data-id="${maTrieuChung}">
+								<tr>
 									<th scope="row"><bean:write name="tk" property="maTrieuChung" /></th>
 									<td><bean:write name="tk" property="tenTrieuChung" /></td>
 									<td>

@@ -35,6 +35,7 @@ public class QuanLy_BaiViet_ThemAction extends Action{
 			String noiDung = baiVietForm.getNoiDung();
 			String tomTat = baiVietForm.getTomTat();
 			 try {
+				 
 				 	file = baiVietForm.getFile();
 		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/"+file.getFileName();;
 		            String filePath = System.getProperty("java.io.tmpdir") + "/" + file.getFileName();
@@ -42,6 +43,12 @@ public class QuanLy_BaiViet_ThemAction extends Action{
 		            System.out.println(filePath);
 		            outputStream = new FileOutputStream(new File(path));
 		            outputStream.write(file.getFileData());
+		            
+		            
+//		            FileWriter fileWriter = new FileWriter("WebContent/images/"+file.getFileName());
+//		            fileWriter.write(file.getFileData());
+//		            fileWriter.flush();
+//		            fileWriter.close();
 		        } finally {
 		            if (outputStream != null) {
 		                outputStream.close();

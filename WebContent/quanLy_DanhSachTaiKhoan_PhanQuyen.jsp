@@ -112,6 +112,43 @@
 						</div>
 					</div>
 				</div>
+				<div class="panel-body">
+			        <div class="row form-group">
+			            <label class="col-lg-4">Tên Đăng Nhập</label>
+			            <div class="col-lg-6">
+			            	<html:text name="taiKhoanPhanQuyen" property="tenDangNhap" styleClass="form-control" disabled="true"></html:text>
+			            </div>
+			        </div>
+			         
+					<div class="row form-group">
+			            <label class="col-lg-4">SDT</label>
+			            <div class="col-lg-6">
+			            	<html:text name="taiKhoanPhanQuyen" property="SDT" styleClass="form-control" disabled="true"></html:text>
+			            </div>
+			        </div>
+			        <div class="row form-group">
+			            <label class="col-lg-4">Địa chỉ</label>
+			            <div class="col-lg-6">
+			            	<html:text name="taiKhoanPhanQuyen" property="diaChi" styleClass="form-control" disabled="true"></html:text>
+			            </div>
+			        </div>  
+			        <logic:notEmpty name="taiKhoanPhanQuyen" property="cmnd">     
+			        <div class="row form-group">
+			            <label class="col-lg-4">CMND</label>
+			            <div class="col-lg-6">
+			            	<html:text name="taiKhoanPhanQuyen" property="cmnd" styleClass="form-control" disabled="true"></html:text>
+			            </div>
+			        </div>       
+			        </logic:notEmpty>     
+			        <logic:notEmpty name="taiKhoanPhanQuyen" property="email">    
+			        <div class="row form-group">
+			            <label class="col-lg-4">Email</label>
+			            <div class="col-lg-6">
+			            	<html:text name="taiKhoanPhanQuyen" property="email" styleClass="form-control" disabled="true"></html:text>
+			            </div>
+			        </div>            
+			        </logic:notEmpty>      
+			   </div>
 			</div>
 		</div>
 	</div>

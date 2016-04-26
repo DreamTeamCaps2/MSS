@@ -11,7 +11,8 @@ public class TaiKhoan {
 	private int id, maTaiKhoan;
 	private ArrayList<TaiKhoan> list;
 	private String tenLoaiTaiKhoan;
-	
+	private String trangThai;
+	private String anhDaiDien;
 	
 	public String getMaTK() {
 		return maTK;
@@ -147,6 +148,22 @@ public class TaiKhoan {
 
 	public void setTenLoaiTaiKhoan(String tenLoaiTaiKhoan) {
 		this.tenLoaiTaiKhoan = tenLoaiTaiKhoan;
+	}
+
+	public String getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	public String getAnhDaiDien() {
+		return anhDaiDien;
+	}
+
+	public void setAnhDaiDien(String anhDaiDien) {
+		this.anhDaiDien = anhDaiDien;
 	}
 
 }

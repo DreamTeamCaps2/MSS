@@ -21,6 +21,16 @@ public class QuanLy_DanhSachTaiKhoanAction extends Action {
 		TaiKhoanForm taiKhoanForm = (TaiKhoanForm) form;
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		
+		if(request.getParameter("maTaiKhoanKhoa")!=null){
+			String maTaiKhoanKhoa = request.getParameter("maTaiKhoanKhoa");
+			String trangThai = request.getParameter("trangThai");
+			System.out.println("Ma Khoa: "+maTaiKhoanKhoa);
+			System.out.println("Trang thai: "+trangThai);
+			taiKhoanBO.khoaTaiKhoan(maTaiKhoanKhoa, trangThai);
+		}
+		
+		
+		
 		if(taiKhoanForm.getTimTaiKhoan() == null)
 			taiKhoanForm.setTimTaiKhoan("");
 		

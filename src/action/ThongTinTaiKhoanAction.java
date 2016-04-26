@@ -18,7 +18,8 @@ public class ThongTinTaiKhoanAction extends Action{
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-request.setCharacterEncoding("UTF-8");
+		
+		request.setCharacterEncoding("UTF-8");
 		
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		TaiKhoanForm taiKhoanForm = (TaiKhoanForm) form;
@@ -26,23 +27,28 @@ request.setCharacterEncoding("UTF-8");
 		
 		TaiKhoan taiKhoan = (TaiKhoan)session1.getAttribute("taiKhoan");
 		String tenDangNhap = (String)session1.getAttribute("tenDangNhap");
+		System.out.println(tenDangNhap);
 		String maLoai = (String)session1.getAttribute("maLoai");
 		
 		//if(taiKhoan != null) {
 			if("OK".equals(taiKhoanForm.getSubmit()))
 			{		
 				String maTK = taiKhoan.getMaTK();
+				System.out.println(taiKhoanForm.getMaTK());
+				
 				String matKhau = taiKhoanForm.getMatKhau();
 				String diaChi = taiKhoanForm.getDiaChi();
 				String SDT = taiKhoanForm.getSDT();
 				String cmnd = taiKhoanForm.getCmnd();
 				String email = taiKhoanForm.getEmail();
+				
 				String tenNhaThuoc = taiKhoanForm.getTenNhaThuoc();
+				
 				String tenPhongKham = taiKhoanForm.getTenPhongKham();
 				String moTa = taiKhoanForm.getMoTa();
+				
 				String thoiGian = taiKhoanForm.getThoiGian();
 				
-				System.out.println(maTK);
 				taiKhoanBO.suaTaiKhoan(maTK, tenDangNhap, matKhau, diaChi, SDT, maLoai, cmnd, email, tenNhaThuoc, tenPhongKham, moTa, thoiGian);
 				taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap, maLoai);
 				session1.setAttribute("taiKhoan", taiKhoan);
@@ -51,14 +57,6 @@ request.setCharacterEncoding("UTF-8");
 				return mapping.findForward("thongTinTKXong");
 			}
 			else {
-				String tenDangNhap1 = taiKhoanForm.getTenDangNhap();
-				if(tenDangNhap == null || !tenDangNhap.equals(tenDangNhap1)){
-					taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap1, "");
-					taiKhoanForm.setSubmit("MEMBER");
-				}
-				else {
-					taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap1, "");
-				}
 				session1.setAttribute("taiKhoan1", taiKhoan);
 				taiKhoanForm.setMaTK(taiKhoan.getMaTK());
 				taiKhoanForm.setTenDangNhap(taiKhoan.getTenDangNhap());

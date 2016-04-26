@@ -132,7 +132,7 @@
 						</ul>
 					</li>
 					<logic:equal name="quanLy" value="1">
-						<li><a href="quanLy_TrangChu.jsp">QUẢN LÝ</a></li>
+						<li><a href="/MSS/quanLy_TrangChu.jsp">QUẢN LÝ</a></li>
 					</logic:equal>
 					<li><a href="/MSS/dia-diem.do">CƠ SỞ Y TÊ</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -249,7 +249,7 @@
 							</div>
  -->							<div class="bottom text-center">
  								<%-- <html:link action="/thongTinTK"> --%>
- 								 <html:link styleClass="title" action="thongTinTK?tenDangNhap=${taiKhoan.tenDangNhap}"><b>Thông tin tài khoản</b></html:link>
+ 								 <html:link styleClass="title" action="thongTinTK"><b>Thông tin tài khoản</b></html:link>
 							</div>
 							<div class="bottom text-center">
 								<html:link action="/dang-xuat"><b>Đăng xuất</b></html:link>

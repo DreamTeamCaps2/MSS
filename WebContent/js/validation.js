@@ -113,16 +113,20 @@ $(function() {
         }
       },
       SDT: {
-        required: true,
         digits: true,
         minlength: 10,
         maxlength: 11
       },
       diaChi: {
-        required: true
       },
       terms: {
         required: true
+      },
+      tenNhaThuoc: {
+          required: true
+      },
+      tenPhongKham: {
+    	  required: true
       }
     },
     messages: {

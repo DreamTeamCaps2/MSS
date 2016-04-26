@@ -12,6 +12,8 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
 import form.BenhForm;
+import form.DangNhapForm;
+import model.bean.TaiKhoan;
 import model.bo.BenhBO;
 import model.bo.NguoiDungBO;
 
@@ -23,9 +25,24 @@ public class QuanLy_DanhSachBenhAction extends Action {
 		BenhForm benhForm = (BenhForm) form;
 		BenhBO benhBO = new BenhBO();
 		
+		HttpSession session1 = request.getSession();	
+		String tenDangNhap = (String)session1.getAttribute("tenDangNhap");
+		String matKhau = (String)session1.getAttribute("matKhau");
+		DangNhapForm dangNhapForm = (DangNhapForm)session1.getAttribute("dangNhapForm");
+		TaiKhoan taiKhoan = (TaiKhoan)session1.getAttribute("taiKhoan");
+		int kiemTra = (int)session1.getAttribute("kiemtra");
+		int quanLy = (int)session1.getAttribute("quanLy");
+		
 		request.getSession().invalidate();
 		request.getSession().setAttribute("kt", 0);
 		
+		request.getSession().setAttribute("tenDangNhap", tenDangNhap);
+		request.getSession().setAttribute("matKhau", matKhau);
+		request.getSession().setAttribute("dangNhapForm", dangNhapForm);
+		request.getSession().setAttribute("taiKhoan", taiKhoan);
+		request.getSession().setAttribute("maTKDN", taiKhoan.getMaTK());
+		request.getSession().setAttribute("kiemtra", kiemTra);
+		request.getSession().setAttribute("quanLy", quanLy);
 		
 		if(benhForm.getTimBenh() == null)
 			benhForm.setTimBenh("");

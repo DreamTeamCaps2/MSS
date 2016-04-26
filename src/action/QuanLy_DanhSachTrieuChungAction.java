@@ -29,7 +29,7 @@ public class QuanLy_DanhSachTrieuChungAction extends Action {
 		}
 		
 		if("Add".equals(trieuChungForm.getSubmit())){
-			String tenTrieuChung = new String(trieuChungForm.getTenTrieuChung().getBytes("ISO-8859-1"),"UTF-8");
+			String tenTrieuChung = trieuChungForm.getTenTrieuChung();
 			
         	ActionErrors actionErrors  = new ActionErrors();
 

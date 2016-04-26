@@ -20,6 +20,12 @@ public class QuanLy_DanhSachBaiVietAction extends Action{
 		BaiVietForm baiVietForm = (BaiVietForm)form;
 		BaiVietBO baiVietBO = new BaiVietBO();
 		
+		if(request.getParameter("maBaiVietXoa")!=null){
+			String maBaiVietXoa = request.getParameter("maBaiVietXoa");
+			System.out.println(maBaiVietXoa);
+			baiVietBO.xoaBaiViet(maBaiVietXoa);
+		}
+		
 		baiVietForm.setListBaiViet(baiVietBO.getListBaiViet());
 		
 		return mapping.findForward("danhSachBaiViet");

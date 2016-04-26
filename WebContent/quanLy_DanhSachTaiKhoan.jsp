@@ -96,11 +96,15 @@
 								<td><bean:write name="tk" property="tenDangNhap" /></td>
 								<td><bean:write name="tk" property="tenLoaiTaiKhoan" /></td>
 								<td>
-								<bean:define id="maTaiKhoan" name="tk" property="maTaiKhoan"></bean:define> 
-									<html:link action="/xoa--tai-khoan?maTaiKhoan=${maTaiKhoan}"
-										onclick="return confirm('Bạn có muốn xóa tài khoản này ?')">
-										<span class="glyphicon glyphicon-trash"></span>
-									</html:link>
+								<bean:define id="maTaiKhoan" name="tk" property="maTaiKhoan"></bean:define>
+									<a onclick="khoaTKClick(${maTaiKhoan})" id="lock-toggle${maTaiKhoan}" href="#">
+										<logic:equal name="tk" property="trangThai" value="1" >
+											<span class="glyphicon glyphicon-ok-circle" style="margin-left: 20px;"></span>
+										</logic:equal>
+										<logic:equal name="tk" property="trangThai" value="0" >
+											<span class="glyphicon glyphicon-ban-circle" style="margin-left: 20px;"></span>
+										</logic:equal>
+									</a> 
 									<logic:notEmpty name="tk" property="loaiTK">
 									<html:link
 										action="/phan-quyen?maTaiKhoan=${maTaiKhoan}" style="margin-left: 20px;">
@@ -115,7 +119,38 @@
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		function khoaTKClick(maTaiKhoan) {
+			var result = confirm('Bạn có chắc chắn ?');
+			if(result){
+			  //$('#lock-toggle'+maTaiKhoan).find('span').toggleClass('glyphicon glyphicon-ok-circle').toggleClass('glyphicon glyphicon-ban-circle');
+			  var sa =  $('#lock-toggle'+maTaiKhoan).find('span');
+			  var tt = 0;
+			  if(sa.hasClass('glyphicon glyphicon-ok-circle')){
+			   		sa.removeClass('glyphicon glyphicon-ok-circle').addClass('glyphicon glyphicon-ban-circle');
+			   		tt = 0;
+			  }
+			  else{
+				  sa.removeClass('glyphicon glyphicon-ban-circle').addClass('glyphicon glyphicon-ok-circle');
+				  tt = 1;
+			  } 
+			   var requestData = {
+					   maTaiKhoanKhoa: maTaiKhoan,
+					   trangThai: tt
+		            };
+		            $.ajax({
+		                url: '/MSS/quan-ly-danh-sach-tai-khoan.do',
+		                type: 'POST',
+		                data: requestData,
+		                dataType: 'json',
+		                success:function(data,status){
+						},
+						error:function(data,status){
+						}
+		            });
+			}
+		}
+	</script>
 
 </body>
 </html>
