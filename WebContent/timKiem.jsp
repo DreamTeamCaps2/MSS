@@ -9,210 +9,225 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
 <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Tìm Kiếm</title>
-<%@ include file="login.jsp"%>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/easy-autocomplete.min.css" rel="stylesheet"
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/easy-autocomplete.min.css" rel="stylesheet"
 	type="text/css">
 
 <script src="js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
 
 <!-- CSS file -->
-<link rel="stylesheet" href="js/easy-autocomplete.min.css">
 <link rel="stylesheet" href="css/simplePagination.css">
 <script src="js/jquery.simplePagination.js" type="text/javascript"></script>
 </head>
-
+<%@ include file="login.jsp"%>
 <script type="text/javascript">
 	$(document)
 			.ready(
 					function() {
-						$(".tableFilter").hide();
 						var maLoaiTimKiem = <bean:write name="timKiemForm" property="maLoaiTimKiem"/>;
 						if (maLoaiTimKiem == 0) {
-							$("#active1").addClass('active');
+							$("#active1").addClass('active-loaitimkiem');
 						} else if (maLoaiTimKiem == 1) {
-							$("#active2").addClass('active');
+							$("#active2").addClass('active-loaitimkiem');
 						} else {
-							$("#active3").addClass('active');
+							$("#active3").addClass('active-loaitimkiem');
 						}
+						$("div .checkBoxFilter").hide();
 						$("#filter").click(function() {
 
-							$(".tableFilter").toggle();
+							$(".checkBoxFilter").toggle();
 						});
-
+						var checkBoxABC = document.getElementById("cbABC");
+						var checkBoxLuotXem = document
+								.getElementById("cbLuotXem");
+						var checkBoxMacDinh = document
+								.getElementById("cbMacDinh");
+						if (<bean:write name="timKiemForm" property="abc"/> == true) {
+							checkBoxABC.checked = true;
+							checkBoxMacDinh.checked = false;
+						} else {
+							checkBoxABC.checked = false;
+						}
+						if (<bean:write name="timKiemForm" property="abc"/> == false
+								&& <bean:write name="timKiemForm" property="luotXem"/> == false) {
+							checkBoxMacDinh.checked = true;
+						}
+						if (<bean:write name="timKiemForm" property="luotXem"/> == true) {
+							checkBoxLuotXem.checked = true;
+							checkBoxMacDinh.checked = false;
+						} else {
+							checkBoxLuotXem.checked = false;
+						}
+						$("#cbABC")
+								.click(
+										function() {
+											window.location
+													.assign("/MSS/tim-kiem.do?macDinh=false&luotXem=False&abc=true&timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=<bean:write name="timKiemForm" property="maLoaiTimKiem"/>");
+										});
+						$("#cbMacDinh")
+								.click(
+										function() {
+											window.location
+													.assign("/MSS/tim-kiem.do?macDinh=true&luotXem=false&abc=false&timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=<bean:write name="timKiemForm" property="maLoaiTimKiem"/>");
+										});
+						$("#cbLuotXem")
+								.click(
+										function() {
+											window.location
+													.assign("/MSS/tim-kiem.do?macDinh=false&luotXem=true&abc=false&timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=<bean:write name="timKiemForm" property="maLoaiTimKiem"/>");
+										});
 					});
 </script>
+
 <body>
 	<html:form action="/tim-kiem">
-		<div class="row">
-			<div class="col-lg-2">
-				<!-- KHOANG TRANG -->
-			</div>
-			<!-- NOI DUNG -->
-			<div class="col-lg-6">
-				<div class="tab-menu group">
-					<ul>
-						<li id="active1"><a
-							href="/MSS/tim-kiem.do?timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=0">
-								Tất Cả</a></li>
-						<li id="active2"><a
-							href="/MSS/tim-kiem.do?timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=1">
-								Bệnh </a></li>
-						<li id="active3"><a
-							href="/MSS/tim-kiem.do?timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=2">
-								Thuốc</a></li>
-						<span class="toggle-filter pull-right fn-show" id="filter">Lọc
-							kết quả<i></i>
-						</span>
-					</ul>
+		<div class="container">
+			<div class="row">
+				<!-- NOI DUNG -->
+				<div class="col-lg-8 tim-kiem-content">
+					<div class="tab-menu group">
+						<ul>
 
+							<%
+								String link;
+							%>
+
+							<li id="active1"><a
+								href="/MSS/tim-kiem.do?timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=0">
+									Tất Cả</a></li>
+							<li id="active2"><a
+								href="/MSS/tim-kiem.do?timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=1">
+									Bệnh </a></li>
+							<li id="active3"><a
+								href="/MSS/tim-kiem.do?timKiem=<bean:write name="timKiemForm" property="timKiem"/>&maLoaiTimKiem=2">
+									Thuốc</a></li>
+							<span class="toggle-filter pull-right fn-show" id="filter">Lọc
+								kết quả<i></i>
+							</span>
+
+						</ul>
+					</div>
+
+					<div class="checkBoxFilter">
+						<form name="checkBoxFilterForm">
+							<label class="radio-inline"> <input type="radio"
+								id="cbMacDinh" name="macDinh" checked="checked">
+								Mặc Định
+							</label> <label class="radio-inline"> <input type="radio"
+								id="cbABC" name="abc"> Sắp Xếp Theo ABC
+							</label> <label class="radio-inline"> <input type="radio"
+								name="luotXem" id="cbLuotXem"> Sắp Xếp Theo Lượt Xem
+							</label>
+						</form>
+					</div>
+
+
+					<div class="number-result">
+						<h5>
+							Từ Khóa "
+							<bean:write name="timKiemForm" property="timKiem" />
+							" có
+							<bean:write name="timKiemForm" property="soKetQua" />
+							kết quả
+						</h5>
+					</div>
+					<div id="item-result1">
+						<logic:notEmpty property="listBenh" name="timKiemForm">
+							<logic:iterate id="x" name="timKiemForm" property="listBenh">
+								<div class="item timkiem">
+									<div class="item-title">
+										<a 
+											href="/MSS/chi-tiet-benh.do?ma=<bean:write name="x" property="maBenh"/>"><bean:write
+												name="x" property="tenBenh" /> </a>
+									</div>
+									<div class="loaiitem">
+										<h5>
+											Loại Bệnh : <a
+												href="/MSS/danh-sach-benh.do?maLoaiDanhSach=<bean:write name="x" property="maLoaiBenh"/>"><bean:write
+													name="x" property="tenLoaiBenh" />  </a> 
+										</h5>
+									</div>
+									<div class="luotxem">
+										<h5>
+											Lượt Xem :
+											<bean:write name="x" property="luotXem" />
+										</h5>
+									</div>
+								</div>
+							</logic:iterate>
+						</logic:notEmpty>
+
+						<logic:notEmpty property="listThuoc" name="timKiemForm">
+							<logic:iterate id="x" name="timKiemForm" property="listThuoc">
+								<div class="item timkiem">
+									<div class="item-title">
+										<a 
+											href="/MSS/chi-tiet-thuoc.do?ma=<bean:write name="x" property="maThuoc"/>"><bean:write
+												name="x" property="tenThuoc" /> </a>
+									</div>
+									<div class="loaiitem">
+										<h5>
+											Loại Thuốc : <a 
+												href="/MSS/danh-sach-thuoc.do?maNhomThuoc=<bean:write name="x" property="maNhomThuoc"/>"><bean:write
+													name="x" property="tenNhomThuoc" /> - </a>
+										</h5>
+										
+									</div>
+									<div class="luotxem">
+										<h5>
+											Lượt Xem :
+											<bean:write name="x" property="luotXem" />
+										</h5>
+									</div>
+								</div>
+							</logic:iterate>
+
+						</logic:notEmpty>
+
+					</div>
+					<div class="page-navigation" id="pagination" align="center"></div>
+					<script>
+						jQuery(function($) {
+							var items = $(".item");
+							var numItems = items.length;
+							var perPage = 8;
+							// only show the first 2 (or "first per_page") items initially
+							items.slice(perPage).hide();
+							// now setup pagination
+							$("#pagination").pagination({
+								items : numItems,
+								prevText: "",
+								nextText: ">",
+								itemsOnPage : perPage,
+								cssStyle : "light-theme",
+								onPageClick : function(pageNumber) { // this is where the magic happens
+									// someone changed page, lets hide/show trs appropriately
+									var showFrom = perPage * (pageNumber - 1);
+									var showTo = showFrom + perPage;
+									items.hide() // first hide everything, then show for the new page
+									.slice(showFrom, showTo).show();
+								}
+							});
+						});
+					</script>
 
 				</div>
-
-				<div class="tableFilter">
-					<table class="table filter">
-						<thead>
-							<tr>
-								<th>Sắp Xếp Theo</th>
-								<th>Thời Gian Đăng</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Mặc Định</td>
-								<td>Mọi lúc</td>
-
-							</tr>
-							<tr>
-								<td>Xem Nhiều Nhất/td>
-								<td>Trong Ngày</td>
-
-							</tr>
-							<tr>
-								<td>Mới Nhất</td>
-								<td>Trong Tuần</td>
-
-
-							</tr>
-							<tr>
-								<td></td>
-								<td>Trong Tháng</td>
-							</tr>
-							<tr>
-								<td></td>
-								<td>Trong Năm</td>
-							</tr>
-
-						</tbody>
-					</table>
-
+				<!-- QUANG CAO -->
+				<div class="col-lg-4 content">
+					
 				</div>
-
-				<div class="number-result">
-					<h5>
-						Từ Khóa "
-						<bean:write name="timKiemForm" property="timKiem" />
-						" có
-						<bean:write name="timKiemForm" property="soKetQua" />
-						kết quả
-					</h5>
-				</div>
-				<div id="item-result1">
-					<logic:notEmpty property="listBenh" name="timKiemForm">
-						<logic:iterate id="x" name="timKiemForm" property="listBenh">
-							<div class="item timkiem">
-								<div class="item-title">
-									<a style="font-size: 30px;"
-										href="/MSS/chi-tiet-benh.do?ma=<bean:write name="x" property="maBenh"/>"><bean:write
-											name="x" property="tenBenh" /> </a>
-								</div>
-								<div class="loaiBenh">
-									<h5>
-										Loại Bệnh : <a
-											href="/MSS/danh-sach-benh.do?maLoai=<bean:write name="x" property="maLoaiBenh"/>"><bean:write
-												name="x" property="tenLoaiBenh" /> - </a> Lượt Xem :
-										<bean:write name="x" property="luotXem" />
-									</h5>
-								</div>
-								<div class="ngayCapNhat">
-									<h5>
-										Ngày Cập Nhật :
-										<bean:write name="x" property="ngayCapNhat" />
-									</h5>
-								</div>
-							</div>
-						</logic:iterate>
-					</logic:notEmpty>
-
-					<logic:notEmpty property="listThuoc" name="timKiemForm">
-						<logic:iterate id="x" name="timKiemForm" property="listThuoc">
-							<div class="item timkiem">
-								<div class="item-title">
-									<a style="font-size: 30px;"
-										href="/MSS/chi-tiet-thuoc.do?ma=<bean:write name="x" property="maThuoc"/>"><bean:write
-											name="x" property="tenThuoc" /> </a>
-								</div>
-								<div class="loaiBenh">
-									<h5>
-										Loại Thuốc : <a
-											href="/MSS/danh-sach-thuoc.do?maLoai=<bean:write name="x" property="maNhomThuoc"/>"><bean:write
-												name="x" property="tenNhomThuoc" /> - </a>
-									</h5>
-									<h5>
-										Lượt Xem :
-										<bean:write name="x" property="luotXem" />
-									</h5>
-								</div>
-								<div class="ngayCapNhat">
-									<h5>
-										Ngày Cập Nhật :
-										<bean:write name="x" property="ngayCapNhat" />
-									</h5>
-								</div>
-							</div>
-						</logic:iterate>
-
-					</logic:notEmpty>
-
-				</div>
-				<div class="page-navigation" id="pagination"></div>
-				<script>
-				jQuery(function($) {
-	                var items = $(".item");
-	                var numItems = items.length;
-	                var perPage = 5;
-	                // only show the first 2 (or "first per_page") items initially
-	                items.slice(perPage).hide();
-	                // now setup pagination
-	                $("#pagination").pagination({
-	                    items: numItems,
-	                    itemsOnPage: perPage,
-	                    cssStyle: "light-theme",
-	                    onPageClick: function(pageNumber) { // this is where the magic happens
-	                        // someone changed page, lets hide/show trs appropriately
-	                        var showFrom = perPage * (pageNumber - 1);
-	                        var showTo = showFrom + perPage;
-	                        items.hide() // first hide everything, then show for the new page
-	                             .slice(showFrom, showTo).show();
-	                    }
-	                });
-	            });
-				</script>
 
 			</div>
-			<!-- QUANG CAO -->
-			<div class="col-lg-4"></div>
-
 		</div>
 	</html:form>
+
 </body>
 </html>

@@ -675,5 +675,78 @@ public class BenhDAO extends DBHelper{
 		}
 		return list;
 	}
-	
+	public ArrayList<Benh> getListBenhTimKiemFilter(String timKiem, boolean luotXem, boolean abc) {
+		// TODO Auto-generated method stub
+		connect();
+		String sql2 = "Select  Benh.maLoaiBenh,tenLoaiBenh,luotXem,maBenh,tenBenh,bienChung,chanDoan,DieuTri,HinhAnh,DinhNghia,NguyenNhan,CheDoDinhDuong"
+				+ " from Benh inner join LOAIBENH on LOAIBENH.maLoaiBenh=Benh.MALOAIBENH where ";
+		StringTokenizer strTkn = new StringTokenizer(timKiem, "+");
+		ArrayList<String> arrLis = new ArrayList<String>(timKiem.length());
+		while(strTkn.hasMoreTokens())
+			arrLis.add(strTkn.nextToken());
+		if(arrLis.size()==1){
+			
+				sql2=sql2+"tenBenh like  N'%"+arrLis.get(0)+"%'";
+			
+		}
+		else{
+			for(int i=0;i<arrLis.size();i++){
+				if(i==arrLis.size()-1)
+					sql2=sql2+"tenBenh like  N'%"+arrLis.get(i)+"%'  ";
+				else
+					sql2=sql2+"tenBenh like  N'%"+arrLis.get(i)+"%' or ";
+			}
+		}
+		if (luotXem&&abc){
+			sql2=sql2+"  order by luotxem desc,tenBenh ";
+		}
+		else{
+			if(luotXem)
+				sql2=sql2+"  order by luotXem desc";
+			if(abc)
+				sql2=sql2+"  order by tenBenh";
+		}
+		System.out.println(sql2);
+
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<Benh> list = new ArrayList<Benh>();
+		Benh benh;
+		try {
+			while(rs.next()){
+				benh = new Benh();
+				String name=rs.getString("tenBenh");
+				int maBenh = rs.getInt("maBenh");
+				String bienChung= rs.getString("bienChung");
+				String chanDoan= rs.getString("chanDoan");
+				String dieuTri= rs.getString("dieuTri");
+				String hinhAnh= rs.getString("hinhAnh");
+				String dinhNghia= rs.getString("dinhNghia");
+				String nguyenNhan=rs.getString("nguyenNhan");
+				String cheDoDinhDuong=rs.getString("cheDoDinhDuong");
+				
+				benh.setTenBenh(name);
+				benh.setMaBenh(maBenh);
+				benh.setBienChung(bienChung);
+				benh.setChanDoan(chanDoan);
+				benh.setDieuTri(dieuTri);
+				benh.setHinhAnh(hinhAnh);
+				benh.setDinhNghia(dinhNghia);
+				benh.setNguyenNhan(nguyenNhan);
+				benh.setCheDoDinhDuong(cheDoDinhDuong);
+				benh.setLuotXem(rs.getInt("luotXem"));
+				benh.setTenLoaiBenh(rs.getString("tenLoaiBenh"));
+				benh.setMaLoaiBenh(rs.getInt("maLoaiBenh"));
+				list.add(benh);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

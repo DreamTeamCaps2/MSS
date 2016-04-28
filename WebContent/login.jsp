@@ -8,15 +8,21 @@
 <head>
     <meta charset="utf8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>TRANG CHỦ</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/font-awesome.css" />
 	<link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mss.css" />
+    <link rel="stylesheet" href="css/simplePagination.css"/>
+    <link rel="stylesheet" href="css/jquery.rateyo.min.css"/>
+    
   	
     <script src="js/jquery-1.11.2.min.js"></script>     
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
+	<script src="js/jquery.simplePagination.js" type="text/javascript"></script>
+	<script src="js/dataTables/jquery.dataTables.js"></script>
+	<script src="js/dataTables/dataTables.bootstrap.js"></script>
+	<script src="js/jquery.rateyo.min.js"></script>
 
     <link href="css/easy-autocomplete.min.css" rel="stylesheet">
 	<link href="css/easy-autocomplete.themes.min.css" rel="stylesheet">
@@ -65,7 +71,6 @@ $(document).ready(function() {
 	var widthThuoc= parseInt(soLuongLoaiThuoc)*250;
 	var heightThuoc = (parseInt(soLuongNhomThuoc)*40+60);
 	$("ul .list-loai-thuoc").css("width",widthThuoc+"px");
-	
 	$("ul .list-loai-thuoc").css("height",heightThuoc+"px"); 
 	$("div .dropdown.loaithuoc").css("width",80/soLuongLoaiThuoc+"%");
 	//set width and height for list nav benh
@@ -90,52 +95,59 @@ $(document).ready(function() {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="dropdown"><a data-toggle="dropdown"
-						href="/MSS/danh-sach-thuoc.do">Thuốc <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu menuThuoc">
+					<li class="dropdown"><a href="/MSS/danh-sach-thuoc.do">Thuốc
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu list-loai-thuoc ">
 							<logic:iterate id="x" name="thongBaoForm"
 								property="listLoaiThuoc">
 
-								<div class="dropdown loaiThuoc">
-									<a
-										href="/MSS/danh-sach-thuoc.do?maLoaiThuoc=<bean:write name="x" property="maLoaiThuoc"/>">
-										<bean:write name="x" property="tenLoaiThuoc" />
-									</a>
+								<div class="dropdown loaiThuoc" >
+									<div class="title-loai-thuoc">
+										<a
+											href="/MSS/danh-sach-thuoc.do?maLoaiThuoc=<bean:write name="x" property="maLoaiThuoc"/>">
+											<bean:write name="x" property="tenLoaiThuoc" />
+										</a>
+									</div>
 									<bean:define id="prodName" name="x" property="maLoaiThuoc" />
 									<logic:iterate name="thongBaoForm" property="listNhomThuoc"
 										id="a">
 										<logic:equal name="a" property="maLoaiThuoc"
 											value="${prodName}">
-											<li class="dropdown nhomThuoc">
-												<div class="dropdown nhomThuoc">
-													<a style="font-size: 15px;"
-														href="/MSS/danh-sach-thuoc.do?maNhomThuoc=<bean:write name="a" property="maNhomThuoc"/>">
-														<bean:write name="a" property="tenNhomThuoc" />
-													</a>
-												</div>
-											</li>
+											<li class="nhomThuoc"><a style="font-size: 15px;"
+												href="/MSS/danh-sach-thuoc.do?maNhomThuoc=<bean:write name="a" property="maNhomThuoc"/>">
+													<bean:write name="a" property="tenNhomThuoc" />
+											</a></li>
 
 										</logic:equal>
 									</logic:iterate>
 								</div>
 							</logic:iterate>
 						</ul></li>
-					<li class="dropdown"><a data-toggle="dropdown"
-						href="/MSS/danh-sach-benh.do">Bệnh <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu" style="height: 400px; width: 700px;">
+					<li class="dropdown"><a href="/MSS/danh-sach-benh.do">Bệnh
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu list-benh-nav" style="width: 600px;">
 							<logic:iterate id="x" name="thongBaoForm" property="listLoaiBenh">
-								<li
-									style="float: left; width: 220px; height: 50px; font-size: 20px;"><a
-									href="/MSS/danh-sach-benh.do?maLoaiDanhSach=<bean:write name="x" property="maLoaiBenh" />"><bean:write
-											name="x" property="tenLoaiBenh" /> </a></li>
+
+								<li class="dropdown loai-benh-nav">
+									<div>
+										<a
+											href="/MSS/danh-sach-benh.do?maLoaiDanhSach=<bean:write name="x" property="maLoaiBenh" />"><bean:write
+												name="x" property="tenLoaiBenh" /> </a>
+
+									</div>
+								</li>
+
 							</logic:iterate>
 							<li class="divider"></li>
-							<li><a href="/MSS/danh-sach-benh.do" style="font-size: 20px; text-align: center;">Tất Cả Loại Bệnh</a>
-							<li><a href="/MSS/tim-benh-theo-trieu-chung.do" style="font-size: 20px; text-align: center;">Tìm bệnh theo triệu chứng</a></li>
-						</ul>
-					</li>
+							<li><a href="/MSS/danh-sach-benh.do"
+								style="font-size: 20px; text-align: center;">Tất Cả Loại
+									Bệnh</a>
+							<li><a href="/MSS/tim-benh-theo-trieu-chung.do"
+								style="font-size: 20px; text-align: center;">Tìm bệnh theo
+									triệu chứng</a></li>
+						</ul></li>
 					<logic:equal name="quanLy" value="1">
 						<li><a href="/MSS/quanLy_TrangChu.jsp">QUẢN LÝ</a></li>
 					</logic:equal>
@@ -153,7 +165,7 @@ $(document).ready(function() {
 						</ul></li>
 				</ul>
 				<div class="form-group col-sm-4" style="margin-top: 13px;">
-        	   <input type="text" id="square" placeholder="Nhap tu khoa tim" class="form-control"
+        	   <input type="text" id="square" placeholder="Nhập Từ Khóa Cần Tìm" class="form-control"
 						name="timKiem" size=30 onkeypress="return runScript(event)"> 
         		
 					<script>
@@ -213,11 +225,9 @@ $(document).ready(function() {
 							<div class="col-md-12">
 								 <html:form styleClass="form"  method="post" action="/login" acceptCharset="UTF-8" styleId="login-nav">
 										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
 											 <input type="text" name="tenDangNhap" class="form-control" placeholder="Username" required>
 										</div>
 										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPassword2">Password</label>
 											 <input type="password" name="matKhau" class="form-control" placeholder="Password" required>
                                              <div class="help-block text-right"><a href="">Forget the password ?</a></div>
 										</div>

@@ -8,7 +8,7 @@
 <head>
 	<link rel="stylesheet" href="css/reviewdao.vn.css" />
     <meta charset="utf8">
-    <title>jQuery Dropdown Login Freebie | The Finished Box</title>
+    <title>Chi tiết tài khoản</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<style>
 	    .active {

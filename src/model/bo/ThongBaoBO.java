@@ -26,4 +26,8 @@ public class ThongBaoBO {
 		return thongBaoDAO.getListLoaiBenh();
 	}
 
+	public int soLuongNhomThuoc() {
+		return thongBaoDAO.soLuongNhomThuoc();
+	}
+
 }

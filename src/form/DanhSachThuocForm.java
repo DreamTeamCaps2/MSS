@@ -9,10 +9,12 @@ import model.bean.NhomThuoc;
 import model.bean.Thuoc;
 
 public class DanhSachThuocForm extends ActionForm{
+	
 	private ArrayList<Thuoc> listThuoc;
 	private ArrayList<NhomThuoc> listNhomThuoc;
 	private ArrayList<LoaiThuoc> listLoaiThuoc;
-	private int maNhomThuoc,maLoaiThuoc;
+	private int maNhomThuoc,maLoaiThuoc, soLuongThuoc;
+	
 	public ArrayList<Thuoc> getListThuoc()	 {
 		return listThuoc;
 	}
@@ -42,5 +44,11 @@ public class DanhSachThuocForm extends ActionForm{
 	}
 	public void setMaLoaiThuoc(int maLoaiThuoc) {
 		this.maLoaiThuoc = maLoaiThuoc;
+	}
+	public int getSoLuongThuoc() {
+		return soLuongThuoc;
+	}
+	public void setSoLuongThuoc(int soLuongThuoc) {
+		this.soLuongThuoc = soLuongThuoc;
 	}
 }

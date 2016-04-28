@@ -10,15 +10,13 @@
 <%@ include file="login.jsp"%>
 <head>
 <meta charset="UTF-8">
-<title>Đăng Ký Tài Khoản</title>
+<title>Đăng Ký</title>
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
 <link rel="stylesheet" href="css/login-register/blue.css" />
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.css" />
 </head>
 
 <body class="hold-transition register-page">

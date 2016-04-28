@@ -137,4 +137,8 @@ public class ThuocBO {
 	public ArrayList<Thuoc> getGiaListThuocTheoTen(int mathuoc){
 		return thuocDAO.getGiaListThuocTheoTen(mathuoc);
 	}
+
+	public ArrayList<Thuoc> getListThuocTimKiemFilter(String timKiem, boolean luotXem, boolean abc) {
+		return thuocDAO.getListThuocTimKiemFilter(timKiem, luotXem, abc);
+	}
 }

@@ -11,18 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>TRANG CHỦ</title>
     
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/font-awesome.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
+	<link rel="stylesheet"  href="css/lightslider.css"/>
 	<link rel="stylesheet" href="css/pgwslider.min.css" />
 	<link rel="stylesheet" href="css/reviewdao.vn.css" />
-    <script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/pgwslider.min.js"></script>
 	
-    <link rel="stylesheet"  href="css/lightslider.css"/>
+	<script src="js/pgwslider.min.js"></script>
     <script src="js/lightslider.js"></script>    
-    	    <style>
+   	<style>
     	ul{
 			list-style: none outside none;
 		    padding-left: 0;

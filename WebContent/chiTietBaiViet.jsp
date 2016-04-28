@@ -11,15 +11,10 @@
 <%@ include file="login.jsp"%>
 <head lang="en">
 <meta charset="UTF-8">
-<title></title>
+<title>Bài Viết</title>
 	
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/font-awesome.css" />
-	<script src="js/jquery-1.11.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/reviewdao.vn.css" />
 	<style type="text/css">
-		
 		p{
 			text-align: justify;
 		}

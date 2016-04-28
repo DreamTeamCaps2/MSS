@@ -35,7 +35,7 @@ public class DanhSachBenhAction extends Action {
 		
 		danhSachBenhForm.setListBenh(listBenh);
 		danhSachBenhForm.setListLoaiBenh(listLoaiBenh);
-		
+		danhSachBenhForm.setSoLuongBenh(listBenh.size());
 
 		return mapping.findForward("danhSachBenh");
 	}

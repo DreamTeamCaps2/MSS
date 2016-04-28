@@ -7,9 +7,8 @@
 <%@ include file="login.jsp"%>
 <head>
 <meta charset="utf8">
-<title>jQuery Dropdown Login Freebie | The Finished Box</title>
+<title>Thông tin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/jquery.rateyo.min.css"/>
 <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
 <style>
 footer {
@@ -207,10 +206,10 @@ footer {
 	</logic:empty>
 	</div>
 	</div>
-  	<script src="js/jquery.rateyo.min.js"></script>
   	<script type="text/javascript">
   	var rat = <%= request.getAttribute("rating") %>;
   	var maTKDN = <%= request.getAttribute("maTKDN") %>;
+  	var checkT ;
   	$(function () {
   		document.getElementById("textRate").innerHTML = rat;
   		$("#rateYo").rateYo({
@@ -327,7 +326,8 @@ footer {
 	                    			+ x
 	                    		+ '</div>'
 	                    		+'<div>';
-	
+							checkT = data;
+							alert(checkT);
 	                    $( "#boxcomment").append(html);
 	                    
 	                
@@ -343,8 +343,7 @@ footer {
             /* $( "#boxcomment").append( $(txt2) ); */
 	}
   	</script>
-  	<script src="js/dataTables/jquery.dataTables.js"></script>
-	<script src="js/dataTables/dataTables.bootstrap.js"></script>
+
 	<script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable({

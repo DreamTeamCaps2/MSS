@@ -37,11 +37,8 @@ public class DanhSachThuocAction extends Action{
 		listNhomThuoc=thongBaoBO.getListNhomThuoc();
 		listLoaiThuoc=thuocBO.getListLoaiThuoc();
 		
-		
 		if(maLoaiThuoc==0){
 			listThuoc=thuocBO.getListThuocNhomThuoc(maNhomThuoc);
-			
-			
 		}
 		else{
 			listThuoc=thuocBO.getListThuocLoaiThuoc(maLoaiThuoc);
@@ -50,6 +47,7 @@ public class DanhSachThuocAction extends Action{
 		danhSachThuocForm.setListLoaiThuoc(listLoaiThuoc);
 		danhSachThuocForm.setListNhomThuoc(listNhomThuoc);
 		danhSachThuocForm.setListThuoc(listThuoc);
+		danhSachThuocForm.setSoLuongThuoc(listThuoc.size());
 		
 		return mapping.findForward("danhSachThuoc");
 	}

@@ -13,8 +13,6 @@
 <meta charset="UTF-8">
 <title>Trang chủ</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,12 +22,12 @@
 <script src="js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
 
 </head>
-<body style="background-image: url(img/backgroud.png);">
+<body >
 	<div class="container">
 		<html:form action="/chi-tiet-benh" method="get">
 			<div class="row">
 
-				<div class="col-lg-2 categories">
+				<div class="col-lg-3 categories">
 					<ul class="nav nav-pills nav-stacked" data-spy="affix">
 						<li><h4 style="color: red;">Tra Cứu</h4></li>
 						<logic:notEmpty name="benhForm" property="dinhNghia">
@@ -61,13 +59,10 @@
 
 					</ul>
 				</div>
-				<div class="col-lg-2 "></div>
-				<article>
-					<div class="col-lg-5 conTent">
+					<div class="col-lg-6 chitiet-content">
 						<div class="row">
 							<div class="col-lg-12 ">
 								<div class="title">
-
 									<h2>
 										<img
 											src="img/<bean:write name="benhForm" property="hinhAnh"/>"
@@ -206,8 +201,7 @@
 							</logic:notEqual>
 						</div>
 					</div>
-				</article>
-				<div class="col-lg-3 ">
+				<div class="col-lg-3 content">
 					<div class="row">
 						<h3 style="text-align: center;">Những Bệnh Xem Nhiều Nhất</h3>
 						<%int i=1; %>

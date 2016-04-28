@@ -845,4 +845,67 @@ public class ThuocDAO extends DBHelper {
 		
 		return list;
 	}
+
+	public ArrayList<Thuoc> getListThuocTimKiemFilter(String timKiem, boolean luotXem, boolean abc) {
+		connect();
+		String sql2 = "Select  Thuoc.maNhomThuoc,tenNhomThuoc,luotXem,maThuoc,tenThuoc,hinhAnh"
+				+ " from Thuoc inner join NhomThuoc on  Thuoc.MANHOMTHUOC=NHOMTHUOC.maNHomThuoc where ";
+		StringTokenizer strTkn = new StringTokenizer(timKiem, "+");
+		ArrayList<String> arrLis = new ArrayList<String>(timKiem.length());
+		while(strTkn.hasMoreTokens())
+			arrLis.add(strTkn.nextToken());
+		if(arrLis.size()==1){
+			
+				sql2=sql2+"tenThuoc like  N'%"+arrLis.get(0)+"%'";
+			
+		}
+		else{
+			for(int i=0;i<arrLis.size();i++){
+				if(i==arrLis.size()-1)
+					sql2=sql2+"tenThuoc like  N'%"+arrLis.get(i)+"%'  ";
+				else
+					sql2=sql2+"tenThuoc like  N'%"+arrLis.get(i)+"%' or ";
+			}
+		}
+		if (luotXem&&abc){
+			sql2=sql2+"  order by luotxem desc,tenThuoc";
+		}
+		else{
+			if(luotXem)
+				sql2=sql2+"  order by luotXem desc";
+			if(abc)
+				sql2=sql2+"  order by tenThuoc";
+		}
+		System.out.println(sql2);
+
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+		Thuoc thuoc;
+		try {
+			while(rs.next()){
+				thuoc = new Thuoc();
+				String name=rs.getString("tenThuoc");
+				int maThuoc = rs.getInt("maThuoc");
+				String hinhAnh=rs.getString("HinhAnh");
+				
+				thuoc.setTenThuoc(name);
+				thuoc.setMaThuoc(maThuoc);
+				thuoc.setHinhAnh(hinhAnh);
+				thuoc.setLuotXem(rs.getInt("LuotXem"));
+				thuoc.setTenNhomThuoc(rs.getString("tenNhomThuoc"));
+				thuoc.setMaNhomThuoc(rs.getInt("maNhomThuoc"));
+
+				list.add(thuoc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

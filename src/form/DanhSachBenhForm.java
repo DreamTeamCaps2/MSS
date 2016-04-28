@@ -10,7 +10,7 @@ import model.bean.LoaiBenh;
 public class DanhSachBenhForm  extends ActionForm{
 	private ArrayList<Benh> listBenh;
 	private ArrayList<LoaiBenh> listLoaiBenh;
-	private int maLoaiDanhSach;
+	private int maLoaiDanhSach, soLuongBenh;
 	
 	public ArrayList<LoaiBenh> getListLoaiBenh() {
 		return listLoaiBenh;
@@ -30,6 +30,12 @@ public class DanhSachBenhForm  extends ActionForm{
 	}
 	public void setMaLoaiDanhSach(int maLoaiDanhSach) {
 		this.maLoaiDanhSach = maLoaiDanhSach;
+	}
+	public int getSoLuongBenh() {
+		return soLuongBenh;
+	}
+	public void setSoLuongBenh(int soLuongBenh) {
+		this.soLuongBenh = soLuongBenh;
 	}
 	
 }

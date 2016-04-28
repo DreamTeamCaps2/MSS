@@ -95,4 +95,26 @@ public class ThongBaoDAO extends DBHelper {
 		return list;
 	}
 
+	public int soLuongNhomThuoc() {
+		connect();
+		String sql2 = "	Select Count(maNhomThuoc) as soNhomThuoc,MaLoaiThuoc from NHOMTHUOC group by NhomThuoc.MaLoaiThuoc	order by count(maNhomThuoc) desc; ";
+		
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		try {
+			while(rs.next()){
+				return rs.getInt("soNhomThuoc");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

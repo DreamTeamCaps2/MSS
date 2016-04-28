@@ -95,4 +95,8 @@ public class BenhBO {
 	public ArrayList<Benh> getListBenh(int maThuoc) {
 		return benhDAO.getListBenh(maThuoc);
 	}
+
+	public ArrayList<Benh> getListBenhTimKiemFilter(String timKiem, boolean luotXem, boolean abc) {
+		return benhDAO.getListBenhTimKiemFilter(timKiem, luotXem, abc);
+	}
 }

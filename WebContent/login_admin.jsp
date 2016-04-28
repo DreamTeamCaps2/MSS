@@ -9,12 +9,10 @@
 <html>
 <head lang="en">
 <meta charset="UTF-8">
-<title>Đăng Ký Tài Khoản</title>
+<title>Đăng Nhập</title>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.css" />
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
@@ -64,8 +62,8 @@
 					<!-- /.col -->
 				</div>
 			</html:form>
-	        <a href="#">I forgot my password</a><br>
-	        <a href="register.jsp" class="text-center">Register a new membership</a>
+	        <a href="#" style="    color: #337ab7;">I forgot my password</a><br>
+	        <a href="register.jsp" style="    color: #337ab7;" class="text-center">Register a new membership</a>
 		</div>
 	</div>
     <script src="js/login-register/jQuery-2.1.4.min.js"></script>
