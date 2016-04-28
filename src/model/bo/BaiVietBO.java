@@ -70,4 +70,12 @@ public class BaiVietBO {
 		baiVietDAO.xoaBaiViet(maBaiVietXoa);
 	}
 
+	public void capNhatLuotXem(int ma, int luotXem) {
+		baiVietDAO.capNhatLuotXem(ma, luotXem);
+	}
+
+	public String getRateTB(String maTKPhu) {
+		return baiVietDAO.getRateTB(maTKPhu);	
+	}
+
 }

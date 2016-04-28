@@ -6,6 +6,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.upload.FormFile;
 
 import model.bean.BaiViet;
+import model.bean.LuotXem;
 
 public class BaiVietForm extends ActionForm{
 
@@ -14,6 +15,7 @@ public class BaiVietForm extends ActionForm{
 	private FormFile file;
 	
 	private ArrayList<BaiViet> listBaiViet;
+	private static ArrayList<LuotXem> listLuotXem =  new ArrayList<LuotXem>();
 	
 	public int getMaBaiViet() {
 		return maBaiViet;
@@ -62,6 +64,12 @@ public class BaiVietForm extends ActionForm{
 	}
 	public void setFile(FormFile file) {
 		this.file = file;
+	}
+	public static ArrayList<LuotXem> getListLuotXem() {
+		return listLuotXem;
+	}
+	public static void setListLuotXem(ArrayList<LuotXem> listLuotXem) {
+		BaiVietForm.listLuotXem = listLuotXem;
 	}
 	
 	

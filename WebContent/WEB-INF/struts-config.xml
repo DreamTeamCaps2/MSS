@@ -22,6 +22,7 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 		<form-bean name="loaiThuocForm" type="form.LoaiThuocForm" />
 		<form-bean name="loaiBenhForm" type="form.LoaiBenhForm" />
 		<form-bean name="nhomThuocForm" type="form.NhomThuocForm" />
+		<form-bean name="danhSachGiaForm" type="form.DanhSachGiaForm" />
 	</form-beans>
 	<action-mappings>
         	
@@ -269,9 +270,13 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 				path="/dia-diem" scope="request" type="action.DiaDiemAction">
 				<forward name="diaDiem" path="/map2.jsp" />
 			</action>	
-			<action input="/login.jsp" name="chiDuongForm"
+			<action input="/login.jsp" name="diaDiemForm"
 				path="/chi-duong" scope="request" type="action.ChiDuongAction">
 				<forward name="chiDuong" path="/chiDuong.jsp" />
+			</action>
+			<action input="/danhSachTiemThuoc_BanThuoc.jsp" name="danhSachGiaForm"
+				path="/suaSV" scope="request" type="action.DanhSachBanThuocAction">
+				<forward name="suaSV" path="/danhSachTiemThuoc_BanThuoc.jsp" />
 			</action>
 		
 	</action-mappings>

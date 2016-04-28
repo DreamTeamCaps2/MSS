@@ -64,6 +64,8 @@
 							<img src="img/<bean:write name="thuocForm" property="hinhAnh"/>"
 								alt="some_text" width="256" height="256"> Thuốc :
 							<bean:write name="thuocForm" property="tenThuoc" />
+							
+							<a href="/MSS/suaSV.do?msv=<bean:write name="thuocForm" property="ma" />">MUA THUỐC</a>
 						</h2>
 					</div>
 				</div>

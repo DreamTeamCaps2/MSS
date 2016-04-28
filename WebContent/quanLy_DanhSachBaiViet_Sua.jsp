@@ -18,7 +18,7 @@
 <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 </head>
 <body>
-	<html:form action="/sua-bai-viet" method="post">
+	<html:form action="/sua-bai-viet" method="post" enctype="multipart/form-data">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -33,8 +33,9 @@
 						<html:text property="tieuDe" styleClass="form-control input-lg pad"></html:text>
 						<html:textarea property="tomTat" styleClass="form-control" style="margin-top: 20px;" rows="3"></html:textarea>
 						<div class="form-group">
-							<label for="exampleInputFile">Hình ảnh</label> <html:file property="hinhAnh"></html:file>
-						</div>
+	                      <label for="exampleInputFile">File input</label>
+	                      <input name="file" type="file" id="exampleInputFile">
+	                    </div>
 						<div class="box-body pad" style="padding: 0px; margin-top: 20px;">
 							<form>
                 				<html:textarea property="noiDung" rows="10" cols="80" styleId="noiDung"></html:textarea>

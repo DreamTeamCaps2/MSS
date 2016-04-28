@@ -41,7 +41,7 @@ public class HomeAction extends Action{
 		thongBaoForm.setSoLuongLoaiThuoc(thuocBO.getListLoaiThuoc().size());
 		thongBaoForm.setSoLuongNhomThuoc(thongBaoBO.getListNhomThuoc().size());
 		thongBaoForm.setListND(taiKhoanBO.getListNguoiDung());
-		
+		thongBaoForm.setSoLuongLoaiBenh(thongBaoBO.getListLoaiBenh().size());
 		thongBaoForm.setListBaiViet(baiVietBO.getListBaiViet());
 		
 		request.getSession().setAttribute("thongBaoForm", thongBaoForm);

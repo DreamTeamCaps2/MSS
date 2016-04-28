@@ -3,6 +3,7 @@ package form;
 import java.util.ArrayList;
 
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.upload.FormFile;
 
 import model.bean.BinhLuan;
 import model.bean.LoaiTaiKhoan;
@@ -16,10 +17,11 @@ public class TaiKhoanForm extends ActionForm{
 	private String tenPhongKham, moTa, thoiGian;
 	private String cmnd, email;
 	private String tenNhaThuoc;
-	private String anhDaiDien;
+	private FormFile anhDaiDien;
 	private ArrayList<TaiKhoan> listND;
 	private ArrayList<Thuoc> listThuocCuaHang;
 	private ArrayList<BinhLuan> listBinhLuan;
+	private FormFile file;
 	
 	//TUAN
 	private int maQuyen, maLoaiTaiKhoan;
@@ -220,12 +222,21 @@ public class TaiKhoanForm extends ActionForm{
 		this.listBinhLuan = listBinhLuan;
 	}
 
-	public String getAnhDaiDien() {
+	public FormFile getAnhDaiDien() {
 		return anhDaiDien;
 	}
 
-	public void setAnhDaiDien(String anhDaiDien) {
+	public void setAnhDaiDien(FormFile anhDaiDien) {
 		this.anhDaiDien = anhDaiDien;
 	}
+
+	public FormFile getFile() {
+		return file;
+	}
+
+	public void setFile(FormFile file) {
+		this.file = file;
+	}
+
 	
 }

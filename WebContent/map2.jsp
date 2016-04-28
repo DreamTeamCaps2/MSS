@@ -18,15 +18,11 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
 
-<script type="text/javascript" src="js/diadiemkc.json"></script>
+
+<script type="text/javascript" src="js/diadiemkc1.json"></script>
 <script type="text/javascript">
 	var map;
-	
-
-	
 	var string = JSON.stringify(data);
 	
 	var data = eval(eval(string));
@@ -42,7 +38,8 @@
 		var day = new google.maps.Marker({
 			position : here,
 			map : map,
-			title : "ok"
+			title : "ok",
+			icon : 'http://localhost:8080/MSS/img/me.png'
 
 		});
 		for(var i in data){
@@ -50,9 +47,11 @@
 			(new google.maps.LatLng(data[parseInt(i)].lat, data[parseInt(i)].longi), new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 			
 			data[parseInt(i)].kc= Math.round(parseFloat(kc)/100)/10;
-			var id="#kcmadd"+data[parseInt(i)].ma;
-			document.getElementById("kcmadd"+data[parseInt(i)].ma).innerHTML=data[parseInt(i)].kc;
-			console.log(id);
+			var kt= document.getElementById("kcmadd"+data[parseInt(i)].ma);
+			if(kt!=null){
+			document.getElementById("kcmadd"+data[parseInt(i)].ma).innerHTML=data[parseInt(i)].kc; 
+			console.log(document.getElementById("kcmadd"+data[parseInt(i)].ma).innerHTML);
+			}
 		}
 		map.setCenter(here);
 	}, function() {
@@ -78,8 +77,18 @@
 		var marker = new google.maps.Marker({
 			position : pos,
 			map : map,
+		
 			animation : google.maps.Animation.DROP
 		});
+		if(data.loai=="2"){
+			marker.setIcon('http://localhost:8080/MSS/img/thuoc.png');
+		}
+		if(data.loai=="3"){
+			marker.setIcon('http://localhost:8080/MSS/img/pk.png');
+		}
+		if(data.loai=="1"){
+			marker.setIcon('http://localhost:8080/MSS/img/bv.png');
+		}
 		 var infowindow = new google.maps.InfoWindow()
 
         
@@ -99,64 +108,16 @@
         
        
       } 
-
-      //console.log(document.getElementById("lat").value);
-      
-		//console.log(document.getElementById("lat").value);	
-		/* var pos = new google.maps.LatLng(data.latitude, data.longtitude);
-		var marker = new google.maps.Marker({
-			position : pos,
-			map : map,
-			animation : google.maps.Animation.DROP
-		}); */
-		/*  marker.addListener('click', function() {
-			
-			navigator.geolocation.getCurrentPosition(function(position) {
-				var here = new google.maps.LatLng(position.coords.latitude,
-						position.coords.longitude);
-				
-				var distance = google.maps.geometry.spherical
-						.computeDistanceBetween(marker.getPosition(), new google.maps.LatLng(document.getElementById("lat").value,
-								document.getElementById("long").value));
-				console.log(document.getElementById("lat").value);			
-				
-			});
-		
-		}); */
-		
-/* 	  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-      
-        var fromLatitude =  16.021494;
-        var fromLongitude = 108.209638;
-        
-        var toLatitude = 21.014199;
-        var toLongitude = 105.848317;
-       
-        console.log(toLatitude);
-        var data={
-        	    origin: new google.maps.LatLng(fromLatitude, fromLongitude),
-        	    destination: new google.maps.LatLng(toLatitude, toLongitude),
-        	    travelMode: google.maps.TravelMode.DRIVING
-        	};
-        directionsService.route(data, function(response, status) {
-          if (status == google.maps.DirectionsStatus.OK) {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-        }  */
-		
-		
 		function bigImg(madd,loai) {
 			
 			 for(var i in data){
-				var id="#hungNgumadd"+madd+ "loai" +loai;
+				var id="#madd"+madd+ "loai" +loai;
 					 if(data[parseInt(i)].ma==madd && data[parseInt(i)].loai){
 						 var pos = new google.maps.LatLng(data[parseInt(i)].lat, data[parseInt(i)].longi);
 						 var marker = new google.maps.Marker({
 							 position: pos,
 							 map: map,
+							 visible : false,
 						 });
 						 var infowindow = new google.maps.InfoWindow();
 						 
@@ -182,35 +143,74 @@
 			bigImg(madd,loai).inforwindow.close();
 		}
 		
-	$(function() {
+	/* $(function() {
 		createMap();
 
 		 //console.log(document.getElementById("lat").value);
 		 for ( var i in data) {
 			new addMarker(data[parseInt(i)], map);
 		} 
-	});
+	}); */
 	
-	
+	function load(){
+		createMap();
+		for ( var i in data) {
+			var kt= document.getElementById("kcmadd"+data[parseInt(i)].ma);
+			if(kt!=null){
+				new addMarker(data[parseInt(i)], map);
+			}
+		} 
+		document.getElementById('mode').addEventListener('change', function(){
+		
+		if(document.getElementById('mode').value==1){
+			createMap();
+		 for ( var i in data) {
+			 if(data[parseInt(i)].loai=="1"){
+			new addMarker(data[parseInt(i)], map);
+				}}
+			} 
+		else if(document.getElementById('mode').value==2){
+			createMap();
+			for ( var i in data) {
+				 if(data[parseInt(i)].loai=="2"){
+				new addMarker(data[parseInt(i)], map);
+					}}
+				}
+		else if(document.getElementById('mode').value==3){
+			createMap();
+			for ( var i in data) {
+				 if(data[parseInt(i)].loai=="3"){
+				new addMarker(data[parseInt(i)], map);
+					}}
+				} 
+		else 
+			for ( var i in data) {
+					new addMarker(data[parseInt(i)], map);
+						}
+		
+		});
+	}
 	
 </script>
 
 
 </head>
 <body>
+	
 	<input type="hidden" id="long" size="20">
-	<input type="text" id="lat" size="20">
+
 
 
 	<div
-style="z-index: 5; background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 300px; height: 450px; line-height: 3em; overflow: auto; padding: 5px; border: double;">
+		style="z-index: 5; background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 300px; height: 450px; line-height: 3em; overflow: auto; padding: 5px; border: double;">
 		<h1>List Address</h1>
-		<hr style="border-top: 5px solid #2B2626">
+		<hr>
+
 		<logic:iterate name="diaDiemForm" property="listDiaDiem" id="tb">
 			<bean:define id="madd" name="tb" property="maDiaDiem"></bean:define>
 			<bean:define id="loai1" name="tb" property="loai"></bean:define>
 			<div onmouseover="bigImg(${madd},${loai1})"
-				 id="hungNgumadd${madd}loai${loai1}" boder="double">
+				 id="madd${madd}loai${loai1}" boder="double">
 				<h3>
 					<logic:equal name="tb" property="loai" value="1">Ten Benh Vien:<br>
 					</logic:equal>
@@ -229,7 +229,7 @@ style="z-index: 5; background-color: rgba(234, 234, 234, 0.91); position: absolu
 
 				<%-- <p id= "logg"><bean:write  name="tb" property="longi" /></p>
 				<p><bean:write  name="tb" property="lati" /></p> --%>
-				<a href="/Caps2/chi-duong.do?maDiaDiem=${madd}&loai=${loai1}">chỉ
+				<a href="/MSS/chi-duong.do?maDiaDiem=${madd}&loai=${loai1}">chỉ
 					đường</a>
 				
 			</div>
@@ -239,7 +239,51 @@ style="z-index: 5; background-color: rgba(234, 234, 234, 0.91); position: absolu
 		</logic:iterate>
 	</div>
 
+
 	<div id="google-map" style="width: 1400px; height: 600px;"></div>
-</body>
+	<div id="floating-panel" style="z-index: 5;">
+	<html:form action="/dia-diem" method="get">
+		<b>Mode of Travel: </b> <select name="loaiDiaDiem" id="mode">
+			<option value="0">Tất cả</option>
+			<option value="1">Bệnh viện</option>
+			<option value="2">Tiệm thuốc</option>
+			<option value="3">Phòng Khám</option>
+		</select>
+	</div>
+	<script type="text/javascript">
+	
+	$("#mode").change(function(){
+		alert(document.getElementById("mode").value);
+		var t = ""+document.getElementById("mode").value;
+		if(t=="0"){
+			$("div #benhVien").show();
+			$("div #phongKham").show();
+			$("div #nhaThuoc").show();
+		}
+		if(t=="1"){
+		$("div #benhVien").hide();
+		$("div #phongKham").hide();
+		$("div #nhaThuoc").hide();
+			
+		}
+		if(t=="3"){
+			$("div #benhVien").hide();
+			$("div #nhaThuoc").hide();
+			$("div #phongKham").show();
+		}	
+		if(t=="2"){
+			$("div #nhaThuoc").show();
+			$("div #benhVien").hide();
+			$("div #phongKham").hide();
+		}	
+	});
+	</script>
+	<input type="text" id="test" size="20" name="search">
+	<html:submit property="submit" value="tim" >
+	</html:submit>
+	
+	<script type="text/javascript"
+		src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry&callback=load"></script>
+		</html:form>
 </body>
 </html>

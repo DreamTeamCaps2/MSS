@@ -58,14 +58,19 @@
 	}
 </script>
 <script>
-	$(document).ready(function() {
-		var soLuongNhomThuoc = <bean:write name="thongBaoForm" property="soLuongNhomThuoc" />;
-		var soLuongLoaiThuoc = <bean:write name="thongBaoForm" property="soLuongLoaiThuoc" />;
-		var width= parseInt(soLuongLoaiThuoc)*250;
-		var height = parseInt(soLuongNhomThuoc)*60;
-		$("ul .menuThuoc").css("width",width+"px");
-		$("ul .menuThuoc").css("height",height+"px");
-	});
+$(document).ready(function() {
+	//set width and height for list nav thuoc
+	var soLuongNhomThuoc = <bean:write name="thongBaoForm" property="soLuongNhomThuoc" />;
+	var soLuongLoaiThuoc = <bean:write name="thongBaoForm" property="soLuongLoaiThuoc" />;
+	var widthThuoc= parseInt(soLuongLoaiThuoc)*250;
+	var heightThuoc = (parseInt(soLuongNhomThuoc)*40+60);
+	$("ul .list-loai-thuoc").css("width",widthThuoc+"px");
+	
+	$("ul .list-loai-thuoc").css("height",heightThuoc+"px"); 
+	$("div .dropdown.loaithuoc").css("width",80/soLuongLoaiThuoc+"%");
+	//set width and height for list nav benh
+	var soLuongLoaiBenh = <bean:write name="thongBaoForm" property="soLuongLoaiBenh" />;
+}); 
 </script>
 </head>
 <body>

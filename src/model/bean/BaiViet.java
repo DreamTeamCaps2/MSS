@@ -2,8 +2,9 @@ package model.bean;
 
 public class BaiViet {
 	
-	private int maBaiViet;
+	private int maBaiViet, luotXem;
 	private String tieuDe, tomTat, hinhAnh, noiDung;
+	
 	public int getMaBaiViet() {
 		return maBaiViet;
 	}
@@ -33,6 +34,12 @@ public class BaiViet {
 	}
 	public void setNoiDung(String noiDung) {
 		this.noiDung = noiDung;
+	}
+	public int getLuotXem() {
+		return luotXem;
+	}
+	public void setLuotXem(int luotXem) {
+		this.luotXem = luotXem;
 	}
 	
 }

@@ -146,7 +146,7 @@ $(document).ready(function() {
                     	<c:out value="${list.tomTat}"></c:out>
                     </p>
                     <div class="st-post-feature">
-                        <span><i class="fa fa-eye"></i><c:out value="${list.maBaiViet}"></c:out></span>
+                        <span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"></c:out></span>
                     </div>
 	            </li>
 	            </c:forEach>

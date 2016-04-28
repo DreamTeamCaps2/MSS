@@ -9,6 +9,9 @@ public class Thuoc {
 
 	private String tenNhomThuoc, tenLoaiThuoc, ngayCapNhat;
 	
+	//HUNG
+	private String maTiem, tenTiem;
+	
 	public int getMaThuoc() {
 		return maThuoc;
 	}
@@ -159,5 +162,22 @@ public class Thuoc {
 
 	public void setMaLoaiThuoc(int maLoaiThuoc) {
 		this.maLoaiThuoc = maLoaiThuoc;
+	}
+
+	//HUNG
+	public String getMaTiem() {
+		return maTiem;
+	}
+
+	public void setMaTiem(String maTiem) {
+		this.maTiem = maTiem;
+	}
+
+	public String getTenTiem() {
+		return tenTiem;
+	}
+
+	public void setTenTiem(String tenTiem) {
+		this.tenTiem = tenTiem;
 	}
 }

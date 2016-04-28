@@ -1,5 +1,8 @@
 package action;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,6 +11,7 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
 
 import form.TaiKhoanForm;
 import model.bean.TaiKhoan;
@@ -20,6 +24,7 @@ public class ThongTinTaiKhoanAction extends Action{
 			HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		TaiKhoanForm taiKhoanForm = (TaiKhoanForm) form;
@@ -29,7 +34,9 @@ public class ThongTinTaiKhoanAction extends Action{
 		String tenDangNhap = (String)session1.getAttribute("tenDangNhap");
 		System.out.println(tenDangNhap);
 		String maLoai = (String)session1.getAttribute("maLoai");
-		
+        FileOutputStream outputStream = null;
+        FormFile file = null;
+        String chuoi="";
 		//if(taiKhoan != null) {
 			if("OK".equals(taiKhoanForm.getSubmit()))
 			{		
@@ -51,6 +58,39 @@ public class ThongTinTaiKhoanAction extends Action{
 				
 				taiKhoanBO.suaTaiKhoan(maTK, tenDangNhap, matKhau, diaChi, SDT, maLoai, cmnd, email, tenNhaThuoc, tenPhongKham, moTa, thoiGian);
 				taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap, maLoai);
+				session1.setAttribute("taiKhoan", taiKhoan);
+				session1.setAttribute("taiKhoan1", taiKhoan);
+				
+				return mapping.findForward("thongTinTKXong");
+			}
+			else if("Update".equals(taiKhoanForm.getSubmit())){
+				System.out.println("upfile");
+				
+				try {
+				 	file = taiKhoanForm.getAnhDaiDien();
+				 	
+				 	
+				 	chuoi = tenDangNhap+"_avatar.jpg";
+				 	String path = getServlet().getServletContext().getRealPath("/")+"img"+"/"+chuoi;
+				 	System.out.println(path);
+		            outputStream = new FileOutputStream(new File(path));
+		            outputStream.write(file.getFileData());
+		            
+//		            String path1 = getServlet().getServletContext().getRealPath("/")+"img"+"/"+file.getFileName();
+//					outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/img/"+tenDangNhap+"_avatar.jpg"));
+//		            outputStream.write(file.getFileData());
+		            
+		        } finally {
+		            if (outputStream != null) {
+		                outputStream.close();
+		            }
+		        }
+				
+				//String anhDaiDien = tenDangNhap+"_avatar.jpg";
+				String anhDaiDien = chuoi;
+				System.out.println(anhDaiDien);
+				taiKhoanBO.updateAvatar(tenDangNhap, anhDaiDien);
+				taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap, "");
 				session1.setAttribute("taiKhoan", taiKhoan);
 				session1.setAttribute("taiKhoan1", taiKhoan);
 				

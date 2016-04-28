@@ -48,68 +48,73 @@ public class ThongTinTaiKhoanChiTietAction extends Action{
 //		String tenDangNhap = (String)session1.getAttribute("tenDangNhap");
 		String maTKDN = (String)session1.getAttribute("maTKDN");
 		
-		if(request.getParameter("rating")!=null){
-			String rating = request.getParameter("rating");
-			String maTKPhu = request.getParameter("tkkhach");
-			System.out.println("Danh Gia:" + rating);
-			System.out.println("Ten Dang Nhap:" +maTKDN);
-			System.out.println("Ten Dang Nhap Khach:" +maTKPhu);
-			
-			String datetime = getDate();
-			
-			String diemRate = baiVietBO.getRate(maTKDN, maTKPhu);
-			if(diemRate!="")
-				baiVietBO.updateRate(maTKDN, maTKPhu, rating, datetime);
-			else
-				baiVietBO.addRate(maTKDN, maTKPhu, rating, datetime);
-		}
-		
-		if(request.getParameter("marked")!=null){
-			String marked = request.getParameter("marked");
-			String maTKPhu = request.getParameter("tkkhach");
-			System.out.println("Danh Dau:" + marked);
-			System.out.println("Ten Dang Nhap:" +maTKDN);
-			System.out.println("Ten Dang Nhap Khach:" +maTKPhu);
-			
-			if(baiVietBO.getMark(maTKDN, maTKPhu)){
-				System.out.println("Huy Danh Dau");
-				baiVietBO.removeMark(maTKDN, maTKPhu);
+		if(maTKDN!=null){
+			if(request.getParameter("rating")!=null){
+				String rating = request.getParameter("rating");
+				String maTKPhu = request.getParameter("tkkhach");
+				System.out.println("Danh Gia:" + rating);
+				System.out.println("Ten Dang Nhap:" +maTKDN);
+				System.out.println("Ten Dang Nhap Khach:" +maTKPhu);
+				
+				String datetime = getDate();
+				
+				String diemRate = baiVietBO.getRate(maTKDN, maTKPhu);
+				if(diemRate!="")
+					baiVietBO.updateRate(maTKDN, maTKPhu, rating, datetime);
+				else
+					baiVietBO.addRate(maTKDN, maTKPhu, rating, datetime);
 			}
-			else
-				baiVietBO.addMark(maTKDN, maTKPhu);
+			
+			if(request.getParameter("marked")!=null){
+				String marked = request.getParameter("marked");
+				String maTKPhu = request.getParameter("tkkhach");
+				System.out.println("Danh Dau:" + marked);
+				System.out.println("Ten Dang Nhap:" +maTKDN);
+				System.out.println("Ten Dang Nhap Khach:" +maTKPhu);
+				
+				if(baiVietBO.getMark(maTKDN, maTKPhu)){
+					System.out.println("Huy Danh Dau");
+					baiVietBO.removeMark(maTKDN, maTKPhu);
+				}
+				else
+					baiVietBO.addMark(maTKDN, maTKPhu);
+			}
+			
+			if(request.getParameter("report")!=null){
+				String report = request.getParameter("report");
+				String maDangNhapKhach = request.getParameter("tkkhach");
+				System.out.println("To Cao:" + report);
+				System.out.println("Ten Dang Nhap:" +maTKDN);
+				System.out.println("Ten Dang Nhap Khach:" +maDangNhapKhach);
+				
+				String datetime = getDate();
+				
+				baiVietBO.addReport(maTKDN, maDangNhapKhach, datetime);
+			}
+			
+			if(request.getParameter("comment")!=null){
+				String comment = request.getParameter("comment");
+				String maDangNhapKhach = request.getParameter("tkkhach");
+				System.out.println("Binh Luan:" + comment);
+				System.out.println("Ten Dang Nhap:" +maTKDN);
+				System.out.println("Ten Dang Nhap Khach:" +maDangNhapKhach);
+				
+				String datetime = getDate();
+				
+				baiVietBO.addComment(maTKDN, maDangNhapKhach, comment, datetime);
+				   
+				DateFormat dateFormat = new SimpleDateFormat("MMM d yyyy H:mma");
+				Date date = new Date();
+				datetime = dateFormat.format(date);
+				System.out.println("DATE FORMAT: "+ datetime);
+				
+				printWriter.write(datetime);
+				printWriter.flush();
+				return null;
+			}
 		}
-		
-		if(request.getParameter("report")!=null){
-			String report = request.getParameter("report");
-			String maDangNhapKhach = request.getParameter("tkkhach");
-			System.out.println("To Cao:" + report);
-			System.out.println("Ten Dang Nhap:" +maTKDN);
-			System.out.println("Ten Dang Nhap Khach:" +maDangNhapKhach);
-			
-			String datetime = getDate();
-			
-			baiVietBO.addReport(maTKDN, maDangNhapKhach, datetime);
-		}
-		
-		if(request.getParameter("comment")!=null){
-			String comment = request.getParameter("comment");
-			String maDangNhapKhach = request.getParameter("tkkhach");
-			System.out.println("Binh Luan:" + comment);
-			System.out.println("Ten Dang Nhap:" +maTKDN);
-			System.out.println("Ten Dang Nhap Khach:" +maDangNhapKhach);
-			
-			String datetime = getDate();
-			
-			baiVietBO.addComment(maTKDN, maDangNhapKhach, comment, datetime);
-			   
-			DateFormat dateFormat = new SimpleDateFormat("MMM d yyyy H:mma");
-			Date date = new Date();
-			datetime = dateFormat.format(date);
-			System.out.println("DATE FORMAT: "+ datetime);
-			
-			printWriter.write(datetime);
-			printWriter.flush();
-			return null;
+		else{
+			request.setAttribute("maTKDN", false);
 		}
 		
 		String tenDangNhap1 = taiKhoanForm.getTenDangNhap();
@@ -128,7 +133,8 @@ public class ThongTinTaiKhoanChiTietAction extends Action{
 		taiKhoanForm.setTenPhongKham(taiKhoan.getTenPhongKham());
 		taiKhoanForm.setMoTa(taiKhoan.getMoTa());
 		taiKhoanForm.setThoiGian(taiKhoan.getThoiGian());
-		taiKhoanForm.setAnhDaiDien(taiKhoan.getAnhDaiDien());
+		taiKhoanForm.setLoaiTK(taiKhoan.getLoaiTK());
+		//taiKhoanForm.setAnhDaiDien(taiKhoan.getAnhDaiDien());
 		
 		String maTKPhu = taiKhoan.getMaTK();
 		
@@ -137,9 +143,10 @@ public class ThongTinTaiKhoanChiTietAction extends Action{
 		taiKhoanForm.setListBinhLuan(baiVietBO.getListComment(maTKPhu));
 		
 		String diemRate = baiVietBO.getRate(maTKDN, maTKPhu);
-		if(diemRate=="")
-			diemRate = "0";
-		request.setAttribute("rating", diemRate);
+		String rateTB = baiVietBO.getRateTB(maTKPhu);
+		if(rateTB=="")
+			rateTB = "0";
+		request.setAttribute("rating", rateTB);
 		
 		if(baiVietBO.getMark(maTKDN, maTKPhu)){
 			request.setAttribute("checkMark", true);

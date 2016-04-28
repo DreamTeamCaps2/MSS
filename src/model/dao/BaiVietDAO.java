@@ -44,6 +44,7 @@ public class BaiVietDAO extends DBHelper{
 				ch.setTieuDe(rs.getString("TieuDe"));
 				ch.setHinhAnh(rs.getString("HinhAnh"));
 				ch.setTomTat(rs.getString("TomTat"));
+				ch.setLuotXem(rs.getInt("LuotXem"));
 //				
 //				ch.setTenDangNhap(rs.getString("TenDangNhap"));
 //				ch.setDiaChi(rs.getString("DiaChi"));
@@ -76,6 +77,7 @@ public class BaiVietDAO extends DBHelper{
 				baiViet.setTomTat(rs.getString("TomTat"));
 				baiViet.setNoiDung(rs.getString("NoiDung"));
 				baiViet.setHinhAnh(rs.getString("HinhAnh"));
+				baiViet.setLuotXem(rs.getInt("LuotXem"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -281,6 +283,43 @@ public class BaiVietDAO extends DBHelper{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+	}
+
+	public void capNhatLuotXem(int ma, int luotXem) {
+		connect();
+	    String sql =String.format("Update BAIVIET set luotxem = %s "
+	    		 +"where MaBaiViet= %s",luotXem+1,ma);
+	    System.out.println("hehe"+sql);
+	    try {
+	        Statement stmt = connection.createStatement();
+	        stmt.executeUpdate(sql);
+	    } catch (SQLException e) {
+	        e.printStackTrace();    
+	    }
+	    System.out.println("Cap nhat luot xem bài viết");
+	}
+
+	public String getRateTB(String maTKPhu) {
+		connect();
+		String sql="SELECT AVG(DanhGia) AS avgDanhGia FROM DANHGIA WHERE MaTK_Phu="+maTKPhu;
+		
+		System.out.println(sql);
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String rate="";
+		try {
+			while(rs.next()){
+				rate = rs.getFloat("avgDanhGia")+"";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rate;
 	}
 	
 }

@@ -14,7 +14,7 @@ import model.bean.ThongBao;
 public class ThongBaoForm extends ActionForm {
 	
 	private ArrayList<ThongBao> listThongBao = new ArrayList<ThongBao>();
-	private int soLuong,soLuongNhomThuoc,soLuongLoaiThuoc ;
+	private int soLuong,soLuongNhomThuoc,soLuongLoaiThuoc, soLuongLoaiBenh ;
 	private int ma;
 	private String timKiem;
 	private ArrayList<NhomThuoc> listNhomThuoc;
@@ -110,5 +110,13 @@ public class ThongBaoForm extends ActionForm {
 
 	public void setListBaiViet(ArrayList<BaiViet> listBaiViet) {
 		this.listBaiViet = listBaiViet;
+	}
+
+	public int getSoLuongLoaiBenh() {
+		return soLuongLoaiBenh;
+	}
+
+	public void setSoLuongLoaiBenh(int soLuongLoaiBenh) {
+		this.soLuongLoaiBenh = soLuongLoaiBenh;
 	}
 }

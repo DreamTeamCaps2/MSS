@@ -10,9 +10,42 @@ import model.bean.ThongBao;
 public class DiaDiemForm extends ActionForm {
 
 	private ArrayList<DiaDiem> listDiaDiem;
-	private int soLuong;
-	private String longi = "106.689422";
-	private String lati = "10.765974";
+	
+	private String loaiDiaDiem;
+	private String search;
+	private String submit, maDiaDiem;
+	
+	public String getMaDiaDiem() {
+		return maDiaDiem;
+	}
+
+	public void setMaDiaDiem(String maDiaDiem) {
+		this.maDiaDiem = maDiaDiem;
+	}
+
+	public String getLoaiDiaDiem() {
+		return loaiDiaDiem;
+	}
+
+	public void setLoaiDiaDiem(String loaiDiaDiem) {
+		this.loaiDiaDiem = loaiDiaDiem;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getSubmit() {
+		return submit;
+	}
+
+	public void setSubmit(String submit) {
+		this.submit = submit;
+	}
 
 	public ArrayList<DiaDiem> getListDiaDiem() {
 		return listDiaDiem;
@@ -22,28 +55,7 @@ public class DiaDiemForm extends ActionForm {
 		this.listDiaDiem = listDiaDiem;
 	}
 
-	public String getLongi() {
-		return longi;
-	}
+	
 
-	public void setLongi(String longi) {
-		this.longi = longi;
-	}
-
-	public String getLati() {
-		return lati;
-	}
-
-	public void setLati(String lati) {
-		this.lati = lati;
-	}
-
-	public int getSoLuong() {
-		return soLuong;
-	}
-
-	public void setSoLuong(int soLuong) {
-		this.soLuong = soLuong;
-	}
-
+	
 }

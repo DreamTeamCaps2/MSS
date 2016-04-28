@@ -28,13 +28,17 @@ footer {
 	        <p><a href="#">My Profile</a></p>
 	        <img src="img/${taiKhoan1.anhDaiDien}" class="img-circle" height="100" width="100" alt="Avatar">
 	      </div>
+	      <logic:empty name="taiKhoanForm" property="loaiTK">
 	      <div class="clearfix">
-	      	<div id="rateYo"></div><div class="counter"></div>
+	      	<div id="rateYo" style="padding-left: 45px;"></div>
+	      	<!-- <div class="counter"></div> -->
 	      </div>
+	      <p id="textRate"></p>
 	      <div class="well">
 	      	<input type="button" class="btn btn-block btn-primary" id="btnDanhDau" onclick="ClickDanhDau()" value="Đánh dấu">
 	      	<input type="button" class="btn btn-block btn-primary" id="btnToCao" onclick="ClickToCao()" value="Tố cáo">
 	      </div>
+	      </logic:empty>
 	      <div class="well">
 	        <p><a href="#">Interests</a></p>
 	        <p>
@@ -48,17 +52,27 @@ footer {
 	      </div>
 	    </div>
     <div class="col-sm-6">
-      <div class="row">
-        <div class="col-sm-12">
+      	<div class="row">
+        	<div class="col-sm-12">
         	<div class="panel panel-default text-left">
             <div class="panel-body">
 				<html:form action="/thongTinTKChiTiet" method="post">
+					<logic:notEmpty name="taiKhoan1" property="tenPhongKham">  
 			        <div class="row form-group">
-			            <label class="col-lg-4">Tên Đăng Nhập</label>
+			            <label class="col-lg-4">Tên Phòng Khám</label>
 			            <div class="col-lg-6">
-			            	<html:text name="taiKhoan1" property="tenDangNhap" styleClass="form-control" readonly="true"></html:text>
+			            	<html:text property="tenPhongKham" styleClass="form-control" readonly="true"></html:text>
 			            </div>
-			        </div>
+			        </div>      
+			        </logic:notEmpty>
+			        <logic:notEmpty name="taiKhoan1" property="tenNhaThuoc">          
+			        <div class="row form-group">
+			            <label class="col-lg-4">Tên Nhà Thuốc</label>
+			            <div class="col-lg-6">
+			            	<html:text property="tenNhaThuoc" styleClass="form-control" readonly="true"></html:text>
+			            </div>
+			        </div>              
+			        </logic:notEmpty>
 					<div class="row form-group">
 			            <label class="col-lg-4">SDT</label>
 			            <div class="col-lg-6">
@@ -74,7 +88,8 @@ footer {
 			        <div class="row form-group">
 			            <label class="col-lg-4">Loại tài khoản</label>
 			            <div class="col-lg-6">
-			            <logic:notEmpty name="taiKhoanForm" property="cmnd"><html:text property="loaiTK" styleClass="form-control" value="Thành Viên" readonly="true"></html:text>
+			            <logic:notEmpty name="taiKhoanForm" property="loaiTK">Thành Viên
+			            	<%-- <html:text property="loaiTK" styleClass="form-control" value="Thành Viên" readonly="true"></html:text> --%>
 			            </logic:notEmpty>
 			            <logic:notEmpty name="taiKhoanForm" property="tenPhongKham">Phòng Khám
 			            </logic:notEmpty>
@@ -98,22 +113,7 @@ footer {
 			            </div>
 			        </div>            
 			        </logic:notEmpty>       
-			        <logic:notEmpty name="taiKhoan1" property="tenPhongKham">  
-			        <div class="row form-group">
-			            <label class="col-lg-4">Tên Phòng Khám</label>
-			            <div class="col-lg-6">
-			            	<html:text property="tenPhongKham" styleClass="form-control" readonly="true"></html:text>
-			            </div>
-			        </div>      
-			        </logic:notEmpty>
-			        <logic:notEmpty name="taiKhoan1" property="tenNhaThuoc">          
-			        <div class="row form-group">
-			            <label class="col-lg-4">Tên Nhà Thuốc</label>
-			            <div class="col-lg-6">
-			            	<html:text property="tenNhaThuoc" styleClass="form-control" readonly="true"></html:text>
-			            </div>
-			        </div>              
-			        </logic:notEmpty>
+
 			        <logic:notEmpty name="taiKhoan1" property="moTa">  
 			        <div class="row form-group">
 			            <label class="col-lg-4">Mô tả</label>
@@ -136,7 +136,10 @@ footer {
 	    </div>
 
 		</div>
-	<div class="panel panel-default text-left">
+		
+		<logic:empty name="taiKhoanForm" property="loaiTK">
+		<!-- THUOC -->
+		<div class="panel panel-default text-left">
 		<div class="panel-body">
 							<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
@@ -165,11 +168,15 @@ footer {
 								</tbody>
 							</table>
 						</div>	
-						</div>	
+						</div>
+		</logic:empty>	
 	</div>
+	
+	<logic:empty name="taiKhoanForm" property="loaiTK">
+	<!-- BINHLUAN -->
 		<div class="col-sm-3 well" style="text-align: left;">
 			BÌNH LUẬN
-			<div class="box-footer box-comments" id="boxcomment" style="background: white;">
+			<div class="box-footer box-comments" id="boxcomment" style="background: white;overflow-y: scroll;height: 300px;">
 				<c:forEach items="${taiKhoanForm.listBinhLuan}" var="list">
 					<div class="box-comment">
 						<img class="img-circle img-sm" src="img/${list.hinhAnh }" alt="user image">
@@ -184,7 +191,12 @@ footer {
 				</c:forEach>
           	</div>
 				<div class="box-footer">
-                    <img class="img-responsive img-circle img-sm" src="img/${taiKhoan.anhDaiDien}" alt="alt text">
+					<logic:present name="taiKhoan">
+                    	<img class="img-responsive img-circle img-sm" src="img/${taiKhoan.anhDaiDien}" alt="alt text">
+                    </logic:present>
+                    <logic:notPresent name="taiKhoan">
+                    	<img class="img-responsive img-circle img-sm" src="img/bird.jpg" alt="alt text">
+                    </logic:notPresent>
                     <!-- .img-push is used to add margin to elements next to floating images -->
                     <div class="img-push">
                       <input type="text" id="txtBinhLuan" class="form-control input-sm" placeholder="Press enter to post comment">
@@ -192,24 +204,27 @@ footer {
                     </div>
                 </div>                
 	    </div>
+	</logic:empty>
 	</div>
 	</div>
   	<script src="js/jquery.rateyo.min.js"></script>
   	<script type="text/javascript">
-  	var rat = <%= request.getAttribute("rating") %>
+  	var rat = <%= request.getAttribute("rating") %>;
+  	var maTKDN = <%= request.getAttribute("maTKDN") %>;
   	$(function () {
+  		document.getElementById("textRate").innerHTML = rat;
   		$("#rateYo").rateYo({
   			rating: rat,
   		    halfStar: true
   		  });
   		$("#rateYo").rateYo()
-        .on("rateyo.change", function (e, data) {
-          var rating = data.rating;
-          $(this).next().text(rating);
+	        .on("rateyo.change", function (e, data) {
+	          var rating = data.rating;
+	          $(this).next().text(rating);
         });
 
 		$("#rateYo").rateYo().on("rateyo.set", function(e, data) {
-			alert("The rating is set to " + data.rating + "!");
+			if(maTKDN!=false){
 			  var tkkhach = "${taiKhoan1.maTK}";
 	          var requestData = {
 	  				rating: data.rating,
@@ -225,87 +240,106 @@ footer {
 	  				error:function(data,status){
 	  				}
 	            });
+			}
+			else{
+				alert("Bạn cần phải đăng nhập mới có thể đánh giá");
+			}
 		});
 	});
 	function ClickDanhDau() {
 		alert("Click DAnh DAu");
-		var mark = document.getElementById("btnDanhDau");
-		if (mark.value=="Đánh dấu") 
-			mark.value = "Đã Đánh Dấu";
-		else mark.value = "Đánh dấu";
-        var requestData = {
-  				marked: true,
-  				tkkhach: "${taiKhoan1.maTK}"
-  	      };
-            $.ajax({
-                url: '/MSS/thongTinTKChiTiet.do',
-                type: 'POST',
-                data: requestData,
-                dataType: 'json',
-                success:function(data,status){
-  				},
-  				error:function(data,status){
-  				}
-            });
+		if(maTKDN!=false){
+			var mark = document.getElementById("btnDanhDau");
+			if (mark.value=="Đánh dấu") 
+				mark.value = "Đã Đánh Dấu";
+			else mark.value = "Đánh dấu";
+	        var requestData = {
+	  				marked: true,
+	  				tkkhach: "${taiKhoan1.maTK}"
+	  	      };
+	            $.ajax({
+	                url: '/MSS/thongTinTKChiTiet.do',
+	                type: 'POST',
+	                data: requestData,
+	                dataType: 'json',
+	                success:function(data,status){
+	  				},
+	  				error:function(data,status){
+	  				}
+	            });
+		}
+		else{
+			alert("Bạn cần phải đăng nhập mới có thể đánh dấu");
+		}
 	}
 	function ClickToCao() {
 		alert("Click To Cao");
-		var mark = document.getElementById("btnToCao");
-		if (mark.value=="Tố cáo") {
-			mark.value = "Đã Tố Cáo";
-			mark.disabled = true;
+		if(maTKDN!=false){
+			var mark = document.getElementById("btnToCao");
+			if (mark.value=="Tố cáo") {
+				mark.value = "Đã Tố Cáo";
+				mark.disabled = true;
+			}
+			else mark.value = "Tố cáo";
+			
+	        var requestData = {
+	  				report: true,
+	  				tkkhach: "${taiKhoan1.maTK}"
+	  	      };
+	            $.ajax({
+	                url: '/MSS/thongTinTKChiTiet.do',
+	                type: 'POST',
+	                data: requestData,
+	                dataType: 'json',
+	                success:function(data,status){
+	  				},
+	  				error:function(data,status){
+	  				}
+	            });
 		}
-		else mark.value = "Tố cáo";
-		
-        var requestData = {
-  				report: true,
-  				tkkhach: "${taiKhoan1.maTK}"
-  	      };
-            $.ajax({
-                url: '/MSS/thongTinTKChiTiet.do',
-                type: 'POST',
-                data: requestData,
-                dataType: 'json',
-                success:function(data,status){
-  				},
-  				error:function(data,status){
-  				}
-            });
+		else{
+			alert("Bạn cần phải đăng nhập mới có thể tố cáo");
+		}       
 	}
 	function ClickBinhLuan() {
-		var x = document.getElementById("txtBinhLuan").value;
-        
-		alert(x);
-         var requestData = {
-  				comment: x,
-  				tkkhach: "${taiKhoan1.maTK}"
-  	      };
-            $.ajax({
-                url: '/MSS/thongTinTKChiTiet.do',
-                type: 'POST',
-                data: requestData,
-                dataType: 'text',
-                success:function(data,status){
-                	var html='';
-                    html = '<div class="box-comment">'
-                    		+ '<img class="img-circle img-sm" src="img/user4-128x128.jpg" alt="user image">'
-                    		+ '<div class="comment-text">'
-                    			+ '<span class="username">'
-                    				+"${taiKhoan.tenDangNhap}"
-                    				+ '<span class="text-muted pull-right">'+data+'</span>' 
-                    			+ '</span>'
-                    			+ x
-                    		+ '</div>'
-                    		+'<div>';
-
-                    $( "#boxcomment").append(html);
-                    $('#txtBinhLuan').val("");
-                
-                },
-  				error:function(data,status){
-  				}
-            });
-            
+		if(maTKDN!=false){
+			var x = document.getElementById("txtBinhLuan").value;
+	        
+			alert(x);
+	         var requestData = {
+	  				comment: x,
+	  				tkkhach: "${taiKhoan1.maTK}"
+	  	      };
+	            $.ajax({
+	                url: '/MSS/thongTinTKChiTiet.do',
+	                type: 'POST',
+	                data: requestData,
+	                dataType: 'text',
+	                success:function(data,status){
+	                	var html='';
+	                    html = '<div class="box-comment">'
+	                    		+ '<img class="img-circle img-sm" src="img/${taiKhoan.anhDaiDien}" alt="user image">'
+	                    		+ '<div class="comment-text">'
+	                    			+ '<span class="username">'
+	                    				+"${taiKhoan.tenDangNhap}"
+	                    				+ '<span class="text-muted pull-right">'+data+'</span>' 
+	                    			+ '</span>'
+	                    			+ x
+	                    		+ '</div>'
+	                    		+'<div>';
+	
+	                    $( "#boxcomment").append(html);
+	                    
+	                
+	                },
+	  				error:function(data,status){
+	  				}
+	            });
+		}
+		else{
+			alert("Bạn cần phải đăng nhập mới có thể bình luận");
+		}  
+		$('#txtBinhLuan').val("");
             /* $( "#boxcomment").append( $(txt2) ); */
 	}
   	</script>

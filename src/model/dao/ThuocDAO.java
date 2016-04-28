@@ -607,7 +607,6 @@ public class ThuocDAO extends DBHelper {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Benh b = new Benh();
 		try {
 			while(rs.next()){
 				if(rs.getInt("MaThuoc") == 0)
@@ -622,7 +621,6 @@ public class ThuocDAO extends DBHelper {
 	}
 	
 	public ArrayList<NhomThuoc> getListNhomThuoc() {
-		// TODO Auto-generated method stub
 		connect();
 		String sql2 = "Select MaNhomThuoc,TenNhomThuoc,TenLoaiThuoc,NhomThuoc.MaLoaiThuoc from NHOMTHUOC inner join LOAITHUOC on NhomThuoc.MaLoaiThuoc=LOAITHUOC.MaLoaiThuoc";
 		
@@ -751,5 +749,100 @@ public class ThuocDAO extends DBHelper {
 	    } catch (SQLException e) {
 	        e.printStackTrace();    
 	    }
-	}	
+	}
+	
+	//HUNG
+	public ArrayList<Thuoc> getGiaListThuoc(int mathuoc) {
+		connect();
+		String sql=	"select TenNhaThuoc, Gia,nt.manhathuoc from NHATHUOC nt inner join BANGGIATHUOC gt on nt.MaNhaThuoc=gt.MaNhaThuoc "+ 
+"inner join THUOC on gt.MaThuoc= thuoc.MaThuoc where thuoc.MaThuoc="+mathuoc;
+	
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+		Thuoc thuoc;
+		try {
+			while(rs.next()){
+				thuoc = new Thuoc();
+				thuoc.setTenTiem(rs.getString(1));
+				thuoc.setGiaThuoc(rs.getString(2));
+				thuoc.setMaTiem(rs.getString(3));
+				
+				list.add(thuoc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	
+		return list;
+		
+	}
+	public ArrayList<Thuoc> getGiaListThuocTheoTen(int mathuoc) {
+		connect();
+		String sql=	"select TenNhaThuoc, Gia,nt.manhathuoc from NHATHUOC nt inner join BANGGIATHUOC gt on nt.MaNhaThuoc=gt.MaNhaThuoc "+ 
+"inner join THUOC on gt.MaThuoc= thuoc.MaThuoc where thuoc.MaThuoc="+mathuoc+" order by tennhathuoc asc";
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+		Thuoc thuoc;
+		try {
+			while(rs.next()){
+				thuoc = new Thuoc();
+				thuoc.setTenTiem(rs.getString(1));
+				thuoc.setGiaThuoc(rs.getString(2));
+				thuoc.setMaTiem(rs.getString(3));
+				
+				list.add(thuoc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	
+		return list;
+		
+	}
+
+	public ArrayList<Thuoc> getGiaListThuocTheoGia(int mathuoc) {
+		connect();
+		String sql=	"select TenNhaThuoc, Gia,nt.manhathuoc from NHATHUOC nt inner join BANGGIATHUOC gt on nt.MaNhaThuoc=gt.MaNhaThuoc "+ 
+"inner join THUOC on gt.MaThuoc= thuoc.MaThuoc where thuoc.MaThuoc="+mathuoc+" order by gia asc";
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Thuoc> list = new ArrayList<Thuoc>();
+		Thuoc thuoc;
+		try {
+			while(rs.next()){
+				thuoc = new Thuoc();
+				thuoc.setTenTiem(rs.getString(1));
+				thuoc.setGiaThuoc(rs.getString(2));
+				thuoc.setMaTiem(rs.getString(3));
+				
+				list.add(thuoc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 }

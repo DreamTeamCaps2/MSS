@@ -55,4 +55,8 @@ public class TaiKhoanBO {
 		taiKhoanDAO.khoaTaiKhoan(maTaiKhoanKhoa, trangThai);
 	}
 
+	public void updateAvatar(String tenDangNhap, String anhDaiDien) {
+		taiKhoanDAO.updateAvatar(tenDangNhap, anhDaiDien);
+	}
+
 }

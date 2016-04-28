@@ -126,4 +126,15 @@ public class ThuocBO {
 	public void themGiaThuocCuaHang(String maTKDN, String idThuoc, String giaThuoc) {
 		thuocDAO.themGiaThuocCuaHang(maTKDN, idThuoc, giaThuoc);
 	}
+	
+	//HUNG
+	public ArrayList<Thuoc> getGiaListThuoc(int mathuoc){
+		return thuocDAO.getGiaListThuoc(mathuoc);
+	}
+	public ArrayList<Thuoc> getGiaListThuocTheoGia(int mathuoc){
+		return thuocDAO.getGiaListThuocTheoGia(mathuoc);
+	}
+	public ArrayList<Thuoc> getGiaListThuocTheoTen(int mathuoc){
+		return thuocDAO.getGiaListThuocTheoTen(mathuoc);
+	}
 }

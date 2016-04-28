@@ -34,7 +34,7 @@ public class TaiKhoanDAO extends DBHelper{
 				taiKhoan.setMatKhau(rs.getString("matKhau"));
 				taiKhoan.setSDT(rs.getString("sDT"));
 				taiKhoan.setDiaChi(rs.getString("diaChi"));
-				taiKhoan.setLoaiTK(rs.getString("MaLoaiTaiKhoan"));
+				//taiKhoan.setLoaiTK(rs.getString("MaLoaiTaiKhoan"));
 				taiKhoan.setMaTK(rs.getString("MaTK"));
 				taiKhoan.setTenPhongKham(rs.getString("TenPhongKham"));
 				taiKhoan.setMoTa(rs.getString("MoTa"));
@@ -43,6 +43,10 @@ public class TaiKhoanDAO extends DBHelper{
 				taiKhoan.setCmnd(rs.getString("CMND"));
 				taiKhoan.setEmail(rs.getString("Email"));
 				taiKhoan.setAnhDaiDien(rs.getString("AnhDaiDien"));
+				taiKhoan.setTrangThai(rs.getInt("TrangThai")+"");
+				int loai = rs.getInt("MaLoaiTaiKhoan");
+				if(loai <4)
+					taiKhoan.setLoaiTK("1");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -327,6 +331,20 @@ public class TaiKhoanDAO extends DBHelper{
 		String sql=	String.format("UPDATE TAIKHOAN "+
 					" SET trangTHai = %s" +
 					" WHERE MaTK = '%s'", trangThai, maTaiKhoanKhoa);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updateAvatar(String tenDangNhap, String anhDaiDien) {
+		connect();
+		String sql=	String.format("UPDATE TAIKHOAN "+
+					" SET AnhDaiDien = '%s'" +
+					" WHERE TenDangNhap = '%s'", anhDaiDien, tenDangNhap);
 		System.out.println(sql);
 		try {
 			Statement stmt = connection.createStatement();

@@ -2,6 +2,8 @@ package action;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.nio.file.Files;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,18 +39,13 @@ public class QuanLy_BaiViet_ThemAction extends Action{
 			 try {
 				 
 				 	file = baiVietForm.getFile();
-		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/"+file.getFileName();;
-		            String filePath = System.getProperty("java.io.tmpdir") + "/" + file.getFileName();
-		            System.out.println(path);
-		            System.out.println(filePath);
-		            outputStream = new FileOutputStream(new File(path));
+//		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/"+file.getFileName();;
+//		            String filePath = System.getProperty("java.io.tmpdir") + "/" + file.getFileName();
+//		            System.out.println(path);
+//		            System.out.println(filePath);
+		            outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
 		            outputStream.write(file.getFileData());
 		            
-		            
-//		            FileWriter fileWriter = new FileWriter("WebContent/images/"+file.getFileName());
-//		            fileWriter.write(file.getFileData());
-//		            fileWriter.flush();
-//		            fileWriter.close();
 		        } finally {
 		            if (outputStream != null) {
 		                outputStream.close();

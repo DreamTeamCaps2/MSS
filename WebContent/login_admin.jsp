@@ -36,6 +36,9 @@
         	<logic:equal name="kiemtra" value="1">
         		<h5><p class="alert alert-danger alert-dismissable" style="text-align: center;font-weight: 700;"><i class="icon fa fa-ban"></i>ĐĂNG NHẬP KHÔNG THÀNH CÔNG</p></h5>
         	</logic:equal>
+        	<logic:equal name="kiemtra" value="3">
+        		<h5><p class="alert alert-danger alert-dismissable" style="text-align: center;font-weight: 700;"><i class="icon fa fa-ban"></i>TÀI KHOẢN ĐÃ BỊ KHÓA</p></h5>
+        	</logic:equal>
         	
 			<html:form action="/login" method="post">
 				<div class="form-group has-feedback">

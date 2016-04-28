@@ -20,8 +20,17 @@ public class DiaDiemAction extends Action {
 		DiaDiemBO diaDiemBO = new DiaDiemBO();
 		DiaDiemForm diaDiemForm = (DiaDiemForm) form;
 		diaDiemForm.setListDiaDiem(diaDiemBO.getListDiaDiem());
-		diaDiemForm.setLongi("106.689422");
-
+		String search=diaDiemForm.getSearch();
+		String loaiDiaDiem = diaDiemForm.getLoaiDiaDiem();
+		if("tim".equals(diaDiemForm.getSubmit())){
+			if(loaiDiaDiem.equals("1"))
+			diaDiemForm.setListDiaDiem(diaDiemBO.getListBenhVienSearch(search));
+			else if(loaiDiaDiem.equals("2"))
+				diaDiemForm.setListDiaDiem(diaDiemBO.getListNhaThuocSearch(search));
+			else if (loaiDiaDiem.equals("3"))
+			diaDiemForm.setListDiaDiem(diaDiemBO.getListPhongKhamSearch(search));
+			else diaDiemForm.setListDiaDiem(diaDiemBO.getListDiaDiemSearch(search));
+		}
 		return mapping.findForward("diaDiem");
 	}
 }

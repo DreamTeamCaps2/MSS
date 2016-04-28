@@ -61,39 +61,46 @@ public class DangNhapAction extends Action {
 		if(nguoiDungBO.checkLogin(tenDangNhap, matKhau)){
 			TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 			TaiKhoan taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap, "");
-
-			session1.setAttribute("taiKhoan", taiKhoan);
-			session1.setAttribute("tenDangNhap", tenDangNhap);
-			session1.setAttribute("maTKDN", taiKhoan.getMaTK());
-			session1.setAttribute("kiemtra", 2);
-			
-			if(taiKhoan.getLoaiTK().equals("1")||taiKhoan.getLoaiTK().equals("2")||taiKhoan.getLoaiTK().equals("3")){
-				session1.setAttribute("quanLy", 1);
+			System.out.println(taiKhoan.getTrangThai());
+			if(taiKhoan.getTrangThai().equals("1")){
+				session1.setAttribute("taiKhoan", taiKhoan);
+				session1.setAttribute("tenDangNhap", tenDangNhap);
+				session1.setAttribute("maTKDN", taiKhoan.getMaTK());
+				session1.setAttribute("kiemtra", 2);
 				
-				ArrayList<Integer> arr = new ArrayList<Integer>();
-				
-				arr = phanQuyenBO.getListQuyen(Integer.parseInt(taiKhoan.getMaTK()));
-				
-				for(int i=0;i<arr.size();i++)
-				{
-					if(arr.get(i)==1)
-						dangNhapForm.setBenh(1);
-					if(arr.get(i)==2)
-						dangNhapForm.setThuoc(1);
-					if(arr.get(i)==3)
-						dangNhapForm.setTrieuChung(1);
-					if(arr.get(i)==4)
-						dangNhapForm.setPhanQuyen(1);
-					if(arr.get(i)==5)
-						dangNhapForm.setDangBai(1);
-					System.out.println(arr.get(i));
-				}
+				if(taiKhoan.getLoaiTK()!=null){
+					
+					
+					ArrayList<Integer> arr = new ArrayList<Integer>();
+					
+					arr = phanQuyenBO.getListQuyen(Integer.parseInt(taiKhoan.getMaTK()));
+					if(arr.size()>0)
+						session1.setAttribute("quanLy", 1);
+					for(int i=0;i<arr.size();i++)
+					{
+						if(arr.get(i)==1)
+							dangNhapForm.setBenh(1);
+						if(arr.get(i)==2)
+							dangNhapForm.setThuoc(1);
+						if(arr.get(i)==3)
+							dangNhapForm.setTrieuChung(1);
+						if(arr.get(i)==4)
+							dangNhapForm.setPhanQuyen(1);
+						if(arr.get(i)==5)
+							dangNhapForm.setDangBai(1);
+						System.out.println(arr.get(i));
+					}
 				
 			}
 			
 			session1.setAttribute("dangNhapForm", dangNhapForm);
 			
 			return mapping.findForward("dangNhapThanhCong");
+			}
+			else{
+				session1.setAttribute("kiemtra", 3);
+				return mapping.findForward("dangNhapThatBai");
+			}
 		}
 		else{
 			session1.setAttribute("kiemtra", 1);

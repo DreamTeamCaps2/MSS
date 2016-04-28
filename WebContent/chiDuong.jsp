@@ -30,8 +30,8 @@
 	var data = eval(eval(string));
 	console.log(data);
 
-	var madiadiem = "<bean:write name="chiDuongForm" property="maDiaDiem"/>";
-	var loai = "<bean:write name="chiDuongForm" property="maDiaDiem"/>";
+	var madiadiem = "<bean:write name="diaDiemForm" property="maDiaDiem"/>";
+	var loai = "<bean:write name="diaDiemForm" property="maDiaDiem"/>";
 	function createMap() {
 		var map_canvas = document.getElementById('google-map');
 		var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -193,8 +193,8 @@
 
 
 	<div id="google-map" style="width: 1400px; height: 600px;"></div>
-	<bean:write name="chiDuongForm" property="loai" />
-	<bean:write name="chiDuongForm" property="maDiaDiem" />
+	<bean:write name="diaDiemForm" property="loaiDiaDiem" />
+	<bean:write name="diaDiemForm" property="maDiaDiem" />
 </body>
 </html>
 

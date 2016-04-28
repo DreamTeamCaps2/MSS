@@ -101,6 +101,7 @@
   	</script>
 </head>
 <body>
+<html:form action="/thongTinTK" method="post" enctype="multipart/form-data">
 	<div class="container text-center" style="width: 1200px;">
 	  <div class="row">
 	    <div class="col-sm-3 well">
@@ -143,7 +144,7 @@
         <div class="col-sm-12">
         	<div class="panel panel-default text-left">
             <div class="panel-body">
-				<html:form action="/thongTinTK" method="post">
+				
 			        <div class="row form-group">
 			            <label class="col-lg-4">Tên Đăng Nhập</label>
 			            <div class="col-lg-6">
@@ -222,15 +223,13 @@
 			            </div>
 			        </div>              
 			        </logic:notEmpty>
-			        <logic:notEqual name="taiKhoanForm" property="submit" value="MEMBER">
 			        <div class="row form-group">
 			            <div class="col-lg-4 col-lg-offset-6">
 			            	<html:submit styleClass="btn btn-primary" property="submit" value="OK">Thêm mới</html:submit>
 			            	<html:link action="/home.do" styleClass="btn btn-primary">Trang chủ</html:link>
 			            </div>
 			        </div>
-			        </logic:notEqual>
-			    </html:form>
+
 			   </div>
 		    </div>
 	    </div>
@@ -239,6 +238,7 @@
 	</div>
 	</div>
 	</div>
+
 	<div class="modal fade" id="myModal" role="dialog"
 		data-keyboard="false" data-backdrop="static">
 		<div class="modal-dialog" style="width: 800px;background-color: white;margin-top: 100px;">
@@ -259,9 +259,8 @@
 					</button> <!-- image-preview-input -->
 					<div class="btn btn-default image-preview-input">
 						<span class="glyphicon glyphicon-folder-open"></span> <span
-							class="image-preview-input-title">Browse</span> <input
-							type="file" accept="image/png, image/jpeg, image/gif"
-							name="input-file-preview" />
+							class="image-preview-input-title">Browse</span> 
+							<input name="anhDaiDien" id="changeAvatar" type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
 						<!-- rename it -->
 					</div>
 				</span>
@@ -269,15 +268,36 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			<button class="btn btn-primary">Save changes</button>
+			<button id="btnChangeAvatar" class="btn btn-primary">Save changes</button>
+			<html:submit styleClass="btn btn-primary" property="submit" value="Update"></html:submit>
 		</div>
 		</div>
 	</div>
+</html:form>
 	<%@ include file="_footer.jsp"%>
 <script type="text/javascript">
 	$("#pop").on("click", function() {
 		$('#myModal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
 	});
+/* 	$("#btnChangeAvatar").on("click", function() {
+		var file = document.getElementById("changeAvatar").value;
+		var formData = new FormData();
+		formData.append("anhDaiDien", document.getElementById("changeAvatar").files[0]);
+		alert(file);
+		 $.ajax({
+	            type : "post",
+	           	url : "/MSS/thongTinTK.do",
+	            data : formData,
+	            processData: false,
+	            contentType: false,
+                success:function(data,status){
+  				},
+  				error:function(data,status){
+  				}
+		 });
+	}); */
+
 </script>
+
 </body>
 </html>
