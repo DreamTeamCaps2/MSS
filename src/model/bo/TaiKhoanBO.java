@@ -59,4 +59,8 @@ public class TaiKhoanBO {
 		taiKhoanDAO.updateAvatar(tenDangNhap, anhDaiDien);
 	}
 
+	public String updateToken(String email, String token) {
+		return taiKhoanDAO.updateToken(email, token);
+	}
+
 }

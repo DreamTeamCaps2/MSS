@@ -39,7 +39,17 @@
 		}
   	</style>
   	<script type="text/javascript">
-
+/*   		$(document).ready(function () {
+  			$.ajax({
+  		            url: '/',
+  		            type: 'POST',
+  		            dataType: 'json',
+  		            success:function(data,status){
+  						},
+  						error:function(data,status){
+  						}
+  		        }); 
+  		}); */
 	  	$(document).on('click', '#close-preview', function(){ 
 	  	    $('.image-preview').popover('hide');
 	  	    // Hover befor close the preview
@@ -117,7 +127,7 @@
 				<li><a href="/MSS/doi-mat-khau.do">Đổi mật khẩu</a></li>
 			    <li><a href="#">Thông báo</a></li>
 			    <li><a href="#">Tin nhắn</a></li>
-			    <li><a href="#">Đã lưu</a></li>
+			    <li><a href="/MSS/danh-sach-da-luu.do">Đã lưu</a></li>
 			    <logic:notEmpty name="taiKhoan1" property="tenNhaThuoc">
 			    <li><html:link action="/quan-ly-thuoc-cua-hang">Quản lý thuốc</html:link></li>
 			    </logic:notEmpty>

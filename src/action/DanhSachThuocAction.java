@@ -23,6 +23,9 @@ public class DanhSachThuocAction extends Action{
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		
+		Variable.getTB(mapping,form,request,response);
+		
 		DanhSachThuocForm danhSachThuocForm = (DanhSachThuocForm)form;
 		ThuocBO thuocBO = new ThuocBO();
 		ThongBaoBO thongBaoBO = new ThongBaoBO();

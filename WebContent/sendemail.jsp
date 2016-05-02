@@ -45,7 +45,7 @@
 				InternetAddress.parse(to));
 
 		// Set Subject: header field
-		message.setSubject("Testing Subject");
+		message.setSubject("YÊU CẦU ĐỔI MẬT KHẨU");
 
 		// Now set the actual message
 		message.setText("Hello, this is sample for to check send "

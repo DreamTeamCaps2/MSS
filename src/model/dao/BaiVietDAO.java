@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import model.bean.BaiViet;
 import model.bean.BinhLuan;
+import model.bean.DanhDau;
 
 public class BaiVietDAO extends DBHelper{
 
@@ -320,6 +321,42 @@ public class BaiVietDAO extends DBHelper{
 			e.printStackTrace();
 		}
 		return rate;
+	}
+
+	public ArrayList<DanhDau> getListDanhDau(String maTKDN) {
+		connect();
+		String sql = "SELECT TenPhongKham, TenNhaThuoc From DANHDAU "
+				+ "INNER JOIN TAIKHOAN ON TAIKHOAN.MaTK = DANHDAU.MaTK_Phu "
+				+ "LEFT JOIN THANHVIEN ON TAIKHOAN.MaTK = THANHVIEN.MaThanhVien "
+				+ "LEFT JOIN NHATHUOC ON TAIKHOAN.MaTK = NHATHUOC.MaNhaThuoc "
+				+ "LEFT JOIN PHONGKHAM ON TAIKHOAN.MaTK = PHONGKHAM.MaPhongKham "
+				+ "WHERE MaTK_Chinh="+ maTKDN;
+
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<DanhDau> listTen = new ArrayList<DanhDau>();
+		int i = 0;
+		try {
+			while (rs.next()) {
+				DanhDau danhDau = new DanhDau();
+				
+				String tenPK = rs.getString(1);
+				if(tenPK==null)
+					tenPK = rs.getString(2);
+				i++;
+				danhDau.setTenDanhDau(tenPK);
+				danhDau.setId(i);
+				listTen.add(danhDau);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listTen;
 	}
 	
 }

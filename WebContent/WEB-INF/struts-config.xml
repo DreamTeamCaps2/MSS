@@ -23,18 +23,20 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 		<form-bean name="loaiBenhForm" type="form.LoaiBenhForm" />
 		<form-bean name="nhomThuocForm" type="form.NhomThuocForm" />
 		<form-bean name="danhSachGiaForm" type="form.DanhSachGiaForm" />
+		<form-bean name="gopYForm" type="form.GopYForm" />
 	</form-beans>
 	<action-mappings>
         	
-		<action name="thongBaoForm" input="/home.jsp"
+ 		<action name="thongBaoForm" input="/home.jsp"
 			path="/home" scope="request" type="action.HomeAction">
-			<forward name="thanhCong" path="/home.jsp"/>
+			<forward name="thanhCong" path="/"/>
 		</action>
         	
 		<action input="/login.jsp" name="dangNhapForm"
 			path="/login" scope="request" type="action.DangNhapAction">
-			<forward name="dangNhapThanhCong" path="/home.do" redirect="true" />
+			<forward name="dangNhapThanhCong" path="/" redirect="true" />
 			<forward name="dangNhapThatBai" path="/login_admin.jsp" />
+			<forward name="trangChu" path="/home.jsp" />
 		</action>
 		
 		<action input="/dangKyTaiKhoan.jsp" name="taiKhoanForm"
@@ -62,12 +64,17 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 		</action>		
 		
 		<action path="/dang-xuat" name="dangNhapForm" type="action.DangXuatAction">
-			<forward name="dangXuatThanhCong" path="/home.do" redirect="true"/>
+			<forward name="dangXuatThanhCong" path="/" redirect="true"/>
 		</action>	
 		
 		<action input="/quanLy_GiaThuoc.jsp" name="thuocForm" path="/quan-ly-thuoc-cua-hang"
 			scope="request" type="action.QuanLy_GiaThuoc">
 			<forward name="listThuocCuaHang" path="/quanLy_GiaThuoc.jsp" />
+		</action>
+		
+		<action input="/danhSachDaLuu.jsp" name="taiKhoanForm" path="/danh-sach-da-luu"
+			scope="request" type="action.DanhSachDanhDauAction">
+			<forward name="danhSachDanhDau" path="/danhSachDaLuu.jsp" />
 		</action>
 
 		<action input="/quanLy_DanhSachBaiViet.jsp" name="baiVietForm"
@@ -102,6 +109,19 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			<forward name="danhSachTrieuChung" path="/quanLy_DanhSachTrieuChung.jsp" />
 		</action>
 		
+		<action input="/quenMatKhau.jsp" name="taiKhoanForm"
+			path="/quen-mat-khau" scope="request" type="action.QuenMatKhauAction">
+			<forward name="quenMatKhauThanhCong" path="/quen-mat-khau.do" redirect="true" />
+			<forward name="quenMatKhau" path="/quenMatKhau.jsp" />
+		</action>	
+		
+		<action input="/layMatKhau.jsp" name="taiKhoanForm"
+			path="/mat-khau" scope="request" type="action.LayMatKhauAction">
+			<forward name="layLaiMatKhauXong" path="/" redirect="true" />
+			<forward name="layLaiMatKhau" path="/layMatKhau.jsp" />
+		</action>	
+		
+		
 		<!-- VIET -->
 		<action input="/login.jsp" name="benhForm" path="/chi-tiet-benh"
 			scope="request" type="action.ChiTietBenhAction">
@@ -127,6 +147,20 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			scope="request" type="action.DanhSachThuocAction">
 			<forward name="danhSachThuoc" path="/danhSachThuoc.jsp" />
 		</action>
+		
+		<action input="/home.jsp" name="gopYForm"
+			path="/gop-y" scope="request" type="action.GopYAction">
+			<forward name="gopY" path="/gopY.jsp" />
+		</action>
+		<action input="/home.jsp" name="gopYForm"
+			path="/chi-tiet-gop-y" scope="request" type="action.ChiTietGopYAction">
+			<forward name="chiTietGopY" path="/chiTietGopY.jsp"/>
+		</action>
+		<action input="/quanLy_TrangChu.jsp" name="thongBaoForm"
+			path="/quan-ly-gop-y" scope="request" type="action.QuanLy_DanhSachGopYAction">
+			<forward name="danhSachGopY" path="/quanLy_DanhSachGopY.jsp"/>
+		</action>
+		
 		
 		<!-- TUAN -->
 		

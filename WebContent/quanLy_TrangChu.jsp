@@ -60,10 +60,11 @@
 						<logic:equal name="dangNhapForm" value="1" property="dangBai">
 							<li><a href="/MSS/quan-ly-bai-viet.do">Bài Viết</a></li>
 						</logic:equal>
+						<li><a href="/MSS/quan-ly-gop-y.do">Góp Ý</a></li>
 						<li class="dropdown"><a data-toggle="dropdown" href=""> <span
 								class="glyphicon glyphicon-bell" aria-hidden="true"></span>
 						</a></li>
-						<li><a href="/MSS/home.do">WEB</a></li>
+						<li><a href="/MSS">WEB</a></li>
 					</ul>
 				</div>
 			</nav>

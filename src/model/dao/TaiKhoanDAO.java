@@ -353,6 +353,40 @@ public class TaiKhoanDAO extends DBHelper{
 			e.printStackTrace();
 		}
 	}
+
+	public String updateToken(String email, String token) {
+		connect();
+		String sql=	String.format("UPDATE TAIKHOAN "+
+					" SET Token = '%s'" +
+					" WHERE Email = '%s'", token, email);
+		System.out.println(sql);
+		try {
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		String sql1="SELECT * FROM TAIKHOAN WHERE Email='"+email+"'";
+		
+		System.out.println(sql1);
+		ResultSet rs1 = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs1 = stmt.executeQuery(sql1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String rate="";
+		try {
+			while(rs1.next()){
+				rate = rs1.getInt("MaTK")+"";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rate;
+	}
 	
 	
 }

@@ -71,18 +71,6 @@ public class DangKyTaiKhoanAction extends Action{
 			String moTa = taiKhoanForm.getMoTa();
 			String thoiGian = taiKhoanForm.getThoiGian();
 			
-			if(!"".equals(diaChi) && diaChi != null)
-				diaChi = new String(taiKhoanForm.getDiaChi().getBytes("ISO-8859-1"),"UTF-8");
-			
-			if(!"".equals(taiKhoanForm.getTenNhaThuoc()) && taiKhoanForm.getTenNhaThuoc() != null)
-				tenNhaThuoc = new String(taiKhoanForm.getTenNhaThuoc().getBytes("ISO-8859-1"),"UTF-8");
-			
-			if(!"".equals(taiKhoanForm.getTenPhongKham()) && taiKhoanForm.getTenPhongKham() != null)
-				tenPhongKham = new String(taiKhoanForm.getTenPhongKham().getBytes("ISO-8859-1"),"UTF-8");
-			
-			if(!"".equals(taiKhoanForm.getMoTa()) && taiKhoanForm.getMoTa() != null)
-				moTa = new String(taiKhoanForm.getMoTa().getBytes("ISO-8859-1"),"UTF-8");
-			
 			matKhau = encryptMD5(tenDangNhap+matKhau);
 			System.out.println("Pass MD5: "+matKhau);
 			

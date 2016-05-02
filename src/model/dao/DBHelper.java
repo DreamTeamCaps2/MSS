@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DBHelper {
@@ -10,6 +11,7 @@ public class DBHelper {
 	String userName = "sa";
 	String password = "12345678";
 	Connection connection;
+	PreparedStatement ps;
 	
 	void connect(){
 		

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/mss.css" />
     <link rel="stylesheet" href="css/simplePagination.css"/>
     <link rel="stylesheet" href="css/jquery.rateyo.min.css"/>
-    
+    <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />	
   	
     <script src="js/jquery-1.11.2.min.js"></script>     
     <script src="js/bootstrap.min.js"></script>
@@ -33,7 +33,23 @@
 		background-position: right 10px center;
 	}
 	</style>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//set width and height for list nav thuoc
+				var soLuongNhomThuoc = <bean:write name="thongBaoForm" property="soLuongNhomThuoc" />;
+				var soLuongLoaiThuoc = <bean:write name="thongBaoForm" property="soLuongLoaiThuoc" />;
+				var widthThuoc= parseInt(soLuongLoaiThuoc)*250;
+				var heightThuoc = (parseInt(soLuongNhomThuoc)*40+60);
+				$("ul .list-loai-thuoc").css("width",widthThuoc+"px");
+				$("ul .list-loai-thuoc").css("height",heightThuoc+"px"); 
+				$("div .dropdown.loaithuoc").css("width",80/soLuongLoaiThuoc+"%");
+				//set width and height for list nav benh
+				var soLuongLoaiBenh = <bean:write name="thongBaoForm" property="soLuongLoaiBenh" />;
+			 
+		});
+	</script>
 <script>
+
 	function Click() {
 
 		var ten = document.getElementById("square").value.split(" ");
@@ -62,20 +78,37 @@
 			window.location.assign(timKiem);
 		}
 	}
+    function clicked() {
+		var a = document.getElementById("checkCLICK").checked;
+		var tenDangNhap = document.getElementById("tenDangNhap").value;
+		var matKhau = document.getElementById("matKhau").value;
+		alert("CLICKKKKKKKKKKKKKKKKKKKK" +a + " " + tenDangNhap + " " + matKhau);
+		if(a == true ){
+			setCookie('tenDangNhap', tenDangNhap, 10);
+			setCookie('matKhau', matKhau, 10);
+		}
+			
+    }
+
+	function setCookie(cname, cvalue, exdays) {
+	    var d = new Date();
+	    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	    var expires = "expires="+d.toUTCString();
+	    document.cookie = cname + "=" + cvalue + "; " + expires;
+	}
+	function getCookie(cname) {
+	    var name = cname + "=";
+	    var ca = document.cookie.split(';');
+	    for(var i=0; i<ca.length; i++) {
+	        var c = ca[i];
+	        while (c.charAt(0)==' ') c = c.substring(1);
+	        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+	    }
+	    return "";
+	}
 </script>
 <script>
-$(document).ready(function() {
-	//set width and height for list nav thuoc
-	var soLuongNhomThuoc = <bean:write name="thongBaoForm" property="soLuongNhomThuoc" />;
-	var soLuongLoaiThuoc = <bean:write name="thongBaoForm" property="soLuongLoaiThuoc" />;
-	var widthThuoc= parseInt(soLuongLoaiThuoc)*250;
-	var heightThuoc = (parseInt(soLuongNhomThuoc)*40+60);
-	$("ul .list-loai-thuoc").css("width",widthThuoc+"px");
-	$("ul .list-loai-thuoc").css("height",heightThuoc+"px"); 
-	$("div .dropdown.loaithuoc").css("width",80/soLuongLoaiThuoc+"%");
-	//set width and height for list nav benh
-	var soLuongLoaiBenh = <bean:write name="thongBaoForm" property="soLuongLoaiBenh" />;
-}); 
+ 
 </script>
 </head>
 <body>
@@ -89,7 +122,7 @@ $(document).ready(function() {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <html:link action="/home" styleClass="navbar-brand">HOME</html:link>
+      <a href="/MSS" class="navbar-brand" >HOME</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -152,6 +185,7 @@ $(document).ready(function() {
 						<li><a href="/MSS/quanLy_TrangChu.jsp">QUẢN LÝ</a></li>
 					</logic:equal>
 					<li><a href="/MSS/dia-diem.do">CƠ SỞ Y TÊ</a></li>
+					<li><a href="/MSS/gop-y.do">Góp Ý</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Dropdown <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -225,18 +259,18 @@ $(document).ready(function() {
 							<div class="col-md-12">
 								 <html:form styleClass="form"  method="post" action="/login" acceptCharset="UTF-8" styleId="login-nav">
 										<div class="form-group">
-											 <input type="text" name="tenDangNhap" class="form-control" placeholder="Username" required>
+											 <input type="text" id="tenDangNhap" name="tenDangNhap" class="form-control" placeholder="Username" required>
 										</div>
 										<div class="form-group">
-											 <input type="password" name="matKhau" class="form-control" placeholder="Password" required>
-                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+											 <input type="password" id="matKhau" name="matKhau" class="form-control" placeholder="Password" required>
+                                             <div class="help-block text-right"><a href="/MSS/quen-mat-khau.do">Forget the password ?</a></div>
 										</div>
 										<div class="form-group">
-											<html:submit property="submit" value="OK" styleClass="btn btn-primary btn-block">Login</html:submit>   
+											<html:submit styleId="btnDangNhap" property="submit" value="OK" onclick="clicked();" styleClass="btn btn-primary btn-block">Login</html:submit>   
 										</div>
 										<div class="checkbox">
 											 <label>
-											 <input type="checkbox"> keep me logged-in
+											 <input type="checkbox" id="checkCLICK" onclick="clickCheck(this);"> Keep me logged-in
 											 </label>
 										</div>
 								 </html:form>
@@ -273,6 +307,47 @@ $(document).ready(function() {
 					</li>
 				</ul>
 				</li>
+						<logic:notEqual value="0" property="soQuyen" name="thongBaoForm">
+							<li class="dropdown">
+								<logic:equal value="0" property="soLuong" name="thongBaoForm">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<span class="glyphicon glyphicon-flag"></span>
+									</a>
+								</logic:equal> 
+								<logic:notEqual value="0" property="soLuong" name="thongBaoForm">
+									
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<p style="color: red;">
+											<bean:write property="soLuong" name="thongBaoForm" /><span
+											class="glyphicon glyphicon-flag"></span></p>
+										</a>
+									
+								</logic:notEqual>
+								<ul class="dropdown-menu" id="list-thong-bao"
+									style="width: 500px; height: 500px;">
+									<div>
+										<div class="thong-bao-title">
+											<h3>THÔNG BÁO</h3>
+										</div>
+										<logic:iterate id="x" name="thongBaoForm" property="listThongBao">
+											<div class="thong-bao-chu-de">
+												<a
+													href="/MSS/chi-tiet-gop-y.do?maGopY=<bean:write name="x" property="maGopY" />"><b>(Góp
+														Ý)<bean:write name="x" property="chuDe" />
+												</b></a>
+												<p style="margin-left: 10%;">
+													<bean:write name="x" property="thoiGian" />
+													"
+												</p>
+											</div>
+										</logic:iterate>
+										<div>
+											<a href="/MSS/quan-ly-gop-y.do"> Xem Tất Cả Thông Báo</a>
+										</div>
+									</div>
+
+								</ul></li>
+						</logic:notEqual>				
 			</logic:present>
       </ul>
      </div>

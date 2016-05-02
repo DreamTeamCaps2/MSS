@@ -33,18 +33,17 @@ public class HomeAction extends Action{
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		BaiVietBO baiVietBO = new BaiVietBO();
 		
-		thongBaoForm.setListThongBao(thongBaoBO.getListThongBao());
-		thongBaoForm.setSoLuong(thongBaoBO.getListThongBao().size());
-		thongBaoForm.setListLoaiThuoc(thuocBO.getListLoaiThuoc());
-		thongBaoForm.setListNhomThuoc(thongBaoBO.getListNhomThuoc());
-		thongBaoForm.setListLoaiBenh(thongBaoBO.getListLoaiBenh());
-		thongBaoForm.setSoLuongLoaiThuoc(thuocBO.getListLoaiThuoc().size());
-		thongBaoForm.setSoLuongNhomThuoc(thongBaoBO.soLuongNhomThuoc());
-		thongBaoForm.setListND(taiKhoanBO.getListNguoiDung());
-		thongBaoForm.setSoLuongLoaiBenh(thongBaoBO.getListLoaiBenh().size());
-		thongBaoForm.setListBaiViet(baiVietBO.getListBaiViet());
+		System.out.println("VAO HOME ACTION");
+//		thongBaoForm.setListLoaiThuoc(thuocBO.getListLoaiThuoc());
+//		thongBaoForm.setListNhomThuoc(thongBaoBO.getListNhomThuoc());
+//		thongBaoForm.setListLoaiBenh(thongBaoBO.getListLoaiBenh());
+//		thongBaoForm.setSoLuongLoaiThuoc(thuocBO.getListLoaiThuoc().size());
+//		thongBaoForm.setSoLuongNhomThuoc(thongBaoBO.soLuongNhomThuoc());
+//		thongBaoForm.setSoLuongLoaiBenh(thongBaoBO.getListLoaiBenh().size());
+//		thongBaoForm.setListND(taiKhoanBO.getListNguoiDung());
+//		thongBaoForm.setListBaiViet(baiVietBO.getListBaiViet());
 		
-		request.getSession().setAttribute("thongBaoForm", thongBaoForm);
+//		request.getSession().setAttribute("thongBaoForm", thongBaoForm);
 		
 		return mapping.findForward("thanhCong");
 	}

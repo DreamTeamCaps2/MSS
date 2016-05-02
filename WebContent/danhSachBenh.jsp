@@ -8,11 +8,34 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
-<%@ include file="login.jsp"%>
 	<head lang="en">
 	<meta charset="UTF-8">
 	<title>Danh Sách Bệnh</title>
-
+	<script type="text/javascript">
+		<%-- $(document).ready(function() {
+			var report = <%= request.getAttribute("thongBao") %>;
+			if(report == null){
+				alert("danhsach BENH");
+				   var requestData = {
+						   chuaCo: 1
+			            };
+				$.ajax({
+	                url: '/MSS/login.do',
+	                type: 'POST',
+	                dataType: 'json',
+	                data: requestData,
+	                success:function(data,status){
+	    				},
+	    				error:function(data,status){
+	    				}
+	    	
+	            });
+			}
+			else{
+			}
+		}); --%>
+	</script>
+<%@ include file="login.jsp"%>
 <script>
 	$(document)
 			.ready(

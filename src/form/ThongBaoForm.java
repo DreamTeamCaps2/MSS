@@ -22,6 +22,9 @@ public class ThongBaoForm extends ActionForm {
 	private ArrayList<LoaiThuoc> listLoaiThuoc;
 	private ArrayList<TaiKhoan> listND;
 	private ArrayList<BaiViet> listBaiViet;
+	
+	private int maGopY,xoa,soQuyen;
+	private int loaiGopY,tinhTrang,tinhTrangUpdate ;
 
 	public int getSoLuongNhomThuoc() {
 		return soLuongNhomThuoc;
@@ -119,4 +122,53 @@ public class ThongBaoForm extends ActionForm {
 	public void setSoLuongLoaiBenh(int soLuongLoaiBenh) {
 		this.soLuongLoaiBenh = soLuongLoaiBenh;
 	}
+
+	public int getMaGopY() {
+		return maGopY;
+	}
+
+	public void setMaGopY(int maGopY) {
+		this.maGopY = maGopY;
+	}
+
+	public int getXoa() {
+		return xoa;
+	}
+
+	public void setXoa(int xoa) {
+		this.xoa = xoa;
+	}
+
+	public int getSoQuyen() {
+		return soQuyen;
+	}
+
+	public void setSoQuyen(int soQuyen) {
+		this.soQuyen = soQuyen;
+	}
+
+	public int getLoaiGopY() {
+		return loaiGopY;
+	}
+
+	public void setLoaiGopY(int loaiGopY) {
+		this.loaiGopY = loaiGopY;
+	}
+
+	public int getTinhTrang() {
+		return tinhTrang;
+	}
+
+	public void setTinhTrang(int tinhTrang) {
+		this.tinhTrang = tinhTrang;
+	}
+
+	public int getTinhTrangUpdate() {
+		return tinhTrangUpdate;
+	}
+
+	public void setTinhTrangUpdate(int tinhTrangUpdate) {
+		this.tinhTrangUpdate = tinhTrangUpdate;
+	}
+	
 }

@@ -64,8 +64,47 @@ $(function() {
 	         }
 	     }
   });
-  
-  
+  $("#forgetPass-form").validate({
+		 rules:{
+			 matKhau: {
+		          required: true,
+		          strongPassword: true
+		     },
+		     matKhau2: {
+		          required: true,
+		          equalTo: '#password'
+		     }
+		 }
+	  });
+  $("#quenMatKhau-form").validate({
+	    rules: {
+	      email: {
+	        required: true,
+	        email: true,
+	        remote: {
+	        	url:"/MSS/quen-mat-khau.do",
+	        	type:"post",
+	        	data:{
+	        		success: function(response){  
+				    	if(response==false){
+				    		true;
+				    	}
+				    	else {
+				    		false;
+				    	}
+				    }
+	        	}
+	        }
+	      }
+	    },
+	    messages: {
+	        email: {
+	          required: 'Please enter an email address.',
+	          email: 'Please enter a <em>valid</em> email address.',
+	          remote: 'This email not exist'
+	        }
+	    }
+  });
   $("#register-form").validate({
     rules: {
       email: {

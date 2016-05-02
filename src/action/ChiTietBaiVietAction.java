@@ -21,6 +21,8 @@ public class ChiTietBaiVietAction extends Action{
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 	
+		Variable.getTB(mapping,form,request,response);
+		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 	

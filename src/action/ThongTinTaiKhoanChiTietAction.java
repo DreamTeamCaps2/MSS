@@ -14,6 +14,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import form.DangNhapForm;
 import form.TaiKhoanForm;
 import model.bean.TaiKhoan;
 import model.bo.BaiVietBO;
@@ -27,6 +28,10 @@ public class ThongTinTaiKhoanChiTietAction extends Action{
 			HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");
+		
+		DangNhapAction action = new DangNhapAction();
+		DangNhapForm dangNhapForm = new DangNhapForm();
+		action.execute(mapping,dangNhapForm , request, response);
 		
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		ThuocBO thuocBO = new ThuocBO();

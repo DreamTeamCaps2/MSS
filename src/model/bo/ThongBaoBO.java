@@ -29,5 +29,26 @@ public class ThongBaoBO {
 	public int soLuongNhomThuoc() {
 		return thongBaoDAO.soLuongNhomThuoc();
 	}
+	
+	public ArrayList<ThongBao> getListThongBaoGopY(String maTK, int loaiGopY, int tinhTrang) {
+		// TODO Auto-generated method stub
+		return thongBaoDAO.getListThongBaoGopY(maTK,loaiGopY,tinhTrang);
+	}
+
+	public void updateDaXem(int maGopY) {
+		// TODO Auto-generated method stub
+		thongBaoDAO.updateDaXem(maGopY);
+		
+	}
+
+	public void updateChuaXem(int maGopY) {
+		// TODO Auto-generated method stub
+		thongBaoDAO.updateChuaXem(maGopY);
+	}
+
+	public void xoaGopY(int maGopY) {
+		// TODO Auto-generated method stub
+		thongBaoDAO.xoaGopY(maGopY);
+	}
 
 }

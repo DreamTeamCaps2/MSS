@@ -33,6 +33,8 @@ public class DanhSachBenhAction extends Action {
 		listLoaiBenh=thongBaoBO.getListLoaiBenh();
 		listBenh = benhBO.getListBenhDanhSach(maLoaiDanhSach);
 		
+		Variable.getTB(mapping,form,request,response);
+		
 		danhSachBenhForm.setListBenh(listBenh);
 		danhSachBenhForm.setListLoaiBenh(listLoaiBenh);
 		danhSachBenhForm.setSoLuongBenh(listBenh.size());

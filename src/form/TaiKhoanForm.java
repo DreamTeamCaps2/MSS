@@ -6,6 +6,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.upload.FormFile;
 
 import model.bean.BinhLuan;
+import model.bean.DanhDau;
 import model.bean.LoaiTaiKhoan;
 import model.bean.Quyen;
 import model.bean.TaiKhoan;
@@ -21,7 +22,9 @@ public class TaiKhoanForm extends ActionForm{
 	private ArrayList<TaiKhoan> listND;
 	private ArrayList<Thuoc> listThuocCuaHang;
 	private ArrayList<BinhLuan> listBinhLuan;
+	private ArrayList<DanhDau> listDanhDau;
 	private FormFile file;
+	private String token;
 	
 	//TUAN
 	private int maQuyen, maLoaiTaiKhoan;
@@ -236,6 +239,22 @@ public class TaiKhoanForm extends ActionForm{
 
 	public void setFile(FormFile file) {
 		this.file = file;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public ArrayList<DanhDau> getListDanhDau() {
+		return listDanhDau;
+	}
+
+	public void setListDanhDau(ArrayList<DanhDau> listDanhDau) {
+		this.listDanhDau = listDanhDau;
 	}
 
 	

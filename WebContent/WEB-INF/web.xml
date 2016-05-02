@@ -7,7 +7,7 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
-		<welcome-file>home.jsp</welcome-file>
+		<welcome-file>start.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
@@ -50,4 +50,8 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<error-page>
+  		<error-code>404</error-code>
+  		<location>/WEB-INF/errorPage404.jsp</location>
+	</error-page>
 </web-app>

@@ -63,7 +63,8 @@ public class ThongTinTaiKhoanAction extends Action{
 				
 				return mapping.findForward("thongTinTKXong");
 			}
-			else if("Update".equals(taiKhoanForm.getSubmit())){
+			else 
+				if("Update".equals(taiKhoanForm.getSubmit())){
 				System.out.println("upfile");
 				
 				try {

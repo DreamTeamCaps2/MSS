@@ -5,17 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
 
 import form.BenhForm;
 import form.DangNhapForm;
+import form.ThongBaoForm;
 import model.bean.TaiKhoan;
 import model.bo.BenhBO;
-import model.bo.NguoiDungBO;
 
 public class QuanLy_DanhSachBenhAction extends Action {
 	@Override
@@ -29,6 +27,7 @@ public class QuanLy_DanhSachBenhAction extends Action {
 		String tenDangNhap = (String)session1.getAttribute("tenDangNhap");
 		String matKhau = (String)session1.getAttribute("matKhau");
 		DangNhapForm dangNhapForm = (DangNhapForm)session1.getAttribute("dangNhapForm");
+		ThongBaoForm thongBaoForm = (ThongBaoForm)session1.getAttribute("thongBaoForm");
 		TaiKhoan taiKhoan = (TaiKhoan)session1.getAttribute("taiKhoan");
 		int kiemTra = (int)session1.getAttribute("kiemtra");
 		int quanLy = (int)session1.getAttribute("quanLy");
@@ -39,10 +38,12 @@ public class QuanLy_DanhSachBenhAction extends Action {
 		request.getSession().setAttribute("tenDangNhap", tenDangNhap);
 		request.getSession().setAttribute("matKhau", matKhau);
 		request.getSession().setAttribute("dangNhapForm", dangNhapForm);
+		request.getSession().setAttribute("thongBaoForm", thongBaoForm);
 		request.getSession().setAttribute("taiKhoan", taiKhoan);
 		request.getSession().setAttribute("maTKDN", taiKhoan.getMaTK());
 		request.getSession().setAttribute("kiemtra", kiemTra);
 		request.getSession().setAttribute("quanLy", quanLy);
+		
 		
 		if(benhForm.getTimBenh() == null)
 			benhForm.setTimBenh("");

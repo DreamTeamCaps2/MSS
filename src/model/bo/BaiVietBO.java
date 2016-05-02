@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.bean.BaiViet;
 import model.bean.BinhLuan;
+import model.bean.DanhDau;
 import model.dao.BaiVietDAO;
 
 public class BaiVietBO {
@@ -76,6 +77,10 @@ public class BaiVietBO {
 
 	public String getRateTB(String maTKPhu) {
 		return baiVietDAO.getRateTB(maTKPhu);	
+	}
+
+	public ArrayList<DanhDau> getListDanhDau(String maTKDN) {
+		return baiVietDAO.getListDanhDau(maTKDN);
 	}
 
 }
