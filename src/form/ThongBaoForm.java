@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import org.apache.struts.action.ActionForm;
 
 import model.bean.BaiViet;
+import model.bean.Benh;
 import model.bean.LoaiBenh;
 import model.bean.LoaiThuoc;
 import model.bean.NhomThuoc;
 import model.bean.TaiKhoan;
 import model.bean.ThongBao;
+import model.bean.Thuoc;
 
 public class ThongBaoForm extends ActionForm {
 	
@@ -21,7 +23,9 @@ public class ThongBaoForm extends ActionForm {
 	private ArrayList<LoaiBenh> listLoaiBenh;
 	private ArrayList<LoaiThuoc> listLoaiThuoc;
 	private ArrayList<TaiKhoan> listND;
-	private ArrayList<BaiViet> listBaiViet;
+	private ArrayList<BaiViet> listBaiViet, listBaiVietXemNhieu;
+	private ArrayList<Benh> listBenhXemNhieu;
+	private ArrayList<Thuoc> listThuocXemNhieu;
 	
 	private int maGopY,xoa,soQuyen;
 	private int loaiGopY,tinhTrang,tinhTrangUpdate ;
@@ -169,6 +173,30 @@ public class ThongBaoForm extends ActionForm {
 
 	public void setTinhTrangUpdate(int tinhTrangUpdate) {
 		this.tinhTrangUpdate = tinhTrangUpdate;
+	}
+
+	public ArrayList<Benh> getListBenhXemNhieu() {
+		return listBenhXemNhieu;
+	}
+
+	public void setListBenhXemNhieu(ArrayList<Benh> listBenhXemNhieu) {
+		this.listBenhXemNhieu = listBenhXemNhieu;
+	}
+
+	public ArrayList<Thuoc> getListThuocXemNhieu() {
+		return listThuocXemNhieu;
+	}
+
+	public void setListThuocXemNhieu(ArrayList<Thuoc> listThuocXemNhieu) {
+		this.listThuocXemNhieu = listThuocXemNhieu;
+	}
+
+	public ArrayList<BaiViet> getListBaiVietXemNhieu() {
+		return listBaiVietXemNhieu;
+	}
+
+	public void setListBaiVietXemNhieu(ArrayList<BaiViet> listBaiVietXemNhieu) {
+		this.listBaiVietXemNhieu = listBaiVietXemNhieu;
 	}
 	
 }

@@ -302,11 +302,15 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 			<!-- HUNG -->
 			<action input="/login.jsp" name="diaDiemForm"
 				path="/dia-diem" scope="request" type="action.DiaDiemAction">
-				<forward name="diaDiem" path="/map2.jsp" />
+				<forward name="diaDiem" path="/danhSachCoSoYTe.jsp" />
 			</action>	
 			<action input="/login.jsp" name="diaDiemForm"
 				path="/chi-duong" scope="request" type="action.ChiDuongAction">
 				<forward name="chiDuong" path="/chiDuong.jsp" />
+			</action>
+			<action input="/login.jsp" name="diaDiemForm"
+				path="/ban-do" scope="request" type="action.BanDoAction">
+				<forward name="banDo" path="/map2.jsp" />
 			</action>
 			<action input="/danhSachTiemThuoc_BanThuoc.jsp" name="danhSachGiaForm"
 				path="/suaSV" scope="request" type="action.DanhSachBanThuocAction">

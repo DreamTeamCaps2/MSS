@@ -3,6 +3,7 @@ package form;
 import java.util.ArrayList;
 
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.upload.FormFile;
 
 import model.bean.Benh;
 import model.bean.LoaiBenh;
@@ -36,6 +37,8 @@ public class BenhForm extends ActionForm {
 	private String changeTrieuChung;
 	
 	private static ArrayList<LuotXem> listLuotXem = new ArrayList<LuotXem>();
+	
+	private FormFile file;
 	
 	public static ArrayList<LuotXem> getListLuotXem() {
 		return listLuotXem;
@@ -294,6 +297,14 @@ public class BenhForm extends ActionForm {
 
 	public void setChangeTrieuChung(String changeTrieuChung) {
 		this.changeTrieuChung = changeTrieuChung;
+	}
+
+	public FormFile getFile() {
+		return file;
+	}
+
+	public void setFile(FormFile file) {
+		this.file = file;
 	}
 	
 }

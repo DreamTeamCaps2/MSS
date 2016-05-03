@@ -48,7 +48,7 @@ public class QuanLy_LoaiBenhAction extends Action {
 		}
 		
 		// list loai thuoc
-				loaiBenhForm.setListLoaiBenh(benhBO.getListLoaiBenh());
+		loaiBenhForm.setListLoaiBenh(benhBO.getListLoaiBenh());
 		
 		return mapping.findForward("loaiBenh");
 		

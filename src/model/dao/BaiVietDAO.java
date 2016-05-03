@@ -358,5 +358,34 @@ public class BaiVietDAO extends DBHelper{
 		}
 		return listTen;
 	}
+
+	public ArrayList<BaiViet> getListBaiVietXemNhieu() {
+		connect();
+		String sql = "Select Top (5) * FROM BAIVIET order by LuotXem desc";
+
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<BaiViet> listBaiViet = new ArrayList<BaiViet>();
+		BaiViet ch;
+		try {
+			while (rs.next()) {
+				ch = new BaiViet();
+				ch.setMaBaiViet(rs.getInt("MaBaiViet"));
+				ch.setTieuDe(rs.getString("TieuDe"));
+				ch.setHinhAnh(rs.getString("HinhAnh"));
+				ch.setTomTat(rs.getString("TomTat"));
+				ch.setLuotXem(rs.getInt("LuotXem"));
+				listBaiViet.add(ch);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listBaiViet;
+	}
 	
 }

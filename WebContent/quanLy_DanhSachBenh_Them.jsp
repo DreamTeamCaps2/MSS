@@ -26,7 +26,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<html:form action="/them-benh" method="post">
+									<html:form action="/them-benh" method="post" enctype="multipart/form-data">
    
 								        <div class="row form-group">
 								            <label class="col-lg-2">Tên bệnh</label>
@@ -38,6 +38,12 @@
 								            </div>
 								          <div class="col-lg-4" style="margin-top: 5px;font-size:13px" >(*)</div>  	
 								        </div>
+								        <div class="row form-group">
+					                      <label class="col-lg-2">File input</label>
+					                      <div class="col-lg-3">
+					                      	<input name="file" type="file" id="exampleInputFile">
+					                      </div>
+					                    </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Nguyên nhân</label>
 								            <div class="col-lg-3">

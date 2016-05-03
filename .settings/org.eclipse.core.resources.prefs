@@ -5,6 +5,7 @@ encoding//WebContent/quanLy_DanhSachBaiViet.jsp=UTF-8
 encoding//WebContent/sendemail.jsp=UTF-8
 encoding//src/action/ChiTietBaiVietAction.java=UTF-8
 encoding//src/action/DangXuatAction.java=UTF-8
+encoding//src/action/QuanLy_DanhSachThuoc_ThemAction.java=UTF-8
 encoding//src/action/QuanLy_LoaiThuocAction.java=UTF-8
 encoding//src/action/QuenMatKhauAction.java=UTF-8
 encoding//src/model/dao/BaiVietDAO.java=UTF-8

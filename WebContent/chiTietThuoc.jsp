@@ -61,6 +61,8 @@
 								<img src="img/<bean:write name="thuocForm" property="hinhAnh"/>"
 									alt="some_text" width="256" height="256"> Thuốc :
 								<bean:write name="thuocForm" property="tenThuoc" />
+								<br>
+								<a href="/MSS/suaSV.do?msv=<bean:write name="thuocForm" property="ma" />">MUA THUỐC</a>
 							</h2>
 						</div>
 					</div>
@@ -79,7 +81,7 @@
 							<section id="congThuc">
 								<h3 style="text-align: center;">Công Thức</h3>
 								<p>
-									<bean:write name="thuocForm" property="congThuc" />
+									<bean:write name="thuocForm" property="congThuc"/>
 								</p>
 							</section>
 						</logic:notEmpty>

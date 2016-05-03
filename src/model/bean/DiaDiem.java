@@ -3,6 +3,7 @@ package model.bean;
 public class DiaDiem {
 	private String ten,diaChi,sdt, loai,mota, thoiGian;
 	private int maDiaDiem;
+	private String tenDangNhap;
 	
 	public String getMota() {
 		return mota;
@@ -59,5 +60,11 @@ public class DiaDiem {
 	}
 	public void setLati(float lati) {
 		this.lati = lati;
+	}
+	public String getTenDangNhap() {
+		return tenDangNhap;
+	}
+	public void setTenDangNhap(String tenDangNhap) {
+		this.tenDangNhap = tenDangNhap;
 	}
 }

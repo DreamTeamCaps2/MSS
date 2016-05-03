@@ -11,13 +11,6 @@
 <title>Thông tin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
-<style>
-footer {
-	background-color: #555;
-	color: white;
-	padding: 15px;
-}
-</style>
 </head>
 <body>
     <div class="container text-center" style="padding-top: 0px">    
@@ -30,7 +23,7 @@ footer {
 	      </div>
 	      <logic:empty name="taiKhoanForm" property="loaiTK">
 	      <div class="clearfix">
-	      	<div id="rateYo" style="padding-left: 45px;"></div>
+	      	<div id="rateYo" style="padding-left: 25px;"></div>
 	      	<!-- <div class="counter"></div> -->
 	      </div>
 	      <p id="textRate"></p>
@@ -366,5 +359,6 @@ footer {
                 }
             });
     </script>
+    <%@ include file="_footer.jsp"%>
 </body>
 </html>

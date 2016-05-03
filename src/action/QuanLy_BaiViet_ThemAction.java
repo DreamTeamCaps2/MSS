@@ -2,8 +2,6 @@ package action;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.nio.file.Files;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,14 +34,15 @@ public class QuanLy_BaiViet_ThemAction extends Action{
 			String hinhAnh = baiVietForm.getHinhAnh();
 			String noiDung = baiVietForm.getNoiDung();
 			String tomTat = baiVietForm.getTomTat();
-			 try {
-				 
-				 	file = baiVietForm.getFile();
-//		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/"+file.getFileName();;
-//		            String filePath = System.getProperty("java.io.tmpdir") + "/" + file.getFileName();
-//		            System.out.println(path);
-//		            System.out.println(filePath);
-		            outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
+			file = baiVietForm.getFile();
+			if(file.getFileName()!=""){
+				System.out.println(file.getFileName());
+				String chuoi = tieuDe+"_ava.jpg";
+				try {
+		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/" + chuoi;
+		            System.out.println(path);
+		            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
+		            outputStream = new FileOutputStream(new File(path));
 		            outputStream.write(file.getFileData());
 		            
 		        } finally {
@@ -51,7 +50,11 @@ public class QuanLy_BaiViet_ThemAction extends Action{
 		                outputStream.close();
 		            }
 		        }
-			hinhAnh = file.getFileName();
+				hinhAnh = chuoi;
+			}
+			else{
+				hinhAnh = "no_image.jpg";
+			}
 			BaiVietBO baiVietBO = new BaiVietBO();
 			baiVietBO.themBaiViet(tieuDe,tomTat,hinhAnh,noiDung);
 			

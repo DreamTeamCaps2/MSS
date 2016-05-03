@@ -15,16 +15,14 @@
 	<form name="FooterForm" id="FooterForm" method="post">
 		<input type="hidden" name="form_block_id" value="49953">
 		<footer>
-			<div class="container">
+			<div class="container"  style="background: inherit;"   >
 				<ul class="main-menu">
-					<li><a href="/" title="Trang chủ">Trang chủ</a></li>
-					<li><a title="Reviews" href="/Reviews-nc1.html">Reviews</a></li>
-					<li><a title="Tư vấn ĐT" href="/Tu-van-DT-nc2.html">Tư vấn
-							ĐT</a></li>
-					<li><a title="Người dùng review"
-						href="/Nguoi-dung-review-nc3.html">Người dùng review</a></li>
-					<li><a title="Vui công nghệ" href="/Vui-cong-nghe-nc4.html">Vui
-							công nghệ</a></li>
+					<li><a href="/" title="TRANG CHỦ">TRANG CHỦ</a></li>
+					<li><a title="THUỐC" href="/MSS/danh-sach-thuoc.do">THUỐC</a></li>
+					<li><a title="BỆNH" href="/MSS/danh-sach-benh.do">BỆNH</a></li>
+					<li><a title="CƠ SỞY TẾ" href="/MSS/dia-diem.do">CƠ SỞ Y TẾ</a></li>
+					<li><a title="GÓP Ý" href="/MSS/gop-y.do">GÓP Ý</a></li>
+					<li><a title="ABOUT" href="/MSS/gop-y.do">ABOUT</a></li>
 				</ul>
 				<ul class="network">
 					<li><a target="_blank"

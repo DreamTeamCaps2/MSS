@@ -83,4 +83,8 @@ public class BaiVietBO {
 		return baiVietDAO.getListDanhDau(maTKDN);
 	}
 
+	public ArrayList<BaiViet> getListBaiVietXemNhieu() {
+		return baiVietDAO.getListBaiVietXemNhieu();
+	}
+
 }

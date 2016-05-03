@@ -7,6 +7,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="login.jsp"%>
 <head lang="en">
 <meta charset="UTF-8">
 <title>Sửa sinh viên</title>
@@ -49,8 +50,7 @@
 							var kt = document.getElementById("kcmadd"
 									+ data[parseInt(i)].ma);
 							if (kt != null) {
-								document.getElementById("kcmadd"
-										+ data[parseInt(i)].ma).innerHTML = data[parseInt(i)].kc;
+								document.getElementById("kcmadd"+ data[parseInt(i)].ma).innerHTML = document.getElementById("kcmadd"+ data[parseInt(i)].ma).innerHTML+data[parseInt(i)].kc+" Km";
 								console.log(document.getElementById("kcmadd"
 										+ data[parseInt(i)].ma).innerHTML);
 							}
@@ -88,12 +88,10 @@
 </script>
 </head>
 <body>
-	<div class="container">
-		<div class="box">
-			<div class="box-body">
-				<html:form action="/suaSV" method="get">
-					<select name="loaiDiaDiem" id="mode">
-						<option value="">Sắp Xếp</option>
+<html:form action="/suaSV" method="get">
+<div style=" margin-left: 52%">
+	Sắp Xếp Theo: <select name="loaiDiaDiem" id="mode">
+						
 						<option value="1">Theo Tên</option>
 						<option value="2">Theo Giá</option>
 						<option value="3">Theo Khoảng Cách</option>
@@ -101,33 +99,40 @@
 
 					</select>
 
+<html:submit>Xem</html:submit>
+</div>
+	<div
+		style=" background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 50%;left: 25%;top:25%;  line-height: 3em; overflow: auto; padding: 5px;">
+		<h1>Danh Sách Các Trung Tâm Y Tế</h1>
+		<div class="box">
+			<div class="box-body">
+				
+				
 					<input id="maTiem" type="hidden" name="msv"
 						value="<bean:write name="danhSachGiaForm" property="msv" />">
 					<script type="text/javascript">
 						/* $("[name='loaiDiaDiem']").val('<bean:write name="danhSachGiaForm" property="loaiDiaDiem"/>'); */
 					</script>
 					<input type="hidden" id="kca" name="kc">
-					<html:submit>Xem</html:submit>
+					
 
 						<logic:iterate name="danhSachGiaForm" property="listGiaThuoc"
 							id="tk">
+							
 							<bean:define id="ma" name="tk" property="maTiem"></bean:define>
-							<div>
+							<div> Tên Thuốc: 
 								<bean:write name="tk" property="tenTiem" />
 							</div>
 							<div>
-								<bean:write name="tk" property="giaThuoc" />
+								 Giá: <bean:write name="tk" property="giaThuoc" />
 							</div>
-							<div id="kcmadd${ma}"></div>
-							<br>
+							<div id="kcmadd${ma}">Khoảng Cách: </div>
+							<hr style="border-top: 2px solid #FFFFFF">
 
 						</logic:iterate>
-				</html:form>
 			</div>
-
 		</div>
-
 	</div>
-
+</html:form>
 </body>
 </html>

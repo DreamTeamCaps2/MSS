@@ -27,7 +27,7 @@ public class QuanLy_DanhSachThuoc_SuaBenhAction extends Action {
 		int maBenhChon = thuocBenhForm.getMaBenhChon();
 		
 		if(!"".equals(thuocBenhForm.getTimBenh()) && thuocBenhForm.getTimBenh() != null)
-			thuocBenhForm.setTimBenh(new String(thuocBenhForm.getTimBenh().getBytes("ISO-8859-1"),"UTF-8"));
+			thuocBenhForm.setTimBenh(thuocBenhForm.getTimBenh());
 		else
 			thuocBenhForm.setTimBenh("");
 		thuocBenhForm.setListBenhTim(benhBO.getListBenh(thuocBenhForm.getTimBenh(),0));

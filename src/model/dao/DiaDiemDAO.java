@@ -1,7 +1,5 @@
 package model.dao;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,6 +60,8 @@ public class DiaDiemDAO extends DBHelper{
 				nt.setLongi(rs1.getFloat("KinhDo"));
 				nt.setLati(rs1.getFloat("ViDo"));
 				nt.setLoai("2");
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				nt.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs1.getInt("manhaThuoc")));
 				diadiem.add(nt);
 		
 			
@@ -77,6 +77,8 @@ public class DiaDiemDAO extends DBHelper{
 				pk.setLongi(rs2.getFloat("KinhDo"));
 				pk.setLati(rs2.getFloat("ViDo"));
 				pk.setLoai("3");
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				pk.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs2.getInt("maPhongKham")));
 				diadiem.add(pk);
 			
 			
@@ -93,7 +95,7 @@ public class DiaDiemDAO extends DBHelper{
 	}
 
 
-	public void json() throws JSONException {
+	public String json() throws JSONException {
 		connect();
 		String sql = "Select * from BenhVien ";
 		String sql1 = "Select nt.manhathuoc, TenNhaThuoc, KinhDo, ViDo, sdt, diachi from TaiKhoan tk inner join nhathuoc nt on tk.matk=nt.manhathuoc ";
@@ -140,6 +142,8 @@ public class DiaDiemDAO extends DBHelper{
 				nt.setSdt(rs1.getString("SDT"));
 				nt.setLongi(rs1.getFloat("KinhDo"));
 				nt.setLati(rs1.getFloat("ViDo"));
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				nt.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs1.getInt("manhaThuoc")));
 				nhathuoc.add(nt);
 			}
 			while (rs2.next()) {
@@ -152,6 +156,8 @@ public class DiaDiemDAO extends DBHelper{
 				pk.setSdt(rs2.getString("SDT"));
 				pk.setLongi(rs2.getFloat("KinhDo"));
 				pk.setLati(rs2.getFloat("ViDo"));
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				pk.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs2.getInt("maPhongKham")));
 				phongkham.add(pk);
 			}
 			
@@ -200,8 +206,8 @@ public class DiaDiemDAO extends DBHelper{
 			js.put("kc", "");
 			ja.put(js);
 		}
-		System.out.println(ja.toString());
-		try {
+		return ja.toString();
+		/*try {
 			FileWriter file = new FileWriter("WebContent/js/diadiemkc1.json");
 			file.write("data= '"+ja.toString()+"';");
 			file.flush();
@@ -209,7 +215,7 @@ public class DiaDiemDAO extends DBHelper{
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		//System.out.print(obj);
 
@@ -220,6 +226,7 @@ public class DiaDiemDAO extends DBHelper{
 
 	public ArrayList<DiaDiem> getListDiaDiem(String search) {
 		// TODO Auto-generated method stub
+		connect();
 		String sql = "Select * from BenhVien where tenBenhVien like N'%"+search+"%'";
 		String sql1 = "Select nt.manhathuoc, TenNhaThuoc, KinhDo, ViDo, sdt, diachi from TaiKhoan tk inner join nhathuoc nt on tk.matk=nt.manhathuoc where tennhathuoc like N'%"+search+"%'";
 		String sql2 = "Select Maphongkham,TenPhongKham,mota, thoigian, KinhDo, ViDo, sdt, diachi from TaiKhoan tk inner join PHONGKHAM nt on tk.matk=nt.MaPhongKham  where tenphongkham like N'%"+search+"%'";
@@ -276,6 +283,8 @@ public class DiaDiemDAO extends DBHelper{
 				nt.setLongi(rs1.getFloat("KinhDo"));
 				nt.setLati(rs1.getFloat("ViDo"));
 				nt.setLoai("2");
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				nt.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs1.getInt("manhaThuoc")));
 				diadiem.add(nt);
 		
 			
@@ -291,6 +300,9 @@ public class DiaDiemDAO extends DBHelper{
 				pk.setLongi(rs2.getFloat("KinhDo"));
 				pk.setLati(rs2.getFloat("ViDo"));
 				pk.setLoai("3");
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				pk.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs2.getInt("maPhongKham")));
+				
 				diadiem.add(pk);
 			
 			
@@ -305,14 +317,11 @@ public class DiaDiemDAO extends DBHelper{
 		
 		return diadiem;
 	}
-	public static void main(String[] args) throws JSONException {
-		DiaDiemDAO tb = new DiaDiemDAO();
-		tb.json();
-	}
+	
 
 
 	public ArrayList<DiaDiem> getListBenhVienSearch(String search) {
-
+		connect();
 		// TODO Auto-generated method stub
 		String sql = "Select * from BenhVien where tenBenhVien like N'%"+search+"%'";
 		
@@ -357,7 +366,7 @@ public class DiaDiemDAO extends DBHelper{
 		return diadiem;
 	}
 	public ArrayList<DiaDiem> getListNhaThuocSearch(String search) {
-
+		connect();
 		// TODO Auto-generated method stub
 		String sql1 = "Select nt.manhathuoc, TenNhaThuoc, KinhDo, ViDo, sdt, diachi from TaiKhoan tk inner join nhathuoc nt on tk.matk=nt.manhathuoc where tennhathuoc like N'%"+search+"%'";
 		
@@ -386,6 +395,8 @@ public class DiaDiemDAO extends DBHelper{
 				nt.setLongi(rs.getFloat("KinhDo"));
 				nt.setLati(rs.getFloat("ViDo"));
 				nt.setLoai("2");
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				nt.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs.getInt("manhaThuoc")));
 				diadiem.add(nt);
 		
 			
@@ -395,14 +406,10 @@ public class DiaDiemDAO extends DBHelper{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
 		return diadiem;
 	}
 	public ArrayList<DiaDiem> getListPhongKhamSearch(String search) {
-
+		connect();
 		// TODO Auto-generated method stub
 		String sql2 = "Select Maphongkham,TenPhongKham,mota, thoigian, KinhDo, ViDo, sdt, diachi from TaiKhoan tk inner join PHONGKHAM nt on tk.matk=nt.MaPhongKham  where tenphongkham like N'%"+search+"%'";
 		System.out.println(sql2);
@@ -430,19 +437,19 @@ public class DiaDiemDAO extends DBHelper{
 				pk.setLongi(rs2.getFloat("KinhDo"));
 				pk.setLati(rs2.getFloat("ViDo"));
 				pk.setLoai("3");
+				TaiKhoanDAO taiKhoanDAO = new TaiKhoanDAO();
+				pk.setTenDangNhap(taiKhoanDAO.getTenDangNhap(rs2.getInt("MaPhongKham")));
 				diadiem.add(pk);
-			
-			
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
 		return diadiem;
 	}
-
+	public static void main(String[] args)  {
+		DiaDiemDAO tb = new DiaDiemDAO();
+		ArrayList<DiaDiem> list=tb.getListPhongKhamSearch("i");
+		System.out.println(list.get(0).getLoai());
+	}
 }

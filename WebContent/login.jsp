@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/simplePagination.css"/>
     <link rel="stylesheet" href="css/jquery.rateyo.min.css"/>
     <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />	
+    <link rel="stylesheet" href="css/reviewdao.vn.css" />
   	
     <script src="js/jquery-1.11.2.min.js"></script>     
     <script src="js/bootstrap.min.js"></script>
@@ -82,7 +83,6 @@
 		var a = document.getElementById("checkCLICK").checked;
 		var tenDangNhap = document.getElementById("tenDangNhap").value;
 		var matKhau = document.getElementById("matKhau").value;
-		alert("CLICKKKKKKKKKKKKKKKKKKKK" +a + " " + tenDangNhap + " " + matKhau);
 		if(a == true ){
 			setCookie('tenDangNhap', tenDangNhap, 10);
 			setCookie('matKhau', matKhau, 10);
@@ -128,7 +128,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="dropdown"><a href="/MSS/danh-sach-thuoc.do">Thuốc
+					<li class="dropdown"><a href="/MSS/danh-sach-thuoc.do">THUỐC
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu list-loai-thuoc ">
@@ -157,7 +157,7 @@
 								</div>
 							</logic:iterate>
 						</ul></li>
-					<li class="dropdown"><a href="/MSS/danh-sach-benh.do">Bệnh
+					<li class="dropdown"><a href="/MSS/danh-sach-benh.do">BỆNH
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu list-benh-nav" style="width: 600px;">
@@ -184,19 +184,9 @@
 					<logic:equal name="quanLy" value="1">
 						<li><a href="/MSS/quanLy_TrangChu.jsp">QUẢN LÝ</a></li>
 					</logic:equal>
-					<li><a href="/MSS/dia-diem.do">CƠ SỞ Y TÊ</a></li>
-					<li><a href="/MSS/gop-y.do">Góp Ý</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+					<li><a href="/MSS/dia-diem.do">CƠ SỞ Y TẾ</a></li>
+					<li><a href="/MSS/gop-y.do">GÓP Ý</a></li>
+					<li><a href="/MSS/gop-y.do">ABOUT</a></li>
 				</ul>
 				<div class="form-group col-sm-4" style="margin-top: 13px;">
         	   <input type="text" id="square" placeholder="Nhập Từ Khóa Cần Tìm" class="form-control"

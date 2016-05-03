@@ -26,7 +26,7 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<html:form action="/them-thuoc" method="post">
+									<html:form action="/them-thuoc" method="post" enctype="multipart/form-data">
    
 								        <div class="row form-group">
 								            <label class="col-lg-2">Tên thuốc</label>
@@ -38,6 +38,12 @@
 								            </div>
 								          <div class="col-lg-4" style="margin-top: 5px;font-size:13px" >(*)</div>  	
 								        </div>
+								        <div class="row form-group">
+					                      <label class="col-lg-2" for="exampleInputFile">File input</label>
+					                      <div class="col-lg-3">
+					                      	<input name="file" type="file" id="exampleInputFile">
+					                      </div>
+					                    </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Công thức</label>
 								            <div class="col-lg-3">
@@ -170,19 +176,47 @@
 													var thanTrong = $("#select-thanTrong").val();
 													var DDH = $("#select-DDH").val();
 													var maNhomThuoc= $("#select-maNhomThuoc").val();
-												   
-												   window.location.assign("/Caps2/them-thuoc.do?maLoaiThuoc="+maLoaiThuoc
-														   +"&tenThuoc="+tenThuoc
-														   +"&congThuc="+congThuc
-														   +"&tenKhoaHoc="+tenKhoaHoc
-														   +"&dieuChe="+dieuChe
-														   +"&tinhChat="+tinhChat
-														   +"&tacDung="+tacDung
-														   +"&chiDinh="+chiDinh
-														   +"&baoQuan="+baoQuan
-														   +"&thanTrong="+thanTrong
-														   +"&DDH="+DDH
-														   +"&maNhomThuoc="+maNhomThuoc);
+													var link = "/MSS/them-thuoc.do?maLoaiThuoc="+maLoaiThuoc
+													   +"&tenThuoc="+tenThuoc
+													   +"&congThuc="+congThuc
+													   +"&tenKhoaHoc="+tenKhoaHoc
+													   +"&dieuChe="+dieuChe
+													   +"&tinhChat="+tinhChat
+													   +"&tacDung="+tacDung
+													   +"&chiDinh="+chiDinh
+													   +"&baoQuan="+baoQuan
+													   +"&thanTrong="+thanTrong
+													   +"&DDH="+DDH
+													   +"&maNhomThuoc="+maNhomThuoc;
+													
+ 													var requestData = {
+ 															tenThuoc: tenThuoc,
+ 															congThuc: congThuc,
+ 															tenKhoaHoc : tenKhoaHoc,
+ 															dieuChe : dieuChe,
+ 															tinhChat : tinhChat,
+ 															tacDung : tacDung,
+ 															chiDinh : chiDinh,
+ 															baoQuan : baoQuan,
+ 															thanTrong : thanTrong,
+ 															DDH : DDH,
+ 															maLoaiThuoc : maLoaiThuoc,
+ 															maNhomThuoc : maNhomThuoc,
+ 															check : 1
+											  	      };
+											            $.ajax({
+											                url: '/MSS/them-thuoc.do',
+											                type: 'POST',
+											                data: requestData,
+											                dataType: 'text',
+											                success:function(data,status){
+											                	alert(data);
+											                	 window.location.assign("/MSS/them-thuoc.do");
+											  				},
+											  				error:function(data,status){
+											  				}
+											            }); 
+														 //  window.location.assign("/MSS/them-thuoc.do");
 												});
 											</script>
 										<div class="row form-group">

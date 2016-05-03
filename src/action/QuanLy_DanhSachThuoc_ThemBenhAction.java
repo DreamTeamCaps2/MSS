@@ -24,6 +24,10 @@ public class QuanLy_DanhSachThuoc_ThemBenhAction extends Action{
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		ThuocBenhForm thuocBenhForm = (ThuocBenhForm) form;
 		BenhBO benhBO = new BenhBO();
 //		HttpSession session = request.getSession();
@@ -31,7 +35,7 @@ public class QuanLy_DanhSachThuoc_ThemBenhAction extends Action{
 		int maBenhChon = thuocBenhForm.getMaBenhChon();
 		
 		if(!"".equals(thuocBenhForm.getTimBenh()) && thuocBenhForm.getTimBenh() != null)
-			thuocBenhForm.setTimBenh(new String(thuocBenhForm.getTimBenh().getBytes("ISO-8859-1"),"UTF-8"));
+			thuocBenhForm.setTimBenh(thuocBenhForm.getTimBenh());
 		else
 			thuocBenhForm.setTimBenh("");
 		thuocBenhForm.setListBenhTim(benhBO.getListBenh(thuocBenhForm.getTimBenh(),0));

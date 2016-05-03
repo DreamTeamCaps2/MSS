@@ -41,9 +41,9 @@ public class ThuocBO {
 
 	public void themThuoc(String tenThuoc, String congThuc, String tenKhoaHoc, String dieuChe, String tinhChat,
 			String tacDung, String chiDinh, String baoQuan, String thanTrong, String DDH, int maNhomThuoc,
-			int trangThai) {
+			int trangThai, String hinhAnh) {
 		thuocDAO.themThuoc(tenThuoc, congThuc, tenKhoaHoc, dieuChe, tinhChat, tacDung, chiDinh, baoQuan, thanTrong, DDH,
-				maNhomThuoc, trangThai);
+				maNhomThuoc, trangThai, hinhAnh);
 	}
 
 	public void themThuocBenh(String tenThuoc, ArrayList<Benh> listBenh) {

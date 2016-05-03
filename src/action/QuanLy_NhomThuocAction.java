@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.Session;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
@@ -23,6 +22,9 @@ public class QuanLy_NhomThuocAction extends Action {
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("UTF-8");
+		
 		NhomThuocForm nhomThuocForm = (NhomThuocForm) form;
 		ThuocBO thuocBO = new ThuocBO();
 		ArrayList<LoaiThuoc> listLoaiThuoc = new ArrayList<LoaiThuoc>();
@@ -31,13 +33,10 @@ public class QuanLy_NhomThuocAction extends Action {
 		nhomThuocForm.setListLoaiThuoc(listLoaiThuoc);
 		//them nhomThuoc
 		if("Add".equals(nhomThuocForm.getSubmit())){
-			String tenNhomThuoc = new String(nhomThuocForm.getTenNhomThuoc().getBytes("ISO-8859-1"),"UTF-8");
+			String tenNhomThuoc = nhomThuocForm.getTenNhomThuoc();
 			int maLoaiThuoc = nhomThuocForm.getMaLoaiThuoc();
-			
 
         	ActionErrors actionErrors  = new ActionErrors();
-        	
-			
 
 			if("".equals(tenNhomThuoc)||tenNhomThuoc==null){
 				actionErrors.add("tenNhomThuocError",new ActionMessage("error.notNull"));

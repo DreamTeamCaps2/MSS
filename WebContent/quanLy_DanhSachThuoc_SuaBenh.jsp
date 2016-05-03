@@ -43,7 +43,7 @@
 															$("#select-timBenh").change(function(){
 																var timBenh = $("#select-timBenh").val();
 															   
-															   window.location.assign("/Caps2/quan-ly-danh-sach-thuoc-sua-benh.do?timBenh="+timBenh);
+															   window.location.assign("/MSS/quan-ly-danh-sach-thuoc-sua-benh.do?timBenh="+timBenh);
 															});
 														</script>
 													</div>

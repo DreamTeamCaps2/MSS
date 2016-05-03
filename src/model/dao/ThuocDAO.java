@@ -409,12 +409,12 @@ public class ThuocDAO extends DBHelper {
 	}
 	
 	
-	public void themThuoc(String tenThuoc, String congThuc, String tenKhoaHoc, String dieuChe, String tinhChat, String tacDung, String chiDinh, String baoQuan, String thanTrong, String DDH, int maNhomThuoc, int trangThai)
+	public void themThuoc(String tenThuoc, String congThuc, String tenKhoaHoc, String dieuChe, String tinhChat, String tacDung, String chiDinh, String baoQuan, String thanTrong, String DDH, int maNhomThuoc, int trangThai, String hinhAnh)
 	{
 		connect();
-	    String sql =String.format("Insert into THUOC (TenThuoc,CongThuc,TenKhoaHoc,DieuChe,TinhChat,TacDung,ChiDinh,BaoQuan,ThanTrong,DDH,MaNhomThuoc,TrangThai) "
-	    		+ "VALUES (N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',%s,%s)",
-	    		tenThuoc,congThuc,tenKhoaHoc,dieuChe,tinhChat,tacDung,chiDinh,baoQuan,thanTrong,DDH,maNhomThuoc,trangThai);
+	    String sql =String.format("Insert into THUOC (TenThuoc,CongThuc,TenKhoaHoc,DieuChe,TinhChat,TacDung,ChiDinh,BaoQuan,ThanTrong,DDH,MaNhomThuoc,TrangThai, HinhAnh) "
+	    		+ "VALUES (N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',%s,%s,'%s')",
+	    		tenThuoc,congThuc,tenKhoaHoc,dieuChe,tinhChat,tacDung,chiDinh,baoQuan,thanTrong,DDH,maNhomThuoc,trangThai, hinhAnh);
 	    try {
 	        Statement stmt = connection.createStatement();
 	        stmt.executeUpdate(sql);

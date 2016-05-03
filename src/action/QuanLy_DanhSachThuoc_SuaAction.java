@@ -1,5 +1,6 @@
 package action;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,8 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		PrintWriter printWriter = response.getWriter();
 		int maThuoc;
 		String tenThuoc ;
 		String congThuc;
@@ -61,25 +64,25 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 			thuocForm.setListBenh((ArrayList<Benh>) session.getAttribute("listBenh"));
 			
 			if(!"".equals(thuocForm.getTenThuoc()) && thuocForm.getTenThuoc() != null)
-				thuocForm.setTenThuoc(new String(thuocForm.getTenThuoc().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setTenThuoc(thuocForm.getTenThuoc());
 			if(!"".equals(thuocForm.getCongThuc()) && thuocForm.getCongThuc() != null)
-				thuocForm.setCongThuc(new String(thuocForm.getCongThuc().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setCongThuc(thuocForm.getCongThuc());
 			if(!"".equals(thuocForm.getTenKhoaHoc()) && thuocForm.getTenKhoaHoc() != null)
-				thuocForm.setTenKhoaHoc(new String(thuocForm.getTenKhoaHoc().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setTenKhoaHoc(thuocForm.getTenKhoaHoc());
 			if(!"".equals(thuocForm.getDieuChe()) && thuocForm.getDieuChe() != null)
-				thuocForm.setDieuChe(new String(thuocForm.getDieuChe().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setDieuChe(thuocForm.getDieuChe());
 			if(!"".equals(thuocForm.getTinhChat()) && thuocForm.getTinhChat() != null)
-				thuocForm.setTinhChat(new String(thuocForm.getTinhChat().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setTinhChat(thuocForm.getTinhChat());
 			if(!"".equals(thuocForm.getTacDung()) && thuocForm.getTacDung() != null)
-				thuocForm.setTacDung(new String(thuocForm.getTacDung().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setTacDung(thuocForm.getTacDung());
 			if(!"".equals(thuocForm.getChiDinh()) && thuocForm.getChiDinh() != null)
-				thuocForm.setChiDinh(new String(thuocForm.getChiDinh().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setChiDinh(thuocForm.getChiDinh());
 			if(!"".equals(thuocForm.getBaoQuan()) && thuocForm.getBaoQuan() != null)
-				thuocForm.setBaoQuan(new String(thuocForm.getBaoQuan().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setBaoQuan(thuocForm.getBaoQuan());
 			if(!"".equals(thuocForm.getThanTrong()) && thuocForm.getThanTrong() != null)
-				thuocForm.setThanTrong(new String(thuocForm.getThanTrong().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setThanTrong(thuocForm.getThanTrong());
 			if(!"".equals(thuocForm.getDDH()) && thuocForm.getDDH() != null)
-				thuocForm.setDDH(new String(thuocForm.getDDH().getBytes("ISO-8859-1"),"UTF-8"));
+				thuocForm.setDDH(thuocForm.getDDH());
 			
 			 tenThuoc = thuocForm.getTenThuoc();
 			 congThuc = thuocForm.getCongThuc();
@@ -116,120 +119,105 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 			thuocForm.setListBenh((ArrayList<Benh>) session.getAttribute("listBenh"));
 			thuocForm.setMaThuoc((int) session.getAttribute("maThuoc"));
 			
-			if(thuocForm.getTenThuoc() == null || "".equals(thuocForm.getTenThuoc()) )
-			
+			if (thuocForm.getTenThuoc() == null || "".equals(thuocForm.getTenThuoc()))
+
 				thuocForm.setTenThuoc((String) session.getAttribute("tenThuoc"));
-			else 
-			{
-				thuocForm.setTenThuoc(new String(thuocForm.getTenThuoc().getBytes("ISO-8859-1"),"UTF-8"));
+			else {
+				thuocForm.setTenThuoc(thuocForm.getTenThuoc());
 				session.setAttribute("tenThuoc", thuocForm.getTenThuoc());
 			}
-			
-				if(thuocForm.getCongThuc() == null || "".equals(thuocForm.getCongThuc()) )
-				
-					thuocForm.setCongThuc((String) session.getAttribute("congThuc"));
-				else 
-				{
-					thuocForm.setCongThuc(new String(thuocForm.getCongThuc().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("congThuc", thuocForm.getCongThuc());
-				}
-				
-				if(thuocForm.getTenKhoaHoc() == null || "".equals(thuocForm.getTenKhoaHoc()) )
-				
-					thuocForm.setTenKhoaHoc((String) session.getAttribute("tenKhoaHoc"));
-				else 
-				{
-					thuocForm.setTenKhoaHoc(new String(thuocForm.getTenKhoaHoc().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("tenKhoaHoc", thuocForm.getTenKhoaHoc());
-				}
-				
-				if(thuocForm.getDieuChe() == null || "".equals(thuocForm.getDieuChe()) )
-				
-					thuocForm.setDieuChe((String) session.getAttribute("dieuChe"));
-				else 
-				{
-					thuocForm.setDieuChe(new String(thuocForm.getDieuChe().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("dieuChe", thuocForm.getDieuChe());
-				}
-				
-				if(thuocForm.getTinhChat() == null || "".equals(thuocForm.getTinhChat()) )
-					thuocForm.setTinhChat((String) session.getAttribute("tinhChat"));
-				else 
-				{
-					thuocForm.setTinhChat(new String(thuocForm.getTinhChat().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("tinhChat", thuocForm.getTinhChat());
-				}
-				
-				if(thuocForm.getTacDung() == null || "".equals(thuocForm.getTacDung()) )
-					thuocForm.setTacDung((String) session.getAttribute("tacDung"));
-				else 
-				{
-					thuocForm.setTacDung(new String(thuocForm.getTacDung().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("tacDung", thuocForm.getTacDung());
-				}
-				
-				if(thuocForm.getChiDinh() == null || "".equals(thuocForm.getChiDinh()) )
-					thuocForm.setChiDinh((String) session.getAttribute("chiDinh"));
-				else 
-				{
-					thuocForm.setChiDinh(new String(thuocForm.getChiDinh().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("chiDinh", thuocForm.getChiDinh());
-				}
-				
-				if(thuocForm.getBaoQuan() == null || "".equals(thuocForm.getBaoQuan()) )
-					thuocForm.setBaoQuan((String) session.getAttribute("baoQuan"));
-				else 
-				{
-					thuocForm.setBaoQuan(new String(thuocForm.getBaoQuan().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("baoQuan", thuocForm.getBaoQuan());
-				}
-				
-				if(thuocForm.getThanTrong() == null || "".equals(thuocForm.getThanTrong()) )
-					thuocForm.setThanTrong((String) session.getAttribute("thanTrong"));
-				else 
-				{
-					thuocForm.setThanTrong(new String(thuocForm.getThanTrong().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("thanTrong", thuocForm.getThanTrong());
-				}
-				
-				if(thuocForm.getDDH() == null || "".equals(thuocForm.getDDH()) )
-					thuocForm.setDDH((String) session.getAttribute("DDH"));
-				else 
-				{
-					thuocForm.setDDH(new String(thuocForm.getDDH().getBytes("ISO-8859-1"),"UTF-8"));
-					session.setAttribute("DDH", thuocForm.getDDH());
-				}
-				
-				if(thuocForm.getMaNhomThuoc() == 0 )
-				{
-					thuocForm.setMaNhomThuoc((int) session.getAttribute("maNhomThuoc"));
-				}
-				else session.setAttribute("maNhomThuoc", thuocForm.getMaNhomThuoc());
-				
-				if(thuocForm.getMaLoaiThuoc() == 0 )
-				{
-					thuocForm.setMaLoaiThuoc((int) session.getAttribute("maLoaiThuoc")); 
-				}
-				else session.setAttribute("maLoaiThuoc", thuocForm.getMaLoaiThuoc());
-				
-				
-				
-				
-				 tenThuoc = thuocForm.getTenThuoc();
-				 congThuc = thuocForm.getCongThuc();
-				 tenKhoaHoc = thuocForm.getTenKhoaHoc();
-				 dieuChe = thuocForm.getDieuChe();
-				 tinhChat = thuocForm.getTinhChat();
-				 tacDung = thuocForm.getTacDung();
-				 chiDinh = thuocForm.getChiDinh();
-				 baoQuan = thuocForm.getBaoQuan();
-				 thanTrong = thuocForm.getThanTrong();
-				 DDH = thuocForm.getDDH();
-				 maNhomThuoc = thuocForm.getMaNhomThuoc();
-				 maLoaiThuoc = thuocForm.getMaLoaiThuoc();
-				 
-				 
-	//			 session.setAttribute("kt", 1);
+
+			if (thuocForm.getCongThuc() == null || "".equals(thuocForm.getCongThuc()))
+
+				thuocForm.setCongThuc((String) session.getAttribute("congThuc"));
+			else {
+				thuocForm.setCongThuc(thuocForm.getCongThuc());
+				session.setAttribute("congThuc", thuocForm.getCongThuc());
+			}
+
+			if (thuocForm.getTenKhoaHoc() == null || "".equals(thuocForm.getTenKhoaHoc()))
+
+				thuocForm.setTenKhoaHoc((String) session.getAttribute("tenKhoaHoc"));
+			else {
+				thuocForm.setTenKhoaHoc(thuocForm.getTenKhoaHoc());
+				session.setAttribute("tenKhoaHoc", thuocForm.getTenKhoaHoc());
+			}
+
+			if (thuocForm.getDieuChe() == null || "".equals(thuocForm.getDieuChe()))
+
+				thuocForm.setDieuChe((String) session.getAttribute("dieuChe"));
+			else {
+				thuocForm.setDieuChe(thuocForm.getDieuChe());
+				session.setAttribute("dieuChe", thuocForm.getDieuChe());
+			}
+
+			if (thuocForm.getTinhChat() == null || "".equals(thuocForm.getTinhChat()))
+				thuocForm.setTinhChat((String) session.getAttribute("tinhChat"));
+			else {
+				thuocForm.setTinhChat(thuocForm.getTinhChat());
+				session.setAttribute("tinhChat", thuocForm.getTinhChat());
+			}
+
+			if (thuocForm.getTacDung() == null || "".equals(thuocForm.getTacDung()))
+				thuocForm.setTacDung((String) session.getAttribute("tacDung"));
+			else {
+				thuocForm.setTacDung(thuocForm.getTacDung());
+				session.setAttribute("tacDung", thuocForm.getTacDung());
+			}
+
+			if (thuocForm.getChiDinh() == null || "".equals(thuocForm.getChiDinh()))
+				thuocForm.setChiDinh((String) session.getAttribute("chiDinh"));
+			else {
+				thuocForm.setChiDinh(thuocForm.getChiDinh());
+				session.setAttribute("chiDinh", thuocForm.getChiDinh());
+			}
+
+			if (thuocForm.getBaoQuan() == null || "".equals(thuocForm.getBaoQuan()))
+				thuocForm.setBaoQuan((String) session.getAttribute("baoQuan"));
+			else {
+				thuocForm.setBaoQuan(thuocForm.getBaoQuan());
+				session.setAttribute("baoQuan", thuocForm.getBaoQuan());
+			}
+
+			if (thuocForm.getThanTrong() == null || "".equals(thuocForm.getThanTrong()))
+				thuocForm.setThanTrong((String) session.getAttribute("thanTrong"));
+			else {
+				thuocForm.setThanTrong(thuocForm.getThanTrong());
+				session.setAttribute("thanTrong", thuocForm.getThanTrong());
+			}
+
+			if (thuocForm.getDDH() == null || "".equals(thuocForm.getDDH()))
+				thuocForm.setDDH((String) session.getAttribute("DDH"));
+			else {
+				thuocForm.setDDH(thuocForm.getDDH());
+				session.setAttribute("DDH", thuocForm.getDDH());
+			}
+
+			if (thuocForm.getMaNhomThuoc() == 0) {
+				thuocForm.setMaNhomThuoc((int) session.getAttribute("maNhomThuoc"));
+			} else
+				session.setAttribute("maNhomThuoc", thuocForm.getMaNhomThuoc());
+
+			if (thuocForm.getMaLoaiThuoc() == 0) {
+				thuocForm.setMaLoaiThuoc((int) session.getAttribute("maLoaiThuoc"));
+				thuocForm.setListNhomThuoc(thuocBO.getListNhomThuoc((int) session.getAttribute("maLoaiThuoc")));
+			} else
+				session.setAttribute("maLoaiThuoc", thuocForm.getMaLoaiThuoc());
+
+			tenThuoc = thuocForm.getTenThuoc();
+			congThuc = thuocForm.getCongThuc();
+			tenKhoaHoc = thuocForm.getTenKhoaHoc();
+			dieuChe = thuocForm.getDieuChe();
+			tinhChat = thuocForm.getTinhChat();
+			tacDung = thuocForm.getTacDung();
+			chiDinh = thuocForm.getChiDinh();
+			baoQuan = thuocForm.getBaoQuan();
+			thanTrong = thuocForm.getThanTrong();
+			DDH = thuocForm.getDDH();
+			maNhomThuoc = thuocForm.getMaNhomThuoc();
+			maLoaiThuoc = thuocForm.getMaLoaiThuoc();
+
+			// session.setAttribute("kt", 1);
 		}
 		
 		
@@ -297,90 +285,29 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 				session.setAttribute("maNhomThuoc", maNhomThuoc);
 				session.setAttribute("listBenh", thuocForm.getListBenh());
 			}
+			if(request.getParameter("check")!=null){
+				System.out.println("Maloai :"+request.getParameter("maLoaiThuoc"));
+				System.out.println("MaNHOm: "+request.getParameter("maNhomThuoc"));
+				session.setAttribute("tenThuoc", request.getParameter("tenThuoc"));
+				session.setAttribute("congThuc", request.getParameter("congThuc"));
+				session.setAttribute("tenKhoaHoc", request.getParameter("tenKhoaHoc"));
+				session.setAttribute("dieuChe", request.getParameter("dieuChe"));
+				session.setAttribute("tinhChat", request.getParameter("tinhChat"));
+				session.setAttribute("tacDung", request.getParameter("tacDung"));
+				session.setAttribute("chiDinh", request.getParameter("chiDinh"));
+				session.setAttribute("baoQuan", request.getParameter("baoQuan"));
+				session.setAttribute("thanTrong", request.getParameter("thanTrong"));
+				session.setAttribute("DDH", request.getParameter("DDH"));
+				session.setAttribute("maLoaiThuoc", Integer.parseInt(request.getParameter("maLoaiThuoc")));
+				session.setAttribute("listBenh", thuocForm.getListBenh());
+				session.setAttribute("kt", 1);
+				
+				printWriter.write(request.getParameter("tenThuoc")+"");
+				printWriter.flush();
+				return null;
+			}
 			return mapping.findForward("suaThuoc");
 		}
 		
 	}
-	
-	
-	
-	
-	
-	/*@Override
-	public ActionForward execute(ActionMapping mapping, ActionForm form,
-			HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		ThuocForm thuocForm = (ThuocForm) form;
-		ThuocBO thuocBO = new ThuocBO();
-		
-		int maThuoc = thuocForm.getMaThuoc();
-		
-		// list loai thuoc
-		thuocForm.setListLoaiThuoc(thuocBO.getListLoaiThuoc());
-		//list nhom thuoc
-		thuocForm.setListNhomThuoc(thuocBO.getListNhomThuoc(thuocForm.getMaLoaiThuoc()));
-		
-		if(!"".equals(thuocForm.getTenThuoc()) && thuocForm.getTenThuoc() != null)
-			thuocForm.setTenThuoc(new String(thuocForm.getTenThuoc().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getCongThuc()) && thuocForm.getCongThuc() != null)
-			thuocForm.setCongThuc(new String(thuocForm.getCongThuc().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getTenKhoaHoc()) && thuocForm.getTenKhoaHoc() != null)
-			thuocForm.setTenKhoaHoc(new String(thuocForm.getTenKhoaHoc().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getDieuChe()) && thuocForm.getDieuChe() != null)
-			thuocForm.setDieuChe(new String(thuocForm.getDieuChe().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getTinhChat()) && thuocForm.getTinhChat() != null)
-			thuocForm.setTinhChat(new String(thuocForm.getTinhChat().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getTacDung()) && thuocForm.getTacDung() != null)
-			thuocForm.setTacDung(new String(thuocForm.getTacDung().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getChiDinh()) && thuocForm.getChiDinh() != null)
-			thuocForm.setChiDinh(new String(thuocForm.getChiDinh().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getBaoQuan()) && thuocForm.getBaoQuan() != null)
-			thuocForm.setBaoQuan(new String(thuocForm.getBaoQuan().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getThanTrong()) && thuocForm.getThanTrong() != null)
-			thuocForm.setThanTrong(new String(thuocForm.getThanTrong().getBytes("ISO-8859-1"),"UTF-8"));
-		if(!"".equals(thuocForm.getDDH()) && thuocForm.getDDH() != null)
-			thuocForm.setDDH(new String(thuocForm.getDDH().getBytes("ISO-8859-1"),"UTF-8"));
-		
-		String tenThuoc = thuocForm.getTenThuoc();
-		String congThuc = thuocForm.getCongThuc();
-		String tenKhoaHoc = thuocForm.getTenKhoaHoc();
-		String dieuChe = thuocForm.getDieuChe();
-		String tinhChat = thuocForm.getTinhChat();
-		String tacDung = thuocForm.getTacDung();
-		String chiDinh = thuocForm.getChiDinh();
-		String baoQuan = thuocForm.getBaoQuan();
-		String thanTrong = thuocForm.getThanTrong();
-		String DDH = thuocForm.getDDH();
-		int maNhomThuoc = thuocForm.getMaNhomThuoc();
-		int trangThai = 1; 				// Vi admin them nen khong can phe duyet
-		
-		System.out.println("------"+tenThuoc);
-		
-		if("submit".equals(thuocForm.getSubmit()))
-		{
-			thuocBO.suaThuoc(maThuoc,tenThuoc,congThuc,tenKhoaHoc,dieuChe,tinhChat,tacDung,chiDinh,baoQuan,thanTrong,DDH,maNhomThuoc);
-			return mapping.findForward("suaThuocXong");
-		}
-		else
-		{
-			Thuoc thuoc = thuocBO.getThuoc(maThuoc);
-			
-			thuocForm.setTenThuoc(thuoc.getTenThuoc());
-			thuocForm.setCongThuc(thuoc.getCongThuc());
-			thuocForm.setTenKhoaHoc(thuoc.getTenKhoaHoc());
-			thuocForm.setDieuChe(thuoc.getDieuChe());
-			thuocForm.setTinhChat(thuoc.getTinhChat());
-			thuocForm.setTacDung(thuoc.getTacDung());
-			thuocForm.setChiDinh(thuoc.getChiDinh());
-			thuocForm.setBaoQuan(thuoc.getBaoQuan());
-			thuocForm.setThanTrong(thuoc.getThanTrong());
-			thuocForm.setDDH(thuoc.getDDH());
-			thuocForm.setMaLoaiThuoc(thuoc.getMaLoaiThuoc());
-			thuocForm.setMaNhomThuoc(thuoc.getMaNhomThuoc());
-			
-			return mapping.findForward("suaThuoc");
-		}
-		
-	}*/
-
 }

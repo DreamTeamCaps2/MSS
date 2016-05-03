@@ -21,17 +21,28 @@
 <script type="text/javascript"
 	src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
 
-<script type="text/javascript" src="js/diadiem.json"></script>
 <script type="text/javascript">
 	var map;
 
-	var string = JSON.stringify(data);
+	var data;
+	function createJSON(json){
+		data=json;
+	}
+	
+	 $.ajax({
+         type: "GET",
+         url: "JSON.jsp",
+         dataType: "json",
+         success: function(json){
+         createJSON(json);
 
-	var data = eval(eval(string));
-	console.log(data);
+         },
+
+         });
+	 data=eval(data);
 
 	var madiadiem = "<bean:write name="diaDiemForm" property="maDiaDiem"/>";
-	var loai = "<bean:write name="diaDiemForm" property="maDiaDiem"/>";
+	var loai = "<bean:write name="diaDiemForm" property="loaiDiaDiem"/>";
 	function createMap() {
 		var map_canvas = document.getElementById('google-map');
 		var directionsDisplay = new google.maps.DirectionsRenderer;

@@ -72,6 +72,7 @@ $(document).ready(function() {
 });
 </script>
 <br>
+	<!-- 	
 	<div class="container-fluid" style="width: 1200px;">
 		<div class="col-xs-6 col-md-4" style="padding: 1px; width: 389px; height: 146px;">
 			<a href="http://didongviet.vn/htc-one-m9-my-used.html" class="thumbnail">
@@ -88,9 +89,10 @@ $(document).ready(function() {
 	      		<img src="img/004.jpg" alt="...">
 	    	</a>
 		</div>		
-	</div>
+	</div> 
+	-->
 
-	<div class="container-fluid" style="width: 1200px; margin-top: 50px;">
+	<div class="container-fluid" style="width: 1200px; margin-top: 20px;">
 		<div class="item">
 			<ul id="content-slider" class="content-slider">
 				<c:forEach items="${thongBaoForm.listND}" var="list">
@@ -105,12 +107,11 @@ $(document).ready(function() {
 		</div>
 	</div>
 
-	<div class="container-fluid" style="width: 1200px; padding-top: 20px;">
+	<div class="container-fluid" style="width: 1200px;">
 		<div class="acolumn">
 			<div class="opt">
 				<a id="tab-label-new" class="link-post active" href="#tab-new-topic">new topic</a> 
-				<a id="tab-label-review" class="link-post" href="#tab-review">review</a>
-				<div class="feature-post">
+				<!-- <div class="feature-post">
 					<a href="javascript:void(0)" id="show_result">Sắp xếp<i
 						class="fa fa-angle-down"></i></a>
 					<ul id="ul_sort" class="_none">
@@ -121,171 +122,104 @@ $(document).ready(function() {
 						<li><a href="javascript:void(0)" id="sort_view">Sắp xếp
 								theo lượt xem</a></li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 			<div class="item-tabs" id="tab-new-topic" style="display: block;">
+			<div id="item-result1">
             <ul class="list-post" id="new-topic">
 	            <c:forEach items="${thongBaoForm.listBaiViet}" var="list">
-	            <li>
-                    <a class="thumb" href="link">
-                    	<img alt="" src="images/${list.hinhAnh }">
-                    </a> 
-                    <%-- <html:link styleClass="title" action="thongTinTK?tenDangNhap=${list.tenDangNhap}">
-                    	<c:out value="${list.tenDangNhap}"/>
-                    </html:link> --%>
-                    <html:link styleClass="title" action="chi-tiet-bai-viet?maBaiViet=${list.maBaiViet}">
-                    	<c:out value="${list.tieuDe}"/>
-                    </html:link>
-                    <%-- <a class="title" href="/MSS/thongTinTK?tenDangNhap=${list.tenDangNhap}"><c:out value="${list.tenDangNhap}"></c:out></a> --%>
-                    <p>
-                    	<c:out value="${list.tomTat}"></c:out>
-                    </p>
-                    <div class="st-post-feature">
-                        <span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"></c:out></span>
-                    </div>
-	            </li>
+	           	<div class="itemBaiViet">
+	           		<li>
+	                    <a class="thumb" href="/MSS/chi-tiet-bai-viet.do?maBaiViet=${list.maBaiViet}">
+	                    	<img alt="" src="images/${list.hinhAnh }">
+	                    </a> 
+	                    <html:link styleClass="title" action="chi-tiet-bai-viet?maBaiViet=${list.maBaiViet}">
+	                    	<c:out value="${list.tieuDe}"/>
+	                    </html:link>
+	                    <p>
+	                    	<c:out value="${list.tomTat}"></c:out>
+	                    </p>
+	                    <div class="st-post-feature">
+	                        <span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"></c:out></span>
+	                    </div>
+		            </li>
+		        </div>
 	            </c:forEach>
             </ul>
-            <div id="list-page">
-                <div class="paging-item">
-                    <span class="current" lang="1">1</span><a class="page-numbers" href="javascript:void(0)" lang="2">2</a><a class="page-numbers" href="javascript:void(0)" lang="3">3</a><a class=
-                    "page-numbers" href="javascript:void(0)" lang="4">4</a><a class="page-numbers" href="javascript:void(0)" lang="5">5</a><a class="page-numbers" href="javascript:void(0)" lang=
-                    "2"><i class="fa fa-angle-right fs19"></i></a><a class="page-numbers" href="javascript:void(0)" lang="164"><i class="fa fa-angle-double-right fs19"></i></a>
-                </div>
             </div>
-        </div>
-
+            <div class="page-navigation" id="pagination" align="center"></div>
 			<script>
-        var homeTabSelect = "list-page";
-        var catid = 5;
-
-        $('#tab-label-new').click(function() {
-            homeTabSelect = "list-page";
-            catid = 5;
-        });
-
-        $('#tab-label-review').click(function() {
-            homeTabSelect = "list-page-reviews";
-            catid = 1;
-        });
-
-        jQuery(document).ready(function(){
-            jQuery("#list-page").on("click",".page-numbers",function(){
-                var page = jQuery(this).attr("lang");
-                paging_ajax(page,"new_topic","new-topic","list-page",catid);
-                $('html, body').animate({ scrollTop: 0 },100);
-            });
-
-            jQuery("#list-page-reviews").on("click",".page-numbers",function(){
-                var page = jQuery(this).attr("lang");
-                paging_ajax(page,"new_topic","reviews","list-page-reviews",catid);
-                $('html, body').animate({ scrollTop: 0 },100);
-            });
-
-            var usort = "id";
-        });
-    </script>
+						jQuery(function($) {
+							var items = $(".itemBaiViet");
+							var numItems = items.length;
+							var perPage = 10;
+							items.slice(perPage).hide();
+							$("#pagination").pagination({
+								items : numItems,
+								prevText: "<",
+								nextText: ">",
+								itemsOnPage : perPage,
+								cssStyle : "light-theme",
+								onPageClick : function(pageNumber) { // this is where the magic happens
+									// someone changed page, lets hide/show trs appropriately
+									var showFrom = perPage * (pageNumber - 1);
+									var showTo = showFrom + perPage;
+									items.hide() // first hide everything, then show for the new page
+									.slice(showFrom, showTo).show();
+								}
+							});
+						});
+					</script>
+        	</div>
 
 </div>
 	<div class="bcolumn">
-<div class="frm-search">
-    <form id="form_search" name="form_search" method="get" onsubmit="return false">
-        <input type="text" placeholder="Tìm kiếm..." value="" name="keywords">
-        <select name="type_search">
-            <option value="item" selected="">Sản phẩm</option><option value="news">Tin tức</option>
-        </select>
-        <input type="button" onclick="javascript: return doSubmit('');" name="search" title="Tìm kiếm" value="">
-    </form>
-</div><div class="frm-sign-up">
-            <h4>Đăng ký tài khoản để có được thông tin sản phẩm mới và đăng bài trên site</h4>
-        <a class="btn-sign-up" href="javascript:void(0)">Đăng ký</a>
-        <div class="divide">Hoặc</div>
-        <a class="btn-sign-in" href="javascript:void(0)">Đăng nhập</a>
-    </div>   
-    
-<div class="hot-topic">
-    <h3>TOPIC hot trong tháng</h3>
-            <ul>
-                            <li>
-                    <div class="numb"><i>1</i></div>
-                    <div class="item">
-                        <a href="/rv5/Tin-tuc-2212/Hinh-anh-tren-tay-Samsung-Galaxy-S7-camera-da-khong-con-loi.html" title="Hình ảnh trên tay Samsung Galaxy S7: camera đã không còn lồi.">Hình ảnh trên tay Samsung Galaxy S7: camera đã không còn lồi.</a>
-                        <span><i class="fa fa-eye"></i> 42,073</span>
-                    </div>
-                </li>
-                            <li>
-                    <div class="numb"><i>2</i></div>
-                    <div class="item">
-                        <a href="/rv5/Tin-tuc-170/Huong-dan-fix-full-iPhone-lock-nhat-iOS-8-x-updated-to-8-4.html" title="Hướng dẫn fix full iPhone lock nhật iOS 8.x (updated to 8.4)">Hướng dẫn fix full iPhone lock nhật iOS 8.x (updated to 8.4)</a>
-                        <span><i class="fa fa-eye"></i> 41,018</span>
-                    </div>
-                </li>
-                            <li>
-                    <div class="numb"><i>3</i></div>
-                    <div class="item">
-                        <a href="/rv5/Tin-tuc-1168/Ung-dung-My-iDol-tao-nhan-vat-3D-vui-nhon-tu-khuon-mat-cua-ban.html" title="Ứng dụng My iDol tạo nhân vật 3D vui nhộn từ khuôn mặt của bạn.">Ứng dụng My iDol tạo nhân vật 3D vui nhộn từ khuôn mặt của bạn.</a>
-                        <span><i class="fa fa-eye"></i> 22,092</span>
-                    </div>
-                </li>
-                            <li>
-                    <div class="numb"><i>4</i></div>
-                    <div class="item">
-                        <a href="/rv5/Tin-tuc-1079/Doupai-phan-mem-ghep-mat-vo-video-hai-huoc.html" title="Doupai - phần mềm ghép mặt vô video hài hước">Doupai - phần mềm ghép mặt vô video hài hước</a>
-                        <span><i class="fa fa-eye"></i> 20,659</span>
-                    </div>
-                </li>
-                            <li>
-                    <div class="numb"><i>5</i></div>
-                    <div class="item">
-                        <a href="/rv3/Nguoi-dung-review-305/Review-Danh-gia-chi-tiet-Samsung-Galaxy-J5-man-hinh-dep-hieu-nang-kha-pin-tot.html" title="Review Đánh giá chi tiết Samsung Galaxy J5: màn hình đẹp, hiệu năng khá, pin tôt">Review Đánh giá chi tiết Samsung Galaxy J5: màn hình đẹp, hiệu năng khá, pin tôt</a>
-                        <span><i class="fa fa-eye"></i> 19,872</span>
-                    </div>
-                </li>
-                        <li><a href="#"></a></li>
+    <div class="hot-topic">
+    	<h3>Những Bệnh Xem Nhiều Nhất</h3>
+       	<ul style="margin-left: 10px;">
+       	<c:forEach items="${thongBaoForm.listBenhXemNhieu}" var="list" varStatus="loopCounter">
+         	<li>
+         		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
+     			<div class="item">
+                  	<a  href="/MSS/chi-tiet-benh.do?mat=${list.maBenh}" title="${list.tenBenh}"><c:out value="${list.tenBenh}"/></a>
+              		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
+                </div>               
+           	</li>
+        </c:forEach>
+        <li><a href="#"></a></li>
         </ul>
-    </div>    
-<div class="st-fun">
-    <h3>ảnh vui công nghệ</h3>
-            <ul>
-                            <li>
-                    <a class="thumb" href="#" title="Thực trạng hiện nay :v">
-                                                    <img src="http://reviewdao.vn/img/thumb/120_80/news/2016/03/0/451/20160329162708_de7bb59.gif" alt="Thực trạng hiện nay :v">
-                                            </a>
-                    <a class="title" title="Thực trạng hiện nay :v" href="/rv4/Vui-cong-nghe-2677/Thuc-trang-hien-nay-v.html">Thực trạng hiện nay :v</a>
-                    <span><i class="fa fa-eye"></i> 272</span>
-                </li>
-                            <li>
-                    <a class="thumb" href="#" title="Năm nay chưa thấy a Quảng nhá hàng gì cả">
-                                                    <img src="http://reviewdao.vn/img/thumb/120_80/news/2016/03/0/451/20160327142206_12512661_1591555697832879_3380251796.jpg" alt="Năm nay chưa thấy a Quảng nhá hàng gì cả">
-                                            </a>
-                    <a class="title" title="Năm nay chưa thấy a Quảng nhá hàng gì cả" href="/rv4/Vui-cong-nghe-2658/Nam-nay-chua-thay-a-Quang-nha-hang-gi-ca.html">Năm nay chưa thấy a Quảng nhá hàng gì cả</a>
-                    <span><i class="fa fa-eye"></i> 318</span>
-                </li>
-                            <li>
-                    <a class="thumb" href="#" title="Mỗi người có một lý do riêng để mua iPhone SE :3">
-                                                    <img src="http://reviewdao.vn/img/thumb/120_80/news/2016/03/0/451/20160325102250_12884637_917193368401683_147189029_n.jpg" alt="Mỗi người có một lý do riêng để mua iPhone SE :3">
-                                            </a>
-                    <a class="title" title="Mỗi người có một lý do riêng để mua iPhone SE :3" href="/rv4/Vui-cong-nghe-2634/Moi-nguoi-co-mot-ly-do-rieng-de-mua-iPhone-SE-3.html">Mỗi người có một lý do riêng để mua iPhone SE :3</a>
-                    <span><i class="fa fa-eye"></i> 396</span>
-                </li>
-                            <li>
-                    <a class="thumb" href="#" title="Mình rất thích đút ra đút vào mình sẽ mua LG G5 :3">
-                                                    <img src="http://reviewdao.vn/img/thumb/120_80/news/2016/03/0/451/20160323221555_anigif.gif" alt="Mình rất thích đút ra đút vào mình sẽ mua LG G5 :3">
-                                            </a>
-                    <a class="title" title="Mình rất thích đút ra đút vào mình sẽ mua LG G5 :3" href="/rv4/Vui-cong-nghe-2616/Minh-rat-thich-dut-ra-dut-vao-minh-se-mua-LG-G5-3.html">Mình rất thích đút ra đút vào mình sẽ mua LG G5 :3</a>
-                    <span><i class="fa fa-eye"></i> 376</span>
-                </li>
-                            <li>
-                    <a class="thumb" href="#" title="Khi mà Tim Cook nói: &quot;One more thing...&quot; ">
-                                                    <img src="http://reviewdao.vn/img/thumb/120_80/news/2016/03/0/451/20160322122140_12801259_492960377554282_81990069866.jpg" alt="Khi mà Tim Cook nói: &quot;One more thing...&quot; ">
-                                            </a>
-                    <a class="title" title="Khi mà Tim Cook nói: &quot;One more thing...&quot; " href="/rv4/Vui-cong-nghe-2597/Khi-ma-Tim-Cook-noi-One-more-thing.html">Khi mà Tim Cook nói: "One more thing..." </a>
-                    <span><i class="fa fa-eye"></i> 455</span>
-                </li>
-                        <li><a title="Xem thêm" href="/Vui-cong-nghe-nc4.html">xem thêm</a></li>
+    </div>
+    <div class="hot-topic">
+    	<h3>Những Thuốc Xem Nhiều Nhất</h3>
+       	<ul style="margin-left: 10px;">
+       	<c:forEach items="${thongBaoForm.listThuocXemNhieu}" var="list" varStatus="loopCounter">
+         	<li>
+         		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
+     			<div class="item">
+                  	<a  href="/MSS/chi-tiet-thuoc.do?mat=${list.maThuoc}" title="${list.tenThuoc}"><c:out value="${list.tenThuoc}"/></a>
+              		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
+                </div>               
+           	</li>
+        </c:forEach>
+        <li><a href="#"></a></li>
         </ul>
-    </div>   
-</div>
+    </div>
+   	<div class="hot-topic">
+    	<h3>Những Bài Viết Xem Nhiều Nhất</h3>
+       	<ul style="margin-left: 10px;">
+       	<c:forEach items="${thongBaoForm.listBaiVietXemNhieu}" var="list" varStatus="loopCounter">
+         	<li>
+         		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
+     			<div class="item">
+                  	<a  href="/MSS/chi-tiet-bai-viet.do?maBaiViet=${list.maBaiViet}" title="${list.tieuDe}"><c:out value="${list.tieuDe}"/></a>
+              		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
+                </div>               
+           	</li>
+        </c:forEach>
+        <li><a href="#"></a></li>
+        </ul>
+    </div>
+	</div>
 	</div>
 <%@ include file="_footer.jsp"%>
 </body>

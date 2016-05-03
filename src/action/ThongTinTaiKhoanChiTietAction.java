@@ -29,9 +29,7 @@ public class ThongTinTaiKhoanChiTietAction extends Action{
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		DangNhapAction action = new DangNhapAction();
-		DangNhapForm dangNhapForm = new DangNhapForm();
-		action.execute(mapping,dangNhapForm , request, response);
+		Variable.getTB(mapping,form,request,response);
 		
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		ThuocBO thuocBO = new ThuocBO();
@@ -123,6 +121,8 @@ public class ThongTinTaiKhoanChiTietAction extends Action{
 		}
 		
 		String tenDangNhap1 = taiKhoanForm.getTenDangNhap();
+		
+		
 		TaiKhoan taiKhoan = taiKhoanBO.getThongTinTaiKhoan(tenDangNhap1, "");
 		session1.setAttribute("taiKhoan1", taiKhoan);
 		

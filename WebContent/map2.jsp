@@ -23,15 +23,31 @@
 <script type="text/javascript" src="js/diadiemkc1.json"></script>
 <script type="text/javascript">
 	var map;
-	var string = JSON.stringify(data);
+/* 	var string = JSON.stringify(data);
 	
 	var data = eval(eval(string));
-	console.log(data);
+	console.log(data); */
+	var data;
+	function createJSON(json){
+		data=json;
+	}
 	
-	function createMap() {var map_canvas = document.getElementById('google-map');
+	 $.ajax({
+         type: "GET",
+         url: "JSON.jsp",
+         dataType: "json",
+         success: function(json){
+         createJSON(json);
+
+         },
+
+         });
+	 data=eval(data);
+	 
+	function createMap() {
+		var map_canvas = document.getElementById('google-map');
 
 	// Option map
-	var t;
 	navigator.geolocation.getCurrentPosition(function(position) {
 		var here = new google.maps.LatLng(position.coords.latitude,
 				position.coords.longitude);
@@ -42,6 +58,7 @@
 			icon : 'http://localhost:8080/MSS/img/me.png'
 
 		});
+		
 		for(var i in data){
 			var kc=google.maps.geometry.spherical.computeDistanceBetween
 			(new google.maps.LatLng(data[parseInt(i)].lat, data[parseInt(i)].longi), new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
@@ -65,7 +82,14 @@
 	};
 	
 	// Đối tương map
-	map = new google.maps.Map(map_canvas, map_options);	}
+	map = new google.maps.Map(map_canvas, map_options);	
+	
+	
+	
+         
+	
+	
+	 }
 	
 	// Class StoreBubble
 
@@ -139,9 +163,8 @@
 				} 
 			
 }
-		function outmouse(madd,loai) {
-			bigImg(madd,loai).inforwindow.close();
-		}
+		
+		
 		
 	/* $(function() {
 		createMap();
@@ -202,11 +225,11 @@
 
 
 	<div
-		style="z-index: 5; background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 300px; height: 450px; line-height: 3em; overflow: auto; padding: 5px; border: double;">
+		style="z-index: 5;top:15%;left:3%; background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 300px; height: 450px; line-height: 3em; overflow: auto; padding: 5px; ">
 		<h1>List Address</h1>
 		<hr>
 
-		<logic:iterate name="diaDiemForm" property="listDiaDiem" id="tb">
+		<%-- <logic:iterate name="diaDiemForm" property="listDiaDiem" id="tb">
 			<bean:define id="madd" name="tb" property="maDiaDiem"></bean:define>
 			<bean:define id="loai1" name="tb" property="loai"></bean:define>
 			<div onmouseover="bigImg(${madd},${loai1})"
@@ -225,30 +248,73 @@
 				<br> So Dien Thoai:
 				<bean:write name="tb" property="sdt" />
 				<div id="kcmadd${madd}" ></div>
-				<br>
 
-				<%-- <p id= "logg"><bean:write  name="tb" property="longi" /></p>
-				<p><bean:write  name="tb" property="lati" /></p> --%>
-				<a href="/MSS/chi-duong.do?maDiaDiem=${madd}&loai=${loai1}">chỉ
+				<p id= "logg"><bean:write  name="tb" property="longi" /></p>
+				<p><bean:write  name="tb" property="lati" /></p>
+				<a href="/MSS/chi-duong.do?maDiaDiem=${madd}&loaiDiaDiem=${loai1}">chỉ
 					đường</a>
 				
 			</div>
 
 
 			<hr style="border-top: 5px solid #2B2626">
+		</logic:iterate> --%>
+		<logic:iterate name="diaDiemForm" property="listDiaDiem" id="tb">
+			<bean:define id="madd" name="tb" property="maDiaDiem"></bean:define>
+			<bean:define id="loai1" name="tb" property="loai"></bean:define>
+
+			<div class="listDiaDiem">
+			<div onmouseover="bigImg(${madd},${loai1})"
+				 id="madd${madd}loai${loai1}" boder="double">
+				<a href="thongTinTKChiTiet.do?tenDangNhap=<bean:write name="tb" property="tenDangNhap" />"><h3>
+						<logic:equal name="tb" property="loai" value="1">Bệnh Viện 
+					</logic:equal>
+						<logic:equal name="tb" property="loai" value="2">Nhà Thuốc 
+					</logic:equal>
+						<logic:equal name="tb" property="loai" value="3">Phòng Khám 
+					</logic:equal>
+						
+						<bean:write name="tb" property="ten" />
+					</h3> </a>
+					<p>
+				<img src="img/address.png">
+				<bean:write name="tb" property="diaChi" /></p>
+				
+				<img src="img/phone.png">
+				<bean:write name="tb" property="sdt" />
+				
+				<div id="kcmadd${madd}"></div>
+
+				<%-- <p id= "logg"><bean:write  name="tb" property="longi" /></p>
+				<p><bean:write  name="tb" property="lati" /></p> --%>
+				<a href="/MSS/chi-duong.do?maDiaDiem=${madd}&loai=${loai1}">chỉ
+					đường</a>
+			</div>
+
+			<hr>
+			</div>
 		</logic:iterate>
 	</div>
-
-
+	
+<html:form action="/ban-do" method="get">
+<b>Tìm theo </b> <html:select property="loaiDiaDiem" styleId="mode">
+			<html:option value="0">Tất cả</html:option>
+			<html:option value="1">Bệnh viện</html:option>
+			<html:option value="2">Tiệm thuốc</html:option>
+			<html:option value="3">Phòng Khám</html:option>
+		</html:select>
+	<input type="text" id="test" size="20" name="search">
+	<html:submit property="submit" value="search" >
+	</html:submit>
 	<div id="google-map" style="width: 1400px; height: 600px;"></div>
 	<div id="floating-panel" style="z-index: 5;">
-	<html:form action="/dia-diem" method="get">
-		<b>Mode of Travel: </b> <select name="loaiDiaDiem" id="mode">
-			<option value="0">Tất cả</option>
-			<option value="1">Bệnh viện</option>
-			<option value="2">Tiệm thuốc</option>
-			<option value="3">Phòng Khám</option>
-		</select>
+	
+		<b>Tìm theo </b> <html:select property="loaiDiaDiem" styleId="mode">
+			<html:option value="0">Tất cả</html:option>
+			<html:option value="1">Bệnh viện</html:option>
+			<html:option value="2">Tiệm thuốc</html:option>
+			<html:option value="3">Phòng Khám</html:option>
+		</html:select>
 	</div>
 	<script type="text/javascript">
 	
@@ -278,9 +344,7 @@
 		}	
 	});
 	</script>
-	<input type="text" id="test" size="20" name="search">
-	<html:submit property="submit" value="tim" >
-	</html:submit>
+
 	
 	<script type="text/javascript"
 		src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry&callback=load"></script>

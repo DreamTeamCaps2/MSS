@@ -70,7 +70,6 @@ public class ThongTinTaiKhoanAction extends Action{
 				try {
 				 	file = taiKhoanForm.getAnhDaiDien();
 				 	
-				 	
 				 	chuoi = tenDangNhap+"_avatar.jpg";
 				 	String path = getServlet().getServletContext().getRealPath("/")+"img"+"/"+chuoi;
 				 	System.out.println(path);

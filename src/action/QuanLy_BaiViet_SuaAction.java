@@ -31,6 +31,7 @@ public class QuanLy_BaiViet_SuaAction extends Action{
         FormFile file = null;
 		
 		int maBaiViet = baiVietForm.getMaBaiViet();
+		String anhBia="";
 		
 		if("OK".equals(baiVietForm.getSubmit())){
 			
@@ -40,22 +41,26 @@ public class QuanLy_BaiViet_SuaAction extends Action{
 			String noiDung = baiVietForm.getNoiDung();
 			String tomTat = baiVietForm.getTomTat();
 			
-			try {
-				 
-			 	file = baiVietForm.getFile();
-			 	String path = getServlet().getServletContext().getRealPath("/")+"images"+"/"+file.getFileName();
-//	            String filePath = System.getProperty("java.io.tmpdir") + "/" + file.getFileName();
-	            System.out.println(path);
-//	            System.out.println(filePath);
-	            outputStream = new FileOutputStream(new File(path));
-	            outputStream.write(file.getFileData());
-	            
-	        } finally {
-	            if (outputStream != null) {
-	                outputStream.close();
-	            }
-	        }
-			hinhAnh = file.getFileName();
+			file = baiVietForm.getFile();
+			if(file.getFileName()!=""){
+				System.out.println(file.getFileName());
+				String chuoi = tieuDe+"_ava.jpg";
+				try {
+		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/" + chuoi;
+		            System.out.println(path);
+		            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
+		            outputStream = new FileOutputStream(new File(path));
+		            outputStream.write(file.getFileData());
+		            
+		        } finally {
+		            if (outputStream != null) {
+		                outputStream.close();
+		            }
+		        }
+				hinhAnh = chuoi;
+			}
+			else
+				hinhAnh = (String)request.getSession().getAttribute("anhBia");
 			
 			System.out.println(maBaiViet);
 			baiVietBO.suaBaiViet(maBaiViet,tieuDe,tomTat,hinhAnh,noiDung);
@@ -70,6 +75,9 @@ public class QuanLy_BaiViet_SuaAction extends Action{
 			baiVietForm.setHinhAnh(baiViet.getHinhAnh());
 			baiVietForm.setNoiDung(baiViet.getNoiDung());
 			
+			anhBia = baiViet.getHinhAnh();
+			
+			request.getSession().setAttribute("anhBia", anhBia);
 			return mapping.findForward("suaBaiViet");
 		}
 	}

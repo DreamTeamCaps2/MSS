@@ -96,7 +96,7 @@
 				
 			</div>
 		</div>
-		<div class="page-navigation" id="pagination"></div>	
+		<!-- <div class="page-navigation" id="pagination"></div>	
 		
 						<script>
 						jQuery(function($) {
@@ -119,7 +119,7 @@
 			                    }
 			                });
 			            });
-						</script>
+						</script> -->
 	</div>
 </body>
 </html>

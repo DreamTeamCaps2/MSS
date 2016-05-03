@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import org.apache.struts.action.ActionForm;
 
 import model.bean.DiaDiem;
-import model.bean.ThongBao;
 
 public class DiaDiemForm extends ActionForm {
 
 	private ArrayList<DiaDiem> listDiaDiem;
-	
+
 	private String loaiDiaDiem;
 	private String search;
-	private String submit, maDiaDiem;
+	private String submit;
+	private String tenDangNhap;
+	private String json;
+	private String maDiaDiem;
 	
 	public String getMaDiaDiem() {
 		return maDiaDiem;
@@ -21,6 +23,22 @@ public class DiaDiemForm extends ActionForm {
 
 	public void setMaDiaDiem(String maDiaDiem) {
 		this.maDiaDiem = maDiaDiem;
+	}
+
+	public String getTenDangNhap() {
+		return tenDangNhap;
+	}
+
+	public void setTenDangNhap(String tenDangNhap) {
+		this.tenDangNhap = tenDangNhap;
+	}
+
+	public String getJson() {
+		return json;
+	}
+
+	public void setJson(String json) {
+		this.json = json;
 	}
 
 	public String getLoaiDiaDiem() {
@@ -54,6 +72,7 @@ public class DiaDiemForm extends ActionForm {
 	public void setListDiaDiem(ArrayList<DiaDiem> listDiaDiem) {
 		this.listDiaDiem = listDiaDiem;
 	}
+
 
 	
 

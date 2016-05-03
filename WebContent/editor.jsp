@@ -9,7 +9,7 @@
 <html>
 <head lang="en">
 <meta charset="UTF-8">
-<title>Đăng Ký Tài Khoản</title>
+<title>Thêm Bài Viết</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/font-awesome.css" />
 <link rel="stylesheet"

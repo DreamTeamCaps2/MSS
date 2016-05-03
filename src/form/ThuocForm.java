@@ -3,6 +3,7 @@ package form;
 import java.util.ArrayList;
 
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.upload.FormFile;
 
 import model.bean.Benh;
 import model.bean.LoaiThuoc;
@@ -46,7 +47,7 @@ public class ThuocForm extends ActionForm {
 	private int kt,luotXem;
 	private static ArrayList<LuotXem> listLuotXem =  new ArrayList<LuotXem>();
 	
-	
+	private FormFile file;
 	
 	public static ArrayList<LuotXem> getListLuotXem() {
 		return listLuotXem;
@@ -280,6 +281,14 @@ public class ThuocForm extends ActionForm {
 
 	public void setListThuocCuaHang(ArrayList<Thuoc> listThuocCuaHang) {
 		this.listThuocCuaHang = listThuocCuaHang;
+	}
+
+	public FormFile getFile() {
+		return file;
+	}
+
+	public void setFile(FormFile file) {
+		this.file = file;
 	}
 
 }

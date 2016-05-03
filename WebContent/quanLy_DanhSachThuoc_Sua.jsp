@@ -180,20 +180,34 @@
 													var DDH = $("#select-DDH").val();
 													var maNhomThuoc= $("#select-maNhomThuoc").val();
 												   
-												   window.location.assign("/Caps2/sua-thuoc.do?maLoaiThuoc="+maLoaiThuoc
-														   +"&maThuoc="+maThuoc
-														   +"&tenThuoc="+tenThuoc
-														   +"&congThuc="+congThuc
-														   +"&tenKhoaHoc="+tenKhoaHoc
-														   +"&dieuChe="+dieuChe
-														   +"&tinhChat="+tinhChat
-														   +"&tacDung="+tacDung
-														   +"&chiDinh="+chiDinh
-														   +"&baoQuan="+baoQuan
-														   +"&thanTrong="+thanTrong
-														   +"&DDH="+DDH
-														   +"&maNhomThuoc="+maNhomThuoc
-														   +"&kt=1");
+													var requestData = {
+															tenThuoc: tenThuoc,
+															congThuc: congThuc,
+															tenKhoaHoc : tenKhoaHoc,
+															dieuChe : dieuChe,
+															tinhChat : tinhChat,
+															tacDung : tacDung,
+															chiDinh : chiDinh,
+															baoQuan : baoQuan,
+															thanTrong : thanTrong,
+															DDH : DDH,
+															maLoaiThuoc : maLoaiThuoc,
+															maNhomThuoc : maNhomThuoc,
+															check : 1,
+															kt : 1
+											  	      };
+											            $.ajax({
+											                url: '/MSS/sua-thuoc.do',
+											                type: 'POST',
+											                data: requestData,
+											                dataType: 'text',
+											                success:function(data,status){
+											                	alert(data);
+											                	window.location.assign("/MSS/sua-thuoc.do?&kt=1");
+											  				},
+											  				error:function(data,status){
+											  				}
+											            }); 
 												});
 											</script>
 										<div class="row form-group">

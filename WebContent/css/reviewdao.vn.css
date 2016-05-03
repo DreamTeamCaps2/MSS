@@ -491,7 +491,7 @@ img {
     height: 30px;
 }
 .bcolumn .frm-search input[type="submit"],.bcolumn .frm-search input[type="button"] {
-    background: url('ico-search.png') no-repeat center center;
+    background: url('images/ico-search.png') no-repeat center center;
     width: 30px;
     height: 30px;
     border: none;
@@ -579,7 +579,7 @@ img {
 }
 .bcolumn .hot-topic ul li:last-child {
     text-align: center;
-    background: url('images/ico-solid-dot.png') repeat-x center left;
+    background: url('ico-solid-dot.png') repeat-x center left;
 }
 .bcolumn .hot-topic ul li:last-child a {
     text-transform: uppercase;

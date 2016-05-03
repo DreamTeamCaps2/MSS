@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.bean.Thuoc;
 import model.bo.ThuocBO;
 
-import org.apache.catalina.Session;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -37,7 +36,7 @@ public class DanhSachBanThuocAction extends Action {
 			String sapXep = danhSachGiaForm.getLoaiDiaDiem();
 			System.out.println(sapXep + "  " + mathuoc);
 			if (sapXep == null || sapXep.length() == 0) {
-				list = thuocBO.getGiaListThuoc(mathuoc);
+				list = thuocBO.getGiaListThuocTheoTen(mathuoc);
 				danhSachGiaForm.setListGiaThuoc(list);
 			} else if (sapXep.equals("1")) {
 				list = thuocBO.getGiaListThuocTheoTen(mathuoc);

@@ -8,7 +8,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 
 <html>
-<head lang="en">
 <meta charset="UTF-8">
 <title>Danh Sách Loại Thuốc </title>
 <link rel="stylesheet" href="css/bootstrap.min.css" />

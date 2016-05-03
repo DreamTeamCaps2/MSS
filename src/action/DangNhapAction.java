@@ -20,6 +20,7 @@ import form.ThongBaoForm;
 import model.bean.TaiKhoan;
 import model.bean.ThongBao;
 import model.bo.BaiVietBO;
+import model.bo.BenhBO;
 import model.bo.NguoiDungBO;
 import model.bo.PhanQuyenBO;
 import model.bo.TaiKhoanBO;
@@ -62,6 +63,7 @@ public class DangNhapAction extends Action {
 		ThuocBO thuocBO = new ThuocBO();
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		BaiVietBO baiVietBO = new BaiVietBO();
+		BenhBO benhBO = new BenhBO();
 		
 		
 		
@@ -76,6 +78,9 @@ public class DangNhapAction extends Action {
 		thongBaoForm.setSoLuongLoaiBenh(thongBaoBO.getListLoaiBenh().size());
 		thongBaoForm.setListND(taiKhoanBO.getListNguoiDung());
 		thongBaoForm.setListBaiViet(baiVietBO.getListBaiViet());
+		thongBaoForm.setListBenhXemNhieu(benhBO.getListBenhXemNhieu());
+		thongBaoForm.setListThuocXemNhieu(thuocBO.getListThuocXemNhieu());
+		thongBaoForm.setListBaiVietXemNhieu(baiVietBO.getListBaiVietXemNhieu());
 		
 		if(form1!=null){
 			thongBaoForm.setSoLuong(form1.getSoLuong());
