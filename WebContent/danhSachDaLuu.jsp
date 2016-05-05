@@ -9,19 +9,18 @@
 <head>
 <meta charset="utf8">
 <title>Đã Lưu</title>
-	<link rel="stylesheet" href="css/reviewdao.vn.css" />
 
 <style>
 .active {
-    font-size: 13px;
+    font-size: 14px;
     border-bottom: 0px;
 }
 </style>
 </head>
 <body>
-	<div class="container text-center" style="width: 1200px;">
-		<div class="row">
-			<div class="col-sm-3 well">
+	<div class="container text-center">
+		<div class="row" style="width: inherit; margin-left: 0px; margin-right: 0px;">
+	    <div class="col-sm-3" style="margin-top: 15px;">
 				<div class="well">
 					<p>
 						<a href="#">My Profile</a>

@@ -151,6 +151,6 @@
     	        $("#phongKhamPermission").hide();
     	}
     </script>	
-    
+    <%@ include file="_footer.jsp"%> 
 </body>
 </html>

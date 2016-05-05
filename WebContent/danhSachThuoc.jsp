@@ -11,7 +11,12 @@
 <%@ include file="login.jsp"%>
 <head lang="en">
 <meta charset="UTF-8">
-
+<style type="text/css">
+		.row {
+	    margin-right: 0px;
+	    margin-left: 0px;
+	}
+</style>
 <title>Danh Sách Thuốc</title>
 <script>
 	$(document)
@@ -20,8 +25,8 @@
 						var soLuongThuoc = <bean:write name="danhSachThuocForm" property="soLuongThuoc" />;
 						/* 	var height= (parseInt((soLuongBenh%20)/4 )+1);
 						 */var height = $(window).height();
-						$(".list-group.scroll")
-								.css("max-height", height + "px");
+						 $(".list-group.scroll")
+								.css("max-height", height + "px"); 
 						var maLoaiThuoc = <bean:write name="danhSachThuocForm" property="maLoaiThuoc"/>;
 						var maNhomThuoc = <bean:write name="danhSachThuocForm" property="maNhomThuoc"/>
 						if(maNhomThuoc=="0"){
@@ -131,6 +136,6 @@
 			</div>
 		</div>
 	</html:form>
-
+<%@ include file="_footer.jsp"%>
 </body>
 </html>

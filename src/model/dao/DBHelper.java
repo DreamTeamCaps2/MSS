@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class DBHelper {
 
-	private String url = "jdbc:sqlserver://localhost:1433;databaseName=Caps2_TUAN;";
+	private String url = "jdbc:sqlserver://localhost:1433;databaseName=Caps2_MSS;";
 	String userName = "sa";
 	String password = "12345678";
 	Connection connection;

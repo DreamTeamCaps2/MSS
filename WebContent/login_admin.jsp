@@ -7,6 +7,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="login.jsp"%>
 <head lang="en">
 <meta charset="UTF-8">
 <title>Đăng Nhập</title>
@@ -17,11 +18,9 @@
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
 <link rel="stylesheet" href="css/login-register/blue.css" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </head>
-<%@ include file="login.jsp"%>
 <body class="hold-transition register-page">
+<div class="container" style="height: 450px;  background-color: #F2F2F2;">
 	<div class="register-box" style="width: 500px;">
 		<div class="register-box-body">
         	<p class="login-box-msg">Sign in to start your session</p>
@@ -66,6 +65,7 @@
 	        <a href="register.jsp" style="    color: #337ab7;" class="text-center">Register a new membership</a>
 		</div>
 	</div>
+	</div>
     <script src="js/login-register/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="js/bootstrap.min.js"></script>
@@ -80,5 +80,6 @@
         });
       });
     </script>	
+<%@ include file="_footer.jsp"%>    
 </body>
 </html>

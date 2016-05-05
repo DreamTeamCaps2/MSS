@@ -1,4 +1,3 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,10 +7,12 @@
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
-	<head lang="en">
-	<meta charset="UTF-8">
-	<title>Danh Sách Bệnh</title>
 <%@ include file="login.jsp"%>
+<head lang="en">
+
+<meta charset="UTF-8">
+<title>Danh Sách Bệnh</title>
+
 <script>
 	$(document)
 			.ready(
@@ -19,8 +20,8 @@
 						var soLuongBenh = <bean:write name="danhSachBenhForm" property="soLuongBenh" />;
 						/* 	var height= (parseInt((soLuongBenh%20)/4 )+1);
 						 */var height = $(window).height();
-						$(".list-group.scroll").css("max-height",
-								height + "px");
+						/* $(".list-group.scroll").css("max-height",
+								height + "px"); */
 						var maLoaiDanhSach = <bean:write name="danhSachBenhForm" property="maLoaiDanhSach"/>;
 
 						$("#loai-danh-sach-" + maLoaiDanhSach).addClass(
@@ -35,15 +36,14 @@
 		<div class="container">
 			<div class="row ">
 				<!-- side bar -->
-				<div class="col-lg-3 col-md-3 ">
+				<div class="col-lg-3 col-md-3  categories">
 					<div class="sidebar-danhsach">
-						<ul class="list-group scroll" >
-							<li class="list-group-item loaidanhsach" id="loai-danh-sach-0"
-								><a
+						<ul class="list-group scroll">
+							<li class="list-group-item loaidanhsach" id="loai-danh-sach-0"><a
 								href="/MSS/danh-sach-benh.do?maLoaiDanhSach=0"> TẤT CẢ </a></li>
 							<logic:iterate id="x" name="danhSachBenhForm"
 								property="listLoaiBenh">
-								<li class="list-group-item nhomdanhsach"
+								<li class="list-group-item loaidanhsach"
 									id="loai-danh-sach-<bean:write name="x" property="maLoaiBenh"/>">
 									<a
 									href="/MSS/danh-sach-benh.do?maLoaiDanhSach=<bean:write name="x" property="maLoaiBenh"/>">
@@ -71,12 +71,12 @@
 							<logic:iterate id="x" name="danhSachBenhForm" property="listBenh">
 								<div class="item-result">
 									<div>
-										<a 
+										<a
 											href="/MSS/chi-tiet-benh.do?ma=<bean:write name="x" property="maBenh"/>">
 											<img src="img/<bean:write name="x" property="hinhAnh"/>"
 											alt="some_text" width="200px" height="200px">
 										</a>
-										<div class="title-item-result" >
+										<div class="title-item-result">
 											<a
 												href="/MSS/chi-tiet-benh.do?ma=<bean:write name="x" property="maBenh"/>">
 												<bean:write name="x" property="tenBenh" />
@@ -115,10 +115,11 @@
 				</div>
 			</div>
 			<div class="row">
-				
+
 				<div class="page-navigation" id="pagination"></div>
 			</div>
 		</div>
 	</html:form>
+	<%@ include file="_footer.jsp"%>
 </body>
 </html>

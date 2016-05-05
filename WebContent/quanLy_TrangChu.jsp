@@ -64,6 +64,7 @@
 						<li class="dropdown"><a data-toggle="dropdown" href=""> <span
 								class="glyphicon glyphicon-bell" aria-hidden="true"></span>
 						</a></li>
+						<li><a href="/MSS/cap-nhat.do">Cập Nhật</a></li>
 						<li><a href="/MSS">WEB</a></li>
 					</ul>
 				</div>

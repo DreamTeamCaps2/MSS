@@ -22,6 +22,7 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body class="hold-transition register-page">
+<div class="container" style="height: 450px;  background-color: #F2F2F2;">
 	<div class="register-box" style="width: 500px;">
 		<div class="register-box-body">
         	<p class="login-box-msg">QUÊN MẬT KHẨU</p>
@@ -39,6 +40,7 @@
 				</div>
 			</html:form>
 		</div>
+	</div>
 	</div>
 	<script src="js/login-register/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
@@ -59,5 +61,6 @@
         });
       });
     </script>	
+    <%@ include file="_footer.jsp"%> 
 </body>
 </html>

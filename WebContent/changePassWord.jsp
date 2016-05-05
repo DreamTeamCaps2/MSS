@@ -7,7 +7,7 @@
 <%@ include file="login.jsp"%>
 <head>
     <meta charset="utf8">
-    <title>jQuery Dropdown Login Freebie | The Finished Box</title>
+    <title>Đổi mật khẩu</title>
   	<style>
 	    .active {
 	    font-size: 14px;
@@ -16,9 +16,9 @@
   </style>
 </head>
 <body>
-    <div class="container text-center" style="width: 1200px;">    
-	  <div class="row">
-	    <div class="col-sm-3 well">
+    <div class="container text-center">    
+		<div class="row" style="width: inherit; margin-left: 0px; margin-right: 0px;">
+	    <div class="col-sm-3" style="margin-top: 15px;">
 	      <div class="well">
 	        <p><a href="#">My Profile</a></p>
 	        <img src="img/${taiKhoan.anhDaiDien}" class="img-circle" height="100" width="100" alt="Avatar">
@@ -29,7 +29,7 @@
 				<li class="active"><a href="/MSS/doi-mat-khau.do">Đổi mật khẩu</a></li>
 			    <li><a href="#">Thông báo</a></li>
 			    <li><a href="#">Tin nhắn</a></li>
-			    <li><a href="#">Đã lưu</a></li>
+			    <li><a href="/MSS/danh-sach-da-luu.do">Đã lưu</a></li>
 			    <logic:notEmpty name="taiKhoan1" property="tenNhaThuoc">
 			    <li><html:link action="/quan-ly-thuoc-cua-hang">Quản lý thuốc</html:link></li>
 			    </logic:notEmpty>

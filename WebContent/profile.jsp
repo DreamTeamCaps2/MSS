@@ -12,9 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<style>
 	    .active {
-	    font-size: 14px;
-	    border-bottom: 0px;
-		}
+		    font-size: 14px;
+		    border-bottom: 0px;
+			}
 		.image-preview-input {
 		    position: relative;
 			overflow: hidden;
@@ -112,9 +112,9 @@
 </head>
 <body>
 <html:form action="/thongTinTK" method="post" enctype="multipart/form-data">
-	<div class="container text-center" style="width: 1200px;">
-	  <div class="row">
-	    <div class="col-sm-3 well">
+	<div class="container text-center">
+	  <div class="row" style="width: inherit; margin-left: 0px; margin-right: 0px;">
+	    <div class="col-sm-3" style="margin-top: 15px;">
 	      <div class="well">
 	        <p><a href="#">My Profile</a></p>
 	        <a href="#" id="pop">

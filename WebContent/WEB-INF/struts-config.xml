@@ -316,6 +316,10 @@ Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 				path="/suaSV" scope="request" type="action.DanhSachBanThuocAction">
 				<forward name="suaSV" path="/danhSachTiemThuoc_BanThuoc.jsp" />
 			</action>
+			<action input="/login.jsp" name=""
+				path="/cap-nhat" scope="request" type="action.CapNhatAction">
+				<forward name="capNhat" path="/quanLy_TrangChu.jsp" />
+			</action>
 		
 	</action-mappings>
 	<message-resources parameter="action.ApplicationResources" />

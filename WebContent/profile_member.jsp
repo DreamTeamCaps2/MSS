@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
 </head>
 <body>
-    <div class="container text-center" style="padding-top: 0px">    
+    <div class="container text-center" style="padding-top: 0px ;width: 1000px;">    
         <!-- 	<h3>THÔNG TIN CỬA HÀNG</h3> -->
 	  <div class="row">
 	    <div class="col-sm-3 well">
@@ -44,7 +44,7 @@
 	        </p>
 	      </div>
 	    </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6" style="padding-right: 10px">
       	<div class="row">
         	<div class="col-sm-12">
         	<div class="panel panel-default text-left">
@@ -167,7 +167,7 @@
 	
 	<logic:empty name="taiKhoanForm" property="loaiTK">
 	<!-- BINHLUAN -->
-		<div class="col-sm-3 well" style="text-align: left;">
+		<div class="col-sm-3" style="text-align: left; padding-top: 10px; padding-left: 0px">
 			BÌNH LUẬN
 			<div class="box-footer box-comments" id="boxcomment" style="background: white;overflow-y: scroll;height: 300px;">
 				<c:forEach items="${taiKhoanForm.listBinhLuan}" var="list">
@@ -192,9 +192,10 @@
                     </logic:notPresent>
                     <!-- .img-push is used to add margin to elements next to floating images -->
                     <div class="img-push">
-                      <input type="text" id="txtBinhLuan" class="form-control input-sm" placeholder="Press enter to post comment">
-                      <button onclick="ClickBinhLuan()">OK</button>
+                      	<input type="text" id="txtBinhLuan" class="form-control input-sm" placeholder="Press enter to post comment">
+                        <button onclick="ClickBinhLuan()">OK</button>
                     </div>
+                   
                 </div>                
 	    </div>
 	</logic:empty>

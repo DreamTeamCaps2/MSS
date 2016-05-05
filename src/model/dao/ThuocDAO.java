@@ -372,7 +372,7 @@ public class ThuocDAO extends DBHelper {
 	public Thuoc getThuoc(int maThuoc)
 	{
 		connect();
-		String sql2 = String.format("SELECT t.LuotXem,t.TenThuoc,t.CongThuc,t.TenKhoaHoc,t.DieuChe,t.TinhChat,t.TacDung,t.ChiDinh,t.BaoQuan,t.ThanTrong,t.DDH,t.MaNhomThuoc,nt.MaLoaiThuoc "
+		String sql2 = String.format("SELECT t.HinhAnh, t.LuotXem,t.TenThuoc,t.CongThuc,t.TenKhoaHoc,t.DieuChe,t.TinhChat,t.TacDung,t.ChiDinh,t.BaoQuan,t.ThanTrong,t.DDH,t.MaNhomThuoc,nt.MaLoaiThuoc "
 				+ "FROM THUOC t INNER JOIN NHOMTHUOC nt ON t.MaNhomThuoc = nt.MaNhomThuoc"
 				+ " WHERE MaThuoc = %s",maThuoc);
 		
@@ -400,6 +400,7 @@ public class ThuocDAO extends DBHelper {
 				t.setMaNhomThuoc(rs.getInt("MaNhomThuoc"));
 				t.setMaLoaiThuoc(rs.getInt("MaLoaiThuoc"));
 				t.setLuotXem(rs.getInt("LuotXem"));
+				t.setHinhAnh(rs.getString("HinhAnh"));
 				
 			}
 		} catch (SQLException e) {
