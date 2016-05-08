@@ -7,26 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PhanQuyenDAO {
-	String url = "jdbc:sqlserver://localhost:1433;databaseName=Caps2_TUAN;";
-	String userName = "sa";
-	String password = "12345678";
-	Connection connection;
+public class PhanQuyenDAO extends DBHelper{
 
-	void connect() {
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connection = DriverManager.getConnection(url, userName, password);
-			System.out.println("Ket noi thanh cong");
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Ket noi loi");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			System.out.println("Ket noi loi");
-		}
-	}
-	
 	public ArrayList<Integer> getListQuyen(int maTaiKhoan) {
 		connect();
 		String sql = String.format("SELECT MaQuyen FROM PhanQuyen WHERE MaThanhVien = %s",maTaiKhoan);

@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+	<% response.setIntHeader("Refresh", 300);%>
     <meta charset="utf8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -40,6 +41,117 @@
 	.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
 	    height: 48px;
 		background-color: white;
+	}
+	.tabPanel-widget {
+		position: relative; /* containing block for headings (top:0) */
+		background: #999;
+	}
+	.tabPanel-widget>label {
+		position: absolute;
+		z-index: 1;
+	}
+	.tabPanel-widget>label, .tabPanel-widget>h2 {
+		font-size: 1.1em;
+		width: 6.3em;
+		height: 2em;
+		line-height: 2em;
+	}
+	.tabPanel-widget>h2 {
+		position: relative;
+		margin: 0;
+		text-align: center;
+		background: #999;
+		color: #fff;
+	}
+	
+	.tabPanel-widget>label {
+		border-right: 1px solid #fff;
+	}
+	.tabPanel-widget>label ~ label, .tabPanel-widget>h2 ~ h2 {
+		position: absolute;
+		top: 0;
+	}
+	.tabPanel-widget label:nth-child(1), .tabPanel-widget h2:nth-child(3) {
+		left: 0em;
+	}
+	.tabPanel-widget label:nth-child(5), .tabPanel-widget h2:nth-child(7) {
+		left: 6.3em;
+	}
+	.tabPanel-widget label:nth-child(9), .tabPanel-widget h2:nth-child(11) {
+		left: 12.7em;
+	}
+	.tabPanel-widget input+h2+div {
+		position: absolute !important;
+		clip: rect(1px, 1px, 1px, 1px);
+		padding: 0 !important;
+		border: 0 !important;
+		height: 1px !important;
+		width: 2px !important;
+		overflow: hidden;
+	}
+	.tabPanel-widget input:checked+h2+div {
+		position: static !important;
+		padding: 1em !important;
+		height: auto !important;
+		width: auto !important;
+	}
+	.tabPanel-widget label:hover {
+		cursor: pointer;
+	}
+	.tabPanel-widget>div {
+		background: #f0f0f0;
+		padding: 1em;
+	}
+	.tabPanel-widget input[name="tabs"] {
+		opacity: 0;
+		position: absolute;
+	}
+	.tabPanel-widget input[name="tabs"]:focus+h2 {
+		outline: 1px dotted #000;
+		outline-offset: 10px;
+	}
+	.tabPanel-widget:hover h2 {
+		outline: none !important;
+	}
+	.tabPanel-widget input[name="tabs"]:checked+h2 {
+		background: #333;
+	}
+	.tabPanel-widget input[name="tabs"]:checked+h2:after {
+		content: '';
+		margin: auto;
+		position: absolute;
+		bottom: -10px;
+		left: 0;
+		right: 0;
+		width: 0;
+		height: 0;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+		border-top: 10px solid #333;
+	}
+	@media screen and (max-width: 45em) {
+		/* hide unecessary label/control pairs */
+		.tabPanel-widget label, .tabPanel-widget input[name="tabs"] {
+			display: none;
+		}
+	
+		.tabPanel-widget>input+h2+div {
+			display: block !important;
+			position: static !important;
+			padding: 1em !important;
+			height: auto !important;
+			width: auto !important;
+		}
+	
+		.tabPanel-widget h2 {
+			width: auto;
+			position: static !important;
+			background: #999 !important;
+		}
+	
+		.tabPanel-widget h2:after {
+			display: none !important;
+		}
 	}
 	</style>
 	<script type="text/javascript">

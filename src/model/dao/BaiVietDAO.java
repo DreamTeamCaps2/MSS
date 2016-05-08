@@ -26,7 +26,7 @@ public class BaiVietDAO extends DBHelper{
 
 	public ArrayList<BaiViet> getListBaiViet() {
 		connect();
-		String sql = "Select * FROM BAIVIET";
+		String sql = "Select * FROM BAIVIET ORDER BY MaBaiViet DESC";
 
 		ResultSet rs = null;
 		try {
@@ -46,6 +46,8 @@ public class BaiVietDAO extends DBHelper{
 				ch.setHinhAnh(rs.getString("HinhAnh"));
 				ch.setTomTat(rs.getString("TomTat"));
 				ch.setLuotXem(rs.getInt("LuotXem"));
+				
+				System.out.println(rs.getString("ThoiGian"));
 //				
 //				ch.setTenDangNhap(rs.getString("TenDangNhap"));
 //				ch.setDiaChi(rs.getString("DiaChi"));

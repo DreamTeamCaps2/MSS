@@ -225,45 +225,16 @@
 
 
 	<div
-		style="z-index: 5;top:15%;left:3%; background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 300px; height: 450px; line-height: 3em; overflow: auto; padding: 5px; ">
-		<h1>List Address</h1>
-		<hr>
-
-		<%-- <logic:iterate name="diaDiemForm" property="listDiaDiem" id="tb">
-			<bean:define id="madd" name="tb" property="maDiaDiem"></bean:define>
-			<bean:define id="loai1" name="tb" property="loai"></bean:define>
-			<div onmouseover="bigImg(${madd},${loai1})"
-				 id="madd${madd}loai${loai1}" boder="double">
-				<h3>
-					<logic:equal name="tb" property="loai" value="1">Ten Benh Vien:<br>
-					</logic:equal>
-					<logic:equal name="tb" property="loai" value="2">Ten Nha Thuoc:<br>
-					</logic:equal>
-					<logic:equal name="tb" property="loai" value="3">Ten Phong Kham: <br>
-					</logic:equal>
-					<bean:write name="tb" property="ten" />
-				</h3>
-				Dia Chi:
-				<bean:write name="tb" property="diaChi" />
-				<br> So Dien Thoai:
-				<bean:write name="tb" property="sdt" />
-				<div id="kcmadd${madd}" ></div>
-
-				<p id= "logg"><bean:write  name="tb" property="longi" /></p>
-				<p><bean:write  name="tb" property="lati" /></p>
-				<a href="/MSS/chi-duong.do?maDiaDiem=${madd}&loaiDiaDiem=${loai1}">chỉ
-					đường</a>
-				
-			</div>
-
-
-			<hr style="border-top: 5px solid #2B2626">
-		</logic:iterate> --%>
+		style="z-index: 5;top:15%;left:3%; background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 300px; height: 450px; line-height: 3em; overflow: auto; background: white; box-shadow: 0 2px 6px rgba(0,0,0,.3);" >
+		<div style="padding: 10px; background: whitesmoke;">
+            <span class="results-heading-title"><h3>Kết quả tìm kiếm</h3></span>
+        </div>
+        <div>
 		<logic:iterate name="diaDiemForm" property="listDiaDiem" id="tb">
 			<bean:define id="madd" name="tb" property="maDiaDiem"></bean:define>
 			<bean:define id="loai1" name="tb" property="loai"></bean:define>
 
-			<div class="listDiaDiem">
+			<div class="listDiaDiem"  style="padding: 10px; border-bottom: 1px solid #dedede;">
 			<div onmouseover="bigImg(${madd},${loai1})"
 				 id="madd${madd}loai${loai1}" boder="double">
 				<a href="thongTinTKChiTiet.do?tenDangNhap=<bean:write name="tb" property="tenDangNhap" />"><h3>
@@ -273,9 +244,9 @@
 					</logic:equal>
 						<logic:equal name="tb" property="loai" value="3">Phòng Khám 
 					</logic:equal>
-						
-						<bean:write name="tb" property="ten" />
-					</h3> </a>
+					<bean:write name="tb" property="ten" />
+					</h3> 
+				</a>
 					<p>
 				<img src="img/address.png">
 				<bean:write name="tb" property="diaChi" /></p>
@@ -291,9 +262,9 @@
 					đường</a>
 			</div>
 
-			<hr>
 			</div>
 		</logic:iterate>
+		</div>
 	</div>
 	
 <html:form action="/ban-do" method="get">

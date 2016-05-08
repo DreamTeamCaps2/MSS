@@ -30,18 +30,16 @@
 				</div>
 				<div class="well">
 					<ul class="nav nav-pills nav-stacked" role="tablist">
-					    <li><html:link action="thongTinTK">Thông tin tài khoản</html:link></li>
+					    <li class="active"><html:link action="thongTinTK">Thông tin tài khoản</html:link></li>
 						<li><a href="/MSS/doi-mat-khau.do">Đổi mật khẩu</a></li>
-					    <li><a href="#">Thông báo</a></li>
-					    <li><a href="#">Tin nhắn</a></li>
-					    <li class="active"><a href="/MSS/danh-sach-da-luu.do">Đã lưu</a></li>
+					    <li><a href="/MSS/danh-sach-da-luu.do">Đã lưu</a></li>
 					    <logic:notEmpty name="taiKhoan1" property="tenNhaThuoc">
 					    <li><html:link action="/quan-ly-thuoc-cua-hang">Quản lý thuốc</html:link></li>
 					    </logic:notEmpty>
 					    <logic:notEmpty name="taiKhoan1" property="tenPhongKham">
 					    <li><a href="#">Quản lý phòng khám</a></li>
 					    </logic:notEmpty>
-					</ul>
+				  	</ul>
 				</div>
 				<div class="well">
 					<p>

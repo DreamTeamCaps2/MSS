@@ -48,7 +48,7 @@
 		<div class="container" style="padding-bottom: 30px;">
 			<div class="row">
 
-				<div class="col-lg-8 col-md-8 col-sm-8 content-center">
+				<div class="col-lg-9 col-md-9 col-sm-9 content-center" style="width: 70%;">
 					<div class="row">
 						<div class="main-content">
 							<div class="title1">
@@ -191,7 +191,63 @@
 						</logic:notEmpty>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 advertise"></div>
+				<div class="col-lg-3 col-md-3 col-sm-3 advertise">
+				<div class="bcolumn" style="width: 270px;">
+					<div class="tabPanel-widget">
+					    <label for="tab-1" tabindex="0"></label>
+					      <input id="tab-1" type="radio" name="tabs" checked="true" aria-hidden="true">
+					    <h2>BỆNH</h2>
+					    <div class="hot-topic" style="margin-top: 0px;">
+							<ul style="margin-left: 10px; margin-top: 5px">
+					       	<c:forEach items="${thongBaoForm.listBenhXemNhieu}" var="list" varStatus="loopCounter">
+					         	<li >
+					         		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
+					     			<div class="item">
+					                  	<a  href="/MSS/chi-tiet-benh.do?mat=${list.maBenh}" title="${list.tenBenh}"><c:out value="${list.tenBenh}"/></a>
+					              		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
+					                </div>               
+					           	</li>
+					        </c:forEach>
+					        <li style="margin-bottom: 0px;"><a href="#"></a></li>
+					        </ul>
+					    </div>
+					    <label for="tab-2" tabindex="0"></label>
+					    <input id="tab-2" type="radio" name="tabs" aria-hidden="true">
+					    <h2>THUỐC</h2>
+					   <div class="hot-topic" style="margin-top: 0px;">
+							<ul style="margin-left: 10px; margin-top: 5px">
+					       	<c:forEach items="${thongBaoForm.listThuocXemNhieu}" var="list" varStatus="loopCounter">
+				         	<li>
+				         		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
+				     			<div class="item">
+				                  	<a  href="/MSS/chi-tiet-thuoc.do?mat=${list.maThuoc}" title="${list.tenThuoc}"><c:out value="${list.tenThuoc}"/></a>
+				              		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
+				                </div>               
+				           	</li>
+				        	</c:forEach>
+					        <li style="margin-bottom: 0px;"><a href="#"></a></li>
+					        </ul>
+					    </div>
+					    <label for="tab-3" tabindex="0"></label>
+					    <input id="tab-3" type="radio" name="tabs" aria-hidden="true">
+					    <h2>BÀI VIẾT</h2>
+					    <div class="hot-topic" style="margin-top: 0px;">
+							<ul style="margin-left: 10px; margin-top: 5px">
+					       	<c:forEach items="${thongBaoForm.listBaiVietXemNhieu}" var="list" varStatus="loopCounter">
+				         	<li>
+				         		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
+				     			<div class="item">
+				                  	<a  href="/MSS/chi-tiet-bai-viet.do?maBaiViet=${list.maBaiViet}" title="${list.tieuDe}"><c:out value="${list.tieuDe}"/></a>
+				              		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
+				                </div>               
+				           	</li>
+				        	</c:forEach>
+					        <li style="margin-bottom: 0px;"><a href="#"></a></li>
+					        </ul>
+					    </div>
+				  	</div>
+				  	</div>
+				</div>
 			</div>
 		</div>
 	</html:form>

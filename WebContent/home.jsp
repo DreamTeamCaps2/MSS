@@ -52,118 +52,6 @@
 		border-bottom: 3px solid #e64946;
 		text-align: left;
 	}
-	
-	.tabPanel-widget {
-		position: relative; /* containing block for headings (top:0) */
-		background: #999;
-	}
-	.tabPanel-widget>label {
-		position: absolute;
-		z-index: 1;
-	}
-	.tabPanel-widget>label, .tabPanel-widget>h2 {
-		font-size: 1.1em;
-		width: 6.3em;
-		height: 2em;
-		line-height: 2em;
-	}
-	.tabPanel-widget>h2 {
-		position: relative;
-		margin: 0;
-		text-align: center;
-		background: #999;
-		color: #fff;
-	}
-	
-	.tabPanel-widget>label {
-		border-right: 1px solid #fff;
-	}
-	.tabPanel-widget>label ~ label, .tabPanel-widget>h2 ~ h2 {
-		position: absolute;
-		top: 0;
-	}
-	.tabPanel-widget label:nth-child(1), .tabPanel-widget h2:nth-child(3) {
-		left: 0em;
-	}
-	.tabPanel-widget label:nth-child(5), .tabPanel-widget h2:nth-child(7) {
-		left: 6.3em;
-	}
-	.tabPanel-widget label:nth-child(9), .tabPanel-widget h2:nth-child(11) {
-		left: 12.7em;
-	}
-	.tabPanel-widget input+h2+div {
-		position: absolute !important;
-		clip: rect(1px, 1px, 1px, 1px);
-		padding: 0 !important;
-		border: 0 !important;
-		height: 1px !important;
-		width: 2px !important;
-		overflow: hidden;
-	}
-	.tabPanel-widget input:checked+h2+div {
-		position: static !important;
-		padding: 1em !important;
-		height: auto !important;
-		width: auto !important;
-	}
-	.tabPanel-widget label:hover {
-		cursor: pointer;
-	}
-	.tabPanel-widget>div {
-		background: #f0f0f0;
-		padding: 1em;
-	}
-	.tabPanel-widget input[name="tabs"] {
-		opacity: 0;
-		position: absolute;
-	}
-	.tabPanel-widget input[name="tabs"]:focus+h2 {
-		outline: 1px dotted #000;
-		outline-offset: 10px;
-	}
-	.tabPanel-widget:hover h2 {
-		outline: none !important;
-	}
-	.tabPanel-widget input[name="tabs"]:checked+h2 {
-		background: #333;
-	}
-	.tabPanel-widget input[name="tabs"]:checked+h2:after {
-		content: '';
-		margin: auto;
-		position: absolute;
-		bottom: -10px;
-		left: 0;
-		right: 0;
-		width: 0;
-		height: 0;
-		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-top: 10px solid #333;
-	}
-	@media screen and (max-width: 45em) {
-		/* hide unecessary label/control pairs */
-		.tabPanel-widget label, .tabPanel-widget input[name="tabs"] {
-			display: none;
-		}
-	
-		.tabPanel-widget>input+h2+div {
-			display: block !important;
-			position: static !important;
-			padding: 1em !important;
-			height: auto !important;
-			width: auto !important;
-		}
-	
-		.tabPanel-widget h2 {
-			width: auto;
-			position: static !important;
-			background: #999 !important;
-		}
-	
-		.tabPanel-widget h2:after {
-			display: none !important;
-		}
-	}
 </style>
 </head>
 <body>
@@ -198,6 +86,7 @@ $(document).ready(function() {
         slideMove:3,
         pager:false
     });
+	$('.dotdotdot').dotdotdot();		
 });
 </script>
 <br>
@@ -263,16 +152,18 @@ $(document).ready(function() {
             <ul class="list-post" id="new-topic">
 	            <c:forEach items="${thongBaoForm.listBaiViet}" var="list">
 	           	<div class="itemBaiViet">
-	           		<li  style="   border-bottom: 1px solid #dedede; height: ">
+	           		<li  style=" border-bottom: 1px solid #dedede;">
 	                    <a class="thumb" href="/MSS/chi-tiet-bai-viet.do?maBaiViet=${list.maBaiViet}">
 	                    	<img alt="" src="images/${list.hinhAnh }">
 	                    </a> 
 	                    <html:link styleClass="title" style="margin-left: 0%;" action="chi-tiet-bai-viet?maBaiViet=${list.maBaiViet}">
 	                    	<c:out value="${list.tieuDe}"/>
 	                    </html:link>
-	                    <p class="dotdotdot" style="max-height: 20%;">
-	                    	<c:out value="${list.tomTat}"></c:out>
-	                    </p>
+	                    <div class="dotdotdot" style="height: 100px">
+		                    <p>
+		                    	<c:out value="${list.tomTat}"></c:out>
+		                    </p>
+	                    </div>
 	                    <div class="st-post-feature">
 	                        <span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"></c:out></span>
 	                    </div>
@@ -317,7 +208,7 @@ $(document).ready(function() {
 	         	<li >
 	         		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
 	     			<div class="item">
-	                  	<a  href="/MSS/chi-tiet-benh.do?mat=${list.maBenh}" title="${list.tenBenh}"><c:out value="${list.tenBenh}"/></a>
+	                  	<a  href="/MSS/chi-tiet-benh.do?ma=${list.maBenh}" title="${list.tenBenh}"><c:out value="${list.tenBenh}"/></a>
 	              		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
 	                </div>               
 	           	</li>
@@ -334,7 +225,7 @@ $(document).ready(function() {
          	<li>
          		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
      			<div class="item">
-                  	<a  href="/MSS/chi-tiet-thuoc.do?mat=${list.maThuoc}" title="${list.tenThuoc}"><c:out value="${list.tenThuoc}"/></a>
+                  	<a  href="/MSS/chi-tiet-thuoc.do?ma=${list.maThuoc}" title="${list.tenThuoc}"><c:out value="${list.tenThuoc}"/></a>
               		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
                 </div>               
            	</li>
@@ -369,7 +260,7 @@ $(document).ready(function() {
          	<li >
          		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
      			<div class="item">
-                  	<a  href="/MSS/chi-tiet-benh.do?mat=${list.maBenh}" title="${list.tenBenh}"><c:out value="${list.tenBenh}"/></a>
+                  	<a  href="/MSS/chi-tiet-benh.do?ma=${list.maBenh}" title="${list.tenBenh}"><c:out value="${list.tenBenh}"/></a>
               		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
                 </div>               
            	</li>
@@ -384,7 +275,7 @@ $(document).ready(function() {
          	<li>
          		<div class="numb"><i><c:out value="${loopCounter.count}"/></i></div>
      			<div class="item">
-                  	<a  href="/MSS/chi-tiet-thuoc.do?mat=${list.maThuoc}" title="${list.tenThuoc}"><c:out value="${list.tenThuoc}"/></a>
+                  	<a  href="/MSS/chi-tiet-thuoc.do?ma=${list.maThuoc}" title="${list.tenThuoc}"><c:out value="${list.tenThuoc}"/></a>
               		<span><i class="fa fa-eye"></i><c:out value="${list.luotXem}"/></span>
                 </div>               
            	</li>
@@ -411,16 +302,6 @@ $(document).ready(function() {
 	</div>
 	</div>
 	</div>
-	
-	
-		<script>
-			$(document).ready(function(){
-				$('.dotdotdot').dotdotdot();
-			});
-			
-			</script>
-	
-	
 <%@ include file="_footer.jsp"%>
 </body>
 </html>
