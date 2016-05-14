@@ -11,22 +11,12 @@
 <meta charset="utf8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Góp Ý</title>
-<link rel="stylesheet" href="css/reviewdao.vn.css" />
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.css" />
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
-<link rel="stylesheet" href="css/pgwslider.min.css" />
-
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/pgwslider.min.js"></script>
-
-<link rel="stylesheet" href="css/lightslider.css" />
-<script src="js/lightslider.js"></script>
-<script>
-
-</script>
+<style type="text/css">
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+</style>
 </head>
 <body>
 	<html:form action="/gop-y" method="post">
@@ -60,10 +50,11 @@
 
 
 					<html:submit property="submit" value="GopY"
-						style="margin-left:40%;"></html:submit>
+						style="margin-left:45%; margin-bottom: 40px;"></html:submit>
 				</div>
 			</div>
 		</div>
 	</html:form>
+	<%@ include file="_footer.jsp"%>
 </body>
 </html>

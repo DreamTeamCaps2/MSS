@@ -11,12 +11,6 @@
 <%@ include file="login.jsp"%>
 <head lang="en">
 <meta charset="UTF-8">
-<style type="text/css">
-		.row {
-	    margin-right: 0px;
-	    margin-left: 0px;
-	}
-</style>
 <title>Danh Sách Thuốc</title>
 <script>
 	$(document)
@@ -45,7 +39,7 @@
 			<div class="row">
 				<!-- //khoang trang -->
 				<!-- side bar -->
-				<div class="col-lg-3">
+				<div class="col-lg-3 danhsach" style="padding: 0px;">
 					<div class="sidebar-danhsach">
 						<ul class="list-group scroll">
 							<li class="list-group-item loaidanhsach" id="loai-thuoc-0" ><a								
@@ -79,7 +73,7 @@
 
 				</div>
 				<!-- noi dung -->
-				<div class="col-lg-9">
+				<div class="col-lg-9 danhsach" style="padding: 0px;">
 					<div class="row">
 						<div class="content">
 							<logic:iterate id="x" name="danhSachThuocForm"

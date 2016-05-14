@@ -13,8 +13,8 @@ public class BaiVietDAO extends DBHelper{
 
 	public void themBaiViet(String tieuDe, String tomTat, String hinhAnh, String noiDung) {
 		connect();
-		String sql=	String.format("INSERT INTO BAIVIET(TieuDe,TomTat,HinhAnh,NoiDung) "+
-				" VALUES ( N'%s',N'%s',N'%s',N'%s')",tieuDe, tomTat, hinhAnh, noiDung);
+		String sql=	String.format("INSERT INTO BAIVIET(TieuDe,TomTat,HinhAnh,NoiDung, ThoiGian) "+
+				" VALUES ( N'%s',N'%s',N'%s',N'%s',getDate())",tieuDe, tomTat, hinhAnh, noiDung);
 		System.out.println(sql);
 		try {
 			Statement stmt = connection.createStatement();
@@ -24,10 +24,18 @@ public class BaiVietDAO extends DBHelper{
 		}
 	}
 
-	public ArrayList<BaiViet> getListBaiViet() {
+	public ArrayList<BaiViet> getListBaiViet(int pageNum) {
 		connect();
-		String sql = "Select * FROM BAIVIET ORDER BY MaBaiViet DESC";
-
+		String sql="";
+		if(pageNum<0){
+			sql = "Select * FROM BAIVIET ORDER BY MaBaiViet DESC";
+		}
+		else{
+			int page = pageNum*10+5;
+			sql = "SELECT  * FROM BAIVIET ORDER BY MaBaiViet DESC "
+				+ "OFFSET "+ page + " ROWS "
+				+ "FETCH NEXT 10 ROWS ONLY ";
+		}
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();
@@ -46,8 +54,6 @@ public class BaiVietDAO extends DBHelper{
 				ch.setHinhAnh(rs.getString("HinhAnh"));
 				ch.setTomTat(rs.getString("TomTat"));
 				ch.setLuotXem(rs.getInt("LuotXem"));
-				
-				System.out.println(rs.getString("ThoiGian"));
 //				
 //				ch.setTenDangNhap(rs.getString("TenDangNhap"));
 //				ch.setDiaChi(rs.getString("DiaChi"));

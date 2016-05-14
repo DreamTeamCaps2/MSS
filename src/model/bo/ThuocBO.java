@@ -52,9 +52,9 @@ public class ThuocBO {
 
 	public void suaThuoc(int maThuoc, String tenThuoc, String congThuc, String tenKhoaHoc, String dieuChe,
 			String tinhChat, String tacDung, String chiDinh, String baoQuan, String thanTrong, String DDH,
-			int maNhomThuoc) {
+			int maNhomThuoc, String hinhAnh) {
 		thuocDAO.suaThuoc(maThuoc, tenThuoc, congThuc, tenKhoaHoc, dieuChe, tinhChat, tacDung, chiDinh, baoQuan,
-				thanTrong, DDH, maNhomThuoc);
+				thanTrong, DDH, maNhomThuoc, hinhAnh);
 	}
 
 	public void xoaThuoc(int maThuoc) {

@@ -17,8 +17,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.upload.FormFile;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
-
+import common.StringProcess;
 import form.ThuocForm;
 import model.bean.Benh;
 import model.bo.BenhBO;
@@ -243,12 +242,12 @@ public class QuanLy_DanhSachThuoc_ThemAction extends Action{
 				String hinhAnh = "no_image.jpg";
 				file = thuocForm.getFile();
 				if(file.getFileName()!=""){
+					StringProcess process = new StringProcess();
+					hinhAnh = process.makeSlug(tenThuoc)+".jpg";
 					try {
-						String chuoi = tenThuoc+"_ava.jpg";
-						String path = getServlet().getServletContext().getRealPath("/")+"images"+"/"+chuoi;
-	//		            String filePath = System.getProperty("java.io.tmpdir") + "/" + file.getFileName();
-	//		            System.out.println(path);
-			            outputStream = new FileOutputStream(new File(path));
+						String path = getServlet().getServletContext().getRealPath("/")+"img"+"/"+hinhAnh;
+						//outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/img/"+chuoi));
+						outputStream = new FileOutputStream(new File(path));
 			            outputStream.write(file.getFileData());
 			            
 			        } finally {
@@ -256,9 +255,7 @@ public class QuanLy_DanhSachThuoc_ThemAction extends Action{
 			                outputStream.close();
 			            }
 			        }
-					hinhAnh = file.getFileName();
 				}
-				
 				
 				System.out.println(hinhAnh);
 				

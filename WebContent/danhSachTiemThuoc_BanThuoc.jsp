@@ -10,14 +10,14 @@
 <%@ include file="login.jsp"%>
 <head lang="en">
 <meta charset="UTF-8">
-<title>Sửa sinh viên</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
+<title>Mua Thuốc</title>
 
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/diadiemkc.json"></script>
-<link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+<style type="text/css">
+.row p {
+	margin: 10px 0px;
+	text-align: justify;
+}
+</style>
 <script type="text/javascript"
 	src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
 <script>
@@ -50,7 +50,11 @@
 							var kt = document.getElementById("kcmadd"
 									+ data[parseInt(i)].ma);
 							if (kt != null) {
-								document.getElementById("kcmadd"+ data[parseInt(i)].ma).innerHTML = document.getElementById("kcmadd"+ data[parseInt(i)].ma).innerHTML+data[parseInt(i)].kc+" Km";
+								document.getElementById("kcmadd"
+										+ data[parseInt(i)].ma).innerHTML = document
+										.getElementById("kcmadd"
+												+ data[parseInt(i)].ma).innerHTML
+										+ data[parseInt(i)].kc + " Km";
 								console.log(document.getElementById("kcmadd"
 										+ data[parseInt(i)].ma).innerHTML);
 							}
@@ -88,51 +92,138 @@
 </script>
 </head>
 <body>
-<html:form action="/suaSV" method="get">
-<div style=" margin-left: 52%">
-	Sắp Xếp Theo: <select name="loaiDiaDiem" id="mode">
-						
-						<option value="1">Theo Tên</option>
-						<option value="2">Theo Giá</option>
-						<option value="3">Theo Khoảng Cách</option>
+	<html:form action="/mua-thuoc" method="get">
+		<div class="container" style="min-height: 100vh;">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-8">
+					<div class="title-mua-thuoc">
+						<div style="float: left; margin-right: 20px; margin-bottom: 10px;">
+							<img
+								src="img/<bean:write name="danhSachGiaForm" property="hinhAnh"/>"
+								alt="some_text" width="256" height="256">
+						</div>
+						<div class="thong-tin-thuoc">
+							<p style="font-size: 18px;">
+								Thuốc : <a
+									href="/MSS/chi-tiet-thuoc.do?ma=<bean:write name="danhSachGiaForm" property="maThuoc" />">
+									<bean:write name="danhSachGiaForm" property="tenThuoc" />
+								</a> <br>
+							</p>
+							<p style="font-size: 14px;">
+								Nhóm Thuốc : <a
+									href="/MSS/danh-sach-thuoc.do?maNhomThuoc=<bean:write name="danhSachGiaForm" property="maNhomThuoc" />"><bean:write
+										name="danhSachGiaForm" property="tenNhomThuoc" /></a> <br>
+							</p>
+							<p style="font-size: 14px;">
+								Loai Thuốc : <a
+									href="/MSS/danh-sach-thuoc.do?maLoaiThuoc=<bean:write name="danhSachGiaForm" property="maNhomThuoc" />"><bean:write
+										name="danhSachGiaForm" property="tenLoaiThuoc" /></a> <br>
+							</p>
+						</div>
+					</div>
+
+					<div>
+						<h3>
+							Danh Sách Các Nhà Thuốc Bán :
+							<bean:write name="danhSachGiaForm" property="tenThuoc" />
+						</h3>
+						<div class="sapxep-mua-thuoc">
+							<p >Lọc Kết Quả Theo :</p>
+							<html:select property="loaiDiaDiem" styleId="mode">
+
+								<html:option value="1">Theo Tên</html:option>
+								<html:option value="2">Theo Giá</html:option>
+								<html:option value="3">Theo Khoảng Cách</html:option>
 
 
-					</select>
+							</html:select>
 
-<html:submit>Xem</html:submit>
-</div>
-	<div
-		style=" background-color: rgba(234, 234, 234, 0.91); position: absolute; width: 50%;left: 25%;top:25%;  line-height: 3em; overflow: auto; padding: 5px;">
-		<h1>Danh Sách Các Trung Tâm Y Tế</h1>
-		<div class="box">
-			<div class="box-body">
-				
-				
-					<input id="maTiem" type="hidden" name="msv"
-						value="<bean:write name="danhSachGiaForm" property="msv" />">
-					<script type="text/javascript">
-						/* $("[name='loaiDiaDiem']").val('<bean:write name="danhSachGiaForm" property="loaiDiaDiem"/>'); */
-					</script>
-					<input type="hidden" id="kca" name="kc">
-					
+							<script>
+								$("#mode")
+										.change(
+												function() {
+													var maThuoc = <bean:write name="danhSachGiaForm" property="maThuoc" />;
+													var t = document
+															.getElementById("mode").value
+															+ "";
+													var kca = document
+															.getElementById("kca").value;
+													window.location
+															.assign("/MSS/mua-thuoc.do?maThuoc="
+																	+ maThuoc
+																	+ "&loaiDiaDiem="
+																	+ t
+																	+ "&khoangCach="
+																	+ kca);
+												});
+							</script>
+						</div>
+						<div class="item-result1">
 
-						<logic:iterate name="danhSachGiaForm" property="listGiaThuoc"
-							id="tk">
+
+
+							<input id="maTiem" type="hidden" name="maThuoc"
+								value="<bean:write name="danhSachGiaForm" property="maThuoc" />">
+							<script type="text/javascript">
+									/* $("[name='loaiDiaDiem']").val('<bean:write name="danhSachGiaForm" property="loaiDiaDiem"/>'); */
+								</script>
+							<input type="hidden" id="kca" name="kc">
+
+
+							<logic:iterate name="danhSachGiaForm" property="listGiaThuoc"
+								id="tk">
+								<div class="item timkiem">
+									<bean:define id="ma" name="tk" property="maTiem"></bean:define>
+									<div class="item-title">
+										
+										<a
+											href="/MSS/thongTinTKChiTiet.do?tenDangNhap=<bean:write name="tk" property="maTiem"/>">
+											Nhà Thuốc: <bean:write name="tk" property="tenTiem" />
+										</a>
+									</div>
+									<div>
+										Giá:
+										<bean:write name="tk" property="giaThuoc" />
+									</div>
+									<div id="kcmadd${ma}">Khoảng Cách:</div>
+								</div>
+							</logic:iterate>
+						</div>
+					</div>
+					<div class="page-navigation" id="pagination" align="center"></div>
+					<script>
+						jQuery(function($) {
+							var items = $(".item.timkiem");
+							var numItems = items.length;
+							var perPage = 8;
 							
-							<bean:define id="ma" name="tk" property="maTiem"></bean:define>
-							<div> Tên Thuốc: 
-								<bean:write name="tk" property="tenTiem" />
-							</div>
-							<div>
-								 Giá: <bean:write name="tk" property="giaThuoc" />
-							</div>
-							<div id="kcmadd${ma}">Khoảng Cách: </div>
-							<hr style="border-top: 2px solid #FFFFFF">
-
-						</logic:iterate>
+							// only show the first 2 (or "first per_page") items initially
+							items.slice(perPage).hide();
+							// now setup pagination
+							$("#pagination").pagination({
+								items : numItems,
+								prevText: "",
+								nextText: ">",
+								itemsOnPage : perPage,
+								cssStyle : "light-theme",
+								onPageClick : function(pageNumber) { // this is where the magic happens
+									// someone changed page, lets hide/show trs appropriately
+									var showFrom = perPage * (pageNumber - 1);
+									var showTo = showFrom + perPage;
+									items.hide() // first hide everything, then show for the new page
+									.slice(showFrom, showTo).show();
+								}
+							});
+							if(numItems<8){
+								$("#pagination").hide();
+							}
+						});
+					</script>
+				</div>
+				<%@ include file="_menuRight.jsp"%>	
 			</div>
 		</div>
-	</div>
-</html:form>
+	</html:form>
+	<%@ include file="_footer.jsp"%>	
 </body>
 </html>

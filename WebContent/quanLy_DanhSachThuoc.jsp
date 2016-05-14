@@ -11,17 +11,10 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Danh Sách Thuốc</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="quanLy_TrangChu.jsp"%>
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="padding-bottom: 50px">
 		<div class="row">
 			<html:form action="/quan-ly-danh-sach-thuoc" method="get">
 				<div class="col-lg-3">
@@ -89,10 +82,10 @@
 				<br>
 			</html:form>
 		</div>
-		<div class="panel-body">
-			<div class="table-responsive">
-				<table class="table table-striped table-bordered table-hover"
-					id="dataTables-example">
+		<br>
+		<div class="box">
+			<div class="box-body">
+				<table class="table table-striped table-bordered dt-bootstrap" id="dataTables-example">
 					<thead>
 						<tr>
 							<th>Mã thuốc</th>
@@ -124,6 +117,22 @@
 				</table>
 			</div>
 		</div>
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$('#dataTables-example').dataTable({
+				"order" : [ [ 0, "desc" ] ],
+				"searching": false,
+				"columnDefs" : [ 
+				  	{"width": "10%", "targets": 0},
+					{"width": "25%", "targets": 1},
+					{"width": "30%", "targets": 2},
+					{"width": "25%", "targets": 3},
+					{"width": "10%", "targets": 4},
+					{ "orderable": false, "targets": -1 }
+				  ]
+			});
+		});
+		</script>
 	</div>
 </body>
 </html>

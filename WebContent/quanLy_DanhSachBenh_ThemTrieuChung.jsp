@@ -43,7 +43,7 @@
 															$("#select-timTrieuChung").change(function(){
 																var timTrieuChung = $("#select-timTrieuChung").val();
 															   
-															   window.location.assign("/Caps2/quan-ly-danh-sach-benh-them-trieu-chung.do?timTrieuChung="+timTrieuChung);
+															   window.location.assign("/MSS/quan-ly-danh-sach-benh-them-trieu-chung.do?timTrieuChung="+timTrieuChung);
 															});
 														</script>
 													</div>
@@ -110,7 +110,7 @@
 															</table>
 													</div>
 												</div> 
-										</div>
+										
 														
 										</div>
 												<div class="row form-group">

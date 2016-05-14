@@ -247,7 +247,10 @@ public class BenhDAO extends DBHelper{
 		
 		connect();
 		String sql2="";
-			if("".equals(timBenh))			// tim kiem theo loai benh
+		if(("".equals(timBenh)||timBenh==null)&&maLoaiBenh==0)
+			sql2 = String.format("SELECT BENH.MaBenh,BENH.TenBenh,LOAIBENH.TenLoaiBenh "
+					+ "FROM BENH INNER JOIN LOAIBENH ON BENH.MaLoaiBenh = LOAIBENH.MaLoaiBenh ");
+		else	if("".equals(timBenh))			// tim kiem theo loai benh
 				sql2 = String.format("SELECT BENH.MaBenh,BENH.TenBenh,LOAIBENH.TenLoaiBenh "
 						+ "FROM BENH INNER JOIN LOAIBENH ON BENH.MaLoaiBenh = LOAIBENH.MaLoaiBenh "
 					+ "WHERE BENH.MaLoaiBenh = %s",maLoaiBenh);
@@ -318,11 +321,11 @@ public class BenhDAO extends DBHelper{
 		return list;
 	}
 
-	public void themBenh(String tenBenh, String nguyenNhan, String chanDoan, String bienChung, String dieuTri, String cheDoDinhDuong, int maLoaiBenh, int trangThai)
+	public void themBenh(String tenBenh, String nguyenNhan, String chanDoan, String bienChung, String dieuTri, String cheDoDinhDuong, String dinhNghia, int maLoaiBenh, int trangThai, String hinhAnh)
 	{
 		connect();
-	    String sql =String.format("Insert into BENH (TenBenh, NguyenNhan, ChanDoan, BienChung, DieuTri, CheDoDinhDuong, MaLoaiBenh,TrangThai) "
-	    		+ "values (N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',%s,%s)",tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong,maLoaiBenh,trangThai);
+	    String sql =String.format("Insert into BENH (TenBenh, NguyenNhan, ChanDoan, BienChung, DieuTri, CheDoDinhDuong, DinhNghia, MaLoaiBenh,TrangThai, HinhAnh) "
+	    		+ "values (N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',N'%s',%s,%s,'%s')",tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong, dinhNghia, maLoaiBenh,trangThai, hinhAnh);
 	    try {
 	        Statement stmt = connection.createStatement();
 	        stmt.executeUpdate(sql);
@@ -332,12 +335,12 @@ public class BenhDAO extends DBHelper{
 	    System.out.println("Da them benh");
 	}
 	
-	public void suaBenh(int maBenh, String tenBenh, String nguyenNhan, String chanDoan, String bienChung, String dieuTri, String cheDoDinhDuong, int maLoaiBenh)
+	public void suaBenh(int maBenh, String tenBenh, String nguyenNhan, String chanDoan, String bienChung, String dieuTri, String cheDoDinhDuong, String dinhNghia, int maLoaiBenh, String hinhAnh)
 	{
 		connect();
 	    String sql =String.format("UPDATE BENH "
-	    		+ "SET TenBenh=N'%s', NguyenNhan=N'%s', ChanDoan=N'%s', BienChung=N'%s', DieuTri=N'%s', CheDoDinhDuong=N'%s', MaLoaiBenh=%s "
-	    		+ "WHERE MaBenh = %s",tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong,maLoaiBenh,maBenh);
+	    		+ "SET TenBenh=N'%s', NguyenNhan=N'%s', ChanDoan=N'%s', BienChung=N'%s', DieuTri=N'%s', CheDoDinhDuong=N'%s', DinhNghia=N'%s', MaLoaiBenh=%s, HinhAnh = '%s' "
+	    		+ "WHERE MaBenh = %s",tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong, dinhNghia, maLoaiBenh, hinhAnh, maBenh);
 		    try {
 	        Statement stmt = connection.createStatement();
 	        stmt.executeUpdate(sql);
@@ -350,7 +353,7 @@ public class BenhDAO extends DBHelper{
 	public Benh getBenh(int maBenh)
 	{
 		connect();
-		String sql2 = String.format("SELECT MaBenh,TenBenh,NguyenNhan,ChanDoan,BienChung,DieuTri,CheDoDinhDuong,MaLoaiBenh,TrangThai, HinhAnh "
+		String sql2 = String.format("SELECT MaBenh,TenBenh,NguyenNhan,ChanDoan,BienChung,DieuTri,CheDoDinhDuong,MaLoaiBenh,TrangThai,HinhAnh, DinhNghia "
 				+ "FROM BENH WHERE MaBenh = %s",maBenh);
 		
 		ResultSet rs = null;
@@ -372,6 +375,7 @@ public class BenhDAO extends DBHelper{
 				b.setCheDoDinhDuong(rs.getString("CheDoDinhDuong"));
 				b.setMaLoaiBenh(rs.getInt("MaLoaiBenh"));
 				b.setHinhAnh(rs.getString("HinhAnh"));
+				b.setDinhNghia(rs.getString("DinhNghia"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -432,8 +436,8 @@ public class BenhDAO extends DBHelper{
 	}
 	public Benh getBenhAuto(int ma) {
 		connect();
-		String sql2 = "Select  maBenh,luotXem,tenBenh,bienChung,chanDoan,DieuTri,HinhAnh,DinhNghia,NguyenNhan,CheDoDinhDuong,maLoaiBenh"
-				+ " from Benh where maBenh = "+ma;
+		String sql2 = "Select  tenLoaiBenh,Benh.maLoaiBenh,Benh.maBenh,luotXem,tenBenh,bienChung,chanDoan,DieuTri,HinhAnh,DinhNghia,NguyenNhan,CheDoDinhDuong"
+				+ " from Benh inner join LoaiBenh on Benh.MaLoaiBenh =LoaiBenh.MaLoaiBenh where maBenh = "+ma;
 		System.out.println(sql2);
 		ResultSet rs = null;
 		try {
@@ -468,6 +472,7 @@ public class BenhDAO extends DBHelper{
 				benh.setNguyenNhan(nguyenNhan);
 				benh.setCheDoDinhDuong(cheDoDinhDuong);
 				benh.setMaLoaiBenh(maLoaiBenh);
+				benh.setTenLoaiBenh(rs.getString("tenLoaiBenh"));
 
 			}
 		} catch (SQLException e) {
@@ -623,18 +628,18 @@ public class BenhDAO extends DBHelper{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Benh b = new Benh();
 		try {
 			while(rs.next()){
-				if(rs.getInt("MaBenh") == 0)
-					return 1;
-				else if(rs.getInt("MaBenh") == maBenh)
+				System.out.println("MaBenh = "+rs.getInt("MaBenh"));
+				if(rs.getInt("MaBenh") == maBenh)
 						return 1;
+				else return 0;
 			}
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return 1;
 	}
 
 	public void xoaThuocBenh(int maBenh) {

@@ -8,155 +8,188 @@
 <html>
 <head lang="en">
 <meta charset="UTF-8">
-<title>Thêm bệnh</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<title>Tìm bệnh theo triệu chứng</title>
+<script src="js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
+<link href="css/easy-autocomplete.min.css" rel="stylesheet">
+<link href="css/easy-autocomplete.themes.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">Tìm bệnh</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-12">
-									<html:form action="/tim-benh-theo-trieu-chung" method="post">
-										<div class="row form-group">
-												<div class="col-lg-12">
-													<div class="col-lg-6">
-														<label >Những triệu chứng của bệnh cần tìm</label>
-													</div>
-													<div class="col-lg-6">
-														<div class="col-lg-3">
-															<label >Triệu chứng</label>
-														</div>
-														<div class="col-lg-3">
-										            		<html:text property="timTrieuChung"  style="margin-top: 0px;font-size:13px; height : 25px" styleClass="form-control"  styleId="select-timTrieuChung"></html:text>
-										            	</div>
-										            	<script>
-															$("#select-timTrieuChung").change(function(){
-																var timTrieuChung = $("#select-timTrieuChung").val();
-															   
-															   window.location.assign("/MSS/tim-benh-theo-trieu-chung.do?timTrieuChung="+timTrieuChung);
-															});
-														</script>
-													</div>
-												</div>
-												<div class="col-lg-12">
-													<div class="col-lg-6">
-														<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="width : 90%">
-																<thead>
-																	<tr>
-																		<th>Mã Triệu chứng</th>
-																		<th>Tên triệu chứng</th>
-																		<th></th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<logic:iterate name="benhTrieuChungForm"
-																		property="listTrieuChungChon" id="t">
-																		<tr>
-																			<th scope="row">
-																				<bean:write name="t" property="maTrieuChung" />
-																			</th>
-																			<td>
-																				<bean:write name="t" property="tenTrieuChung" />
-																			</td>
-																			<td>
-																				<bean:define id="maTrieuChung" name="t" property="maTrieuChung"></bean:define>
-																				<html:link action="/tim-benh-theo-trieu-chung?maTrieuChungXoa=${maTrieuChung}" >
-																					<span class="glyphicon glyphicon-trash"></span>
-																				</html:link> 
-																			</td>
-																		</tr>
-																	</logic:iterate>
-																</tbody>
-														</table>
-													</div>
-													<div class="col-lg-6">
-														<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="width : 90%">
-																<thead>
-																	<tr>
-																		<th>Mã Triệu chứng</th>
-																		<th>Tên triệu chứng</th>
-																		<th></th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<logic:iterate name="benhTrieuChungForm"
-																		property="listTrieuChungTim" id="t">
-																		<tr>
-																			<th scope="row">
-																				<bean:write name="t" property="maTrieuChung" />
-																			</th>
-																			<td>
-																				<bean:write name="t" property="tenTrieuChung" />
-																			</td>
-																			 <td>
-																				<bean:define id="maTrieuChung" name="t" property="maTrieuChung"></bean:define>
-																				 <html:link action="/tim-benh-theo-trieu-chung?maTrieuChungChon=${maTrieuChung}" >
-																					<span class="glyphicon glyphicon-plus"></span>
-																				</html:link>  
-																			</td> 
-																		</tr>
-																	</logic:iterate>
-																</tbody>
-															</table>
-													</div>
-												</div>
-										</div>
-														
-												<div class="col-lg-12">
-													<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="width : 90%">
-																<thead>
-																	<tr>
-																		<th>Mã Bệnh</th>
-																		<th>Tên Bệnh</th>
-																		<th>Loại Bệnh</th>
-																		<th></th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<logic:iterate name="benhTrieuChungForm"
-																		property="listBenh" id="b">
-																		<tr>
-																			<th scope="row">
-																				<bean:write name="b" property="maBenh" />
-																			</th>
-																			<td>
-																				<bean:write name="b" property="tenBenh" />
-																			</td>
-																			<td>
-																				<bean:write name="b" property="tenLoaiBenh" />
-																			</td>
-																			 <td>
-																				<bean:define id="maBenh" name="b" property="maBenh"></bean:define>
-																				 <html:link action="/chi-tiet-benh?maBenh=${maBenh}" >
-																					<span class="glyphicon glyphicon-list"></span>
-																				</html:link>  
-																			</td> 
-																		</tr>
-																	</logic:iterate>
-																</tbody>
-														</table>
-												</div>
-												<div class="row form-group">
-								            		<div class="col-lg-3 col-lg-offset-2">
-										                <button class="btn btn-primary" onclick="history.go(-1);">Quay lại</button>
-								            		</div>
-								        </div>
-								    </html:form>
-								</div>
-							</div>
-						</div>
-					</div>
+	<div class="container timbenhtheotrieuchung" style="padding-top: 20px; padding-bottom: 40px;">
+		<div class="row">
+			<input type="text" id="trieuchungauto"
+				placeholder="Nhập triệu chứng cần tìm" name="timKiem" style="width: 300px">
+			<script>
+				var t = {
+
+					url : function(phrase) {
+						phrase = encodeURI(phrase);
+						return "trieuChungJSON.jsp?phrase=" + phrase
+								+ "&format=json";
+					},
+
+					getValue : function(element) {
+						return element.tenTrieuChung;
+					},
+					ajaxSettings : {
+						dataType : "json",
+						method : "POST",
+						data : {
+							dataType : "json"
+						}
+					},
+
+					preparePostData : function(data) {
+						data.phrase = $("#trieuchungauto").val();
+						return data;
+					},
+					list : {
+						onClickEvent : function() {
+							var selectedItemValue = $("#trieuchungauto")
+									.getSelectedItemData().maTrieuChung;
+							window.location
+									.assign("/MSS/tim-benh-theo-trieu-chung.do?maTrieuChungChon="
+											+ selectedItemValue);
+						},
+					},
+
+					theme : "square"
+				};
+
+				$("#trieuchungauto").easyAutocomplete(t);
+			</script>
+		</div>
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-3 col-md-3 col-sm-3">
+				<h4>Bảng Chọn Triệu Chứng</h4>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3">
+				<h4>Bảng Triệu Chứng Đã Chọn</h4>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<h4>Bệnh Liên Quan</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1"></div>
+			<div class="col-lg-3 col-md-3 col-sm-3">
+
+				<div class="danhsachtrieuchung">
+					<%-- <ul>
+						<logic:iterate id="x" name="benhTrieuChungForm" property="listTrieuChungTim">
+						
+							<li> <bean:write name="x" property="tenTrieuChung" /> </li>
+						</logic:iterate>
+						
+					</ul> --%>
+					<table class="table table-striped table-bordered table-hover"
+						id="dataTables-example">
+						<thead>
+							<tr>
+								<th>Tên triệu chứng</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<logic:iterate name="benhTrieuChungForm"
+								property="listTrieuChungTim" id="t">
+								<tr>
+									<td><bean:write name="t" property="tenTrieuChung" /></td>
+									<td><bean:define id="maTrieuChung" name="t"
+											property="maTrieuChung"></bean:define> <html:link
+											action="/tim-benh-theo-trieu-chung?maTrieuChungChon=${maTrieuChung}">
+											<span class="glyphicon glyphicon-plus"></span>
+										</html:link></td>
+								</tr>
+							</logic:iterate>
+						</tbody>
+					</table>
 				</div>
 			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3">
+				<div class="danhsachtrieuchung">
+					<table class="table table-striped table-bordered table-hover"
+						id="dataTables-example">
+						<thead>
+							<tr>
+								<th>Tên triệu chứng</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<logic:iterate name="benhTrieuChungForm"
+								property="listTrieuChungChon" id="t">
+								<tr>
+									<td><bean:write name="t" property="tenTrieuChung" /></td>
+									<td><bean:define id="maTrieuChung" name="t"
+											property="maTrieuChung"></bean:define> <html:link
+											action="/tim-benh-theo-trieu-chung?maTrieuChungXoa=${maTrieuChung}">
+											<span class="glyphicon glyphicon-trash"></span>
+										</html:link></td>
+								</tr>
+							</logic:iterate>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-5">
+				<div class="danhsachtrieuchung">
+					<table class="table table-striped table-bordered table-hover"
+						id="dataTables-example">
+						<thead>
+							<tr>
+								<th>Tên Bệnh</th>
+								<th style="width: 111px">Loại Bệnh</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<logic:iterate name="benhTrieuChungForm" property="listBenh"
+								id="b">
+								<tr>
+									<td><bean:write name="b" property="tenBenh" /></td>
+									<td><bean:write name="b" property="tenLoaiBenh" /></td>
+									<td><bean:define id="maBenh" name="b" property="maBenh"></bean:define>
+										<html:link action="/chi-tiet-benh?ma=${maBenh}">
+											<span class="glyphicon glyphicon-list"></span>
+										</html:link></td>
+								</tr>
+							</logic:iterate>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+		<div class="huongdansudung">
+			<p>
+				<span style="font-size: 16px"><em><strong>Hướng
+							dẫn sử dụng :</strong></em></span>
+			</p>
+
+			<p style="text-align: justify;">+ Nhập th&ocirc;ng tin v&agrave;o
+				&ocirc; &quot;Nhập Triệu Chứng Cần T&igrave;m&quot; để c&oacute; thể
+				t&igrave;m kiếm triệu chứng bạn gặp phải , v&agrave; Click trực tiếp
+				v&agrave;o c&aacute;c triệu chứng trong &ocirc; gợi &yacute; để
+				th&ecirc;m triệu chứng&nbsp;</p>
+
+			<p>
+				+ Click v&agrave;o item <span class="glyphicon glyphicon-plus"></span>
+				để th&ecirc;m triệu chứng m&agrave; bạn gặp phải .
+			</p>
+
+			<p>
+				+ Click v&agrave;o item <span class="glyphicon glyphicon-trash"></span>
+				để hủy bỏ triệu chứng m&agrave; bạn nhập sai .
+			</p>
+
+			<p>
+				+ Click v&agrave;o item&nbsp; <span class="glyphicon glyphicon-list"></span>
+				để xem chi tiết bệnh m&agrave; bạn c&oacute; thể gặp phải .
+			</p>
+
+		</div>
+	</div>
+	<%@ include file="_footer.jsp"%>
 </body>
 </html>

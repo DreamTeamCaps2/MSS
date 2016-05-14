@@ -1,7 +1,6 @@
 package action;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +24,7 @@ public class TimKiemAction extends Action {
 		
 		Variable.getTB(mapping,form,request,response);
 		
+		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		BenhBO benhBO = new BenhBO();
 		ThuocBO thuocBO = new ThuocBO();
@@ -40,7 +40,10 @@ public class TimKiemAction extends Action {
 		int maLoaiTimKiem= timKiemForm.getMaLoaiTimKiem();
 		timKiem = new String(timKiem.getBytes("ISO-8859-1"),"UTF-8");
 
+		System.out.println("TIM KIEM: "+ timKiem );
+		System.out.println("TIM KIEM: "+ tam );
 
+		tam = timKiem;
 		if(timKiem.indexOf("'")!=-1){
 			String t= ""+timKiem.charAt(timKiem.indexOf("'"));
 			timKiem=timKiem.replaceAll(t, "''" );

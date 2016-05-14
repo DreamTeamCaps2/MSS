@@ -13,8 +13,9 @@ body {
 	color: #000;
 	font-weight: 400;
 	font-style: normal !important;
-	font-size: 14px;
-	font-family: "Roboto", "segoe ui", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	/* font-family: "Roboto", "segoe ui", Helvetica, Arial, sans-serif; */
+	font-family: 'Open Sans', sans-serif;
 	line-height: 1.42857;
 	padding: 0px;
 }
@@ -29,8 +30,8 @@ a {
 }
 
 .title {
-	margin-left:20%;
-	margin-right:10%;	
+/* 	margin-left:20%;
+	margin-right:10%;	 */
 }
 
 .title ul {
@@ -213,11 +214,11 @@ ul.list-group.scroll:hover {
 }
 .item-result {
 	float: left;
-	height: 300px;
+	height: 270px;
 	width: 25%;
 	padding-left: 6px;
 	padding-right: 6px;
-	padding-bottom: 30px;
+	/* padding-bottom: 30px; */
 	
 }
 .title-item-result {
@@ -243,11 +244,11 @@ ul.list-group.scroll:hover {
 } */
 
 .list-group-item {
-	position: relative;
+/* 	position: relative;
 	display: block;
 	padding: 10px 15px;
 	margin-bottom: -1px;
-	background-color: #fff;
+	background-color: #fff; */
 	border: 0px solid #ddd;
 }
 
@@ -296,8 +297,8 @@ ul.list-group.scroll:hover {
 
 .container {
 	background: #fff;
-	padding-right: 1px;
-    padding-left: 1px;
+	padding-right: 0px;
+    padding-left: 0px;
 }
 
 .item-title a {
@@ -330,9 +331,7 @@ a:HOVER {
     background: #f6f6f6;
 }
 #pagination {
-    background: #f6f6f6;
     margin: 2% 0 2% 0%;
-	
 }
  #pagination li a {
 	padding: 8px 16px;
@@ -357,6 +356,7 @@ a:HOVER {
 	float:right;
 }
 .sidebar-danhsach{
+	    padding-top: 10px;
 	/* overflow-y:scroll;
 	width:100%; */
 }
@@ -390,6 +390,9 @@ a:HOVER {
 	 width: 31%;
 	 margin-left:2%;
 	
+}
+.list-thuoc-nav a {
+    color: #000;
 }
 .loai-benh-nav a {
 	/*  font-size: 20px!important;
@@ -539,4 +542,328 @@ span.form-description {
 .navbar-nav>li>a {
     padding-top: 15px;
     padding-bottom: 0px;
+}
+#mucLuc {
+	background-color: #E5F3FF !important;
+    border: 1px solid #C2DCF3;
+    clear: both;
+    margin: 0 auto 20px auto;
+    width: 60%!important;
+}
+.list-categories  a {
+	color :#276dcc !important;
+}
+.list-categories li {
+	margin-left:20px;
+}
+.title1 a {
+	color: blue;
+}
+#thong-bao-title {
+	height:60px;
+	width:100%;	
+	background: #f2f2f2;
+	padding-top:20px;	
+	
+}
+#list-thong-bao {
+	width: 350px; height: 350px;
+}
+div#scrollthongbao {
+    max-height: 200px;
+     overflow: hidden;
+}
+div#scrollthongbao:HOVER {
+    overflow-y: scroll;
+}
+.noidungdanhsach {
+	height: 1000px;
+}
+input#trieuchungauto {
+	font-style: normal;
+    font-family: serif;
+    width: 27%;
+    height: 15px;
+    margin: 10px 0px 10px 13vh;
+    min-width: 32vh!important;
+}
+.danhsachtrieuchung {
+    overflow-y: scroll;
+    min-height: 70vh;
+    border: solid 1px red;
+    max-height: 70vh;
+}
+.timbenhtheotrieuchung {
+	min-height: 100vh;
+}
+div#eac-container-trieuchungauto {
+    margin-left: 13vh;
+}
+.huongdansudung {
+	    margin: 20px 20px 0px 20px;
+}
+/* tab panel tin tức */
+.tabPanel-widget {
+	position: relative; /* containing block for headings (top:0) */
+	background: #999;
+}
+
+.tabPanel-widget>label {
+	position: absolute;
+	z-index: 1;
+}
+
+.tabPanel-widget>label, .tabPanel-widget>h2 {
+	font-size: 1.1em;
+	width: 6.3em;
+	height: 2em;
+	line-height: 2em;
+}
+
+.tabPanel-widget>h2 {
+	position: relative;
+	margin: 0;
+	text-align: center;
+	background: #999;
+	color: #fff;
+}
+
+.tabPanel-widget>label {
+	border-right: 1px solid #fff;
+}
+
+.tabPanel-widget>label ~ label, .tabPanel-widget>h2 ~ h2 {
+	position: absolute;
+	top: 0;
+}
+
+.tabPanel-widget label:nth-child(1), .tabPanel-widget h2:nth-child(3) {
+	left: 0em;
+}
+
+.tabPanel-widget label:nth-child(5), .tabPanel-widget h2:nth-child(7) {
+	left: 6.3em;
+}
+
+.tabPanel-widget label:nth-child(9), .tabPanel-widget h2:nth-child(11) {
+	left: 12.7em;
+}
+
+.tabPanel-widget input+h2+div {
+	position: absolute !important;
+	clip: rect(1px, 1px, 1px, 1px);
+	padding: 0 !important;
+	border: 0 !important;
+	height: 1px !important;
+	width: 2px !important;
+	overflow: hidden;
+}
+
+.tabPanel-widget input:checked+h2+div {
+	position: static !important;
+	padding: 1em !important;
+	height: auto !important;
+	width: auto !important;
+}
+
+.tabPanel-widget label:hover {
+	cursor: pointer;
+}
+
+.tabPanel-widget>div {
+	background: #E4E4E4;
+	padding: 1em;
+}
+
+.tabPanel-widget input[name="tabs"] {
+	opacity: 0;
+	position: absolute;
+}
+
+.tabPanel-widget input[name="tabs"]:focus+h2 {
+	outline: 1px dotted #000;
+	outline-offset: 10px;
+}
+
+.tabPanel-widget:hover h2 {
+	outline: none !important;
+}
+
+.tabPanel-widget input[name="tabs"]:checked+h2 {
+	background: #333;
+}
+
+.tabPanel-widget input[name="tabs"]:checked+h2:after {
+	content: '';
+	margin: auto;
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	right: 0;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid #333;
+}
+
+@media screen and (max-width: 45em) {
+	/* hide unecessary label/control pairs */
+	.tabPanel-widget label, .tabPanel-widget input[name="tabs"] {
+		display: none;
+	}
+	.tabPanel-widget>input+h2+div {
+		display: block !important;
+		position: static !important;
+		padding: 1em !important;
+		height: auto !important;
+		width: auto !important;
+	}
+	.tabPanel-widget h2 {
+		width: auto;
+		position: static !important;
+		background: #999 !important;
+	}
+	.tabPanel-widget h2:after {
+		display: none !important;
+	}
+}
+/* end panel tin tức */
+
+/* CSYT */
+.row.danhSachCSYT {
+	margin: 20px;
+}
+
+.row.danhSachCSYT a {
+	color: green;
+}
+
+/* 
+input[type="submit"] {
+	background: transparent;
+	font-size: 18px;
+	color: green;
+	border: blue;
+	height: 36px;
+	width: 50px;
+} */
+
+#toTop {
+	background: #f7f7f7;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	bottom: 5vw;
+	color: #333;
+	cursor: pointer;
+	display: none;
+	font-size: 11px;
+	padding: 18px;
+	position: fixed;
+	right: 10vh;
+	text-align: center;
+}
+
+.bandonav {
+	background: #fff;
+	padding: 20px 2% 0;
+}
+
+#google-map {
+	height: 89vh;
+	width:100vw;
+}
+
+.map-icons {
+	background:
+		url('http://i892.photobucket.com/albums/ac123/satthuhoahong/icon_loction_yellow_zps9d39c5b7.png');
+	display: block;
+}
+
+.map-icon-location-yellow {
+	font-style: normal;
+	font-weight: bold;
+	color: #dc2303;
+	font-size: 10px;
+	text-indent: 0px;
+	background-position: -87px -86px;
+	width: 29px;
+	height: 42px;
+	text-align: center;
+	line-height: 25px;
+	color: #f99d1c;
+}
+.headercsyt select {
+	float:left;
+	width:15vw;
+}
+.headercsyt input[type="text"] {
+	width:35vw;
+	float:left;
+}
+#csytsubmit {
+	
+	color: green;
+	float:left;
+	margin-left: 30px;
+}
+.listDiaDiem {
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    margin-left: 20px;
+}
+.navbarcsyt {
+	 padding-top: 1vh;
+    height: 10vh;
+    text-align: center;
+    clear: both;
+    margin: 0px 15vh 0px 15vh;;
+   
+}
+.listresultcsyt {
+	    position: absolute;
+    left: 3%;
+    top: 20vh;
+    bottom: 2vh;
+    width: 350px;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    border-radius: 3px;
+    background: 0 0;
+    -webkit-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    background: #fff;
+    overflow-y: scroll;
+}
+.listDiaDiem:FIRST-CHILD {
+	background:#f3f3f3;
+	height:50px;
+	margin-left: 0px;
+}
+.thong-tin-thuoc {
+	height:270px;
+}
+.item-title a {
+	font-size: 18px;
+	color:#000;
+}
+.sapxep-mua-thuoc{
+	background:#f3f3f3;
+	margin-bottom: 30px;
+	
+}
+.sapxep-mua-thuoc p {
+	float:left;
+	margin-top:10px;
+	margin-right:20px;
+	
+}
+.thong-tin-thuoc a {
+	color: blue;
+	
 }

@@ -26,7 +26,7 @@ public class QuanLy_DanhSachBaiVietAction extends Action{
 			baiVietBO.xoaBaiViet(maBaiVietXoa);
 		}
 		
-		baiVietForm.setListBaiViet(baiVietBO.getListBaiViet());
+		baiVietForm.setListBaiViet(baiVietBO.getListBaiViet(-1));
 		
 		return mapping.findForward("danhSachBaiViet");
 	}

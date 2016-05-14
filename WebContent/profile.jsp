@@ -118,7 +118,7 @@
 	      <div class="well">
 	        <p><a href="#">My Profile</a></p>
 	        <a href="#" id="pop">
-	        	<img src="img/${taiKhoan1.anhDaiDien}" class="img-circle" height="100" width="100" alt="Avatar">
+	        	<img src="img/${taiKhoan1.anhDaiDien}" class="img-circle" height="180px" width="180px" alt="Avatar">
 			</a>
 	      </div>
 	      <div class="well">
@@ -133,17 +133,6 @@
 			    <li><a href="#">Quản lý phòng khám</a></li>
 			    </logic:notEmpty>
 		  	</ul>
-	      </div>
-	      <div class="well">
-	        <p><a href="#">Interests</a></p>
-	        <p>
-	          <span class="label label-default">News</span>
-	          <span class="label label-primary">W3Schools</span>
-	          <span class="label label-success">Labels</span>
-	          <span class="label label-info">Football</span>
-	          <span class="label label-warning">Gaming</span>
-	          <span class="label label-danger">Friends</span>
-	        </p>
 	      </div>
 	    </div>
     <div class="col-sm-9">
@@ -234,7 +223,6 @@
 			        <div class="row form-group">
 			            <div class="col-lg-4 col-lg-offset-6">
 			            	<html:submit styleClass="btn btn-primary" property="submit" value="OK">Thêm mới</html:submit>
-			            	<a href="/MSS" class="btn btn-primary">HOME</a>
 			            </div>
 			        </div>
 

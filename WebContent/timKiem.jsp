@@ -72,7 +72,7 @@
 
 <body>
 	<html:form action="/tim-kiem">
-		<div class="container">
+		<div class="container" style="padding-top: 20px;">
 			<div class="row">
 				<!-- NOI DUNG -->
 				<div class="col-lg-8 tim-kiem-content">
@@ -160,7 +160,7 @@
 										<h5>
 											Loại Thuốc : <a 
 												href="/MSS/danh-sach-thuoc.do?maNhomThuoc=<bean:write name="x" property="maNhomThuoc"/>"><bean:write
-													name="x" property="tenNhomThuoc" /> - </a>
+													name="x" property="tenNhomThuoc" /> </a>
 										</h5>
 										
 									</div>
@@ -203,14 +203,10 @@
 					</script>
 
 				</div>
-				<!-- QUANG CAO -->
-				<div class="col-lg-4 content">
-					
-				</div>
-
+				<%@ include file="_menuRight.jsp"%>
 			</div>
 		</div>
 	</html:form>
-
+	<%@ include file="_footer.jsp"%>
 </body>
 </html>

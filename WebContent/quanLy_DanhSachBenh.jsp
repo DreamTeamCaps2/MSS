@@ -11,19 +11,10 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Danh Sách Bệnh</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/simplePagination.css">
-<script src="js/jquery.simplePagination.js" type="text/javascript"></script>
 </head>
 <%@ include file="quanLy_TrangChu.jsp"%>
 <body>
-	<div class="container">
+	<div class="container" style="padding-bottom: 50px">
 		<div class="row">
 			<html:form action="/quan-ly-danh-sach-benh" method="get">
 				<div class="col-lg-3">
@@ -61,11 +52,9 @@
 				</div>
 			</html:form>
 		</div>
-		<div class="page-navigation" id="abc"></div>	
-		<div class="panel-body">
-			<div class="table-responsive">
-				<table class="table table-striped table-bordered table-hover"
-					id="dataTables-example">
+		<div class="box">
+			<div class="box-body">
+				<table class="table table-striped table-bordered dt-bootstrap" id="dataTables-example">
 					<thead>
 						<tr>
 							<th>Mã Bệnh</th>
@@ -96,30 +85,21 @@
 				
 			</div>
 		</div>
-		<!-- <div class="page-navigation" id="pagination"></div>	
-		
-						<script>
-						jQuery(function($) {
-			                var items = $(".item");
-			                var numItems = items.length;
-			                var perPage = 2;
-			                // only show the first 2 (or "first per_page") items initially
-			                items.slice(perPage).hide();
-			                // now setup pagination
-			                $("#pagination").pagination({
-			                    items: numItems,
-			                    itemsOnPage: perPage,
-			                    cssStyle: "light-theme",
-			                    onPageClick: function(pageNumber) { // this is where the magic happens
-			                        // someone changed page, lets hide/show trs appropriately
-			                        var showFrom = perPage * (pageNumber - 1);
-			                        var showTo = showFrom + perPage;
-			                        items.hide() // first hide everything, then show for the new page
-			                             .slice(showFrom, showTo).show();
-			                    }
-			                });
-			            });
-						</script> -->
+		<script type="text/javascript">
+		$(document).ready(function() {
+			$('#dataTables-example').dataTable({
+				"order" : [ [ 0, "desc" ] ],
+				"searching": false,
+				"columnDefs" : [ 
+				  	{"width": "10%", "targets": 0},
+					{"width": "30%", "targets": 1},
+					{"width": "30%", "targets": 2},
+					{"width": "10%", "targets": 3},
+					{ "orderable": false, "targets": -1 }
+				  ]
+			});
+		});
+		</script>
 	</div>
 </body>
 </html>

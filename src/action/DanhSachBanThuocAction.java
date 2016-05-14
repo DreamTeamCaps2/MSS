@@ -23,10 +23,18 @@ public class DanhSachBanThuocAction extends Action {
 		DanhSachGiaForm danhSachGiaForm = (DanhSachGiaForm) form;
 
 		ThuocBO thuocBO = new ThuocBO();
-		int mathuoc = danhSachGiaForm.getMsv();
+		int mathuoc = danhSachGiaForm.getMaThuoc();
+		Thuoc thuoc = thuocBO.getThuoc(mathuoc);
 		ArrayList<Thuoc> list;
-		String kc = danhSachGiaForm.getKc();
-		System.out.println(kc);
+		String kc = danhSachGiaForm.getKhoangCach();
+		// set nhomThuoc, LoaiThuoc
+		danhSachGiaForm.setMaLoaiThuoc(thuoc.getMaLoaiThuoc());
+		danhSachGiaForm.setTenLoaiThuoc(thuoc.getTenLoaiThuoc());
+		danhSachGiaForm.setMaNhomThuoc(thuoc.getMaNhomThuoc());
+		danhSachGiaForm.setTenNhomThuoc(thuoc.getTenNhomThuoc());
+		danhSachGiaForm.setHinhAnh(thuoc.getHinhAnh());
+		danhSachGiaForm.setTenThuoc(thuoc.getTenThuoc());
+
 		try {
 			String[] akc = null;
 			if (kc != null) {

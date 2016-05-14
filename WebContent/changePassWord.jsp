@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container text-center">    
-		<div class="row" style="width: inherit; margin-left: 0px; margin-right: 0px;">
+		<div class="row">
 	    <div class="col-sm-3" style="margin-top: 15px;">
 	      <div class="well">
 	        <p><a href="#">My Profile</a></p>
@@ -25,8 +25,8 @@
 	      </div>
 	      <div class="well">
 			<ul class="nav nav-pills nav-stacked" role="tablist">
-			    <li class="active"><html:link action="thongTinTK">Thông tin tài khoản</html:link></li>
-				<li><a href="/MSS/doi-mat-khau.do">Đổi mật khẩu</a></li>
+			    <li><html:link action="thongTinTK">Thông tin tài khoản</html:link></li>
+				<li class="active"><a href="/MSS/doi-mat-khau.do">Đổi mật khẩu</a></li>
 			    <li><a href="/MSS/danh-sach-da-luu.do">Đã lưu</a></li>
 			    <logic:notEmpty name="taiKhoan1" property="tenNhaThuoc">
 			    <li><html:link action="/quan-ly-thuoc-cua-hang">Quản lý thuốc</html:link></li>
@@ -35,17 +35,6 @@
 			    <li><a href="#">Quản lý phòng khám</a></li>
 			    </logic:notEmpty>
 		  	</ul>
-	      </div>
-	      <div class="well">
-	        <p><a href="#">Interests</a></p>
-	        <p>
-	          <span class="label label-default">News</span>
-	          <span class="label label-primary">W3Schools</span>
-	          <span class="label label-success">Labels</span>
-	          <span class="label label-info">Football</span>
-	          <span class="label label-warning">Gaming</span>
-	          <span class="label label-danger">Friends</span>
-	        </p>
 	      </div>
 	    </div>
     <div class="col-sm-9">
@@ -76,7 +65,6 @@
 			        <div class="row form-group">
 			            <div class="col-lg-4 col-lg-offset-6">
 			            	<html:submit styleClass="btn btn-primary" property="submit" value="OK">Thêm mới</html:submit>
-			            	<html:link action="/login.jsp" styleClass="btn btn-primary">Trang chủ</html:link>
 			            </div>
 			        </div>
 			    </html:form>
@@ -88,9 +76,9 @@
 	</div>
 	</div>
 	</div>
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-  	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+	<script src="js/jquery-2.1.3.min.js"></script>   
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.min.js"></script>
 	<script src="js/validation.js"></script>
 	<%@ include file="_footer.jsp"%>
 </body>

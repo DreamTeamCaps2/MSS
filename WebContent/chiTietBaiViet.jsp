@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>Bài Viết</title>
 	
-	<link rel="stylesheet" href="css/reviewdao.vn.css" />
+<!-- 	<link rel="stylesheet" href="css/reviewdao.vn.css" /> -->
 	<style type="text/css">
 		p{
 			text-align: justify;
@@ -21,15 +21,25 @@
 	</style>
 </head>
 <body>
-	<div class="container-fluid" style="width: 1200px;">
-		<div class="acolumn">
-			<div class="post-2 post">
-			<h3><bean:write name="baiVietForm" property="tieuDe"/></h3>
-			<div class="quote"><bean:write name="baiVietForm" property="tomTat"/></div>
-        	<c:out value="${baiVietForm.noiDung}" escapeXml="false" />      
-            </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-8">
+				<div class="acolumn">
+					<div class="post-2 post">
+						<h3>
+							<bean:write name="baiVietForm" property="tieuDe" />
+						</h3>
+						<div class="quote">
+							<bean:write name="baiVietForm" property="tomTat" />
+						</div>
+						<c:out value="${baiVietForm.noiDung}" escapeXml="false" />
+					</div>
+				</div>
+			</div>
+			<%@ include file="_menuRight.jsp"%>
 		</div>
 	</div>
-<%@ include file="_footer.jsp"%>
+
+	<%@ include file="_footer.jsp"%>
 </body>
 </html>

@@ -11,15 +11,6 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Quên Mật Khẩu</title>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
-<link rel="stylesheet" href="css/login-register/blue.css" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </head>
 <body class="hold-transition register-page">
 <div class="container" style="height: 450px;  background-color: #F2F2F2;">
@@ -42,25 +33,6 @@
 		</div>
 	</div>
 	</div>
-	<script src="js/login-register/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="js/bootstrap.min.js"></script>
-
-  	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-  	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
-	<script src="js/validation.js"></script>
-	    <!-- iCheck -->
-    <script src="js/login-register/icheck.min.js"></script>
-    <script>
-      $(function () {
-        $('input').iCheck({
-          checkboxClass: 'icheckbox_square-blue',
-          radioClass: 'iradio_square-blue',
-          increaseArea: '20%' // optional
-        });
-      });
-    </script>	
     <%@ include file="_footer.jsp"%> 
 </body>
 </html>

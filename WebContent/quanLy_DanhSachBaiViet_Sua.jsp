@@ -9,17 +9,11 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Sửa Bài Viết</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-
-<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+	<!-- <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script> -->
 </head>
 <body>
 	<html:form action="/sua-bai-viet" method="post" enctype="multipart/form-data">
-		<div class="container">
+		<div class="container" style="padding-bottom: 50px">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="box box-info">
@@ -38,7 +32,10 @@
 	                    </div>
 						<div class="box-body pad" style="padding: 0px; margin-top: 20px;">
 							<form>
-                				<html:textarea property="noiDung" rows="10" cols="80" styleId="noiDung"></html:textarea>
+                				<%-- <html:textarea property="noiDung" rows="10" cols="80" styleId="noiDung"></html:textarea> --%>
+                				<html:textarea styleClass="noiDung" styleId="noiDung" property="noiDung"
+									style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+								</html:textarea>
 							</form>
 						</div>
 						<html:submit styleClass="btn btn-primary btn-block btn-flat"
@@ -49,17 +46,8 @@
 		</div>
 	</html:form>
 	<script>
-
 		$(function() {
-			// Replace the <textarea id="editor1"> with a CKEditor
-			// instance, using default configuration.
-			CKEDITOR.replace('noiDung');
-		});
-
-		$('#printHTML').click(function() {
-			var value = CKEDITOR.instances['noiDung'].getData();
-			console.log('abc:' + value);
-
+			$(".noiDung").wysihtml5();
 		});
 	</script>
 </body>

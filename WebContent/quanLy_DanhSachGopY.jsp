@@ -60,9 +60,10 @@
 			</div>
 
 			<!-- table -->
-			<div class="">
-				<div class="table-responsive">
-					<table class="table">
+					<div class="box">
+						<div class="box-body">
+							<table class="table table-striped table-bordered dt-bootstrap"
+								id="dataTables-example">
 						<thead>
 							<tr>
 								<th style="width: 30%;">Chủ Đề</th>
@@ -120,7 +121,20 @@
 				</div>
 			</div>
 		</div>
-
 	</html:form>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#dataTables-example').dataTable({
+			"order" : [ [ 2, "desc" ] ],
+			"columnDefs" : [ 
+			  	{"width": "35%", "targets": 0},
+				{"width": "35%", "targets": 1},
+				{"width": "20%", "targets": 2},
+				{"width": "10%", "targets": 3},
+				{ "orderable": false, "targets": -1 }
+			  ]
+		});
+	});
+	</script>
 </body>
 </html>

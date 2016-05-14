@@ -1,5 +1,7 @@
 package action;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.upload.FormFile;
 
+import common.StringProcess;
 import form.BenhForm;
 import model.bean.Benh;
 import model.bean.Thuoc;
@@ -35,8 +39,12 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 		String bienChung ;
 		String dieuTri;
 		String cheDoDinhDuong ;
+		String dinhNghia;
 		int maLoaiBenh;
 		int trangThai = 1;
+		
+		FileOutputStream outputStream = null;
+	    FormFile file = null;
 		
 		BenhForm benhForm = (BenhForm) form;
 		BenhBO benhBO = new BenhBO();
@@ -77,6 +85,7 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 			 dieuTri = benhForm.getDieuTri();
 			 cheDoDinhDuong = benhForm.getCheDoDinhDuong();
 			 maLoaiBenh = benhForm.getMaLoaiBenh();
+			 dinhNghia = benhForm.getDinhNghia();
 			 
 			session.setAttribute("maBenh", maBenh);
 			session.setAttribute("tenBenh", tenBenh);
@@ -85,6 +94,7 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 			session.setAttribute("bienChung", bienChung);
 			session.setAttribute("dieuTri", dieuTri);
 			session.setAttribute("cheDoDinhDuong", cheDoDinhDuong);
+			session.setAttribute("dinhNghia", dinhNghia);
 			session.setAttribute("maLoaiBenh", maLoaiBenh);
 			session.setAttribute("listThuoc", benhForm.getListThuoc());
 			session.setAttribute("listTrieuChung", benhForm.getListTrieuChung());
@@ -145,6 +155,14 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 				// String(benhForm.getCheDoDinhDuong().getBytes("ISO-8859-1"),"UTF-8"));
 				session.setAttribute("cheDoDinhDuong", benhForm.getCheDoDinhDuong());
 			}
+			
+			if (benhForm.getDinhNghia() == null || "".equals(benhForm.getDinhNghia()))
+				benhForm.setDinhNghia((String) session.getAttribute("dinhNghia"));
+			else {
+				// benhForm.setCheDoDinhDuong(new
+				// String(benhForm.getCheDoDinhDuong().getBytes("ISO-8859-1"),"UTF-8"));
+				session.setAttribute("dinhNghia", benhForm.getDinhNghia());
+			}
 
 			if (benhForm.getMaLoaiBenh() == 0) {
 				benhForm.setMaLoaiBenh((int) session.getAttribute("maLoaiBenh"));
@@ -158,6 +176,7 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 			dieuTri = benhForm.getDieuTri();
 			cheDoDinhDuong = benhForm.getCheDoDinhDuong();
 			maLoaiBenh = benhForm.getMaLoaiBenh();
+			dinhNghia = benhForm.getDinhNghia();
 
 			session.setAttribute("kt", 1);
 		}
@@ -165,6 +184,16 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 		
 		if("submit".equals(benhForm.getSubmit()))
 		{
+			
+			 tenBenh = benhForm.getTenBenh();
+			 nguyenNhan = benhForm.getNguyenNhan();
+			 chanDoan = benhForm.getChanDoan();
+			 bienChung = benhForm.getBienChung();
+			 dieuTri = benhForm.getDieuTri();
+			 cheDoDinhDuong = benhForm.getCheDoDinhDuong();
+			 maLoaiBenh = benhForm.getMaLoaiBenh();
+			 dinhNghia = benhForm.getDinhNghia();
+			
 			ActionErrors actionErrors=new ActionErrors();
 			
 			if(tenBenh == null || "".equals(tenBenh))
@@ -182,7 +211,30 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 				return mapping.findForward("suaBenh");
 			else
 			{
-				benhBO.suaBenh(maBenh,tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong,maLoaiBenh);
+				file = benhForm.getFile();
+				String hinhAnh = "";
+				if(file.getFileName()!=""){
+					StringProcess process = new StringProcess();
+					hinhAnh = process.makeSlug(tenBenh)+".jpg";
+					try {
+			            String path = getServlet().getServletContext().getRealPath("/")+"img"+"/" + hinhAnh;
+			            System.out.println(path);
+			            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
+			            outputStream = new FileOutputStream(new File(path));
+			            outputStream.write(file.getFileData());
+			            
+			        } finally {
+			            if (outputStream != null) {
+			                outputStream.close();
+			            }
+			        }
+				}
+				else 
+					hinhAnh = (String)request.getSession().getAttribute("anhBenh");
+				
+				System.out.println("hinh: "+ hinhAnh);
+				
+				benhBO.suaBenh(maBenh,tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong,dinhNghia, maLoaiBenh, hinhAnh);
 				benhBO.xoaThuocBenh(maBenh);
 				trieuChungBO.xoaTrieuChungBenh(maBenh);
 				for(int i=0; i< benhForm.getListThuoc().size(); i++)
@@ -213,6 +265,7 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 				benhForm.setDieuTri(benh.getDieuTri());
 				benhForm.setCheDoDinhDuong(benh.getCheDoDinhDuong());
 				benhForm.setMaLoaiBenh(benh.getMaLoaiBenh());
+				benhForm.setDinhNghia(benh.getDinhNghia());
 				benhForm.setListThuoc(thuocBO.getListThuoc(maBenh));
 				benhForm.setListTrieuChung(trieuChungBO.getListTrieuChung(maBenh));
 				
@@ -223,9 +276,11 @@ public class QuanLy_DanhSachBenh_SuaAction extends Action{
 				session.setAttribute("bienChung", benhForm.getBienChung());
 				session.setAttribute("dieuTri", benhForm.getDieuTri());
 				session.setAttribute("cheDoDinhDuong", benhForm.getCheDoDinhDuong());
+				session.setAttribute("dinhNghia", benhForm.getDinhNghia());
 				session.setAttribute("maLoaiBenh", benhForm.getMaLoaiBenh());
 				session.setAttribute("listThuoc", benhForm.getListThuoc());
 				session.setAttribute("listTrieuChung", benhForm.getListTrieuChung());
+				session.setAttribute("anhBenh", benh.getHinhAnh());
 			}
 			 
 			return mapping.findForward("suaBenh");

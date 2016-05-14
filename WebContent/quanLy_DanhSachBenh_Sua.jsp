@@ -9,13 +9,6 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Sửa bệnh</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="quanLy_TrangChu.jsp"%>
 </head>
 <body>
@@ -26,8 +19,8 @@
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<html:form action="/sua-benh" method="post">
-<div class="row form-group">
+									<html:form action="/sua-benh" method="post" enctype="multipart/form-data">
+										<div class="row form-group">
 								            <label class="col-lg-2">Mã bệnh</label>
 								            <div class="col-lg-3">
 								            	<html:text property="maBenh" styleClass="form-control" readonly="true" styleId="select-maBenh"></html:text>
@@ -45,44 +38,100 @@
 								        </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Nguyên nhân</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="nguyenNhan" styleClass="form-control"  styleId="select-nguyenNhan"></html:textarea>
-								            	<p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="nguyenNhanError"/>
-								            	</p></div>
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_nguyenNhan">Edit</button>
+								            	<div id="edit_nguyenNhan" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="nguyenNhan" styleClass="nguyenNhan"  styleId="select-nguyenNhan"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="nguyenNhanError"/>
+								            	</p>
+								            </div>
 								        </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Chẩn đoán </label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="chanDoan" styleClass="form-control"  styleId="select-chanDoan"></html:textarea>
-											<p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="chanDoanError"/>
-								            	</p></div>
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_chanDoan">Edit</button>
+								            	<div id="edit_chanDoan" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="chanDoan" styleClass="chanDoan"  styleId="select-chanDoan"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="chanDoanError"/>
+								            	</p>
+								            </div>
 								        </div>        
 								                   
 								        <div class="row form-group">
 								            <label class="col-lg-2">Biến chứng</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="bienChung" styleClass="form-control"  styleId="select-bienChung"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="bienChungError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_bienChung">Edit</button>
+								            	<div id="edit_bienChung" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="bienChung" styleClass="bienChung"  styleId="select-bienChung"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="bienChungError"/>
+								            	</p>
+								            </div>
 								        </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Điều trị</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="dieuTri" styleClass="form-control"  styleId="select-dieuTri"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="dieuTriError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_dieuTri">Edit</button>
+								            	<div id="edit_dieuTri" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="dieuTri" styleClass="dieuTri"  styleId="select-dieuTri"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="dieuTriError"/>
+								            	</p>
+								            </div>
 								        </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Chế độ dinh dưỡng</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="cheDoDinhDuong" styleClass="form-control"  styleId="select-cheDoDinhDuong"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="cheDoDinhDuongError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_cheDoDinhDuong">Edit</button>
+								            	<div id="edit_cheDoDinhDuong" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="cheDoDinhDuong" styleClass="cheDoDinhDuong"  styleId="select-cheDoDinhDuong"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="cheDoDinhDuongError"/>
+								            	</p>
+								            </div>
+								        </div>    
+								        <div class="row form-group">
+								            <label class="col-lg-2">Định nghĩa</label>
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_dinhNghia">Edit</button>
+								            	<div id="edit_dinhNghia" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="dinhNghia" styleClass="dinhNghia"  styleId="select-dinhNghia"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="dinhNghiaError"/>
+								            	</p>
+								            </div>
 								        </div>        
 								        <div class="row form-group">
 								        	<div class="col-lg-3">
@@ -98,7 +147,6 @@
 								            <div class="col-lg-4" style="margin-top: 5px;font-size:13px" >(*)</div>  
 										</div>
 										<div class="row form-group">
-											<div class="row form-group">
 								        	<label class="col-lg-2">Danh sách thuốc liên quan</label>
 								        	<div class="col-lg-5">
 													<table class="table table-striped table-bordered table-hover" id="dataTables-example" style="width : 90%">
@@ -155,8 +203,13 @@
 												<div class="col-lg-3 col-lg-offset-2">
 								            		<html:submit styleClass="btn btn-primary" property="changeTrieuChung" value="changeTrieuChung">Sua trieu chung</html:submit>
 								            	</div>
-								        </div>
 										</div>
+										<div class="row form-group">
+					                      <label class="col-lg-2">Hình ảnh</label>
+					                      <div class="col-lg-3">
+					                      	<input name="file" type="file" id="exampleInputFile">
+					                      </div>
+					                    </div>
 								        <div class="row form-group">
 								            <div class="col-lg-3 col-lg-offset-2">
 								            	<html:submit styleClass="btn btn-primary" property="submit" value="submit">Thêm mới</html:submit>
@@ -170,5 +223,15 @@
 					</div>
 				</div>
 			</div>
+	<script>
+		$(function() {
+			$(".nguyenNhan").wysihtml5();
+			$(".chanDoan").wysihtml5();
+			$(".bienChung").wysihtml5();
+			$(".dieuTri").wysihtml5();
+			$(".cheDoDinhDuong").wysihtml5();
+			$(".dinhNghia").wysihtml5();
+		});
+	</script>			
 </body>
 </html>

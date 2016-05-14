@@ -9,15 +9,67 @@ import model.bean.Thuoc;
 public class DanhSachGiaForm extends ActionForm {
 
 	private ArrayList<Thuoc> listGiaThuoc;
-	private int maThuoc, msv;
-	private String loaiDiaDiem, kc;
+	private int maThuoc, maNhomThuoc, maLoaiThuoc;
+	private String loaiDiaDiem, khoangCach, tenNhomThuoc, tenLoaiThuoc, hinhAnh, tenThuoc;
 
-	public String getKc() {
-		return kc;
+	public String getTenThuoc() {
+		return tenThuoc;
+	}
+
+	public void setTenThuoc(String tenThuoc) {
+		this.tenThuoc = tenThuoc;
+	}
+
+	public void setKhoangCach(String khoangCach) {
+		this.khoangCach = khoangCach;
+	}
+
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
+
+	public int getMaNhomThuoc() {
+		return maNhomThuoc;
+	}
+
+	public void setMaNhomThuoc(int maNhomThuoc) {
+		this.maNhomThuoc = maNhomThuoc;
+	}
+
+	public int getMaLoaiThuoc() {
+		return maLoaiThuoc;
+	}
+
+	public void setMaLoaiThuoc(int maLoaiThuoc) {
+		this.maLoaiThuoc = maLoaiThuoc;
+	}
+
+	public String getTenNhomThuoc() {
+		return tenNhomThuoc;
+	}
+
+	public void setTenNhomThuoc(String tenNhomThuoc) {
+		this.tenNhomThuoc = tenNhomThuoc;
+	}
+
+	public String getTenLoaiThuoc() {
+		return tenLoaiThuoc;
+	}
+
+	public void setTenLoaiThuoc(String tenLoaiThuoc) {
+		this.tenLoaiThuoc = tenLoaiThuoc;
+	}
+
+	public String getKhoangCach() {
+		return khoangCach;
 	}
 
 	public void setKc(String kc) {
-		this.kc = kc;
+		this.khoangCach = kc;
 	}
 
 	public String getLoaiDiaDiem() {
@@ -42,14 +94,6 @@ public class DanhSachGiaForm extends ActionForm {
 
 	public void setMaThuoc(int maThuoc) {
 		this.maThuoc = maThuoc;
-	}
-
-	public int getMsv() {
-		return msv;
-	}
-
-	public void setMsv(int msv) {
-		this.msv = msv;
 	}
 
 }

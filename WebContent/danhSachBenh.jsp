@@ -9,7 +9,6 @@
 <html>
 <%@ include file="login.jsp"%>
 <head lang="en">
-
 <meta charset="UTF-8">
 <title>Danh Sách Bệnh</title>
 
@@ -34,9 +33,9 @@
 <body>
 	<html:form action="/danh-sach-benh">
 		<div class="container">
-			<div class="row ">
+			<div class="row noidungdanhsach">
 				<!-- side bar -->
-				<div class="col-lg-3 col-md-3  categories">
+				<div class="col-lg-3 col-md-3 col-sm-3 categories danhsach" style="padding: 0px;">
 					<div class="sidebar-danhsach">
 						<ul class="list-group scroll">
 							<li class="list-group-item loaidanhsach" id="loai-danh-sach-0"><a
@@ -56,7 +55,7 @@
 					</div>
 				</div>
 				<!-- noi dung -->
-				<div class="col-lg-9 col-md-9">
+				<div class="col-lg-9 col-md-9 col-sm-9 danhsach" style="padding: 0px;">
 					<div class="row">
 						<logic:equal value="0" property="soLuongBenh"
 							name="danhSachBenhForm">

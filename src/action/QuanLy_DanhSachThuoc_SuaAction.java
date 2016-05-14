@@ -1,5 +1,7 @@
 package action;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -13,7 +15,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
+import org.apache.struts.upload.FormFile;
 
+import common.StringProcess;
 import form.ThuocForm;
 import model.bean.Benh;
 import model.bean.Thuoc;
@@ -43,6 +47,9 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 		int maNhomThuoc ;
 		int trangThai = 1;
 		
+		FileOutputStream outputStream = null;
+	    FormFile file = null;
+		
 		ThuocForm thuocForm = (ThuocForm) form;
 		ThuocBO thuocBO = new ThuocBO();
 		BenhBO benhBO = new BenhBO();
@@ -63,7 +70,7 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 		{
 			thuocForm.setListBenh((ArrayList<Benh>) session.getAttribute("listBenh"));
 			
-			if(!"".equals(thuocForm.getTenThuoc()) && thuocForm.getTenThuoc() != null)
+/*			if(!"".equals(thuocForm.getTenThuoc()) && thuocForm.getTenThuoc() != null)
 				thuocForm.setTenThuoc(thuocForm.getTenThuoc());
 			if(!"".equals(thuocForm.getCongThuc()) && thuocForm.getCongThuc() != null)
 				thuocForm.setCongThuc(thuocForm.getCongThuc());
@@ -82,7 +89,7 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 			if(!"".equals(thuocForm.getThanTrong()) && thuocForm.getThanTrong() != null)
 				thuocForm.setThanTrong(thuocForm.getThanTrong());
 			if(!"".equals(thuocForm.getDDH()) && thuocForm.getDDH() != null)
-				thuocForm.setDDH(thuocForm.getDDH());
+				thuocForm.setDDH(thuocForm.getDDH());*/
 			
 			 tenThuoc = thuocForm.getTenThuoc();
 			 congThuc = thuocForm.getCongThuc();
@@ -223,11 +230,25 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 		
 		if("submit".equals(thuocForm.getSubmit()))
 		{
+			maThuoc = thuocForm.getMaThuoc();
+			tenThuoc = thuocForm.getTenThuoc();
+			congThuc = thuocForm.getCongThuc();
+			tenKhoaHoc = thuocForm.getTenKhoaHoc();
+			dieuChe = thuocForm.getDieuChe();
+			tinhChat = thuocForm.getTinhChat();
+			tacDung = thuocForm.getTacDung();
+			chiDinh = thuocForm.getChiDinh();
+			baoQuan = thuocForm.getBaoQuan();
+			thanTrong = thuocForm.getThanTrong();
+			DDH = thuocForm.getDDH();
+			maNhomThuoc = thuocForm.getMaNhomThuoc();
+			maLoaiThuoc = thuocForm.getMaLoaiThuoc();
+			
 			ActionErrors actionErrors=new ActionErrors();
 			
 			if(tenThuoc == null || "".equals(tenThuoc))
 				actionErrors.add("tenThuocError",new ActionMessage("error.notNull"));
-			else if(thuocBO.ktTenThuoc(tenThuoc,maThuoc)==0)
+			else if(thuocBO.ktTenThuoc(tenThuoc, maThuoc)==0)
 				actionErrors.add("tenThuocError",new ActionMessage("error.exists"));
 			else if(tenThuoc.length() >= 50)
 					actionErrors.add("tenThuocError",new ActionMessage("error.ten"));
@@ -240,8 +261,31 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 				return mapping.findForward("suaThuoc");
 			else
 			{
+				file = thuocForm.getFile();
+				String hinhAnh = "";
+				if(file.getFileName()!=""){
+					StringProcess process = new StringProcess();
+					hinhAnh = process.makeSlug(tenThuoc)+".jpg";
+					try {
+			            String path = getServlet().getServletContext().getRealPath("/")+"img"+"/" + hinhAnh;
+			            System.out.println(path);
+			            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
+			            outputStream = new FileOutputStream(new File(path));
+			            outputStream.write(file.getFileData());
+			            
+			        } finally {
+			            if (outputStream != null) {
+			                outputStream.close();
+			            }
+			        }
+				}
+				else 
+					hinhAnh = (String)request.getSession().getAttribute("anhThuoc");
+				
+				System.out.println("hinh: "+ hinhAnh);
+				
 				thuocBO.xoaThuocBenh(maThuoc);
-				thuocBO.suaThuoc(maThuoc,tenThuoc,congThuc,tenKhoaHoc,dieuChe,tinhChat,tacDung,chiDinh,baoQuan,thanTrong,DDH,maNhomThuoc);
+				thuocBO.suaThuoc(maThuoc,tenThuoc,congThuc,tenKhoaHoc,dieuChe,tinhChat,tacDung,chiDinh,baoQuan,thanTrong,DDH,maNhomThuoc, hinhAnh);
 				thuocBO.themThuocBenh(tenThuoc,thuocForm.getListBenh());
 				return mapping.findForward("suaThuocXong");
 			}
@@ -284,6 +328,7 @@ public class QuanLy_DanhSachThuoc_SuaAction extends Action{
 				session.setAttribute("maLoaiThuoc", maLoaiThuoc);
 				session.setAttribute("maNhomThuoc", maNhomThuoc);
 				session.setAttribute("listBenh", thuocForm.getListBenh());
+				session.setAttribute("anhThuoc", thuoc.getHinhAnh());
 			}
 			if(request.getParameter("check")!=null){
 				System.out.println("Maloai :"+request.getParameter("maLoaiThuoc"));

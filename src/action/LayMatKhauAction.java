@@ -25,23 +25,23 @@ public class LayMatKhauAction extends Action{
 		TaiKhoanForm taiKhoanForm = (TaiKhoanForm)form;
 		TaiKhoanBO taiKhoanBO = new TaiKhoanBO();
 		NguoiDungBO nguoiDungBO = new NguoiDungBO();
-		
-		String maTK = taiKhoanForm.getMaTK();
-		
 		String tenDangNhap="";
-		
-		if("OK".equals(taiKhoanForm.getSubmit()))
-		{
-			tenDangNhap = taiKhoanForm.getTenDangNhap();
-			
-			String matKhauMoi = taiKhoanForm.getMatKhau2();
-			matKhauMoi = encryptMD5(tenDangNhap+matKhauMoi);
-			nguoiDungBO.updateMatKhau(tenDangNhap, matKhauMoi);
-			return mapping.findForward("layLaiMatKhauXong");
-		}
+		String maTK = taiKhoanForm.getMaTK();
 		if(maTK!=null)
 			tenDangNhap = taiKhoanBO.getTenDangNhap(Integer.parseInt(maTK));
 		taiKhoanForm.setTenDangNhap(tenDangNhap);
+		
+		if(request.getParameter("token")!=null){
+			if("OK".equals(taiKhoanForm.getSubmit()))
+			{
+				tenDangNhap = taiKhoanForm.getTenDangNhap();
+				
+				String matKhauMoi = taiKhoanForm.getMatKhau2();
+				matKhauMoi = encryptMD5(tenDangNhap+matKhauMoi);
+				nguoiDungBO.updateMatKhau(tenDangNhap, matKhauMoi);
+				return mapping.findForward("layLaiMatKhauXong");
+			}
+		}
 		return mapping.findForward("layLaiMatKhau");
 	}
 	

@@ -5,19 +5,14 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
 <html>
+<title>Danh Sách Triệu Chứng</title>
 <%@ include file="quanLy_TrangChu.jsp"%>
 <head lang="en">
 <meta charset="UTF-8">
-<title>Danh Sách Triệu Chứng</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />	
 
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="padding-bottom: 50px">
 	<html:form action="/quan-ly-trieu-chung">
 		<div class="row">
 			<div class="col-lg-12">
@@ -64,8 +59,6 @@
 						</tbody>
 					</table>
 				</div>
-			<script src="js/dataTables/jquery.dataTables.js"></script>
-			<script src="js/dataTables/dataTables.bootstrap.js"></script>
 			<script>
 				var bientoancuc = 0;
 				function luuToanCuc(maTrieuChung){
@@ -73,11 +66,10 @@
 				}
 				$(document).ready(function() {
 					$('#dataTables-example').dataTable({
-						"autoWidth" : false,
-						"columnDefs" : [ {
-							"targets" : [ 2 ],
-							"searchable" : false
-						} ]
+						"order" : [ [ 0, "desc" ] ],
+						"columnDefs" : [ 
+							{ "orderable": false, "targets": -1 } 
+						]
 					});
 				});
 				function xoaClick(maTrieuChung) {

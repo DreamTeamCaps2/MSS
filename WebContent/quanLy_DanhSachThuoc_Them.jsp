@@ -9,13 +9,6 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Thêm thuốc</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="quanLy_TrangChu.jsp"%>
 </head>
 <body>
@@ -63,60 +56,108 @@
 								                   
 								        <div class="row form-group">
 								            <label class="col-lg-2">Điều chế</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="dieuChe" styleClass="form-control"  styleId="select-dieuChe"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="dieuCheError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_dieuChe">Edit</button>
+								            	<div id="edit_dieuChe" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="dieuChe" styleClass="dieuChe"  styleId="select-dieuChe"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="dieuCheError"/>
+								            	</p>
+								            </div>	
 								        </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Tính chất</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="tinhChat" styleClass="form-control"  styleId="select-tinhChat"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="tinhChatError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_tinhChat">Edit</button>
+								            	<div id="edit_tinhChat" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="tinhChat" styleClass="tinhChat"  styleId="select-tinhChat"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="tinhChatError"/>
+								            	</p>
+								            </div>	
 								        </div>
 								        <div class="row form-group">
 								            <label class="col-lg-2">Tác dụng</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="tacDung" styleClass="form-control"  styleId="select-tacDung"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="tacDungError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_tacDung">Edit</button>
+								            	<div id="edit_tacDung" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="tacDung" styleClass="tacDung"  styleId="select-tacDung"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="tacDungError"/>
+								            	</p>
+								            </div>	
 								        </div>  
 								        <div class="row form-group">
 								            <label class="col-lg-2">Chỉ định</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="chiDinh" styleClass="form-control"  styleId="select-chiDinh"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="chiDinhError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_chiDinh">Edit</button>
+								            	<div id="edit_chiDinh" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="chiDinh" styleClass="chiDinh"  styleId="select-chiDinh"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="chiDinhError"/>
+								            	</p>
+								            </div>	
 								        </div>       
 								        <div class="row form-group">
 								            <label class="col-lg-2">Bảo quản</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="baoQuan" styleClass="form-control"  styleId="select-baoQuan"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="baoQuanError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_baoQuan">Edit</button>
+								            	<div id="edit_baoQuan" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="baoQuan" styleClass="baoQuan"  styleId="select-baoQuan"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="baoQuanError"/>
+								            	</p>
+								            </div>	
 								        </div> 
 								        <div class="row form-group">
 								            <label class="col-lg-2">Thận trọng</label>
-								            <div class="col-lg-3">
-								            	<html:textarea property="thanTrong" styleClass="form-control"  styleId="select-thanTrong"></html:textarea>
-								           <p style="color: red;font-size:13px; padding-top: 5px">
-								            	<html:errors property="thanTrongError"/>
-								            	</p></div>	
+								            <div class="col-lg-7">
+								            	<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#edit_thanTrong">Edit</button>
+								            	<div id="edit_thanTrong" class="collapse">
+								            		<div class="box-body">
+										            	<html:textarea property="thanTrong" styleClass="thanTrong"  styleId="select-thanTrong"
+										            	style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+										            	</html:textarea>
+									            	</div>
+								            	</div>
+								           		<p style="color: red;font-size:13px; padding-top: 5px">
+								            		<html:errors property="thanTrongError"/>
+								            	</p>
+								            </div>
 								        </div> 
-								        <div class="row form-group">
+<%-- 								        <div class="row form-group">
 								            <label class="col-lg-2">DDH</label>
 								            <div class="col-lg-3">
 								            	<html:textarea property="DDH" styleClass="form-control"  styleId="select-DDH"></html:textarea>
 								           <p style="color: red;font-size:13px; padding-top: 5px">
 								            	<html:errors property="DDHError"/>
 								            	</p></div>	
-								        </div> 
+								        </div>  --%>
 								        <div class="row form-group">
 								        	<label class="col-lg-2">Danh sách bệnh liên quan</label>
 								        	<div class="col-lg-5">
@@ -246,5 +287,15 @@
 					</div>
 				</div>
 			</div>
+	<script>
+		$(function() {
+			$(".dieuChe").wysihtml5();
+			$(".tinhChat").wysihtml5();
+			$(".tacDung").wysihtml5();
+			$(".chiDinh").wysihtml5();
+			$(".baoQuan").wysihtml5();
+			$(".thanTrong").wysihtml5();
+		});
+	</script>
 </body>
 </html>

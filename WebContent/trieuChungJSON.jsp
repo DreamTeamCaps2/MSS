@@ -1,3 +1,4 @@
+<%@page import="model.dao.AutoCompleteDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
@@ -8,23 +9,20 @@
 <%@page import="javax.annotation.Resource"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="java.util.List"%>
-<%@page import="model.dao.GetJSONDAO"%>
-<%@page import="form.DiaDiemForm"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.dao.DiaDiemDAO"%>
+<%@page import="model.bean.TrieuChung"%>
 <%@page import="com.google.gson.Gson"%>
-
-
-
 <%
-	/* request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/text;charset=utf-8");
 	String query = request.getParameter("phrase");
 	byte[] isoBytes = query.getBytes("ISO-8859-1");
-	String t= new String(isoBytes, "UTF-8"); */
-	GetJSONDAO diaDiem = new GetJSONDAO();
-	DiaDiemForm form = new DiaDiemForm();
-	form.setJson(diaDiem.getLoaiBenh());
-	
-	String t1 = form.getJson();
+	String t= new String(isoBytes, "UTF-8");
+	AutoCompleteDAO autoCompleteDAO = new AutoCompleteDAO();
+	ArrayList<TrieuChung> listTrieuChung = autoCompleteDAO.getListTrieuChung(t);
+	Gson gson = new Gson();
+
+	String t1 = gson.toJson(listTrieuChung);
 	out.print(t1);
 %>

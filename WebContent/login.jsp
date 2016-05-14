@@ -6,20 +6,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-	<% response.setIntHeader("Refresh", 300);%>
+	<% response.setIntHeader("Refresh", 600);%>
     <meta charset="utf8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/font-awesome.css" />
 	<link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/style_mss.css" />
     <link rel="stylesheet" href="css/simplePagination.css"/>
     <link rel="stylesheet" href="css/jquery.rateyo.min.css"/>
     <link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />	
+	<link rel="stylesheet" href="css/pgwslider.min.css" />
+    <link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
     <link rel="stylesheet" href="css/reviewdao.vn.css" />
-  	
-    <script src="js/jquery-1.11.2.min.js"></script>     
+    <link rel="stylesheet" href="css/login-register/blue.css" /> 	
+    <link rel="stylesheet" href="css/style_mss.css" />
+    <link href="css/easy-autocomplete.min.css" rel="stylesheet">
+	<link href="css/easy-autocomplete.themes.min.css" rel="stylesheet">
+	
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+         
+    <script src="js/bootstrap.min.js"></script>     
+   <!--  <script src="js/jquery-1.11.2.min.js"></script> -->     
+    
+    <script src="js/login-register/jQuery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.min.js"></script>
+	<script src="js/validation.js"></script>
+	<script src="js/pgwslider.min.js"></script>
 	<script src="js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
 	<script src="js/jquery.simplePagination.js" type="text/javascript"></script>
 	<script src="js/dataTables/jquery.dataTables.js"></script>
@@ -27,9 +41,12 @@
 	<script src="js/jquery.rateyo.min.js"></script>
 	<script src="js/jquery.dotdotdot.js"></script>
 
-    <link href="css/easy-autocomplete.min.css" rel="stylesheet">
-	<link href="css/easy-autocomplete.themes.min.css" rel="stylesheet">
+
 	<style>
+	.row{
+		margin-right: 0px;
+    	margin-left: 0px;
+	}
 	.eac-square input {
 		background-image: url("images/ico-search.png");
 		background-repeat: no-repeat;
@@ -42,132 +59,10 @@
 	    height: 48px;
 		background-color: white;
 	}
-	.tabPanel-widget {
-		position: relative; /* containing block for headings (top:0) */
-		background: #999;
-	}
-	.tabPanel-widget>label {
-		position: absolute;
-		z-index: 1;
-	}
-	.tabPanel-widget>label, .tabPanel-widget>h2 {
-		font-size: 1.1em;
-		width: 6.3em;
-		height: 2em;
-		line-height: 2em;
-	}
-	.tabPanel-widget>h2 {
-		position: relative;
-		margin: 0;
-		text-align: center;
-		background: #999;
-		color: #fff;
-	}
 	
-	.tabPanel-widget>label {
-		border-right: 1px solid #fff;
-	}
-	.tabPanel-widget>label ~ label, .tabPanel-widget>h2 ~ h2 {
-		position: absolute;
-		top: 0;
-	}
-	.tabPanel-widget label:nth-child(1), .tabPanel-widget h2:nth-child(3) {
-		left: 0em;
-	}
-	.tabPanel-widget label:nth-child(5), .tabPanel-widget h2:nth-child(7) {
-		left: 6.3em;
-	}
-	.tabPanel-widget label:nth-child(9), .tabPanel-widget h2:nth-child(11) {
-		left: 12.7em;
-	}
-	.tabPanel-widget input+h2+div {
-		position: absolute !important;
-		clip: rect(1px, 1px, 1px, 1px);
-		padding: 0 !important;
-		border: 0 !important;
-		height: 1px !important;
-		width: 2px !important;
-		overflow: hidden;
-	}
-	.tabPanel-widget input:checked+h2+div {
-		position: static !important;
-		padding: 1em !important;
-		height: auto !important;
-		width: auto !important;
-	}
-	.tabPanel-widget label:hover {
-		cursor: pointer;
-	}
-	.tabPanel-widget>div {
-		background: #f0f0f0;
-		padding: 1em;
-	}
-	.tabPanel-widget input[name="tabs"] {
-		opacity: 0;
-		position: absolute;
-	}
-	.tabPanel-widget input[name="tabs"]:focus+h2 {
-		outline: 1px dotted #000;
-		outline-offset: 10px;
-	}
-	.tabPanel-widget:hover h2 {
-		outline: none !important;
-	}
-	.tabPanel-widget input[name="tabs"]:checked+h2 {
-		background: #333;
-	}
-	.tabPanel-widget input[name="tabs"]:checked+h2:after {
-		content: '';
-		margin: auto;
-		position: absolute;
-		bottom: -10px;
-		left: 0;
-		right: 0;
-		width: 0;
-		height: 0;
-		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-top: 10px solid #333;
-	}
-	@media screen and (max-width: 45em) {
-		/* hide unecessary label/control pairs */
-		.tabPanel-widget label, .tabPanel-widget input[name="tabs"] {
-			display: none;
-		}
-	
-		.tabPanel-widget>input+h2+div {
-			display: block !important;
-			position: static !important;
-			padding: 1em !important;
-			height: auto !important;
-			width: auto !important;
-		}
-	
-		.tabPanel-widget h2 {
-			width: auto;
-			position: static !important;
-			background: #999 !important;
-		}
-	
-		.tabPanel-widget h2:after {
-			display: none !important;
-		}
-	}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
-/* 			//set width and height for list nav thuoc
-				var soLuongNhomThuoc = <bean:write name="thongBaoForm" property="soLuongNhomThuoc" />;
-				var soLuongLoaiThuoc = <bean:write name="thongBaoForm" property="soLuongLoaiThuoc" />;
-				var widthThuoc= parseInt(soLuongLoaiThuoc)*250;
-				var heightThuoc = (parseInt(soLuongNhomThuoc)*40+60);
-				$("ul .list-loai-thuoc").css("width",widthThuoc+"px");
-				$("ul .list-loai-thuoc").css("height",heightThuoc+"px"); 
-				$("div .dropdown.loaithuoc").css("width",80/soLuongLoaiThuoc+"%");
-				//set width and height for list nav benh
-				var soLuongLoaiBenh = <bean:write name="thongBaoForm" property="soLuongLoaiBenh" />; */
-			 
-				
 					//set width and height for list nav thuoc
 					var soLuongLoaiThuoc = <bean:write name="thongBaoForm" property="soLuongLoaiThuoc" />;
 					var heightThuoc = (parseInt(soLuongLoaiThuoc)/3*55);
@@ -195,6 +90,8 @@
 
 	}
 	function runScript(e) {
+		if(isValid(e)==false)
+			return false;
 		if (e.keyCode == 13) {
 			var ten = document.getElementById("square").value.split(" ");
 			var chuoi = "";
@@ -235,6 +132,17 @@
 	    }
 	    return "";
 	}
+
+	function isValid(e) {
+		var iChars = "~`!#$%^&*+=-[]\\\;,/{}|\":<>?@_()";
+		for (var i = 0; i < iChars.length; i++) {
+			var t = iChars.charAt(i) + "";
+			if (t == String.fromCharCode(e.keyCode)) {
+				return false;
+			}
+		}
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -249,7 +157,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="/MSS">MSS</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -378,12 +286,12 @@
 										</a>
 									
 								</logic:notEqual>
-								<ul class="dropdown-menu" id="list-thong-bao"
-									style="width: 500px; height: 500px;">
-									<div>
-										<div class="thong-bao-title">
-											<h3>THÔNG BÁO</h3>
+								<ul class="dropdown-menu" id="list-thong-bao" >
+										<div style="padding: 10px; margin-bottom:10px; background: whitesmoke;">
+											<span class="results-heading-title"><h3 style="text-align: center;">THÔNG BÁO</h3></span>
+											<!-- <p id="thong-bao-title">THÔNG BÁO</p> -->
 										</div>
+										<div id="scrollthongbao">
 										<logic:iterate id="x" name="thongBaoForm" property="listThongBao">
 											<div class="thong-bao-chu-de">
 												<a
@@ -396,10 +304,10 @@
 												</p>
 											</div>
 										</logic:iterate>
-										<div>
-											<a href="/MSS/quan-ly-gop-y.do"> Xem Tất Cả Thông Báo</a>
 										</div>
-									</div>
+										<div style="margin-top:10px; margin-right: 10px">
+											<a href="/MSS/quan-ly-gop-y.do" style="float:right; color:blue;"> Xem Tất Cả Thông Báo</a>
+										</div>
 
 								</ul></li>
 						</logic:notEqual>				
@@ -455,12 +363,16 @@
 						</ul></li>
 					<li><a href="/MSS/dia-diem.do">CƠ SỞ Y TẾ</a></li>
 					<li><a href="/MSS/gop-y.do">GÓP Ý</a></li>
-					<li><a href="/MSS/gop-y.do">ABOUT</a></li>
+					<li><a href="/MSS/about.jsp">ABOUT</a></li>
 					<logic:equal name="quanLy" value="1">
 						<li><a href="/MSS/quanLy_TrangChu.jsp">QUẢN LÝ</a></li>
 					</logic:equal>
 				</ul>
-				  	
+				<ul class="nav navbar-nav navbar-right">
+					<a href="/MSS/android/MSS.apk">
+						<img alt="" src="img/download_apk.png" style=" width: 120px; height: 40px;">
+					</a>
+				</ul> 	
 		</div>
 		
      </div>

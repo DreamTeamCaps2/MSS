@@ -8,19 +8,11 @@
 <html>
 <head lang="en">
 <meta charset="UTF-8">
-<title>Danh Sách Bệnh</title>
-
-<!-- <link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" /> -->
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Danh Sách Tài Khoản</title>
 <%@ include file="quanLy_TrangChu.jsp"%>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
 <body>
-	<div class="container">
+	<div class="container" style="padding-bottom: 50px">
 		<div class="row">
 			<html:form action="/quan-ly-danh-sach-tai-khoan" method="get">
 			<div class="col-lg-3">
@@ -77,10 +69,10 @@
 			</script> 
 			</html:form>
 		</div>
-		<div class="panel-body">
-			<div class="table-responsive">
-				<table class="table table-striped table-bordered table-hover"
-					id="dataTables-example">
+		<br>
+		<div class="box">
+			<div class="box-body">
+				<table class="table table-striped table-bordered dt-bootstrap" id="dataTables-example">
 					<thead>
 						<tr>
 							<th>Mã tài khoản</th>
@@ -120,6 +112,19 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#dataTables-example').dataTable({
+				"order" : [ [ 0, "desc" ] ],
+				"searching": false,
+				"columnDefs" : [ 
+				  	{"width": "10%", "targets": 0},
+					{"width": "30%", "targets": 1},
+					{"width": "50%", "targets": 2},
+					{"width": "10%", "targets": 3},
+					{ "orderable": false, "targets": -1 }
+				  ]
+			});
+		});
 		function khoaTKClick(maTaiKhoan) {
 			var result = confirm('Bạn có chắc chắn ?');
 			if(result){

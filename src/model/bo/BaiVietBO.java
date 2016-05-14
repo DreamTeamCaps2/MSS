@@ -11,8 +11,8 @@ public class BaiVietBO {
 
 	BaiVietDAO baiVietDAO = new BaiVietDAO();
 
-	public ArrayList<BaiViet> getListBaiViet() {
-		return baiVietDAO.getListBaiViet();
+	public ArrayList<BaiViet> getListBaiViet(int pageNum) {
+		return baiVietDAO.getListBaiViet(pageNum);
 	}
 
 	public BaiViet getBaiViet(int maBaiViet) {

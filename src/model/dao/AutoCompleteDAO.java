@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.bean.AutoComplete;
+import model.bean.TrieuChung;
 
 public class AutoCompleteDAO extends DBHelper{
 
@@ -67,5 +68,31 @@ public class AutoCompleteDAO extends DBHelper{
 		}
 		return list;
 	}
-
+	public  ArrayList<TrieuChung> getListTrieuChung(String query) {
+		connect();
+		String sql2 = "Select * from TrieuChung  where tenTrieuChung like  N'%"+query+"%'";
+		System.out.println(sql2);
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<TrieuChung> list = new ArrayList<TrieuChung>();
+		TrieuChung trieuChung;
+		try {
+			while(rs.next()){
+				trieuChung = new TrieuChung();
+				String tenTrieuChung=rs.getString("tenTrieuChung");
+				int maTrieuChung = rs.getInt("maTrieuChung");
+				trieuChung.setMaTrieuChung(maTrieuChung);
+				trieuChung.setTenTrieuChung(tenTrieuChung);
+				list.add(trieuChung);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

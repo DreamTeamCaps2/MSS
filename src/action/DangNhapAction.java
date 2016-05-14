@@ -65,6 +65,7 @@ public class DangNhapAction extends Action {
 		BaiVietBO baiVietBO = new BaiVietBO();
 		BenhBO benhBO = new BenhBO();
 		
+
 		
 		
 		ThongBaoForm form1 = (ThongBaoForm)session1.getAttribute("thongBaoForm");
@@ -77,10 +78,21 @@ public class DangNhapAction extends Action {
 		thongBaoForm.setSoLuongNhomThuoc(thongBaoBO.soLuongNhomThuoc());
 		thongBaoForm.setSoLuongLoaiBenh(thongBaoBO.getListLoaiBenh().size());
 		thongBaoForm.setListND(taiKhoanBO.getListNguoiDung());
-		thongBaoForm.setListBaiViet(baiVietBO.getListBaiViet());
 		thongBaoForm.setListBenhXemNhieu(benhBO.getListBenhXemNhieu());
 		thongBaoForm.setListThuocXemNhieu(thuocBO.getListThuocXemNhieu());
 		thongBaoForm.setListBaiVietXemNhieu(baiVietBO.getListBaiVietXemNhieu());
+		thongBaoForm.setListBaiVietSlider(baiVietBO.getListBaiViet(-1));
+
+		int tongBaiViet = baiVietBO.getListBaiViet(-1).size()-5;
+		request.setAttribute("tongBaiViet", tongBaiViet);
+		
+		thongBaoForm.setListBaiViet(baiVietBO.getListBaiViet(0));
+		
+		if(request.getParameter("page")!=null){
+			System.out.println("sotrang:" + request.getParameter("page"));
+			int pageNum = (Integer) Integer.parseInt(request.getParameter("page"));
+			thongBaoForm.setListBaiViet(baiVietBO.getListBaiViet(pageNum-1));
+		}
 		
 		if(form1!=null){
 			thongBaoForm.setSoLuong(form1.getSoLuong());

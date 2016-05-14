@@ -11,12 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Đăng Ký</title>
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
-<link rel="stylesheet" href="css/login-register/blue.css" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </head>
 
 <body class="hold-transition register-page">
@@ -41,16 +35,6 @@
 					<input name="matKhau2" type="password" class="form-control"
 						placeholder="Retype password"> 
 				</div>
-<!-- 				<div class="form-group has-feedback">
-					<div class="radio">Giới tính:    
-						<label>
-							<input type="radio" name="gioiTinh" id="optionsRadios1" value="Nam" checked>Nam
-						</label>
-						<label>
-							<input type="radio" name="gioiTinh" id="optionsRadios2" value="Nu">Nữ
-						</label>
-					</div>      
-				</div> -->
 				<div class="form-group has-feedback">
 					<span class="glyphicon glyphicon-home form-control-feedback"></span>				
 					<input name="diaChi" type="text" class="form-control" placeholder="Address">
@@ -111,16 +95,15 @@
 			<a href="login_admin.jsp" class="text-center">I already have a membership</a>
 		</div>
 	</div>
-    <script src="js/login-register/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
+	
+ 	<!-- <script src="js/login-register/jQuery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-  	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-  	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
-	<script src="js/validation.js"></script>
-	    <!-- iCheck -->
+	<script src="js/jquery-2.1.3.min.js"></script>   
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.min.js"></script>
+	<script src="js/validation.js"></script> -->
     <script src="js/login-register/icheck.min.js"></script>
+    
     <script>
       $(function () {
         $('input').iCheck({

@@ -12,6 +12,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
+import common.StringProcess;
 import form.BaiVietForm;
 import model.bo.BaiVietBO;
 
@@ -34,14 +35,17 @@ public class QuanLy_BaiViet_ThemAction extends Action{
 			String hinhAnh = baiVietForm.getHinhAnh();
 			String noiDung = baiVietForm.getNoiDung();
 			String tomTat = baiVietForm.getTomTat();
+			System.out.println("test:" +noiDung);
+			
+			hinhAnh = "no_image.jpg";
 			file = baiVietForm.getFile();
 			if(file.getFileName()!=""){
-				System.out.println(file.getFileName());
-				String chuoi = tieuDe+"_ava.jpg";
+				StringProcess process = new StringProcess();
+				hinhAnh = process.makeSlug(tieuDe)+".jpg";
 				try {
-		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/" + chuoi;
+		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/" + hinhAnh;
 		            System.out.println(path);
-		            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
+		            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+chuoi));
 		            outputStream = new FileOutputStream(new File(path));
 		            outputStream.write(file.getFileData());
 		            
@@ -50,11 +54,10 @@ public class QuanLy_BaiViet_ThemAction extends Action{
 		                outputStream.close();
 		            }
 		        }
-				hinhAnh = chuoi;
 			}
-			else{
-				hinhAnh = "no_image.jpg";
-			}
+			
+			System.out.println(hinhAnh);
+			
 			BaiVietBO baiVietBO = new BaiVietBO();
 			baiVietBO.themBaiViet(tieuDe,tomTat,hinhAnh,noiDung);
 			

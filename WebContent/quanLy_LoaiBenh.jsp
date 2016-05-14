@@ -1,4 +1,3 @@
-
 <%@page import="form.ThongBaoForm"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,13 +10,6 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Danh Sách Loại Bệnh</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css" />
-<link href="css/style.css" rel="stylesheet" type="text/css"
-	media="screen,print" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <%@ include file="quanLy_TrangChu.jsp"%>
 <body>
@@ -39,10 +31,9 @@
 				</div>
 			</html:form>
 		</div>
-		<div class="panel-body">
-			<div class="table-responsive">
-				<table class="table table-striped table-bordered table-hover"
-					id="dataTables-example">
+		<div class="box">
+			<div class="box-body">
+				<table class="table table-striped table-bordered dt-bootstrap" id="dataTables-example">
 					<thead>
 						<tr>
 							<th>Mã loại bệnh</th>
@@ -69,5 +60,15 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#dataTables-example').dataTable({
+			"order" : [ [ 0, "desc" ] ],
+			"columnDefs" : [ 
+				{ "orderable": false, "targets": -1 } 
+			]
+		});
+	});
+	</script>
 </body>
 </html>

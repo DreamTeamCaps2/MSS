@@ -12,6 +12,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.upload.FormFile;
 
+import common.StringProcess;
 import form.BaiVietForm;
 import model.bean.BaiViet;
 import model.bo.BaiVietBO;
@@ -43,10 +44,10 @@ public class QuanLy_BaiViet_SuaAction extends Action{
 			
 			file = baiVietForm.getFile();
 			if(file.getFileName()!=""){
-				System.out.println(file.getFileName());
-				String chuoi = tieuDe+"_ava.jpg";
+				StringProcess process = new StringProcess();
+				hinhAnh = process.makeSlug(tieuDe)+".jpg";
 				try {
-		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/" + chuoi;
+		            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/" + hinhAnh;
 		            System.out.println(path);
 		            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/images/"+file.getFileName()));
 		            outputStream = new FileOutputStream(new File(path));
@@ -57,12 +58,12 @@ public class QuanLy_BaiViet_SuaAction extends Action{
 		                outputStream.close();
 		            }
 		        }
-				hinhAnh = chuoi;
 			}
 			else
 				hinhAnh = (String)request.getSession().getAttribute("anhBia");
 			
-			System.out.println(maBaiViet);
+			System.out.println("hinh: "+ hinhAnh);
+			
 			baiVietBO.suaBaiViet(maBaiViet,tieuDe,tomTat,hinhAnh,noiDung);
 			
 			return mapping.findForward("suaBaiVietXong");

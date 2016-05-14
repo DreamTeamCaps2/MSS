@@ -26,9 +26,12 @@ $(function() {
       || value.length >= 6
       && /\d/.test(value)
       && /[a-z]/i.test(value);
-  }, 'Your password must be at least 6 characters long and contain at least one number and one char\'.')
+  }, 'Your password must be at least 6 characters long and contain at least one number and one char\'.');
 
-  
+    $.validator.addMethod("loginRegex", function(value, element) {
+        return this.optional(element) || /^[a-z0-9\-]+$/i.test(value);
+    }, "Username must contain only letters, numbers, or dashes.");
+    
   $("#changePass-form").validate({
 	 rules:{
 		 matKhau: {
@@ -135,6 +138,9 @@ $(function() {
       },
       tenDangNhap: {
         required: true,
+        maxlength: 50,
+        minlength:3,
+        loginRegex: true,
         nowhitespace: true,
         remote: {
         	url:"/MSS/dangKyTK.do",
@@ -177,7 +183,8 @@ $(function() {
       tenDangNhap: {
           required: 'This field is required.',
           tenDangNhap: 'No white space please.',
-          remote: 'This username exist'
+          remote: 'This username exist',
+          loginRegex: "Login format not valid"
         }      
     }
   });

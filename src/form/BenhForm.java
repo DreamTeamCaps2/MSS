@@ -17,7 +17,7 @@ public class BenhForm extends ActionForm {
 	
 	private String timBenh;
 	private int ma, maBenh, maLoaiBenh, soLuongThuoc,soLuongBenh;
-	private String tenBenh;
+	private String tenBenh, tenLoaiBenh;
 	private ArrayList<Benh> listBenh,listBenhXemNhieu;
 	private ArrayList<Thuoc> listThuoc,listThuocXemNhieu;
 	private ArrayList<LoaiBenh> listLoaiBenh;
@@ -305,6 +305,14 @@ public class BenhForm extends ActionForm {
 
 	public void setFile(FormFile file) {
 		this.file = file;
+	}
+
+	public String getTenLoaiBenh() {
+		return tenLoaiBenh;
+	}
+
+	public void setTenLoaiBenh(String tenLoaiBenh) {
+		this.tenLoaiBenh = tenLoaiBenh;
 	}
 	
 }

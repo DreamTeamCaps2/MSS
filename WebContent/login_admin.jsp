@@ -11,13 +11,6 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Đăng Nhập</title>
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
-<link rel="stylesheet" href="css/login-register/blue.css" />
 </head>
 <body class="hold-transition register-page">
 <div class="container" style="height: 450px;  background-color: #F2F2F2;">
@@ -61,15 +54,12 @@
 					<!-- /.col -->
 				</div>
 			</html:form>
-	        <a href="#" style="    color: #337ab7;">I forgot my password</a><br>
+	        <a href="/MSS/quen-mat-khau.do" style="    color: #337ab7;">I forgot my password</a><br>
 	        <a href="register.jsp" style="    color: #337ab7;" class="text-center">Register a new membership</a>
 		</div>
 	</div>
 	</div>
-    <script src="js/login-register/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- iCheck -->
+    
     <script src="js/login-register/icheck.min.js"></script>
     <script>
       $(function () {

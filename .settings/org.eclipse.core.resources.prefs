@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//WebContent/_footer.jsp=UTF-8
+encoding//WebContent/_menuRight.jsp=UTF-8
+encoding//WebContent/css/style_mss.css=UTF-8
 encoding//WebContent/editor.jsp=UTF-8
 encoding//WebContent/quanLy_DanhSachBaiViet.jsp=UTF-8
 encoding//WebContent/sendemail.jsp=UTF-8
@@ -9,4 +11,5 @@ encoding//src/action/QuanLy_DanhSachThuoc_ThemAction.java=UTF-8
 encoding//src/action/QuanLy_LoaiThuocAction.java=UTF-8
 encoding//src/action/QuenMatKhauAction.java=UTF-8
 encoding//src/model/dao/BaiVietDAO.java=UTF-8
+encoding//src/model/dao/GetJSONDAO.java=UTF-8
 encoding//src/model/dao/TaiKhoanDAO.java=UTF-8

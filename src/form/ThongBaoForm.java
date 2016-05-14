@@ -23,7 +23,7 @@ public class ThongBaoForm extends ActionForm {
 	private ArrayList<LoaiBenh> listLoaiBenh;
 	private ArrayList<LoaiThuoc> listLoaiThuoc;
 	private ArrayList<TaiKhoan> listND;
-	private ArrayList<BaiViet> listBaiViet, listBaiVietXemNhieu;
+	private ArrayList<BaiViet> listBaiViet, listBaiVietXemNhieu, listBaiVietSlider;
 	private ArrayList<Benh> listBenhXemNhieu;
 	private ArrayList<Thuoc> listThuocXemNhieu;
 	
@@ -197,6 +197,14 @@ public class ThongBaoForm extends ActionForm {
 
 	public void setListBaiVietXemNhieu(ArrayList<BaiViet> listBaiVietXemNhieu) {
 		this.listBaiVietXemNhieu = listBaiVietXemNhieu;
+	}
+
+	public ArrayList<BaiViet> getListBaiVietSlider() {
+		return listBaiVietSlider;
+	}
+
+	public void setListBaiVietSlider(ArrayList<BaiViet> listBaiVietSlider) {
+		this.listBaiVietSlider = listBaiVietSlider;
 	}
 	
 }

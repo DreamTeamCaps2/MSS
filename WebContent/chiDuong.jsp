@@ -9,12 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Chỉ đường</title>
 
 <link rel="stylesheet" href="css/map.css" />
-<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
-<link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -23,26 +20,50 @@
 
 <script type="text/javascript">
 	var map;
-
+	var tim="";
+	var madiadiem = "<bean:write name="diaDiemForm" property="maDiaDiem"/>";
+	var loai = "<bean:write name="diaDiemForm" property="loaiDiaDiem"/>";
 	var data;
 	function createJSON(json){
 		data=json;
 	}
-	
-	 $.ajax({
-         type: "GET",
-         url: "JSON.jsp",
-         dataType: "json",
-         success: function(json){
-         createJSON(json);
-
-         },
-
-         });
-	 data=eval(data);
-
-	var madiadiem = "<bean:write name="diaDiemForm" property="maDiaDiem"/>";
-	var loai = "<bean:write name="diaDiemForm" property="loaiDiaDiem"/>";
+			 var xhReq = new XMLHttpRequest();
+			xhReq.open("POST", "JSON.jsp?tim="+tim+"&mode="+loai, false);
+			xhReq.send(tim,loai);
+			var jsonObject = JSON.parse(xhReq.responseText); 
+			
+			/* $(document).ready(function () {
+				 $.ajax({
+			         type: "POST",
+			         url: "JSON.jsp?tim="+tim+"&mode="+mode,
+			         data: pra,
+			         dataType: "json",
+			         success: function(json){
+			         createJSON(json);
+			
+			         },
+			
+			     });
+				
+					
+				
+			
+			}); */
+		/* 	var string = JSON.stringify(data);
+			
+			var data = eval(eval(string));
+			console.log(data); */
+			var data;
+			function createJSON(json){
+				console.log(json);
+				data=json;
+				console.log(data);
+			}
+			data=eval(data);
+			
+			data = jsonObject;
+			 console.log(data); 
+		
 	function createMap() {
 		var map_canvas = document.getElementById('google-map');
 		var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -197,15 +218,14 @@
 </script>
 </head>
 <body>
-	<input type="text" id="long" size="20" name="long">
-	<input type="text" id="lat" size="20">
+	<input type="hidden" id="long" size="20" name="long">
+	<input type="hidden" id="lat" size="20">
 
 
 
 
-	<div id="google-map" style="width: 1400px; height: 600px;"></div>
-	<bean:write name="diaDiemForm" property="loaiDiaDiem" />
-	<bean:write name="diaDiemForm" property="maDiaDiem" />
+	<div id="google-map" style="width: 100vw; height: 99vh;"></div>
+	
 </body>
 </html>
 

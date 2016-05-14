@@ -11,12 +11,12 @@ public class DiaDiemForm extends ActionForm {
 	private ArrayList<DiaDiem> listDiaDiem;
 
 	private String loaiDiaDiem;
-	private String search;
+	private String search = "";
 	private String submit;
 	private String tenDangNhap;
 	private String json;
 	private String maDiaDiem;
-	
+
 	public String getMaDiaDiem() {
 		return maDiaDiem;
 	}
@@ -73,8 +73,4 @@ public class DiaDiemForm extends ActionForm {
 		this.listDiaDiem = listDiaDiem;
 	}
 
-
-	
-
-	
 }

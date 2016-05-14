@@ -11,7 +11,6 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import form.BenhForm;
-import form.BenhForm;
 import model.bean.Benh;
 import model.bean.LuotXem;
 import model.bean.Thuoc;
@@ -57,6 +56,8 @@ public class ChiTietBenhAction extends Action{
 		benhForm.setNguyenNhan(benh.getNguyenNhan());
 		benhForm.setSoLuongThuoc(listThuoc.size());
 		benhForm.setLuotXem(benh.getLuotXem());
+		benhForm.setTenLoaiBenh(benh.getTenLoaiBenh());
+		benhForm.setMaLoaiBenh(benh.getMaLoaiBenh());
 		//set list  xem nhieu 
 		ArrayList<Benh> listBenhXemNhieu = new ArrayList<Benh>();
 		listBenhXemNhieu = benhBO.getListBenhXemNhieu();

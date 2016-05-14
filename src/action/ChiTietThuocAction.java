@@ -44,6 +44,10 @@ public class ChiTietThuocAction extends Action {
 		thuocForm.setMaNhomThuoc(thuoc.getMaNhomThuoc());
 		thuocForm.setHinhAnh(thuoc.getHinhAnh());
 		thuocForm.setLuotXem(thuoc.getLuotXem());
+		thuocForm.setTenNhomThuoc(thuoc.getTenNhomThuoc());
+		thuocForm.setTenLoaiThuoc(thuoc.getTenLoaiThuoc());
+		thuocForm.setMaLoaiThuoc(thuoc.getMaLoaiThuoc());
+		
 		// Xu ly Luot Xem
 		LuotXem luotXem = new LuotXem();
 		luotXem.setLanDau(true);

@@ -43,13 +43,13 @@ public class BenhBO {
 	}
 
 	public void themBenh(String tenBenh, String nguyenNhan, String chanDoan, String bienChung, String dieuTri,
-			String cheDoDinhDuong, int maLoaiBenh, int trangThai) {
-		benhDAO.themBenh(tenBenh, nguyenNhan, chanDoan, bienChung, dieuTri, cheDoDinhDuong, maLoaiBenh, trangThai);
+			String cheDoDinhDuong, int maLoaiBenh, String dinhNghia, int trangThai, String hinhAnh) {
+		benhDAO.themBenh(tenBenh, nguyenNhan, chanDoan, bienChung, dieuTri, cheDoDinhDuong, dinhNghia, maLoaiBenh, trangThai, hinhAnh);
 	}
 
 	public void suaBenh(int maBenh, String tenBenh, String nguyenNhan, String chanDoan, String bienChung,
-			String dieuTri, String cheDoDinhDuong, int maLoaiBenh) {
-		benhDAO.suaBenh(maBenh, tenBenh, nguyenNhan, chanDoan, bienChung, dieuTri, cheDoDinhDuong, maLoaiBenh);
+			String dieuTri, String cheDoDinhDuong, String dinhNghia, int maLoaiBenh, String hinhAnh) {
+		benhDAO.suaBenh(maBenh, tenBenh, nguyenNhan, chanDoan, bienChung, dieuTri, cheDoDinhDuong, dinhNghia, maLoaiBenh, hinhAnh);
 	}
 
 	public Benh getBenh(int maBenh) {

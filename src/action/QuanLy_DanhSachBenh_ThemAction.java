@@ -16,6 +16,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.upload.FormFile;
 
+import common.StringProcess;
 import form.BenhForm;
 import model.bean.Thuoc;
 import model.bean.TrieuChung;
@@ -24,8 +25,6 @@ import model.bo.ThuocBO;
 import model.bo.TrieuChungBO;
 
 public class QuanLy_DanhSachBenh_ThemAction extends Action{
-	
-	
 	
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -42,6 +41,7 @@ public class QuanLy_DanhSachBenh_ThemAction extends Action{
 		String bienChung ;
 		String dieuTri;
 		String cheDoDinhDuong ;
+		String dinhNghia;
 		int maLoaiBenh;
 		int trangThai = 1;
 		
@@ -83,6 +83,7 @@ public class QuanLy_DanhSachBenh_ThemAction extends Action{
 			 bienChung = benhForm.getBienChung();
 			 dieuTri = benhForm.getDieuTri();
 			 cheDoDinhDuong = benhForm.getCheDoDinhDuong();
+			 dinhNghia = benhForm.getDinhNghia();
 			 maLoaiBenh = benhForm.getMaLoaiBenh();
 			 file = benhForm.getFile();
 			 
@@ -92,6 +93,7 @@ public class QuanLy_DanhSachBenh_ThemAction extends Action{
 			session.setAttribute("bienChung", bienChung);
 			session.setAttribute("dieuTri", dieuTri);
 			session.setAttribute("cheDoDinhDuong", cheDoDinhDuong);
+			session.setAttribute("dinhNghia", dinhNghia);
 			session.setAttribute("maLoaiBenh", maLoaiBenh);
 			session.setAttribute("listThuoc", benhForm.getListThuoc());
 			session.setAttribute("listTrieuChung", benhForm.getListTrieuChung());
@@ -152,7 +154,13 @@ public class QuanLy_DanhSachBenh_ThemAction extends Action{
 //					benhForm.setCheDoDinhDuong(new String(benhForm.getCheDoDinhDuong().getBytes("ISO-8859-1"),"UTF-8"));
 					session.setAttribute("cheDoDinhDuong", benhForm.getCheDoDinhDuong());
 				}
-				
+				if (benhForm.getDinhNghia() == null || "".equals(benhForm.getDinhNghia()))
+					benhForm.setDinhNghia((String) session.getAttribute("dinhNghia"));
+				else {
+					// benhForm.setCheDoDinhDuong(new
+					// String(benhForm.getCheDoDinhDuong().getBytes("ISO-8859-1"),"UTF-8"));
+					session.setAttribute("dinhNghia", benhForm.getDinhNghia());
+				}
 				
 				if(benhForm.getMaLoaiBenh() == 0 )
 				{
@@ -167,6 +175,7 @@ public class QuanLy_DanhSachBenh_ThemAction extends Action{
 				 bienChung = benhForm.getBienChung();
 				 dieuTri = benhForm.getDieuTri();
 				 cheDoDinhDuong = benhForm.getCheDoDinhDuong();
+				 dinhNghia = benhForm.getDinhNghia();
 				 maLoaiBenh = benhForm.getMaLoaiBenh();
 				 file = benhForm.getFile();
 				 
@@ -196,11 +205,11 @@ public class QuanLy_DanhSachBenh_ThemAction extends Action{
 				String hinhAnh = "no_image.jpg";
 				file = benhForm.getFile();
 				if(file.getFileName()!=""){
+					StringProcess process = new StringProcess();
+					hinhAnh = process.makeSlug(tenBenh)+".jpg";
 					try {
-						String chuoi = tenBenh+"_ava.jpg";
-			            String path = getServlet().getServletContext().getRealPath("/")+"images"+"/"+chuoi;
-	//		            String filePath = System.getProperty("java.io.tmpdir") + "/" + file.getFileName();
-	//		            System.out.println(path);
+			            String path = getServlet().getServletContext().getRealPath("/")+"img"+"/"+hinhAnh;
+			            //outputStream = new FileOutputStream(new File("F:/gitgit/MSS/WebContent/img/"+chuoi));
 			            outputStream = new FileOutputStream(new File(path));
 			            outputStream.write(file.getFileData());
 			            
@@ -209,12 +218,12 @@ public class QuanLy_DanhSachBenh_ThemAction extends Action{
 			                outputStream.close();
 			            }
 			        }
-					hinhAnh = file.getFileName();
 				}
 				
 				
 				System.out.println(hinhAnh);
-				benhBO.themBenh(tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong,maLoaiBenh,trangThai);
+				
+				benhBO.themBenh(tenBenh,nguyenNhan,chanDoan,bienChung,dieuTri,cheDoDinhDuong,maLoaiBenh, dinhNghia, trangThai, hinhAnh);
 				for(int i=0; i< benhForm.getListThuoc().size(); i++)
 					benhBO.themBenhThuoc(tenBenh,benhForm.getListThuoc().get(i).getMaThuoc());
 				for(int i=0; i< benhForm.getListTrieuChung().size(); i++)

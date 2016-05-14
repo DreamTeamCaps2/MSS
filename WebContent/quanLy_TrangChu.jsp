@@ -11,12 +11,16 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>Trang chủ</title>
+	<link rel="stylesheet" href="js/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link href="js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />	
 
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+	<script src="js/dataTables/jquery.dataTables.js"></script>
+	<script src="js/dataTables/dataTables.bootstrap.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 	<div class="example">
@@ -61,10 +65,7 @@
 							<li><a href="/MSS/quan-ly-bai-viet.do">Bài Viết</a></li>
 						</logic:equal>
 						<li><a href="/MSS/quan-ly-gop-y.do">Góp Ý</a></li>
-						<li class="dropdown"><a data-toggle="dropdown" href=""> <span
-								class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-						</a></li>
-						<li><a href="/MSS/cap-nhat.do">Cập Nhật</a></li>
+						<li><a href="/MSS/cap-nhat.do">Cập Nhật Phiên Bản</a></li>
 						<li><a href="/MSS">WEB</a></li>
 					</ul>
 				</div>

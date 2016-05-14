@@ -9,17 +9,17 @@
 <head>
 <meta charset="utf8">
 <title>Thông tin</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/login-register/AdminLTE.min.css" />
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+ -->
 </head>
 <body>
-    <div class="container text-center" style="padding-top: 0px ;width: 1000px;">    
+    <div class="container" style="padding-top: 0px ;width: 1000px;">    
         <!-- 	<h3>THÔNG TIN CỬA HÀNG</h3> -->
-	  <div class="row">
-	    <div class="col-sm-3 well">
+	 <div class="row" style="width: inherit; margin-left: 0px; margin-right: 0px; margin-top: 15px;">
+	    <div class="col-sm-3 text-center" style="">
 	      <div class="well">
 	        <p><a href="#">My Profile</a></p>
-	        <img src="img/${taiKhoan1.anhDaiDien}" class="img-circle" height="100" width="100" alt="Avatar">
+	        <img src="img/${taiKhoan1.anhDaiDien}" class="img-circle" height="180px" width="180px" alt="Avatar">
 	      </div>
 	      <logic:empty name="taiKhoanForm" property="loaiTK">
 	      <div class="clearfix">
@@ -32,29 +32,30 @@
 	      	<input type="button" class="btn btn-block btn-primary" id="btnToCao" onclick="ClickToCao()" value="Tố cáo">
 	      </div>
 	      </logic:empty>
-	      <div class="well">
-	        <p><a href="#">Interests</a></p>
-	        <p>
-	          <span class="label label-default">News</span>
-	          <span class="label label-primary">W3Schools</span>
-	          <span class="label label-success">Labels</span>
-	          <span class="label label-info">Football</span>
-	          <span class="label label-warning">Gaming</span>
-	          <span class="label label-danger">Friends</span>
-	        </p>
-	      </div>
 	    </div>
-    <div class="col-sm-6" style="padding-right: 10px">
-      	<div class="row">
-        	<div class="col-sm-12">
-        	<div class="panel panel-default text-left">
-            <div class="panel-body">
+	    <div class="col-sm-9">
+  <div class="nav-tabs-custom" style="box-shadow: 1px 1px 1px 1px rgb(155, 144, 144); height: auto">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
+    <li><a data-toggle="tab" href="#menu1">Bình Luận</a></li>
+    <li><a data-toggle="tab" href="#menu2">Giá Thuốc</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        	<div class="text-left">
 				<html:form action="/thongTinTKChiTiet" method="post">
+					 <div class="row form-group">
+			            <label class="col-lg-4">Tên Tài Khoản</label>
+			            <div class="col-lg-6">
+			            	<bean:write name="taiKhoanForm" property="tenDangNhap"/>
+			            </div>
+			        </div>
 					<logic:notEmpty name="taiKhoan1" property="tenPhongKham">  
 			        <div class="row form-group">
 			            <label class="col-lg-4">Tên Phòng Khám</label>
 			            <div class="col-lg-6">
-			            	<html:text property="tenPhongKham" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="tenPhongKham"/>
 			            </div>
 			        </div>      
 			        </logic:notEmpty>
@@ -62,20 +63,20 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Tên Nhà Thuốc</label>
 			            <div class="col-lg-6">
-			            	<html:text property="tenNhaThuoc" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="tenNhaThuoc"/>
 			            </div>
 			        </div>              
 			        </logic:notEmpty>
 					<div class="row form-group">
 			            <label class="col-lg-4">SDT</label>
 			            <div class="col-lg-6">
-			            	<html:text property="SDT" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="SDT"/>
 			            </div>
 			        </div>
 			        <div class="row form-group">
 			            <label class="col-lg-4">Địa chỉ</label>
 			            <div class="col-lg-6">
-			            	<html:text property="diaChi" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="diaChi"/>
 			            </div>
 			        </div>       
 			        <div class="row form-group">
@@ -94,7 +95,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">CMND</label>
 			            <div class="col-lg-6">
-			            	<html:text property="cmnd" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="cmnd"/>
 			            </div>
 			        </div>       
 			        </logic:notEmpty>     
@@ -102,7 +103,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Email</label>
 			            <div class="col-lg-6">
-			            	<html:text property="email" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="email"/>
 			            </div>
 			        </div>            
 			        </logic:notEmpty>       
@@ -111,7 +112,7 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Mô tả</label>
 			            <div class="col-lg-6">
-			            	<html:text property="moTa" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="moTa"/>
 			            </div>
 			        </div>            
 			        </logic:notEmpty>
@@ -119,23 +120,54 @@
 			        <div class="row form-group">
 			            <label class="col-lg-4">Thời gian</label>
 			            <div class="col-lg-6">
-			            	<html:text property="thoiGian" styleClass="form-control" readonly="true"></html:text>
+			            	<bean:write name="taiKhoanForm" property="thoiGian"/>
 			            </div>
 			        </div>              
 			        </logic:notEmpty>
 			    </html:form>
-			   </div>
-		    </div>
-	    </div>
-
-		</div>
-		
-		<logic:empty name="taiKhoanForm" property="loaiTK">
+			    </div>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <logic:empty name="taiKhoanForm" property="loaiTK">
+			<div class="box-footer box-comments" id="boxcomment" style="background: white;overflow-y: scroll;height: 300px;">
+				<c:forEach items="${taiKhoanForm.listBinhLuan}" var="list">
+					<div class="box-comment">
+						<img class="img-circle img-sm" src="img/${list.hinhAnh }" alt="user image">
+						 <div class="comment-text">
+						 	<span class="username">
+						 		<c:out value="${list.tenTK}"/>
+						 		<span class="text-muted pull-right"><c:out value="${list.thoiGian}"/></span>
+						 	</span>
+						 	<c:out value="${list.noiDung}"/>
+						 </div>
+					</div>
+				</c:forEach>
+          	</div>
+				<div class="box-footer">
+					<logic:present name="taiKhoan">
+                    	<img class="img-responsive img-circle img-sm" src="img/${taiKhoan.anhDaiDien}" alt="alt text">
+                    </logic:present>
+                    <logic:notPresent name="taiKhoan">
+                    	<img class="img-responsive img-circle img-sm" src="img/bird.jpg" alt="alt text">
+                    </logic:notPresent>
+                    <div class="img-push">
+                    <div class="form-group margin-bottom-none">
+                      	<input class="col-lg-9" type="text" id="txtBinhLuan" class="form-control input-sm" placeholder="Press enter to post comment">
+                        <div class="col-lg-3">
+                        	<button class="btn btn-danger pull-right btn-block btn-sm" onclick="ClickBinhLuan()">GỬI</button>
+                        </div>
+                    </div>
+                    </div>
+                   
+                </div>                
+	</logic:empty>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <logic:empty name="taiKhoanForm" property="loaiTK">
 		<!-- THUOC -->
-		<div class="panel panel-default text-left">
-		<div class="panel-body">
-							<table class="table table-striped table-bordered table-hover"
-								id="dataTables-example">
+		<div class="box">
+			<div class="box-body">
+				<table class="table table-striped table-bordered dt-bootstrap" id="dataTables-example">
 								<thead>
 									<tr>
 										<th>Mã Thuốc</th>
@@ -162,43 +194,11 @@
 							</table>
 						</div>	
 						</div>
-		</logic:empty>	
-	</div>
-	
-	<logic:empty name="taiKhoanForm" property="loaiTK">
-	<!-- BINHLUAN -->
-		<div class="col-sm-3" style="text-align: left; padding-top: 10px; padding-left: 0px">
-			BÌNH LUẬN
-			<div class="box-footer box-comments" id="boxcomment" style="background: white;overflow-y: scroll;height: 300px;">
-				<c:forEach items="${taiKhoanForm.listBinhLuan}" var="list">
-					<div class="box-comment">
-						<img class="img-circle img-sm" src="img/${list.hinhAnh }" alt="user image">
-						 <div class="comment-text">
-						 	<span class="username">
-						 		<c:out value="${list.tenTK}"/>
-						 		<span class="text-muted pull-right"><c:out value="${list.thoiGian}"/></span>
-						 	</span>
-						 	<c:out value="${list.noiDung}"/>
-						 </div>
-					</div>
-				</c:forEach>
-          	</div>
-				<div class="box-footer">
-					<logic:present name="taiKhoan">
-                    	<img class="img-responsive img-circle img-sm" src="img/${taiKhoan.anhDaiDien}" alt="alt text">
-                    </logic:present>
-                    <logic:notPresent name="taiKhoan">
-                    	<img class="img-responsive img-circle img-sm" src="img/bird.jpg" alt="alt text">
-                    </logic:notPresent>
-                    <!-- .img-push is used to add margin to elements next to floating images -->
-                    <div class="img-push">
-                      	<input type="text" id="txtBinhLuan" class="form-control input-sm" placeholder="Press enter to post comment">
-                        <button onclick="ClickBinhLuan()">OK</button>
-                    </div>
-                   
-                </div>                
-	    </div>
-	</logic:empty>
+		</logic:empty>
+    </div>
+  </div>
+</div>
+</div>
 	</div>
 	</div>
   	<script type="text/javascript">
@@ -342,11 +342,15 @@
 	<script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable({
-                	"order": [[ 3, "desc" ]],
-                	"autoWidth": false,
-	                "columnDefs": [
-	                               { "targets": [3], "searchable": false }
-	                           ]
+                	"order": [[ 0, "desc" ]],
+                	"autoWidth" : false,
+                	"columnDefs" : [ 
+						{"width": "20%", "targets": 0},
+						{"width": "30%", "targets": 1},
+						{"width": "30%", "targets": 2},
+						{"width": "20%", "targets": 3}, 
+						{ "targets": [3], "searchable": false }			  	
+	                 ]
                 });
                 
                 var mark = <%= request.getAttribute("checkMark") %>;
